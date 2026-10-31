@@ -354,3 +354,8 @@
 }
 .fb-done .lead { margin-top: 22px; }
 .site-nav .container > .nav-cta { text-decoration: none; }
+.fb-missing { position: relative; }
+.field.fb-missing input, .field.fb-missing textarea { border-color: #d71f2a; background: #fff7f7; }
+.rate-row.fb-missing legend b, .fb-missing > label { color: #b3121b; }
+.rate-row.fb-missing .rate > span, .chip-set.fb-missing .chip > span { border-color: #e9a3a6; }
+.rate-row.fb-missing::after, .chip-set.fb-missing::after, .score.fb-missing::after { content: "Required \5FC5\586B"; display: block; grid-column: 1 / -1; flex-basis: 100%; margin-top: 6px; font-size: 12.5px; font-weight: 600; color: #b3121b; }

@@ -43,16 +43,16 @@ def section(num, en, cn, body, sub_en='', sub_cn=''):
 def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
     trip = '''<div class="fields">
         <div class="field"><label for="fb-code">Tour code {z1}</label><input id="fb-code" name="tour_code" required autocomplete="off" placeholder="For example, QH2611"></div>
-        <div class="field"><label for="fb-leader">Tour leader {z2}</label><input id="fb-leader" name="tour_leader" autocomplete="off"></div>
-        <div class="field"><label for="fb-dep">Departure date {z3}</label><input id="fb-dep" name="departure" type="date"></div>
-        <div class="field"><label for="fb-ret">Return date {z4}</label><input id="fb-ret" name="return" type="date"></div>
+        <div class="field"><label for="fb-leader">Tour leader {z2}</label><input id="fb-leader" name="tour_leader" autocomplete="off" required></div>
+        <div class="field"><label for="fb-dep">Departure date {z3}</label><input id="fb-dep" name="departure" type="date" required></div>
+        <div class="field"><label for="fb-ret">Return date {z4}</label><input id="fb-ret" name="return" type="date" required></div>
       </div>'''.format(z1=zh('团号'), z2=zh('领队'), z3=zh('出发日期'), z4=zh('返回日期'))
     you = '''<div class="fields">
-        <div class="field full"><label for="fb-name">Name {z1}</label><input id="fb-name" name="name" autocomplete="name"></div>
-        <div class="field"><label for="fb-tel">Contact number {z2}</label><input id="fb-tel" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
-        <div class="field"><label for="fb-email">Email {z3}</label><input id="fb-email" name="email" type="email" autocomplete="email"></div>
-      </div><p class="fb-note">You can leave this section blank to stay anonymous. Add your details only if you would like us to reply. {z4}</p>'''.format(
-        z1=zh('姓名'), z2=zh('联络电话'), z3=zh('电邮'), z4=zh('此部分可留空以匿名提交；如需我们回复，请留下联络资料。'))
+        <div class="field full"><label for="fb-name">Name {z1}</label><input id="fb-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="fb-tel">Contact number {z2}</label><input id="fb-tel" name="phone" type="tel" required autocomplete="tel" inputmode="tel"></div>
+        <div class="field"><label for="fb-email">Email {z3}</label><input id="fb-email" name="email" type="email" required autocomplete="email"></div>
+      </div><p class="fb-note">We use these details only to follow up on your feedback. {z4}</p>'''.format(
+        z1=zh('姓名'), z2=zh('联络电话'), z3=zh('电邮'), z4=zh('您的资料仅用于跟进您的意见。'))
 
     secs = [section(1, 'Your trip', '您的行程', trip)]
     n = 2
@@ -65,7 +65,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
         <input id="fb-score" name="overall" type="range" min="0" max="100" step="5" value="80" aria-describedby="fb-score-hint">
         <div class="score-scale" id="fb-score-hint"><span>Dissatisfied {zh('不满意')}</span><span>Satisfied {zh('满意')}</span></div>
       </div>
-      <div class="field full"><label for="fb-comments">Comments {zh('意见反馈')}</label><textarea id="fb-comments" name="comments" placeholder="What did you enjoy most? What could we do better?"></textarea></div>'''
+      <div class="field full"><label for="fb-comments">Comments {zh('意见反馈')}</label><textarea id="fb-comments" name="comments" required placeholder="What did you enjoy most? What could we do better?"></textarea></div>'''
     secs.append(section(n, 'Overall', '整体满意度', overall)); n += 1
     times = ''.join(f'<label class="chip"><input type="radio" name="times" value="{v}"><span>{l}</span></label>' for v, l in
                     [('1', 'First trip'), ('2', '2nd'), ('3', '3rd'), ('4', '4th'), ('5+', '5 or more')])
@@ -75,12 +75,12 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
                         'What made you choose this tour? Choose any that apply.', '请勾选您选择本次行程的原因（可多选）。')); n += 1
     secs.append(section(n, 'How you found us', '认识渠道', chips('source', SOURCES),
                         'How did you hear about YSL Travel &amp; Tours?', '您是通过哪种渠道认识我们的？')); n += 1
-    secs.append(section(n, 'About you (optional)', '联络资料（可选填）', you))
+    secs.append(section(n, 'About you', '联络资料', you))
 
     body = f'''{nav('')}
 <main id="main">
 {head_block([('index.html', 'Home'), (None, 'Tour feedback')], 'Tour feedback ' + zh('旅游体验评估'), 'How was <span class="nw"><em>your trip?</em></span>',
-            'Thank you for travelling with us. This takes about three minutes, and every answer is read by our team. ' + zh('感谢您参加咏胜旅游的行程。填写约需三分钟，每份意见都会由我们的团队细阅。'))}
+            'Thank you for travelling with us. This takes about three minutes, and every answer is read by our team. Please answer every question. ' + zh('感谢您参加咏胜旅游的行程。填写约需三分钟，每份意见都会由我们的团队细阅。请填写所有项目。'))}
 <section class="section fb-wrap">
   <div class="container">
     <form class="fb-form" id="feedback" novalidate>
@@ -117,10 +117,12 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
   } catch (e) {}
   // overall score readout
   var s = document.getElementById('fb-score'), out = document.getElementById('fb-score-out'), touched = false;
-  function show() { out.innerHTML = (touched ? s.value : '–') + '<small>/100</small>'; s.style.setProperty('--p', s.value + '%'); }
+  function show() { out.innerHTML = (touched ? s.value : '\u2013') + '<small>/100</small>'; s.style.setProperty('--p', s.value + '%'); }
   s.addEventListener('input', function () { touched = true; show(); }); show();
   // "Other" reveals a text box
+  form.addEventListener('input', function (e) { var m = e.target.closest('.fb-missing'); if (m) m.classList.remove('fb-missing'); });
   form.addEventListener('change', function (e) {
+    var m = e.target.closest('.fb-missing'); if (m) m.classList.remove('fb-missing');
     var t = e.target; if (!t.dataset || !t.dataset.other) return;
     var w = document.getElementById(t.dataset.other + '_wrap'); w.hidden = !t.checked; if (t.checked) w.querySelector('input').focus();
   });
@@ -133,9 +135,26 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
   form.addEventListener('submit', function (e) {
     e.preventDefault(); err.hidden = true;
     var miss = [];
-    if (!form.elements.tour_code.value.trim()) miss.push('tour code 团号');
-    if (!touched) miss.push('overall rating 整体评分');
-    if (miss.length) { err.textContent = 'Please add your ' + miss.join(' and ') + '.'; err.hidden = false; err.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+    form.querySelectorAll('.fb-missing').forEach(function (el) { el.classList.remove('fb-missing'); });
+    function flag(el) { if (el && miss.indexOf(el) < 0) { el.classList.add('fb-missing'); miss.push(el); } }
+    var E = form.elements;
+    ['tour_code', 'tour_leader', 'departure', 'return'].forEach(function (k) { if (!E[k].value.trim()) flag(E[k].closest('.field')); });
+    form.querySelectorAll('fieldset.rate-row').forEach(function (fs) { if (!fs.querySelector('input:checked')) flag(fs); });
+    if (!touched) flag(s.closest('.score'));
+    if (!E.comments.value.trim()) flag(E.comments.closest('.field'));
+    if (!form.querySelector('input[name=times]:checked')) flag(form.querySelector('input[name=times]').closest('.chip-set'));
+    ['reasons', 'source'].forEach(function (k) {
+      var box = form.querySelector('input[name=' + k + ']').closest('.chip-set');
+      if (!form.querySelector('input[name=' + k + ']:checked')) flag(box);
+      else if (form.querySelector('input[name=' + k + '][value=other]:checked') && !E[k + '_other'].value.trim()) flag(E[k + '_other'].closest('.field'));
+    });
+    if (!E.name.value.trim()) flag(E.name.closest('.field'));
+    if (!/^[+\d][\d\s-]{6,}$/.test(E.phone.value.trim())) flag(E.phone.closest('.field'));
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(E.email.value.trim())) flag(E.email.closest('.field'));
+    if (miss.length) {
+      err.textContent = 'Please complete the highlighted questions (' + miss.length + '). \u8bf7\u586b\u5199\u6807\u793a\u7684\u9879\u76ee\u3002';
+      err.hidden = false; miss[0].scrollIntoView({ block: 'center', behavior: 'smooth' }); return;
+    }
     var data = collect(), btn = form.querySelector('button[type=submit]');
     function finish() { form.hidden = true; done.hidden = false; done.focus(); window.scrollTo(0, done.getBoundingClientRect().top + scrollY - 120); }
     if (!ENDPOINT) { document.getElementById('fb-proto').hidden = false; try { console.log('feedback', data); } catch (x) {} finish(); return; }
