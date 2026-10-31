@@ -1,0 +1,27 @@
+/* Typeface: Instrument Serif headlines, Inter Tight text, IBM Plex Mono for codes */
+:root { --display: "Instrument Serif", "Noto Serif SC", Georgia, serif; --body: "Inter Tight", "Hanken Grotesk", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+html .h-xxl, html .h-xl, html .h-l, html .h-m,
+html .globe-copy h1, html .plan-band h2, html .slot b,
+html .t-title, html .stats dd, html .cta-band .h-xl { font-weight: 400 !important; font-style: normal; letter-spacing: -.012em; }
+html .globe-copy h1 { font-size: clamp(52px, 6.4vw, 104px); line-height: .98; }
+html .globe-copy h1 em, html .h-xxl, html .cta-band .h-xl { font-style: italic; }
+html .h-xxl { font-size: clamp(54px, 7.4vw, 120px); line-height: .98; }
+html .h-xl { font-size: clamp(42px, 5.4vw, 84px); }
+html .h-l { font-size: clamp(34px, 3.8vw, 56px); line-height: 1.04; }
+html .t-title { font-size: 25px; line-height: 1.1; }
+html .stats dd { font-size: clamp(52px, 5.6vw, 84px); }
+body { font-family: var(--body); }
+
+/* the serif has one weight: never fake bold, and give it room */
+html .tour-card h3, html .post-card h3, html .svc-tile h3, html .wordmarks li, html .nav-links a, html .intro-statement,
+html .itin .ttl, html .inc-grid h3, html .article-body h2, html .pull, html .d-body h3, html .qg-feats b, html .mice-letter,
+html .mice-grid h3, html .scale-grid b, html .runway b, html .case-body h3, html .local-grid b { font-weight: 400 !important; letter-spacing: -.005em; }
+/* card titles: the serif runs small, so it sits a clear step (about 1.7x) above the card text */
+html .mice-grid h3, html .case-body h3, html .inc-grid h3, html .tour-card h3, html .post-card h3 { font-size: clamp(26px, 2.1vw, 30px); line-height: 1.08; }
+html .d-body h3, html .itin .ttl { font-size: clamp(24px, 1.9vw, 28px); line-height: 1.12; }
+html .scale-grid b, html .local-grid b, html .runway b, html .qg-feats b { font-size: clamp(22px, 1.7vw, 25px); line-height: 1.1; }
+html .mice-grid p, html .scale-grid p, html .local-grid p, html .case-body p { font-size: 15px; line-height: 1.6; }
+@media (min-width: 961px) { html .nav-links a { font-family: var(--body); } }
+/* a heading with a set line break keeps it: no width cap, no rebalancing */
+.page-head .h-xxl:has(br) { max-width: none; text-wrap: wrap; }
+.nw { white-space: nowrap; }

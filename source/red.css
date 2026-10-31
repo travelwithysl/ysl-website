@@ -1,0 +1,49 @@
+/* ==========================================================================
+   Red balance: premium structure, YSL red as the signature.
+   Dark surfaces become deep wine; the closing band is corporate red;
+   primary buttons, figures and accent words carry the red.
+   ========================================================================== */
+:root { --ysl-red: #e72629; --ysl-red-dk: #c41b24; --wine: #4a0a19; --wine-2: #5e0d20; --wine-3: #2e0510; }
+
+/* header: deep wine, not black */
+.site-nav { background: rgba(74,10,25,.97); }
+@media (max-width: 960px) { .nav-links { background: var(--wine); } }
+.nav-cta { background: var(--ysl-red); border-color: var(--ysl-red); }
+.nav-cta:hover { background: #fff; border-color: #fff; color: var(--ysl-red) !important; }
+
+/* dark bands read red */
+.section--ink, .section--red { background: radial-gradient(80% 120% at 85% 0%, #6e1024 0%, var(--wine) 55%, var(--wine-3) 100%); }
+.site-footer { background: var(--wine-3); }
+.plan-band { background: var(--wine); }
+.plan-band::after { background: linear-gradient(90deg, rgba(74,10,25,.1) 0%, rgba(74,10,25,.3) 38%, rgba(74,10,25,.9) 62%, var(--wine) 100%); }
+@media (max-width: 960px) { .plan-band::after { background: linear-gradient(180deg, rgba(74,10,25,0) 0, rgba(74,10,25,0) 200px, var(--wine) 240px); } }
+
+/* closing band: full corporate red */
+.cta-band { background: var(--ysl-red); }
+.cta-band .ghost-pin { opacity: .12; }
+.cta-band .eyebrow, .cta-band .contact-quick dt { color: rgba(255,255,255,.8); }
+.cta-band .contact-quick div { border-top-color: rgba(255,255,255,.35); }
+.cta-band .btn--white { color: var(--ysl-red); }
+.cta-band .btn--white:hover { background: var(--wine); border-color: var(--wine); color: #fff; }
+.cta-band em { color: inherit; }
+
+/* primary buttons are red again */
+.btn--red { background: var(--ysl-red); border-color: var(--ysl-red); color: #fff; }
+.btn--red:hover { background: var(--ysl-red-dk); border-color: var(--ysl-red-dk); }
+.btn--white { color: var(--ysl-red); }
+
+/* red figures and accent words */
+.stats dd { color: var(--ysl-red); }
+.h-xxl em, .h-xl em, .h-l em { color: var(--ysl-red); font-style: italic; }
+.on-dark .h-xxl em, .on-dark .h-xl em, .on-dark .h-l em { color: #ff5a4a; }
+.link-arrow { color: var(--ysl-red); }
+.t-stub span:last-child { color: var(--ysl-red); }
+/* client logos on a dark band sit on a white card */
+.section--ink .logos-panel { background: #fff; border-radius: 16px; padding: clamp(20px, 3vw, 40px); }
+.section--ink .logos-panel img { mix-blend-mode: normal; opacity: .85; }
+.inline-cta { background: radial-gradient(80% 140% at 90% 0%, #6e1024 0%, var(--wine) 60%, var(--wine-3) 100%); }
+
+/* headings upright; only the red accent words are italic */
+html .h-xxl, html .h-xl, html .h-l, html .h-m, html .globe-copy h1, html .plan-band h2, html .cta-band .h-xl,
+html .slot b, html .t-title, html .mice-grid h3, html .page-head h1, html .tour-hero h1 { font-style: normal; }
+html .h-xxl em, html .h-xl em, html .h-l em, html .h-m em, html .globe-copy h1 em, html .plan-band h2 em, html .cta-band .h-xl em { font-style: italic; }

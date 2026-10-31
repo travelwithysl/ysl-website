@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Premium direction: dark bookends, calm middle.
+   The globe hero's red-black opens and closes every page; ivory carries the
+   content; bright red is an accent only. Layered over site/pages/home css.
+   ========================================================================== */
+:root {
+  --night: #170407;
+  --night-2: #230709;
+  --night-3: #0f0304;
+  --ivory: #f6f1ea;
+  --ivory-2: #efe7dd;
+  --paper: #efe7dd;
+  --line: rgba(23,4,7,.12);
+  --line-dark: rgba(255,235,228,.12);
+  --stone: #6f6361;
+  --stone-light: #a3958f;
+  --ember: #ff7a66;
+  --tbc: rgba(255,214,90,.42);
+  --section: clamp(96px, 11vw, 168px);
+}
+html, body { background: var(--ivory); }
+body { color: var(--night); }
+::selection { background: var(--night); color: #fff; }
+
+/* ---------- header: night glass ---------- */
+.site-nav { background: rgba(23,4,7,.97); -webkit-backdrop-filter: saturate(140%) blur(14px); backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid rgba(255,235,228,.08); }
+.site-nav.scrolled { box-shadow: none; }
+.site-nav .container { min-height: 72px; }
+.brand .logo { height: 36px; }
+.brand span { opacity: .7; }
+.nav-links a { font-size: 13px; font-weight: 500; letter-spacing: .03em; opacity: .74; }
+.nav-links a::after { height: 1px; background: var(--ember); }
+.nav-cta { background: transparent; color: #fff !important; border: 1px solid rgba(255,235,228,.4); padding: 9px 18px !important; }
+.nav-cta:hover { background: #fff; color: var(--night) !important; }
+.lang { border-color: rgba(255,235,228,.22); }
+@media (max-width: 960px) { .nav-links { inset: 72px 0 0 0; background: var(--night); } }
+
+/* ---------- type: one loud moment per page, the rest calm ---------- */
+.eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .24em; color: var(--stone); }
+.on-dark .eyebrow, .on-red .eyebrow { color: rgba(255,170,150,.75); }
+.h-xl { font-style: normal; font-weight: 600; letter-spacing: -.035em; line-height: 1.02; }
+.h-l { font-weight: 600; letter-spacing: -.03em; line-height: 1.08; }
+.h-m { font-weight: 600; }
+.lead { color: var(--stone); }
+.tbc { color: #5c4300; }
+
+/* ---------- surfaces ---------- */
+.section--paper { background: var(--ivory-2); }
+.section--ivory { background: var(--ivory); }
+.section { --notch: var(--ivory); }
+.section--paper { --notch: var(--ivory-2); }
+.section--ink, .section--red { background: var(--night); }
+.page-head { background: var(--ivory); padding-block: clamp(72px, 10vw, 148px) clamp(40px, 5vw, 72px); border-bottom: 1px solid var(--line); }
+
+/* ---------- buttons: ink on light, light on dark; red never fills ---------- */
+.btn--red { background: var(--night); border-color: var(--night); color: #fff; }
+.btn--red:hover { background: #3a0a10; border-color: #3a0a10; }
+.btn--white { color: var(--night); }
+.btn--white:hover { background: var(--ivory-2); border-color: var(--ivory-2); }
+.btn--line-dark { border-color: rgba(23,4,7,.28); color: var(--night); }
+.btn--line-dark:hover { background: var(--night); }
+.link-arrow { color: var(--night); font-weight: 600; }
+.link-arrow svg { color: #d71f2a; }
+.rail-ctrl button { width: 48px; height: 48px; border-width: 1px; border-color: rgba(23,4,7,.25); }
+
+/* ---------- stats: quiet, large, ink ---------- */
+.stats { border-top-color: var(--line); }
+.stats dd { color: var(--night); font-weight: 500; letter-spacing: -.045em; font-size: clamp(42px, 4.4vw, 68px); }
+.stats dt { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+
+/* ---------- tickets: no outline, soft lift ---------- */
+.ticket { background: #fff; border-radius: 16px; box-shadow: 0 1px 0 rgba(23,4,7,.04), 0 24px 48px -28px rgba(23,4,7,.28); }
+.ticket .media, .ticket .slot { border-radius: 16px 16px 0 0; }
+.pill { background: rgba(23,4,7,.55); color: #fff; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-weight: 500; letter-spacing: .14em; font-family: var(--mono); }
+.t-title { font-weight: 700; font-size: 20px; }
+.t-stub span:last-child { color: var(--night); }
+.t-stub svg { color: #d71f2a; }
+
+/* ---------- strips: words, not chips ---------- */
+.brand-strip span.b, .svc-strip li a { border: 0; background: transparent; border-radius: 0; padding: 4px 0; font-weight: 600; }
+.brand-strip { gap: 8px 32px; }
+.svc-strip { gap: 8px 28px; }
+.svc-strip li a:hover { color: #d71f2a; }
+.svc-strip svg { color: var(--stone); }
+.svc-strip .all { color: var(--night); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+/* ---------- home: proof band without the box ---------- */
+.proof { background: transparent; border-radius: 0; padding: 0; border-top: 1px solid var(--line); padding-top: clamp(56px, 6vw, 88px); }
+.legal li { background: transparent; border-radius: 0; padding: 14px 0; border-top: 1px solid var(--line); }
+.legal b { font-size: 24px; }
+.badges li { border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 14px 0; }
+.badges b { color: var(--night); }
+.cred h3 { color: var(--stone); }
+
+/* plan band: the flat-lay sinks into night red */
+.plan-band { background: var(--night); }
+.plan-band img.bg { z-index: -2; filter: brightness(.8) saturate(.95); }
+.plan-band::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(23,4,7,.15) 0%, rgba(23,4,7,.35) 38%, rgba(23,4,7,.92) 62%, var(--night) 100%); }
+@media (max-width: 960px) { .plan-band::after { background: linear-gradient(180deg, rgba(23,4,7,0) 0, rgba(23,4,7,0) 200px, var(--night) 240px); } }
+.plan-band h2 { font-style: normal; font-weight: 600; letter-spacing: -.035em; }
+.plan-band .eyebrow { color: rgba(255,170,150,.8); }
+
+/* ---------- about ---------- */
+.portrait { border-radius: 4px; }
+.member-grid { gap: 0; border-top: 1px solid var(--line); }
+.member-grid li { border: 0; border-right: 1px solid var(--line); border-radius: 0; background: transparent; padding: 28px 24px 8px; }
+.member-grid li:first-child { padding-left: 0; }
+.member-grid li:last-child { border-right: 0; }
+.member-grid b { font-family: var(--mono); font-weight: 500; font-size: 22px; letter-spacing: .08em; color: var(--night); }
+.mv-grid .h-l { font-weight: 600; }
+.logos-panel { background: transparent; border-radius: 0; padding: 0; }
+.logos-panel img { filter: grayscale(1) contrast(1.15) brightness(1.02); mix-blend-mode: multiply; opacity: .78; }
+@media (max-width: 960px) {
+  .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .member-grid li:nth-child(2) { border-right: 0; }
+  .member-grid li:nth-child(3) { padding-left: 0; }
+}
+
+/* ---------- closing bookend: the hero's night returns ---------- */
+.cta-band { background: radial-gradient(70% 120% at 85% 110%, #5a0b12 0%, #2a0509 45%, var(--night) 100%); }
+.cta-band .h-xl { font-style: italic; font-weight: 900; }
+.cta-band .contact-quick div { border-top-color: rgba(255,235,228,.14); }
+.cta-band .contact-quick dt { font-family: var(--mono); font-weight: 500; color: rgba(255,170,150,.75); }
+.cta-band .ghost-pin { opacity: .05; }
+.site-footer { background: var(--night-3); color: rgba(255,235,228,.6); }
+.foot-grid h4 { font-family: var(--mono); font-weight: 500; color: rgba(255,235,228,.9); }
+.foot-base { border-top-color: rgba(255,235,228,.08); color: rgba(255,235,228,.4); }
+
+/* ---------- motion: slower, calmer ---------- */
+.rv { transition: transform 1.4s cubic-bezier(.16,.8,.2,1); }
+.rv-pending { transform: translateY(20px); }
+
+/* corporate red rule under the header */
+.site-nav { border-bottom: 5px solid #e72629; }
+@media (max-width: 960px) { .nav-links { inset: 77px 0 0 0; } }
+.on-dark .eyebrow { color: rgba(255,235,228,.55); }
