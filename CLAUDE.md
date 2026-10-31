@@ -9,6 +9,7 @@ Built and maintained by Twain Productions (Michelle Liu). The 2020 YSL brand ide
 |---|---|---|
 | `source/` | Static-site generator (Python, no dependencies) and all CSS/JS | no |
 | `dist/` | Built main website, including all images in `dist/assets/` | not yet (prototype only) |
+| `dist/zh/` | Simplified Chinese site, same pages and templates (shares `dist/assets/`) | with `dist/` |
 | `feedback-site/` | Tour feedback form + link maker, live at feedback.ysltravel.com | Cloudflare Pages project `ysl-feedback`, output dir `feedback-site`, no build command |
 
 Build: `cd source && python3 build.py` writes the HTML into `../dist` (images in `dist/assets` are hand-placed: never delete them).
@@ -20,8 +21,15 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - `build.py`: page templates (`build_home`, `build_corporate`, `build_about`, `build_services`, `build_tours`, tour pages, journal, contact).
 - `data.py`: tours, services, contact details, Golden Destinations itineraries. `articles.py`: journal articles.
 - `feedback.py`: the feedback form (also used by `standalone.py`, which also holds the Google Apps Script for the response sheet).
-- CSS is concatenated in this order: `site.css`, `pages.css`, `home.css`, `premium.css`, `type.css`, `red.css`. Later files override earlier ones.
+- CSS is concatenated in this order: `site.css`, `pages.css`, `home.css`, `premium.css`, `type.css`, `red.css`, `zh.css`. Later files override earlier ones. `zh.css` only applies under `html:lang(zh)`.
 - Home hero: `globe.js` + `globe.css` (d3-geo orthographic globe), landmark line art in `art/*.svg`, imported by `import_art.py` into `landmark-art.js`.
+
+## Chinese site
+
+`build.py` builds every page twice: English into `dist/`, then Chinese into `dist/zh/` (the feedback form is already bilingual and has no twin).
+- Content: `zh.py` (services, tour cards, members, hours), `tours_zh.py` (itineraries), `articles_zh.py` (journal). Overlays keyed by slug; images, codes and links stay in `data.py` / `articles.py`.
+- Template wording: the `UI` dict in `zh.py` maps exact English fragments of the rendered HTML to Chinese. When you change English copy in `build.py`, update the matching key. The build stops if a key no longer matches anything, or if a run of English words is left on a Chinese page (allowed names are in `KEEP`).
+- Brand in Chinese: 咏胜旅游 (legal name 咏胜天下旅游有限公司). Malaysian Chinese usage: 配套, 纽西兰, 巴生, 冷气. Chinese has no italics: red accent words stay upright.
 
 ## Output gotcha
 
