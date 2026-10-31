@@ -378,3 +378,10 @@
 .consent-box.fb-missing { border-color: #d71f2a; background: #fff7f7; }
 .consent-box.fb-missing::after { content: "Required \5FC5\586B"; display: block; margin: 8px 0 0 34px; font-size: 12.5px; font-weight: 600; color: #b3121b; }
 .field label .opt { font-weight: 400; color: var(--stone); }
+/* trip details filled in from the link cannot be changed */
+.field.locked input { background: var(--ivory-2, #efe7dd); border-color: transparent; color: var(--ink); pointer-events: none; cursor: default; }
+.field.locked input::-webkit-calendar-picker-indicator { display: none; }
+.field.locked label::after { content: ""; display: inline-block; width: 10px; height: 11px; margin-left: 8px; vertical-align: -1px; opacity: .55;
+  background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none' stroke='%23170407' stroke-width='1.3'%3E%3Crect x='1' y='4.5' width='8' height='6' rx='1'/%3E%3Cpath d='M3 4.5V3a2 2 0 0 1 4 0v1.5'/%3E%3C/svg%3E"); }
+.locked-note { margin-top: 12px; }
+.locked-note .zh { display: inline; }

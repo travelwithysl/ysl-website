@@ -138,8 +138,17 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
   try {
     var q = new URLSearchParams(location.search);
     [['code', 'tour_code'], ['leader', 'tour_leader'], ['dep', 'departure'], ['ret', 'return']].forEach(function (p) {
-      if (q.get(p[0])) form.elements[p[1]].value = q.get(p[0]);
+      var v = q.get(p[0]), el = form.elements[p[1]];
+      if (!v) return;
+      el.value = v;
+      if (el.value) { el.readOnly = true; el.tabIndex = -1; el.closest('.field').classList.add('locked'); }
     });
+    // tell people why they cannot change it
+    if (form.querySelector('.field.locked')) {
+      var n = document.createElement('p'); n.className = 'fb-note locked-note';
+      n.innerHTML = 'Filled in by YSL for your tour. <span class="zh" lang="zh-Hans">\u6b64\u90e8\u5206\u5df2\u7531\u548f\u80dc\u65c5\u6e38\u4e3a\u60a8\u7684\u884c\u7a0b\u586b\u5199\u3002</span>';
+      form.querySelector('.field.locked').closest('.fields').after(n);
+    }
   } catch (e) {}
   // overall score readout
   var s = document.getElementById('fb-score'), out = document.getElementById('fb-score-out'), touched = false;
