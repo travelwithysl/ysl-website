@@ -2,10 +2,16 @@ import os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from articles import ARTICLES
 import feedback
+import zh
 from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG, GD_TOURS
+
+# 'en' builds the English site into dist/, 'zh' the Simplified Chinese site into dist/zh/ (see zh.py)
+LANG = 'en'
+NO_ZH = {'feedback.html'}  # pages with no Chinese twin (the feedback form is already bilingual)
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(SRC, '..', 'dist')
+MAIN_DIST = os.path.abspath(DIST)
 read = lambda f: open(os.path.join(SRC, f), encoding='utf-8').read()
 
 LOGO = read('logo.svg')
@@ -26,7 +32,7 @@ def nav(current):
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       {items}
-      <li><a class="lang" href="#" lang="zh-Hans">中文</a></li>
+      <li><a class="lang" href="__LANGSWITCH__" {'lang="en" hreflang="en">EN' if LANG == 'zh' else 'lang="zh-Hans" hreflang="zh-Hans">中文'}</a></li>
       <li><a class="nav-cta" href="contact.html"{" aria-current=\"page\"" if current == "contact.html" else ""}>Plan a trip</a></li>
     </ul>
   </div>
@@ -82,6 +88,14 @@ def post_card(p):
     return f'''<a class="post-card rv" href="{p['href']}" data-cat="{p['cat']}">{vis}<span class="tag">{p['cat_label']}</span><h3>{p['title']}</h3><p>{p['excerpt']}</p><span class="date">{p['date']}</span></a>'''
 
 def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=''):
+    if LANG == 'zh':
+        extra_head = '\n' + zh.FONTS + extra_head
+        switch = '../' + fname
+    else:
+        switch = 'zh/' + (fname if fname not in NO_ZH else 'index.html')
+    if fname not in NO_ZH and os.path.abspath(DIST) == MAIN_DIST:  # not for the stand-alone feedback site
+        other = 'zh-Hans' if LANG == 'en' else 'en'
+        extra_head = f'\n<link rel="alternate" hreflang="{other}" href="{switch}">' + extra_head
     head = f'''<title>{title}</title>
 <meta name="description" content="{desc}">
 <meta property="og:title" content="{title}">
@@ -97,7 +111,7 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
         html = head + '\n' + content
     else:
         html = f'''<!doctype html>
-<html lang="en-GB">
+<html lang="{'zh-Hans' if LANG == 'zh' else 'en-GB'}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -107,9 +121,16 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
 {content}
 </body>
 </html>'''
+    if LANG == 'zh':
+        if home:
+            html = '<html lang="zh-Hans">\n' + html
+        html = zh.translate_html(html, fname)
+        html = re.sub(r'(src|href|content)="assets/', r'\1="../assets/', html)
+    html = html.replace('__LANGSWITCH__', switch)
     html = html.encode('ascii', 'xmlcharrefreplace').decode('ascii')
-    open(os.path.join(DIST, fname), 'w', encoding='utf-8').write(html)
-    print('wrote', fname, len(html) // 1024, 'KB')
+    out = os.path.join(DIST, 'zh') if LANG == 'zh' else DIST
+    open(os.path.join(out, fname), 'w', encoding='utf-8').write(html)
+    print('wrote', os.path.relpath(os.path.join(out, fname), DIST), len(html) // 1024, 'KB')
 
 def head_block(crumb, eyebrow, title, lead, extra=''):
     crumbs = ''.join(f'<li><a href="{h}">{t}</a></li>' if h else f'<li aria-current="page">{t}</li>' for h, t in crumb)
@@ -254,7 +275,7 @@ def build_home():
 {plan_band()}
 {footer()}'''
     css = '<style>\n' + read('globe.css') + '\n</style>'
-    js = '\n<script src="assets/landmarks.js"></script>\n<script>\n' + read('d3geo.min.js') + '\n' + read('land.js') + '\n' + read('landmarks.js') + '\n' + read('globe.js') + '\n</script>'
+    js = '\n<script src="assets/landmarks.js"></script>\n<script>\n' + read('d3geo.min.js') + '\n' + read('land.js') + '\n' + read('landmarks.js') + '\n' + (zh.globe_js() if LANG == 'zh' else '') + read('globe.js') + '\n</script>'
     page('index.html', 'YSL Travel & Tours', 'YSL Travel & Tours: corporate travel, holidays and tours from Klang, Malaysia, since 2009.', body, 'index.html', home=True, extra_head='\n' + css, extra_js=js)
 
 # ======================= CORPORATE & MICE =======================
@@ -594,7 +615,7 @@ def build_tour_qg():
     <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Holidays &amp; Tours</a></li><li aria-current="page">Qinghai &amp; Gansu</li></ol>
     <p class="eyebrow">China &nbsp; Group tour &nbsp; {q['duration']}</p>
     <h1 class="h-xxl">{q['title']}</h1>
-    <p class="line"><span lang="zh-Hans" class="zh">{q['zh']}</span> {q['line']}</p>
+    <p class="line">{f'<span lang="zh-Hans" class="zh">{q["zh"]}</span> ' if q.get('zh') else ''}{q['line']}</p>
   </div>
 </section>
 <section class="section">
@@ -724,7 +745,7 @@ def build_gd_tour(q):
 # ======================= JOURNAL =======================
 def _by_date(a):
     import datetime
-    return datetime.datetime.strptime(a['date'], '%d %B %Y')
+    return datetime.datetime.strptime(a.get('date_en', a['date']), '%d %B %Y')
 
 def build_journal():
     posts = sorted(ARTICLES, key=_by_date, reverse=True)
@@ -767,7 +788,7 @@ def build_article(a):
   <div class="article-body">
     {a['body']}
     <div class="inline-cta on-dark"><h2 class="h-m">{ct}</h2><p>{ctext}</p><div class="btn-row"><a class="btn btn--white" href="{chref}">{clabel}</a><a class="btn btn--line-light" href="contact.html">{WA}</a></div></div>
-    <div class="share-row"><span>Share this story</span><button type="button" data-copy="">Copy link</button></div>
+    <div class="share-row"><span>Share this story</span><button type="button" data-copy="" data-copied="Copied">Copy link</button></div>
   </div>
 </article>
 <section class="section section--paper" aria-labelledby="rel-h">
@@ -820,16 +841,17 @@ def build_contact():
 <script>
 (function () {
   var WA_NUMBER = ''; // YSL to supply, digits only, e.g. 60123456789
+  var T = __T__;
   var form = document.getElementById('enquiry'), prev = document.getElementById('preview'), note = document.getElementById('formNote');
   function msg() {
     var v = function (n) { return (form.elements[n].value || '').trim(); };
-    var lines = ['Hello YSL Travel & Tours,'];
-    lines.push('I\\u2019d like to ask about ' + v('type').toLowerCase() + (v('dest') ? ' to ' + v('dest') : '') + '.');
-    if (v('month')) lines.push('When: ' + v('month'));
-    if (v('pax')) lines.push('Travellers: ' + v('pax'));
-    if (v('co')) lines.push('Company: ' + v('co'));
+    var lines = [T.hello];
+    lines.push(T.ask + (T.lower ? v('type').toLowerCase() : v('type')) + (v('dest') ? T.to + v('dest') : '') + T.stop);
+    if (v('month')) lines.push(T.when + v('month'));
+    if (v('pax')) lines.push(T.pax + v('pax'));
+    if (v('co')) lines.push(T.co + v('co'));
     if (v('msg')) lines.push(v('msg'));
-    lines.push('Thank you' + (v('name') ? ', ' + v('name') : '') + '.');
+    lines.push(T.thanks + (v('name') ? T.sign + v('name') : '') + T.end);
     return lines.join('\\n');
   }
   function update() { prev.textContent = msg(); }
@@ -842,7 +864,7 @@ def build_contact():
   form.addEventListener('input', update); update();
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!WA_NUMBER) { note.textContent = 'Prototype: the WhatsApp number will be added once YSL confirms it.'; return; }
+    if (!WA_NUMBER) { note.textContent = T.proto; return; }
     var a = document.createElement('a'); a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg()); a.target = '_blank'; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
   });
@@ -850,11 +872,22 @@ def build_contact():
 </script>'''
     import json, html as _h
     js = js.replace('__NAMES__', json.dumps({t['slug']: _h.unescape(t['title']) for t in TOURS}))
+    js = js.replace('__T__', json.dumps(zh.CONTACT_JS if LANG == 'zh' else dict(
+        hello='Hello YSL Travel & Tours,', ask='I\u2019d like to ask about ', lower=True, to=' to ', stop='.', when='When: ', pax='Travellers: ',
+        co='Company: ', thanks='Thank you', sign=', ', end='.', proto='Prototype: the WhatsApp number will be added once YSL confirms it.')))
     page('contact.html', 'Contact | YSL Travel & Tours', 'Visit, call or message YSL Travel & Tours in Klang, Selangor.', body, 'contact.html', extra_js=js)
 
 if __name__ == '__main__':
     os.makedirs(os.path.join(DIST, 'assets'), exist_ok=True)
-    open(os.path.join(DIST, 'assets', 'site.css'), 'w', encoding='utf-8').write(read('site.css') + read('pages.css') + read('home.css') + read('premium.css') + read('type.css') + read('red.css'))
+    open(os.path.join(DIST, 'assets', 'site.css'), 'w', encoding='utf-8').write(read('site.css') + read('pages.css') + read('home.css') + read('premium.css') + read('type.css') + read('red.css') + read('zh.css'))
     open(os.path.join(DIST, 'assets', 'site.js'), 'w', encoding='utf-8').write(read('site.js'))
     open(os.path.join(DIST, 'assets', 'landmarks.js'), 'w', encoding='utf-8').write(read('landmark-art.js'))
-    build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_detail(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact(); feedback.build(page, nav, head_block, footer)
+    def build_pages():
+        build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_detail(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact()
+    build_pages(); feedback.build(page, nav, head_block, footer)
+    # Chinese site: same templates, Chinese content from zh.py, written to dist/zh/
+    os.makedirs(os.path.join(DIST, 'zh'), exist_ok=True)
+    LANG = 'zh'
+    SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES = zh.localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES)
+    build_pages()
+    zh.check(os.path.join(DIST, 'zh'))

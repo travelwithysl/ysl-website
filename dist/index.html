@@ -5,6 +5,7 @@
 <meta property="og:image" content="assets/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" hreflang="zh-Hans" href="zh/index.html">
 <style>
 /* ---------- home hero: the globe and its landmarks ---------- */
 .globe-hero { position: relative; overflow: hidden; isolation: isolate; color: #fff;
@@ -84,7 +85,7 @@ a.lm-label { text-decoration: none; color: inherit; }
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       <li><a href="corporate.html">Corporate Travel</a></li><li><a href="tours.html">Holidays &amp; Tours</a></li><li><a href="services.html">Travel Services</a></li><li><a href="about.html">About</a></li><li><a href="journal.html">Journal</a></li>
-      <li><a class="lang" href="#" lang="zh-Hans">&#20013;&#25991;</a></li>
+      <li><a class="lang" href="zh/index.html" lang="zh-Hans" hreflang="zh-Hans">&#20013;&#25991;</a></li>
       <li><a class="nav-cta" href="contact.html">Plan a trip</a></li>
     </ul>
   </div>
@@ -310,13 +311,15 @@ var LANDMARKS = [
   var LOOP = ['dps', 'syd', 'hnd', 'icn', 'pek', 'dxb', 'cai', 'nav', 'fco', 'zrh', 'cdg', 'jfk', 'kul'];
   var W, H, R, CX, CY, DPR, LM, phone;
   // where each landmark leads: a tour that goes there, or an enquiry for that place
+  // labels can be swapped per language (the Chinese site sets window.GLOBE_TEXT and translates LANDMARKS places)
+  var TX = window.GLOBE_TEXT || { see: 'See tour', china: 'China tours', plan: 'Plan a trip' };
   var TO = {
-    CDG: ['tour-gd-europe-legend.html', 'See tour'], ZRH: ['tour-gd-europe-legend.html', 'See tour'],
-    NAV: ['tour-gd-turkiye.html', 'See tour'], HND: ['tour-gd-hokkaido.html', 'See tour'], PEK: ['tours.html', 'China tours']
+    CDG: ['tour-gd-europe-legend.html', TX.see], ZRH: ['tour-gd-europe-legend.html', TX.see],
+    NAV: ['tour-gd-turkiye.html', TX.see], HND: ['tour-gd-hokkaido.html', TX.see], PEK: ['tours.html', TX.china]
   };
   function linkFor(l) {
     if (l.home) return null;
-    return TO[l.code] || ['contact.html?dest=' + encodeURIComponent(l.place), 'Plan a trip'];
+    return TO[l.code] || ['contact.html?dest=' + encodeURIComponent(l.place), TX.plan];
   }
   var hover = false, lastNow = 0;
   label.addEventListener('mouseenter', function () { hover = true; });

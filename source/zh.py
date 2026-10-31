@@ -1,0 +1,621 @@
+# Simplified Chinese site (dist/zh/). build.py renders every page with the same templates; for Chinese it
+#  1. swaps the content (data.py, articles.py) for the Chinese overlays: SERVICES_ZH etc. below,
+#     tours_zh.py (itineraries) and articles_zh.py (journal). Images, codes and links stay in data.py.
+#  2. translates the template wording through UI below: exact English fragments of the rendered HTML -> Chinese.
+#  3. checks the result: every UI entry must still match something (so an English edit in build.py that
+#     breaks a match is caught), and no run of English words may be left on a Chinese page.
+# When you change English wording in build.py, change the matching key here too; the build tells you which.
+import html as _html, json, os, re, datetime
+from tours_zh import QG_ZH, GD_ZH
+from articles_zh import ARTICLES_ZH, CAT_LABEL_ZH
+
+FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500&display=swap">'
+
+# ---------------------------------------------------------------- content overlays
+SERVICES_ZH = {
+    'air': dict(title='机票预订', short='个人、团体、学生及劳工机票。',
+        body='为各类旅客订机票：度假、商务出差、出国留学的学生，以及按合约出国工作的劳工。我们比较航空公司与航线，为团体预留座位，行程有变时也协助您处理。',
+        includes=['个人及团体票价', '学生及劳工票价', '全服务航空与廉价航空', '特别协助，例如轮椅申请', '更改日期与重新订票']),
+    'tours': dict(title='旅游配套', short='国内游、入境游及国际旅游团。',
+        body='亚洲、欧洲及更远地区的团体游、国内短途假期，以及为访马旅客安排的入境游。我们按您的节奏、兴趣和预算配对行程，从第一份报价到回程航班，全程照顾。',
+        includes=['资深领队带领的团体游', '自由行配套', '国内游及入境游', '私人及家庭定制行程', '知名旅游品牌的配套']),
+    'hotels': dict(title='全球酒店', short='城市酒店与度假村，出发前确认。',
+        body='城市酒店、度假村及适合家庭的住宿，出发前完成预订和确认；可单独预订，也可配搭旅游配套。',
+        includes=['全球酒店与度假村', '团体及活动客房预留', '机票加酒店配套']),
+    'cruises': dict(title='邮轮配套', short='从亚洲短程航线到地中海。',
+        body='从区域内的短程航线，到长途的飞机加邮轮假期；机票、登船前的酒店和接送，都围绕您的航期安排妥当。',
+        includes=['区域内短程航线', '前往欧洲及其他地区的飞机加邮轮假期', '为家庭及团体提供舱房建议']),
+    'insurance': dict(title='旅游保险', short='随预订一并安排旅游保障。',
+        body='旅游保险与您的预订一并安排，从付款当天起即受保障。',
+        includes=['海外医疗保障', '行程延误与取消', '行李遗失或延误', '个人、家庭及团体计划']),
+    'visa': dict(title='签证申请', short='证件检查与申请协助。',
+        body='我们先查明目的地的入境要求，协助您准备证件，并一步步指导您完成申请，到了柜台不会有意外。',
+        includes=['预订前确认签证要求', '准备申请文件', '申请及预约协助']),
+    'incentive': dict(title='奖励旅游团', short='公司旅游、会议及奖励旅游。',
+        body='奖励旅游、公司出游、会议及研讨会，从需求简报和预算到全员登机，全程由同一位专人对接。',
+        includes=['奖励及表彰旅游', '公司出游及团队旅行', '会议、研讨会及活动', '全程专人对接']),
+    'coach': dict(title='巴士租赁', short='团体专用豪华冷气巴士。',
+        body='为旅游团、公司旅行、学校出游及各类活动提供豪华冷气巴士，司机经验丰富，熟悉路线。',
+        includes=['各种人数的团体巴士', '机场及活动接送', '一日游及外州行程']),
+}
+
+TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card and page always agree
+    'qinghai-gansu': dict(region='中国', line='七彩丹霞、大漠沙丘与天空之镜盐湖'),
+    'yunnan': dict(title='云南香格里拉', region='中国', line='古城、雪山与藏传佛教寺院'),
+    'gd-europe-legend': dict(line='巴黎、布鲁塞尔、阿姆斯特丹、莱茵河、蒂蒂湖、莱茵瀑布、苏黎世与琉森'),
+    'gd-hokkaido': dict(line='登别、洞爷湖、小樽与札幌'),
+    'gd-turkiye': dict(line='伊斯坦布尔、恰纳卡莱、以弗所、棉花堡、科尼亚与卡帕多奇亚'),
+    'gd-eastern-europe': dict(line='布达佩斯、布拉迪斯拉发、维也纳、哈尔施塔特、萨尔茨堡、克鲁姆洛夫与布拉格'),
+    'gd-new-zealand': dict(line='南北两岛，从奥克兰到皇后镇'),
+    'gd-south-africa': dict(line='约翰内斯堡、开普敦、博茨瓦纳与维多利亚瀑布'),
+}
+
+MEMBERS_ZH = {'MATTA': '马来西亚旅游代理商协会', 'MITA': '马来西亚入境旅游协会',
+              'MICA': '马来西亚中国入境旅游协会', 'MCTA': '马来西亚华人旅游协会'}
+
+HOURS_ZH = '星期一至五，上午9时至下午6时<br>星期六，上午9时至下午3时<br>星期日休息'
+
+MEALS = {'B': '早', 'L': '午', 'D': '晚'}
+
+
+def _dur(s):
+    """'10 days, 8 nights' / '10D8N' -> '10天8晚'"""
+    m = re.match(r'(\d+)\D+?(\d+)', s)
+    return f'{m.group(1)}天{m.group(2)}晚'
+
+
+def _day(en, z):
+    d = dict(en)
+    for k in ('t', 'p', 'hotel', 'note', 'meal'):
+        if k in z:
+            d[k] = z[k]
+    d['meals'] = ' · '.join(MEALS[x] for x in en['meals'].split(', ')) if en['meals'] else ''
+    for k, c in (('img', 'cap'), ('img2', 'cap2')):
+        if en.get(k) and c in z:
+            d[k] = (en[k][0], z[c]) + tuple(en[k][2:])
+    return d
+
+
+def _tour(en, z):
+    q = dict(en)
+    for k in ('title', 'region', 'line', 'hotels', 'head', 'lead', 'highlights', 'included', 'excluded', 'notes', 'flights'):
+        if k in z:
+            q[k] = z[k]
+    q['duration'] = z.get('duration') or _dur(en['duration'])
+    if en.get('notes') and 'notes' not in z:
+        raise KeyError('missing Chinese notes for ' + en['slug'])
+    assert len(z['days']) == len(en['days']), en['slug']
+    q['days'] = [_day(a, b) for a, b in zip(en['days'], z['days'])]
+    if 'features' in en:
+        q['features'] = [(im, t, x) for (im, _, _), (t, x) in zip(en['features'], z['features'])]
+    q['zh'] = ''
+    return q
+
+
+def zh_date(s):
+    d = datetime.datetime.strptime(s, '%d %B %Y')
+    return f'{d.year}年{d.month}月{d.day}日'
+
+
+def localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES):
+    services = [{**s, **SERVICES_ZH[s['slug']]} for s in SERVICES]
+    qg = _tour(QG, QG_ZH)
+    gd = [_tour(q, GD_ZH[q['slug']]) for q in GD_TOURS]
+    by = {q['slug']: q for q in gd + [qg]}
+    tours = []
+    for t in TOURS:
+        z = dict(TOURS_ZH[t['slug']])
+        if t['slug'] in by:
+            for k in ('title', 'region'):
+                if k not in z:
+                    z[k] = by[t['slug']][k]
+        z['short'] = z.get('title') if t['slug'] != 'gd-new-zealand' else '纽西兰'
+        tours.append({**t, **z, 'dur': _dur(t['dur']), 'kind': '团体游'})
+    contact = {**CONTACT, 'hours': HOURS_ZH}
+    members = [(a, MEMBERS_ZH[a]) for a, _ in MEMBERS]
+    openings = [{**o, 'tour': '云南香格里拉', 'kind': '团体游', 'place': '云南昆明'} for o in OPENINGS]
+    articles = []
+    for a in ARTICLES:
+        z = ARTICLES_ZH[a['slug']]
+        b = {**a, **{k: z[k] for k in ('title', 'lead', 'excerpt', 'read', 'alt', 'body')}}
+        b['cta'] = (z['cta'][0], z['cta'][1], a['cta'][2], z['cta'][2])
+        if a.get('slot'):
+            b['slot'] = (a['slot'][0], a['slot'][1], z['slot_label'])
+        b['cat_label'] = CAT_LABEL_ZH[a['cat']]
+        b['date_en'], b['date'] = a['date'], zh_date(a['date'])
+        articles.append(b)
+    return services, tours, contact, members, openings, qg, gd, articles
+
+
+# ---------------------------------------------------------------- scripts
+CONTACT_JS = dict(hello='您好，咏胜旅游：', ask='我想咨询', lower=False, to='，目的地：', stop='。', when='出行时间：',
+                  pax='人数：', co='公司：', thanks='谢谢！', sign=' ', end='', proto='原型阶段：WhatsApp 号码待咏胜确认后加入。')
+
+PLACES = {'JFK': '美国纽约', 'CDG': '法国巴黎', 'ZRH': '瑞士采尔马特', 'FCO': '意大利罗马', 'NAV': '土耳其卡帕多奇亚',
+          'CAI': '埃及吉萨', 'DXB': '阿联酋迪拜', 'PEK': '中国长城', 'ICN': '韩国首尔', 'HND': '日本富士山',
+          'DPS': '印尼巴厘岛', 'SYD': '澳洲悉尼', 'KUL': '马来西亚吉隆坡'}
+
+
+def globe_js():
+    """Runs between landmarks.js and globe.js on the Chinese home page (ASCII only: \\u escapes)."""
+    return ('var PLACES_ZH = ' + json.dumps(PLACES) + ';\nLANDMARKS.forEach(function (l) { if (PLACES_ZH[l.code]) l.place = PLACES_ZH[l.code]; });\n'
+            'window.GLOBE_TEXT = ' + json.dumps(dict(see='查看行程', china='中国旅游团', plan='规划行程')) + ';\n')
+
+
+# ---------------------------------------------------------------- template wording
+UI = {
+  # page titles and descriptions
+  '<title>YSL Travel & Tours</title>': '<title>咏胜旅游 YSL Travel & Tours</title>',
+  'content="YSL Travel & Tours"': 'content="咏胜旅游 YSL Travel & Tours"',
+  ' | YSL Travel & Tours': ' | 咏胜旅游',
+  ' | YSL Journal': ' | 咏胜旅游札记',
+  'Corporate Travel & MICE | ': '商务旅游与 MICE | ',
+  'About YSL Travel & Tours': '关于咏胜旅游',
+  'Services | ': '旅游服务 | ',
+  'Holidays & Tours | ': '假期与旅游团 | ',
+  'Yunnan & Shangri-La | ': '云南香格里拉 | ',
+  'Majestic Qinghai & Gansu | ': '大美青甘 | ',
+  'Journal | ': '旅游札记 | ',
+  'Contact | ': '联系我们 | ',
+  'YSL Travel & Tours: corporate travel, holidays and tours from Klang, Malaysia, since 2009.': '咏胜旅游：自2009年起，从马来西亚巴生出发，提供商务旅游、假期与旅游团服务。',
+  'Meetings, incentives, conferences and exhibitions at any scale: group air, hotels, coaches, gala nights and on-site teams from YSL Travel & Tours.': '会议、奖励旅游、研讨会与展览，规模不限：团体机票、酒店、巴士、晚宴及现场团队，由咏胜旅游一手包办。',
+  'Founded in Klang in 2009, YSL Travel & Tours plans holidays, group tours and business travel for families and companies. Licensed by MOTAC (KPL 6107).': '咏胜旅游2009年创立于巴生，为家庭与企业安排假期、团体游及商务旅行。持有马来西亚旅游、艺术及文化部执照（KPL 6107）。',
+  'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.': '机票、旅游配套、酒店、邮轮、保险、签证、奖励旅游团及巴士租赁。',
+  'YSL group tours and signature group tours from Golden Destinations.': '咏胜自营团体游，以及 Golden Destinations 的招牌团体游。',
+  'Group tour through Kunming, Dali, Lijiang and Shangri-La.': '昆明、大理、丽江、香格里拉团体游。',
+  '10-day group tour through Gansu and Qinghai: the Rainbow Mountains, Mogao Caves, Chaka Salt Lake and Qinghai Lake.': '甘肃、青海10天团体游：七彩丹霞、莫高窟、茶卡盐湖与青海湖。',
+  ' group tour: ': '团体游：',
+  'Destination guides, travel tips and corporate travel advice from YSL Travel & Tours.': '咏胜旅游的目的地指南、旅行贴士与商务旅游建议。',
+  'Visit, call or message YSL Travel & Tours in Klang, Selangor.': '到访、致电或留言给位于雪兰莪巴生的咏胜旅游。',
+
+  # header and footer
+  'Skip to content': '跳至内容',
+  'aria-label="YSL Travel and Tours, home"': 'aria-label="咏胜旅游，首页"',
+  'aria-label="Menu"': 'aria-label="菜单"',
+  '>Corporate Travel</a>': '>商务旅游</a>',
+  'Holidays &amp; Tours': '假期与旅游团',
+  '>Travel Services</a>': '>旅游服务</a>',
+  '>About</a>': '>关于我们</a>',
+  '>Journal</a>': '>旅游札记</a>',
+  '>Plan a trip</a>': '>规划行程</a>',
+  '>Contact</a>': '>联系我们</a>',
+  'Travel services for individuals and companies, from Klang to the world since 2009.': '自2009年起，从巴生出发，为个人与企业提供通往世界各地的旅游服务。',
+  '<h4>Explore</h4>': '<h4>浏览</h4>',
+  '<h4>Visit us</h4>': '<h4>欢迎到访</h4>',
+  '<h4>Get in touch</h4>': '<h4>联系方式</h4>',
+  '>Google Maps</a>': '>谷歌地图</a>',
+  'Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA': '旅行社执照 KPL 6107 &nbsp; MATTA、MITA、MICA 及 MCTA 会员',
+
+  # shared blocks
+  '<p class="eyebrow">Talk to us</p>': '<p class="eyebrow">联系我们</p>',
+  'Let’s plan your next trip.': '一起规划您的下一段旅程。',
+  'Not sure what you need? Ask us.': '不确定需要什么？问问我们。',
+  'Chat on WhatsApp': 'WhatsApp 咨询',
+  '>Browse tours</a>': '>浏览旅游团</a>',
+  '<dt>Call</dt>': '<dt>电话</dt>',
+  '<dt>Email</dt>': '<dt>电邮</dt>',
+  '<dt>Visit</dt>': '<dt>地址</dt>',
+  '<dd>Taman Klang Utama, Klang</dd>': '<dd>巴生 Taman Klang Utama</dd>',
+  'Tour photo to come': '旅游照片即将更新',
+  'Photo to come': '照片即将更新',
+  '<small>From</small>KUL': '<small>出发</small>KUL',
+  '<small>To</small>': '<small>抵达</small>',
+  '<span>Departs</span>': '<span>出发</span>',
+  'Months from YSL': '月份待咏胜提供',
+  '<span>YSL Travel &amp; Tours</span>': '<span>咏胜旅游</span>',
+  '<span>View <svg': '<span>查看 <svg',
+  '<li><a href="index.html">Home</a></li>': '<li><a href="index.html">首页</a></li>',
+  'All tours <svg': '全部旅游团 <svg',
+
+  # home
+  'aria-label="Welcome"': 'aria-label="欢迎"',
+  'From Klang. To the world.': '从巴生，到世界。',
+  '<h1>Every journey<br> begins with a<br> <em>point<br> on the map.</em></h1>': '<h1>每一段旅程，<br>都始于地图上的<br><em>一个点。</em></h1>',
+  '<p class="sub">From that first point to the flight home, <br>we plan every step.</p>': '<p class="sub">从出发的那一点到回程航班，<br>每一步都由我们安排。</p>',
+  '>Explore tours</a>': '>探索旅游团</a>',
+  '>Replay</button>': '>重播</button>',
+  'Where we’re <em>going next.</em>': '我们的<em>下一站。</em>',
+  'aria-label="Previous tours"': 'aria-label="上一组旅游团"',
+  'aria-label="Next tours"': 'aria-label="下一组旅游团"',
+  'Tour brands we carry': '合作旅游品牌',
+  '>and more</span>': '>等更多品牌</span>',
+  'aria-label="Travel services"': 'aria-label="旅游服务"',
+  '<span class="lbl">Travel services</span>': '<span class="lbl">旅游服务</span>',
+  '</svg>Air tickets</a>': '</svg>机票</a>',
+  '</svg>Visas</a>': '</svg>签证</a>',
+  '</svg>Travel insurance</a>': '</svg>旅游保险</a>',
+  '</svg>Cruises</a>': '</svg>邮轮</a>',
+  '</svg>Hotels</a>': '</svg>酒店</a>',
+  '>All services</a>': '>全部服务</a>',
+  'Why travel with YSL': '为何选择咏胜',
+  'Licensed, accredited and trusted since 2009.': '持牌经营，业界认可，自2009年起深受信赖。',
+  'A registered, licensed travel agency and an active member of Malaysia’s travel associations.': '注册持牌旅行社，也是马来西亚多个旅游业协会的活跃会员。',
+  '<dt>Year founded</dt>': '<dt>创立年份</dt>',
+  '<dt>Founder’s experience</dt>': '<dt>创办人资历</dt>',
+  "<dt>Founder's experience</dt>": '<dt>创办人资历</dt>',
+  '<dt>Corporate clients</dt>': '<dt>企业客户</dt>',
+  '<dt>Industry associations</dt>': '<dt>所属行业协会</dt>',
+  '>25+ yrs</dd>': '>25年+</dd>',
+  '<h3 class="code">Licensed &amp; registered</h3>': '<h3 class="code">持牌与注册</h3>',
+  'Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)': '马来西亚旅游、艺术及文化部（MOTAC）颁发的旅行社执照',
+  'YSL Travel &amp; Tours Sdn Bhd, registered with SSM': '咏胜天下旅游有限公司，于马来西亚公司委员会（SSM）注册',
+  '<h3 class="code">Member of</h3>': '<h3 class="code">所属协会</h3>',
+  '“Client testimonial to come. A short line from a tour guest or a corporate client, in their own words.”': '“客户评价即将更新：一句来自团员或企业客户的真实感言。”',
+  'Name, company, to be supplied by YSL': '姓名与公司，待咏胜提供',
+  'Your next point on the map.': '您在地图上的下一个点。',
+  '>Where to next?</h2>': '>下一站去哪里？</h2>',
+  'Tell us where, when and who is coming. A consultant replies within one working day.': '告诉我们想去哪里、什么时候出发、有谁同行。旅游顾问会在一个工作日内回复您。',
+
+  # corporate
+  'alt="A corporate group arriving at a seaside venue, welcomed by a host"': 'alt="企业团体抵达海边会场，接待人员上前迎接"',
+  '<li aria-current="page">Corporate Travel</li>': '<li aria-current="page">商务旅游</li>',
+  'Corporate Travel &amp; MICE': '商务旅游与 MICE',
+  'Business travel and MICE, <em>at any scale.</em>': '商务旅游与 MICE，<em>规模不限。</em>',
+  'From a board retreat of twelve to an incentive of hundreds, one team plans, moves and looks after your people.': '从十二人的董事会退修，到数百人的奖励旅游，同一个团队负责策划、出行和全程照顾。',
+  '>Request a MICE proposal</a>': '>索取 MICE 方案</a>',
+  '>How we plan it</a>': '>我们如何策划</a>',
+  'aria-label="YSL in numbers"': 'aria-label="咏胜数据一览"',
+  '<dt>Corporate travel since</dt>': '<dt>商务旅游服务始于</dt>',
+  '<dt>Largest single group</dt>': '<dt>最大单一团体</dt>',
+  '<dt>MICE projects delivered</dt>': '<dt>已完成 MICE 项目</dt>',
+  '<p class="eyebrow">What we handle</p>': '<p class="eyebrow">服务范围</p>',
+  'All four letters of MICE.': 'MICE 四大领域，全面包办。',
+  'Meetings, incentives, conferences and exhibitions, in Malaysia and overseas, planned and run by one team with one point of contact.': '会议、奖励旅游、研讨会与展览，无论在马来西亚还是海外，都由同一个团队策划执行，专人对接。',
+  '<h3>Meetings</h3>': '<h3>会议</h3>',
+  'Board retreats, management offsites and regional meetings, with the venue, rooms, AV and travel arranged as one package.': '董事会退修、管理层外地会议及区域会议，场地、客房、视听设备与交通一并安排。',
+  '<li>Venue sourcing and site inspections</li>': '<li>寻找场地及实地考察</li>',
+  '<li>Meeting rooms, AV and breakout spaces</li>': '<li>会议室、视听设备及分组讨论空间</li>',
+  '<li>Retreats in Malaysia and overseas</li>': '<li>马来西亚及海外的退修活动</li>',
+  '<h3>Incentives</h3>': '<h3>奖励旅游</h3>',
+  'Reward trips for top performers, dealers and agents: an itinerary people work all year to qualify for.': '犒赏优秀员工、经销商与代理的奖励之旅：一份值得大家努力一整年去争取的行程。',
+  '<li>Bespoke itineraries and exclusive experiences</li>': '<li>量身定制的行程与专属体验</li>',
+  '<li>Gala and awards nights</li>': '<li>晚宴及颁奖之夜</li>',
+  '<li>Wave departures for very large groups</li>': '<li>超大型团体分批出发</li>',
+  '<h3>Conferences</h3>': '<h3>研讨会</h3>',
+  'Delegate travel and logistics for conventions and annual conferences, from registration to the closing dinner.': '大会及年度研讨会的代表出行与后勤，从报名登记到闭幕晚宴。',
+  '<li>Delegate registration and rooming</li>': '<li>代表报名及分房</li>',
+  '<li>Airport transfers in waves</li>': '<li>分批机场接送</li>',
+  '<li>Hospitality desks at the venue</li>': '<li>会场接待柜台</li>',
+  '<h3>Exhibitions</h3>': '<h3>展览</h3>',
+  'Business delegations to trade fairs and expos abroad, and group travel for exhibitors and buyers.': '组织商务代表团参加海外商展与博览会，并为参展商和买家安排团体出行。',
+  '<li>Trade fair delegations</li>': '<li>商展代表团</li>',
+  '<li>Business visas and invitations</li>': '<li>商务签证及邀请函</li>',
+  '<li>Hotels close to the fairground</li>': '<li>邻近展馆的酒店</li>',
+  '<p class="eyebrow">Built for big groups</p>': '<p class="eyebrow">专为大型团体而设</p>',
+  'Hundreds of people, moving as one.': '数百人同行，步调一致。',
+  'A large programme succeeds on logistics nobody notices. These are the parts we take off your hands.': '大型活动的成功，靠的是没人注意到的后勤。以下这些，都交给我们。',
+  '<b>Group air</b>': '<b>团体机票</b>',
+  'Seat blocks across several flights, charter options, group check-in and staggered departure waves.': '跨多个航班预留座位、包机选择、团体值机及分批出发。',
+  '<b>Hotel allocations</b>': '<b>酒店客房安排</b>',
+  'Room blocks in one hotel or spread across several, rooming lists, VIP upgrades and late changes handled.': '集中一家或分散多家酒店的客房预留、分房名单、贵宾升级，临时更改也一并处理。',
+  '<b>Ground transport</b>': '<b>地面交通</b>',
+  'Coaches numbered and colour-coded by group, each with its own tour leader and a lead coordinator on the ground.': '巴士按组编号、以颜色区分，每辆车配一位领队，另有一位总协调在现场统筹。',
+  '<b>The arrival</b>': '<b>抵达迎接</b>',
+  'A branded welcome at the airport: YSL flags and signage, a hospitality desk, and coaches waiting in order.': '机场的专属迎接：咏胜旗帜与指示牌、接待柜台，巴士依序候车。',
+  '<b>Registration and documents</b>': '<b>报名与证件</b>',
+  'Online registration, passport and visa collection, group visas, insurance, and pre-departure briefings.': '网上报名、收集护照与签证资料、团体签证、保险及行前说明会。',
+  '<b>Gala and awards nights</b>': '<b>晚宴与颁奖之夜</b>',
+  'Venue buyouts, themed dinners, stage, sound and lighting, and the awards ceremony run to the minute.': '包场、主题晚宴、舞台音响灯光，颁奖典礼分秒不差。',
+  '<b>Experiences</b>': '<b>特色体验</b>',
+  'Team-building, private tours, CSR activities and exclusive access that make the trip worth qualifying for.': '团队建设、私人导览、企业社会责任活动及专属参观，让这趟旅程值得争取。',
+  '<b>Every guest’s needs</b>': '<b>照顾每位来宾</b>',
+  'Halal and vegetarian meals, prayer times, mobility needs and multilingual guides, planned for from the start.': '清真餐与素食、祈祷时间、行动不便者的需要及多语导游，从一开始就纳入规划。',
+  '<b>On-site command</b>': '<b>现场指挥</b>',
+  'A 24-hour hotline, daily briefings with the client, and contingency plans for weather, delays and illness.': '24小时热线、每日与客户简报，并为天气、延误和生病预备应变方案。',
+  '<b>After the trip</b>': '<b>旅程结束后</b>',
+  'A reconciled final account, a photo and video round-up, and a debrief to make the next one better.': '核对清楚的最终账目、照片与视频回顾，以及检讨会议，让下一次更好。',
+  '<p class="eyebrow">How a large programme runs</p>': '<p class="eyebrow">大型活动如何进行</p>',
+  'Six months, one plan.': '六个月，一个计划。',
+  'For large groups we recommend starting at least six months ahead, so the best flights, rooms and venues are still available.': '大型团体建议至少提前六个月开始筹备，才能订到最好的航班、客房与场地。',
+  '>6 months before</span>': '>出发前6个月</span>',
+  '<b>Brief and budget</b>': '<b>需求与预算</b>',
+  'Purpose, group size, dates, budget per head and the experience you want people to come home with.': '目的、人数、日期、每人预算，以及您希望大家带回家的体验。',
+  '>5 months</span>': '>5个月前</span>',
+  '<b>Proposal and site inspection</b>': '<b>方案与实地考察</b>',
+  'Destination options with itemised quotations; we can visit the hotels and venues with you.': '附逐项报价的目的地方案；我们可陪同您实地考察酒店与场地。',
+  '>4 months</span>': '>4个月前</span>',
+  '<b>Contract and blocks</b>': '<b>签约与预留</b>',
+  'Air seats and hotel rooms secured, deposits scheduled, the programme agreed day by day.': '确保机位与客房，排定订金时间表，逐日确认行程。',
+  '>3 to 1 months</span>': '>3至1个月前</span>',
+  'Participant registration, rooming, passports, visas, dietary needs and insurance.': '参加者报名、分房、护照、签证、饮食需要及保险。',
+  '>2 weeks</span>': '>2个星期前</span>',
+  '<b>Pre-departure briefing</b>': '<b>行前说明会</b>',
+  'Final programme, coach and room assignments, packing notes and contacts for every traveller.': '最终行程、巴士与分房安排、行李须知，以及给每位旅客的联络资料。',
+  '>On the trip</span>': '>旅程期间</span>',
+  '<b>Operations</b>': '<b>现场执行</b>',
+  'YSL on site from the airport onwards, with tour leaders on every coach and one lead coordinator.': '咏胜团队从机场起全程在场，每辆巴士都有领队，另有一位总协调。',
+  '>After</span>': '>结束后</span>',
+  '<b>Report and reconciliation</b>': '<b>报告与结算</b>',
+  'Final account, feedback and a debrief with your team.': '最终账目、意见反馈，并与您的团队检讨总结。',
+  '<p class="eyebrow">Local MICE</p>': '<p class="eyebrow">国内 MICE</p>',
+  'Closer to home.': '近在国内。',
+  'Not every company event needs a passport. We plan team days, retreats and celebrations across Malaysia, with transport for everyone arranged.': '不是每个公司活动都需要护照。我们在马来西亚各地策划团队活动日、退修营和庆祝活动，全员交通一并安排。',
+  '<b>Team building</b>': '<b>团队建设</b>',
+  'Facilitated games and challenges, indoors or outdoors, designed around what your team needs to work on.': '由专人带领的室内或户外游戏与挑战，针对团队需要加强的方面而设计。',
+  '<b>Retreats and offsites</b>': '<b>退修营与外地会议</b>',
+  'Resort stays with meeting space for planning sessions, strategy days and management retreats.': '入住设有会议空间的度假村，进行规划会议、策略日及管理层退修。',
+  '<b>Annual dinners and family days</b>': '<b>年度晚宴与家庭日</b>',
+  'Venue, catering, stage and programme for the company dinner or a day out with families.': '公司晚宴或家庭日的场地、餐饮、舞台与节目安排。',
+  '<b>CSR days</b>': '<b>企业社会责任日</b>',
+  'Community and environmental projects your team can do together, with transport and meals arranged.': '团队可以一起参与的社区与环保项目，交通和餐食一并安排。',
+  '<b>Day trips and company outings</b>': '<b>一日游与公司出游</b>',
+  'Coaches, guides and meals for a day out, from one bus to a convoy.': '一日出游的巴士、导游与餐食，从一辆车到整个车队。',
+  'Popular for company groups': '企业团体热门地点',
+  '<span class="b">Langkawi</span>': '<span class="b">兰卡威</span>',
+  '<span class="b">Penang</span>': '<span class="b">槟城</span>',
+  '<span class="b">Genting Highlands</span>': '<span class="b">云顶高原</span>',
+  '<span class="b">Cameron Highlands</span>': '<span class="b">金马仑高原</span>',
+  '<span class="b">Port Dickson</span>': '<span class="b">波德申</span>',
+  '<span class="b">Desaru</span>': '<span class="b">迪沙鲁</span>',
+  '<span class="b">Melaka</span>': '<span class="b">马六甲</span>',
+  '<span class="b">Sabah</span>': '<span class="b">沙巴</span>',
+  '<p class="eyebrow">Selected projects</p>': '<p class="eyebrow">精选项目</p>',
+  'Recent MICE programmes.': '近期 MICE 项目。',
+  'Three past projects to be supplied by YSL: client (or industry), destination, group size and one photo each.': '三个过往项目待咏胜提供：客户（或行业）、目的地、人数，各附一张照片。',
+  '<span class="pill">Incentive</span><b>Incentive</b>': '<span class="pill">奖励旅游</span><b>奖励旅游</b>',
+  '<span class="pill">Conference</span><b>Conference</b>': '<span class="pill">研讨会</span><b>研讨会</b>',
+  '<span class="pill">Company trip</span><b>Company trip</b>': '<span class="pill">公司旅游</span><b>公司旅游</b>',
+  'Project photo to come': '项目照片即将更新',
+  '>Incentive</p>': '>奖励旅游</p>',
+  '>Conference</p>': '>研讨会</p>',
+  '>Company trip</p>': '>公司旅游</p>',
+  '<span class="tbc">Company name</span>': '<span class="tbc">公司名称</span>',
+  '<span class="tbc">Destination</span>': '<span class="tbc">目的地</span>',
+  '<span class="tbc">Number of travellers</span>': '<span class="tbc">旅客人数</span>',
+  '<span class="tbc">Number of delegates</span>': '<span class="tbc">代表人数</span>',
+  '<p class="eyebrow">Our clients</p>': '<p class="eyebrow">我们的客户</p>',
+  'Trusted by more than 50 companies across the region.': '深受区域内50多家企业信赖。',
+  '<b>Since 2009</b>': '<b>始于2009年</b>',
+  'Led by a founder with more than 25 years in travel.': '由拥有逾25年旅游业经验的创办人领导。',
+  '<b>Licensed and accredited</b>': '<b>持牌与认证</b>',
+  'KPL 6107, and members of MATTA, MITA, MICA and MCTA.': '执照 KPL 6107，并为 MATTA、MITA、MICA 及 MCTA 会员。',
+  '<b>Clear quotations</b>': '<b>报价清楚</b>',
+  'Itemised proposals and a reconciled final account your finance team can sign off.': '逐项列明的方案，以及财务部门可直接核准的最终账目。',
+  'Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M': '客户标志，包括 Kossan、Kitacon、TOLi、Econframe、Max Filter Industries、Sendok Group、Megastra Jaya、MAARA、Wesglow 及 C.A.M',
+  'A selection of our corporate clients': '部分企业客户',
+  '<p class="eyebrow">Start a proposal</p>': '<p class="eyebrow">开始规划方案</p>',
+  'Send us a brief.': '把需求告诉我们。',
+  'A rough brief is enough to start. We reply with options and an itemised quotation.': '只需大概的需求就能开始，我们会回复几个方案和逐项报价。',
+  'What to include': '需求可包括',
+  '<li>Purpose of the trip, and who is going</li>': '<li>旅程目的，以及哪些人参加</li>',
+  '<li>Group size, even a range</li>': '<li>人数，大约范围也可以</li>',
+  '<li>Preferred dates or months</li>': '<li>希望的日期或月份</li>',
+  '<li>Budget per person</li>': '<li>每人预算</li>',
+  '<li>Destinations you have in mind</li>': '<li>心目中的目的地</li>',
+  '<li>Any dietary, faith or accessibility needs</li>': '<li>饮食、宗教或无障碍方面的需要</li>',
+
+  # about
+  '<li aria-current="page">About</li>': '<li aria-current="page">关于我们</li>',
+  '<p class="eyebrow">About us</p>': '<p class="eyebrow">关于我们</p>',
+  'From Klang <span class="nw"><em>to the world</em>,</span><br> since 2009.': '从巴生<span class="nw"><em>到世界</em>，</span><br>始于2009年。',
+  'A licensed Malaysian travel agency planning holidays, group tours and business travel.': '马来西亚持牌旅行社，专门安排假期、团体游与商务旅行。',
+  'alt="The YSL Travel &amp; Tours team at a travel fair"': 'alt="咏胜旅游团队在旅游展上"',
+  '<p class="eyebrow">Our story</p>': '<p class="eyebrow">我们的故事</p>',
+  'Built on more than 25 years in travel.': '建立在逾25年的旅游业经验之上。',
+  'YSL Travel &amp; Tours was founded in Klang, Selangor, in 2009. We arrange holidays, group tours and business travel for individuals, families and companies, and look after each trip from the first quote to the flight home.': '咏胜旅游于2009年在雪兰莪巴生创立。我们为个人、家庭和企业安排假期、团体游与商务旅行，从第一份报价到回程航班，照顾好每一趟旅程。',
+  'The company is led by a founder with more than 25 years in the travel industry. Behind every booking is a team of consultants and operations staff who know the destinations, the suppliers and the details that keep a trip running smoothly.': '公司由拥有逾25年旅游业经验的创办人领导。每一笔预订背后，都有一支熟悉目的地、供应商和各种细节的顾问与操作团队，确保旅程顺利进行。',
+  'Today we plan travel for families, schools and more than 50 companies and organisations.': '如今，我们为众多家庭、学校以及50多家企业与机构安排旅行。',
+  '<p class="eyebrow">Our mission</p>': '<p class="eyebrow">我们的使命</p>',
+  'Make good travel easy to reach.': '让好的旅行触手可及。',
+  'We connect people with the places they want to see, and take care of the planning so they can enjoy the journey.': '我们带人们去想去的地方，并包办所有规划，让大家安心享受旅程。',
+  '<p class="eyebrow">Our vision</p>': '<p class="eyebrow">我们的愿景</p>',
+  'Be the travel partner people trust most.': '成为最受信赖的旅游伙伴。',
+  'To keep growing with our clients, open new destinations, and help more people travel well.': '与客户一同成长，开拓新的目的地，帮助更多人好好旅行。',
+  '<p class="eyebrow">Credentials</p>': '<p class="eyebrow">资质</p>',
+  'Licensed, registered and accredited.': '持牌、注册、获认证。',
+  'Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).': '持有马来西亚旅游、艺术及文化部执照（KPL 6107），并以 YSL Travel &amp; Tours Sdn Bhd（877803-T）名义于马来西亚公司委员会（SSM）注册。',
+  'Trusted by more than 50 companies.': '深受50多家企业信赖。',
+  'Companies of every size rely on us for business travel and group trips that are well organised, good value and handled with discretion.': '各种规模的企业都把商务旅行和团体旅游交给我们：安排周到、物有所值、处事稳妥。',
+
+  # services
+  '<li aria-current="page">Services</li>': '<li aria-current="page">旅游服务</li>',
+  '<p class="eyebrow">What we do</p>': '<p class="eyebrow">服务项目</p>',
+  'Everything between here and there.': '从这里到那里，一切都为您安排。',
+  'Eight services under one roof, so one team can look after your whole trip, or your whole company’s.': '八项服务一站齐全，由同一个团队照顾您的整趟旅程，或整个公司的出行。',
+  'aria-label="Services"': 'aria-label="服务项目"',
+  '>Ask about ': '>咨询',
+
+  # tours
+  '<p class="eyebrow">YSL group tours</p>': '<p class="eyebrow">咏胜团体游</p>',
+  'Where will you go next?': '下一站，您想去哪里？',
+  'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.': '咏胜自营团体游，以及马来西亚知名旅游品牌的招牌团体游，全部由咏胜为您预订和照顾。',
+  'Journeys we design and lead.': '我们亲自设计、带领的旅程。',
+  '<p class="eyebrow">Signature group tours</p>': '<p class="eyebrow">招牌团体游</p>',
+  'From Golden Destinations.': '来自 Golden Destinations。',
+  'Popular guaranteed-departure tours from one of the brands we carry. Book through YSL and we look after you from enquiry to the flight home.': '合作品牌的热门保证出发团。通过咏胜预订，从咨询到回程航班，我们全程照顾您。',
+  '<b>Looking for something else?</b> We also book packages from Golden Destinations, Parlo Tours and Apple Vacations. Tell us where you want to go and we’ll compare options for you.': '<b>想找其他行程？</b>我们也代订 Golden Destinations、Parlo Tours 及 Apple Vacations 的配套。告诉我们您想去哪里，我们为您比较各种选择。',
+
+  # tour pages
+  'Sample tour page: itinerary, duration and inclusions are placeholders to show the layout.': '示范行程页：行程、天数和费用包括项目均为占位内容，仅用于展示版面。',
+  'alt="A traveller looking over a mountain lake"': 'alt="一位旅客眺望高山湖泊"',
+  '<li><a href="tours.html">Tours</a></li>': '<li><a href="tours.html">旅游团</a></li>',
+  '<li aria-current="page">Yunnan</li>': '<li aria-current="page">云南</li>',
+  '<p class="eyebrow">China &nbsp; Group tour</p>': '<p class="eyebrow">中国 &nbsp; 团体游</p>',
+  '<p class="eyebrow">China &nbsp; Group tour &nbsp;': '<p class="eyebrow">中国 &nbsp; 团体游 &nbsp;',
+  '&nbsp; Group tour &nbsp;': '&nbsp; 团体游 &nbsp;',
+  '<h1 class="h-xxl">Yunnan &amp; Shangri-La</h1>': '<h1 class="h-xxl">云南香格里拉</h1>',
+  '<p class="line">Old towns, snow peaks and Tibetan monasteries.</p>': '<p class="line">古城、雪山与藏传佛教寺院。</p>',
+  '<p class="eyebrow">Overview</p>': '<p class="eyebrow">行程概览</p>',
+  'From the City of Eternal Spring to the edge of the Tibetan plateau.': '从春城出发，直抵青藏高原的边缘。',
+  'This journey climbs gradually through Yunnan, from mild Kunming to the old towns of Dali and Lijiang, then up to Shangri-La. The pace gives you time to adjust to the altitude, and to enjoy each place properly.': '这趟旅程在云南逐步爬升：从气候温和的昆明，到大理、丽江两座古城，再上到香格里拉。节奏从容，让您有时间适应海拔，也好好欣赏每一个地方。',
+  '>Highlights</h3>': '>行程亮点</h3>',
+  '<li>Lijiang Old Town, a UNESCO World Heritage Site</li>': '<li>丽江古城，联合国教科文组织世界遗产</li>',
+  '<li>Jade Dragon Snow Mountain and Blue Moon Valley</li>': '<li>玉龙雪山与蓝月谷</li>',
+  '<li>Tiger Leaping Gorge</li>': '<li>虎跳峡</li>',
+  '<li>Songzanlin Monastery in Shangri-La</li>': '<li>香格里拉松赞林寺</li>',
+  '>Day by day</h3>': '>每日行程</h3>',
+  '<span class="ttl">Kuala Lumpur to Kunming</span>': '<span class="ttl">吉隆坡至昆明</span>',
+  'Fly to Kunming, the City of Eternal Spring. Check in and welcome dinner.': '飞往“春城”昆明。入住酒店，享用欢迎晚宴。',
+  '<span class="ttl">Kunming to Dali</span>': '<span class="ttl">昆明至大理</span>',
+  'Travel west to Dali. Evening walk through Dali Old Town.': '西行前往大理，傍晚漫步大理古城。',
+  '<span class="ttl">Dali to Lijiang</span>': '<span class="ttl">大理至丽江</span>',
+  'Erhai Lake in the morning, then on to the UNESCO-listed old town of Lijiang.': '上午游洱海，随后前往列入世界遗产的丽江古城。',
+  '<span class="ttl">Lijiang</span>': '<span class="ttl">丽江</span>',
+  'Jade Dragon Snow Mountain and Blue Moon Valley, then a free evening in the old town.': '游玉龙雪山与蓝月谷，晚上在古城自由活动。',
+  '<span class="ttl">Lijiang to Shangri-La</span>': '<span class="ttl">丽江至香格里拉</span>',
+  'Stop at Tiger Leaping Gorge on the road north to Shangri-La.': '北上香格里拉途中，停留虎跳峡。',
+  '<span class="ttl">Shangri-La</span>': '<span class="ttl">香格里拉</span>',
+  'Songzanlin Monastery and Pudacuo National Park.': '游松赞林寺与普达措国家公园。',
+  '<span class="ttl">Shangri-La to Kunming</span>': '<span class="ttl">香格里拉至昆明</span>',
+  'Return to Kunming for a final night and farewell dinner.': '返回昆明，度过最后一晚，享用惜别晚宴。',
+  '<span class="ttl">Kunming to Kuala Lumpur</span>': '<span class="ttl">昆明至吉隆坡</span>',
+  'Free morning, then fly home.': '上午自由活动，随后搭机回国。',
+  '<h3>Included</h3>': '<h3>费用包括</h3>',
+  '<h3>Not included</h3>': '<h3>费用不包括</h3>',
+  '<li>Return flights from Kuala Lumpur</li>': '<li>吉隆坡往返机票</li>',
+  '<li>Hotels throughout</li>': '<li>全程酒店住宿</li>',
+  '<li>Meals as listed in the itinerary</li>': '<li>行程所列餐食</li>',
+  '<li>Coach transport and entrance fees</li>': '<li>巴士交通及门票</li>',
+  '<li>Tour leader from Malaysia</li>': '<li>马来西亚随团领队</li>',
+  '<li>Travel insurance (we can arrange this)</li>': '<li>旅游保险（可代为安排）</li>',
+  '<li>Visa fees, if applicable</li>': '<li>签证费（如适用）</li>',
+  '<li>Tipping for guides and drivers</li>': '<li>导游及司机小费</li>',
+  '<li>Personal expenses</li>': '<li>个人开销</li>',
+  'aria-label="Tour details"': 'aria-label="行程资料"',
+  '<dt>Duration</dt>': '<dt>天数</dt>',
+  '<dt>Tour type</dt>': '<dt>类型</dt>',
+  '<dd>Group tour</dd>': '<dd>团体游</dd>',
+  '<dt>Best season</dt>': '<dt>最佳季节</dt>',
+  '<dd>Spring and autumn</dd>': '<dd>春季及秋季</dd>',
+  '<dt>Departures</dt>': '<dt>出发日期</dt>',
+  '<dd>Ask us</dd>': '<dd>欢迎询问</dd>',
+  '<dt>Fares</dt>': '<dt>团费</dt>',
+  '<dd>Latest fares on request</dd>': '<dd>最新团费，欢迎询问</dd>',
+  '<dt>Route</dt>': '<dt>路线</dt>',
+  '<dd>Lanzhou to Lanzhou</dd>': '<dd>兰州进出</dd>',
+  '<dt>Airline</dt>': '<dt>航空公司</dt>',
+  '<dd>China Eastern</dd>': '<dd>中国东方航空</dd>',
+  '<dt>Hotels</dt>': '<dt>酒店</dt>',
+  '<dd>4-Diamond</dd>': '<dd>携程四钻</dd>',
+  '<dd>2026, ask us</dd>': '<dd>2026年，欢迎询问</dd>',
+  '<dd>Guaranteed dates, ask us</dd>': '<dd>保证出发日期，欢迎询问</dd>',
+  '<dt>Tour by</dt>': '<dt>承办</dt>',
+  '>Enquire on WhatsApp</a>': '>WhatsApp 咨询</a>',
+  '>Download itinerary (PDF)</a>': '>下载行程（PDF）</a>',
+  '>Ask for fares and dates</a>': '>询问团费与日期</a>',
+  'Need a visa or travel insurance for this trip? <a href="services.html#visa">We arrange both.</a>': '这趟旅程需要签证或旅游保险吗？<a href="services.html#visa">我们都能代办。</a>',
+  '<p class="eyebrow">You might also like</p>': '<p class="eyebrow">您可能也喜欢</p>',
+  'id="more-h">More journeys</h2>': 'id="more-h">更多旅程</h2>',
+  'alt="The banded ridges of the Zhangye Rainbow Mountains"': 'alt="张掖七彩丹霞层层叠叠的山脊"',
+  '<li aria-current="page">Qinghai &amp; Gansu</li>': '<li aria-current="page">青海与甘肃</li>',
+  'Along the Silk Road to the roof of the plateau.': '沿着丝绸之路，直上高原之巅。',
+  'Ten days from Lanzhou through the Hexi Corridor to Dunhuang, across the Qaidam Basin to the salt lakes, and on to Qinghai Lake and Xining. Painted mountains, desert caves of Buddhist art, a lake that mirrors the sky, and the food of the Northwest along the way.': '十天行程，从兰州穿越河西走廊到敦煌，横越柴达木盆地抵达盐湖，再前往青海湖与西宁。一路有七彩山峦、大漠中的佛教石窟艺术、倒映天空的湖面，还有大西北的风味美食。',
+  '>Flights</h3>': '>航班</h3>',
+  'China Eastern, tentative and subject to airline confirmation. One checked bag up to 23kg, through-checked to Lanzhou.': '中国东方航空，航班暂定，以航空公司确认为准。托运行李一件，限重23公斤，直挂兰州。',
+  '<p class="eyebrow">The package</p>': '<p class="eyebrow">配套内容</p>',
+  'Comfort for the long roads of the Northwest.': '大西北的漫漫长路，一路舒适。',
+  'title="Meals included"': 'title="含餐"',
+  '<span>Featured meal</span>': '<span>特色餐</span>',
+  '<span>Stay</span>': '<span>住宿</span>',
+  'What’s included.': '费用包括哪些。',
+  'Booked through YSL, operated by Golden Destinations. We handle your booking, documents and questions from start to finish.': '通过咏胜预订，由 Golden Destinations 承办。从预订、证件到各种疑问，我们全程为您处理。',
+  'Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.': '行程顺序和酒店可能因当地活动、天气或供应情况而调整。团费、日期及完整行程以预订时确认为准。',
+
+  # journal
+  '<li aria-current="page">Journal</li>': '<li aria-current="page">旅游札记</li>',
+  '<p class="eyebrow">Journal</p>': '<p class="eyebrow">旅游札记</p>',
+  'Stories from <span class="nw"><em>the road.</em></span>': '来自<span class="nw"><em>旅途</em></span>的故事。',
+  'Destination guides, travel tips and corporate travel advice from the YSL Travel &amp; Tours team.': '咏胜旅游团队分享的目的地指南、旅行贴士与商务旅游建议。',
+  'aria-label="Filter stories"': 'aria-label="筛选文章"',
+  '>All stories</button>': '>全部文章</button>',
+  '>Destinations</button>': '>目的地</button>',
+  '>Travel tips</button>': '>旅行贴士</button>',
+  '>Corporate travel</button>': '>商务旅游</button>',
+  'Read the story <svg': '阅读全文 <svg',
+  'No stories in this topic yet.': '此类别暂时没有文章。',
+  'Draft article for YSL to review before publishing.': '文章草稿，待咏胜审阅后发布。',
+  '<li><a href="journal.html">Journal</a></li>': '<li><a href="journal.html">旅游札记</a></li>',
+  '<span>By the YSL team</span>': '<span>咏胜团队</span>',
+  '<span>Share this story</span>': '<span>分享本文</span>',
+  'data-copied="Copied">Copy link</button>': 'data-copied="已复制">复制链接</button>',
+  'id="rel-h">More from the journal</h2>': 'id="rel-h">更多札记</h2>',
+  'All stories <svg': '全部文章 <svg',
+
+  # contact
+  '<li aria-current="page">Contact</li>': '<li aria-current="page">联系我们</li>',
+  '<p class="eyebrow">Contact us</p>': '<p class="eyebrow">联系我们</p>',
+  'Let’s plan <em>your next trip.</em>': '一起规划<em>您的下一段旅程。</em>',
+  'Message us on WhatsApp, call, or visit our office in Klang. We’d be glad to look after your travel, for business or for pleasure.': '通过 WhatsApp 留言、致电，或到访我们位于巴生的办公室。无论商务还是休闲出行，我们都乐意为您安排。',
+  '<dt>Office</dt>': '<dt>办公室</dt>',
+  '<dt>Phone</dt>': '<dt>电话</dt>',
+  '<dt>Opening hours</dt>': '<dt>营业时间</dt>',
+  '>Open in Google Maps</a>': '>在谷歌地图中打开</a>',
+  'Send us a trip enquiry': '发送行程咨询',
+  'Fill in what you know. We’ll turn it into a WhatsApp message so you can send it in one tap.': '填写您已知道的资料，我们会把它整理成一条 WhatsApp 信息，一键即可发送。',
+  '>Your name</label>': '>您的姓名</label>',
+  'placeholder="Name"': 'placeholder="姓名"',
+  '>I’m interested in</label>': '>咨询项目</label>',
+  '>Destination</label>': '>目的地</label>',
+  'placeholder="For example, Japan"': 'placeholder="例如：日本"',
+  '>When</label>': '>出行时间</label>',
+  'placeholder="For example, March 2027"': 'placeholder="例如：2027年3月"',
+  '>Number of travellers</label>': '>出行人数</label>',
+  '>Company (optional)</label>': '>公司（可选填）</label>',
+  'placeholder="For corporate trips"': 'placeholder="企业出行适用"',
+  '>Anything else?</label>': '>其他需求</label>',
+  'placeholder="Budget, hotel preferences, special requests"': 'placeholder="预算、酒店偏好、特别要求"',
+  '<p class="preview-label">Your message</p>': '<p class="preview-label">您的信息</p>',
+  '>Send on WhatsApp</button>': '>通过 WhatsApp 发送</button>',
+  'Opens WhatsApp with your message ready to send.': '将打开 WhatsApp，信息已准备好，可直接发送。',
+}
+
+# patterns that carry a number
+UI_RE = [
+    (r'<span class="day">Day (\d+)</span>', r'<span class="day">第\1天</span>'),
+    (r'<div class="d-num"><span>Day</span>(\d+)</div>', r'<div class="d-num"><span>第</span>\1天</div>'),
+    (r'<span>(\d\d:\d\d) to (\d\d:\d\d[^<]*)</span>', r'<span>\1 – \2</span>'),
+]
+
+_KEYS = re.compile('|'.join(re.escape(k) for k in sorted(UI, key=len, reverse=True)))
+_USED = set()
+_RE = [(re.compile(a), b) for a, b in UI_RE]
+
+
+def translate(s):
+    """One pass, longest key first, so a translation is never translated again."""
+    def sub(m):
+        _USED.add(m.group(0))
+        return UI[m.group(0)]
+    s = _KEYS.sub(sub, s)
+    for r, b in _RE:
+        s = r.sub(b, s)
+    return s
+
+
+def translate_html(html, fname):
+    """Translate everything except the contents of <script> and <style>."""
+    parts = re.split(r'(<script\b.*?</script>|<style\b.*?</style>)', html, flags=re.S)
+    return ''.join(p if i % 2 else translate(p) for i, p in enumerate(parts))
+
+
+# English that may stay on a Chinese page: names, the legal entity, the address, contact details
+KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'Golden Destinations', 'Parlo Tours', 'Apple Vacations',
+        'No 5, Lorong Sungai Puloh 13A', 'Taman Klang Utama', 'Klang, Selangor', 'Max Filter Industries', 'Sendok Group', 'Megastra Jaya',
+        'Ctrip 4-Diamond', 'The Boma', 'Spice Route']  # venue names
+
+
+def check(zh_dir):
+    unused = sorted(set(UI) - _USED)
+    if unused:
+        raise SystemExit('zh.py: these UI entries no longer match any page (did the English change?):\n  ' + '\n  '.join(unused))
+    problems = []
+    for f in sorted(os.listdir(zh_dir)):
+        if not f.endswith('.html'):
+            continue
+        h = open(os.path.join(zh_dir, f), encoding='utf-8').read()
+        h = re.sub(r'<(script|style|svg)\b.*?</\1>', ' ', h, flags=re.S)
+        attrs = ' | '.join(a for a in re.findall(r'\s(?:alt|aria-label|placeholder|title|content)="([^"]*)"', h) if 'width=' not in a)
+        text = re.sub(r'<[^>]+>', ' | ', h) + ' | ' + attrs
+        text = _html.unescape(text)
+        for k in KEEP:
+            text = text.replace(k, ' ')
+        for m in re.finditer(r"[A-Za-z][A-Za-z’'.-]*(?:[ ,]+[A-Za-z][A-Za-z’'.-]*)+", text):
+            w = m.group(0)
+            if re.fullmatch(r'(?:[A-Z0-9.&-]{2,}|[A-Z][a-z]+)(?:[ ,]+(?:[A-Z0-9.&-]{2,}))*', w):  # codes and acronyms (KUL, MATTA, MICE)
+                continue
+            if w.startswith(('width=', 'http', 'Noto')) or '/' in w:
+                continue
+            problems.append(f'{f}: {w}')
+    if problems:
+        raise SystemExit('zh.py: English left on Chinese pages:\n  ' + '\n  '.join(dict.fromkeys(problems)))
+    print('zh: all pages translated')
