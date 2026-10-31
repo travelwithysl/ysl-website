@@ -75,7 +75,33 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
                         'What made you choose this tour? Choose any that apply.', '请勾选您选择本次行程的原因（可多选）。')); n += 1
     secs.append(section(n, 'How you found us', '认识渠道', chips('source', SOURCES),
                         'How did you hear about YSL Travel &amp; Tours?', '您是通过哪种渠道认识我们的？')); n += 1
-    secs.append(section(n, 'About you', '联络资料', you))
+    secs.append(section(n, 'About you', '联络资料', you)); n += 1
+    consent = f'''<div class="consent-box">
+        <label class="tick"><input type="checkbox" name="testimonial_consent" value="yes"><span><b>Yes, YSL may quote my comments</b> on its website, social media and other marketing materials. {zh('我同意咏胜旅游在网站、社交媒体及其他宣传资料中引用我的意见。')}</span></label>
+        <div class="credit" id="fb-credit" hidden>
+          <p class="credit-q">How should we credit you? {zh('请选择署名方式：')}</p>
+          <div class="chip-set">
+            <label class="chip"><input type="radio" name="testimonial_credit" value="first name and initial" checked><span>First name and initial{zh('名字及姓氏首字母')}</span></label>
+            <label class="chip"><input type="radio" name="testimonial_credit" value="full name"><span>Full name{zh('全名')}</span></label>
+            <label class="chip"><input type="radio" name="testimonial_credit" value="anonymous"><span>Anonymously{zh('匿名')}</span></label>
+          </div>
+          <p class="fb-note">We may shorten your comments, but never change their meaning. You can withdraw this permission at any time. {zh('我们或会精简您的意见，但不会改变原意。您可随时撤回此同意。')}</p>
+        </div>
+        <p class="fb-note">Optional. Your feedback is just as welcome if you leave this unticked. {zh('此项可选，不勾选亦不影响提交。')}</p>
+      </div>
+      <div class="consent-box">
+        <label class="tick"><input type="checkbox" name="privacy_consent" value="yes" required><span><b>I have read and agree to the Privacy Notice below.</b> {zh('我已阅读并同意以下隐私声明。')}</span></label>
+        <details class="pdpa">
+          <summary>Privacy Notice {zh('隐私声明')}</summary>
+          <div class="pdpa-body">
+            <p>YSL Travel &amp; Tours Sdn Bhd (877803-T) collects the details on this form, including your name, contact number, email and feedback, to follow up on your comments and to improve our tours and services. Only if you tick the box above will we use your comments in our marketing.</p>
+            <p>Your information is used only by YSL Travel &amp; Tours. We do not sell it or share it with third parties, except service providers who store it for us under confidentiality. We keep it only as long as these purposes require.</p>
+            <p>To access or correct your information, or to withdraw your consent, contact us at travelwithysl@gmail.com or 03-3290 3500. This notice is given under Malaysia’s Personal Data Protection Act 2010.</p>
+            <p lang="zh-Hans" class="pdpa-zh">咏胜旅游有限公司（877803-T）收集本表格中的资料，包括您的姓名、联络电话、电邮及意见，用于跟进您的意见及改善我们的行程与服务。仅在您勾选上方选项时，我们才会将您的意见用于宣传。您的资料仅供咏胜旅游使用，我们不会出售或与第三方分享，但为我们储存资料并须保密的服务供应商除外。资料只保留至上述用途所需的期限。如需查阅或更正资料，或撤回同意，请联络 travelwithysl@gmail.com 或 03-3290 3500。本声明依据马来西亚《2010年个人资料保护法令》发出。</p>
+          </div>
+        </details>
+      </div>'''
+    secs.append(section(n, 'Your consent', '同意事项', consent))
 
     body = f'''{nav('')}
 <main id="main">
@@ -88,7 +114,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
       <div class="fb-submit rv">
         <p class="fb-err" id="fb-err" role="alert" hidden></p>
         <button class="btn btn--red" type="submit">Send feedback {zh('提交')}</button>
-        <small>Your answers go to the YSL Travel &amp; Tours team only. {zh('您的资料仅供咏胜旅游内部使用。')}</small>
+        <small>Your details are handled under our Privacy Notice above. {zh('您的资料将依据上方隐私声明处理。')}</small>
       </div>
     </form>
     <div class="fb-done" id="fb-done" hidden tabindex="-1">
@@ -123,6 +149,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
   form.addEventListener('input', function (e) { var m = e.target.closest('.fb-missing'); if (m) m.classList.remove('fb-missing'); });
   form.addEventListener('change', function (e) {
     var m = e.target.closest('.fb-missing'); if (m) m.classList.remove('fb-missing');
+    if (e.target.name === 'testimonial_consent') document.getElementById('fb-credit').hidden = !e.target.checked;
     var t = e.target; if (!t.dataset || !t.dataset.other) return;
     var w = document.getElementById(t.dataset.other + '_wrap'); w.hidden = !t.checked; if (t.checked) w.querySelector('input').focus();
   });
@@ -130,6 +157,8 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
     var d = { submitted_at: new Date().toISOString(), page: location.href };
     new FormData(form).forEach(function (v, k) { if (d[k] !== undefined) d[k] = [].concat(d[k], v); else d[k] = v; });
     if (!touched) delete d.overall;
+    if (!d.testimonial_consent) { d.testimonial_consent = 'no'; delete d.testimonial_credit; }
+    if (!d.privacy_consent) d.privacy_consent = 'no';
     return d;
   }
   form.addEventListener('submit', function (e) {
@@ -151,6 +180,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
     if (!E.name.value.trim()) flag(E.name.closest('.field'));
     if (!/^[+\d][\d\s-]{6,}$/.test(E.phone.value.trim())) flag(E.phone.closest('.field'));
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(E.email.value.trim())) flag(E.email.closest('.field'));
+    if (!E.privacy_consent.checked) flag(E.privacy_consent.closest('.consent-box'));
     if (miss.length) {
       err.textContent = 'Please complete the highlighted questions (' + miss.length + '). \u8bf7\u586b\u5199\u6807\u793a\u7684\u9879\u76ee\u3002';
       err.hidden = false; miss[0].scrollIntoView({ block: 'center', behavior: 'smooth' }); return;
