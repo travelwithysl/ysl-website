@@ -29,7 +29,8 @@ Commit the built output with the source change: Cloudflare serves the committed 
 `build.py` builds every page twice: English into `dist/`, then Chinese into `dist/zh/` (the feedback form is already bilingual and has no twin).
 - Content: `zh.py` (services, tour cards, members, hours), `tours_zh.py` (itineraries), `articles_zh.py` (journal). Overlays keyed by slug; images, codes and links stay in `data.py` / `articles.py`.
 - Template wording: the `UI` dict in `zh.py` maps exact English fragments of the rendered HTML to Chinese. When you change English copy in `build.py`, update the matching key. The build stops if a key no longer matches anything, or if a run of English words is left on a Chinese page (allowed names are in `KEEP`).
-- Brand in Chinese: 咏胜旅游 (legal name 咏胜天下旅游有限公司). Malaysian Chinese usage: 配套, 纽西兰, 巴生, 冷气. Chinese has no italics: red accent words stay upright.
+- Brand names stay in English on the Chinese site: YSL Travel & Tours (or YSL), tour brands and Golden Destinations tour names, airlines, Ctrip, shops and venues. Exception: YSL's own tour 大美青甘. Add any new brand to `KEEP` in `zh.py`.
+- Malaysian Chinese usage: 配套, 纽西兰, 巴生, 冷气. Chinese has no italics: red accent words stay upright.
 
 ## Output gotcha
 
