@@ -50,9 +50,9 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
     you = '''<div class="fields">
         <div class="field full"><label for="fb-name">Name {z1}</label><input id="fb-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="fb-tel">Contact number {z2}</label><input id="fb-tel" name="phone" type="tel" required autocomplete="tel" inputmode="tel"></div>
-        <div class="field"><label for="fb-email">Email {z3}</label><input id="fb-email" name="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="fb-email">Email {z3} <span class="opt">(optional)</span></label><input id="fb-email" name="email" type="email" autocomplete="email"></div>
       </div><p class="fb-note">We use these details only to follow up on your feedback. {z4}</p>'''.format(
-        z1=zh('姓名'), z2=zh('联络电话'), z3=zh('电邮'), z4=zh('您的资料仅用于跟进您的意见。'))
+        z1=zh('姓名'), z2=zh('联络电话'), z3=zh('电邮（可选填）'), z4=zh('您的资料仅用于跟进您的意见。'))
 
     secs = [section(1, 'Your trip', '您的行程', trip)]
     n = 2
@@ -179,7 +179,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
     });
     if (!E.name.value.trim()) flag(E.name.closest('.field'));
     if (!/^[+\d][\d\s-]{6,}$/.test(E.phone.value.trim())) flag(E.phone.closest('.field'));
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(E.email.value.trim())) flag(E.email.closest('.field'));
+    var em = E.email.value.trim(); if (em && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) flag(E.email.closest('.field'));
     if (!E.privacy_consent.checked) flag(E.privacy_consent.closest('.consent-box'));
     if (miss.length) {
       err.textContent = 'Please complete the highlighted questions (' + miss.length + '). \u8bf7\u586b\u5199\u6807\u793a\u7684\u9879\u76ee\u3002';

@@ -614,6 +614,7 @@ a:hover .media img { transform: scale(1.04); }
 .pdpa-zh { font-size: 13px; }
 .consent-box.fb-missing { border-color: #d71f2a; background: #fff7f7; }
 .consent-box.fb-missing::after { content: "Required \5FC5\586B"; display: block; margin: 8px 0 0 34px; font-size: 12.5px; font-weight: 600; color: #b3121b; }
+.field label .opt { font-weight: 400; color: var(--stone); }
 /* ---------- home: red hero fades to ivory, motion tapers as you scroll ---------- */
 .section--ivory { background: var(--ivory); }
 .mono { font-family: var(--mono); }
