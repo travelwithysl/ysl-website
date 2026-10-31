@@ -51,8 +51,8 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
         <div class="field full"><label for="fb-name">Name {z1}</label><input id="fb-name" name="name" autocomplete="name"></div>
         <div class="field"><label for="fb-tel">Contact number {z2}</label><input id="fb-tel" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
         <div class="field"><label for="fb-email">Email {z3}</label><input id="fb-email" name="email" type="email" autocomplete="email"></div>
-      </div><p class="fb-note">Optional. Leave your details if you would like us to reply. {z4}</p>'''.format(
-        z1=zh('姓名'), z2=zh('联络电话'), z3=zh('电邮'), z4=zh('可选填，如需我们回复请留下联络资料。'))
+      </div><p class="fb-note">You can leave this section blank to stay anonymous. Add your details only if you would like us to reply. {z4}</p>'''.format(
+        z1=zh('姓名'), z2=zh('联络电话'), z3=zh('电邮'), z4=zh('此部分可留空以匿名提交；如需我们回复，请留下联络资料。'))
 
     secs = [section(1, 'Your trip', '您的行程', trip)]
     n = 2
@@ -75,7 +75,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
                         'What made you choose this tour? Choose any that apply.', '请勾选您选择本次行程的原因（可多选）。')); n += 1
     secs.append(section(n, 'How you found us', '认识渠道', chips('source', SOURCES),
                         'How did you hear about YSL Travel &amp; Tours?', '您是通过哪种渠道认识我们的？')); n += 1
-    secs.append(section(n, 'About you', '联络资料', you))
+    secs.append(section(n, 'About you (optional)', '联络资料（可选填）', you))
 
     body = f'''{nav('')}
 <main id="main">
