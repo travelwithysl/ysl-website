@@ -93,7 +93,7 @@ def tour_card(t, cls='ticket rv'):
 
 def post_card(p):
     if p.get('img'):
-        vis = f'<div class="media"><img src="assets/{p['img']}" alt=""></div>'
+        vis = f'<div class="media"><img src="assets/{p['img']}" alt=""{f' style="object-position:{p["pos"]}"' if p.get('pos') else ''}></div>'
     else:
         c1, c2, lab = p['slot']
         vis = f'<div class="media slot" style="--c1:{c1};--c2:{c2}"><b>{lab}</b><small>Photo to come</small></div>'
@@ -427,7 +427,14 @@ def build_corporate():
 
 # ======================= ABOUT =======================
 def build_about():
-    members = ''.join(f'<li><b>{a}</b><span>{n}</span></li>' for a, n in MEMBERS)
+    links = {k: u for k, _, u in ASSOC}
+    def mem(a, n):
+        logo = f'<img src="assets/assoc-{a.lower()}.png" alt="{a}" loading="lazy">'
+        u = links.get(a.lower())
+        if u:
+            logo = f'<a href="{u}" target="_blank" rel="noopener">{logo}</a>'
+        return f'<li>{logo}<b>{a}</b><span>{n}</span></li>'
+    members = ''.join(mem(a, n) for a, n in MEMBERS)
     body = f'''{nav('about.html')}
 <main id="main">
 {head_block([('index.html', 'Home'), (None, 'About')], 'About us', 'From Klang <span class="nw"><em>to the world</em>,</span><br> since 2009.', 'A licensed Malaysian travel agency planning holidays, group tours and business travel.')}
@@ -753,7 +760,7 @@ def build_journal():
     chips = '<div class="chips" data-filter-group="postGrid" role="group" aria-label="Filter stories">' + ''.join(
         f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{l}</button>' for k, l in [('all', 'All stories'), ('dest', 'Destinations'), ('tips', 'Travel tips'), ('corp', 'Corporate travel')]) + '</div>'
     grid = ''.join(post_card(p) for p in rest)
-    fvis = f'<div class="media"><img src="assets/{f['img']}" alt="{f['alt']}"></div>' if f.get('img') else f'<div class="media slot" style="--c1:{f['slot'][0]};--c2:{f['slot'][1]}"><b>{f['slot'][2]}</b><small>Photo to come</small></div>'
+    fvis = f'<div class="media"><img src="assets/{f['img']}" alt="{f['alt']}"{f' style="object-position:{f["pos"]}"' if f.get('pos') else ''}></div>' if f.get('img') else f'<div class="media slot" style="--c1:{f['slot'][0]};--c2:{f['slot'][1]}"><b>{f['slot'][2]}</b><small>Photo to come</small></div>'
     body = f'''{nav('journal.html')}
 <main id="main">
 {head_block([('index.html', 'Home'), (None, 'Journal')], 'Journal', 'Stories from <span class="nw"><em>the road.</em></span>', 'Destination guides, travel tips and corporate travel advice from the YSL Travel &amp; Tours team.', chips)}
@@ -771,7 +778,7 @@ def build_article(a):
     others = [p for p in sorted(ARTICLES, key=_by_date, reverse=True) if p['slug'] != a['slug']]
     same = [p for p in others if p['cat'] == a['cat']]
     rel = ''.join(post_card(p) for p in (same + [p for p in others if p not in same])[:3])
-    fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
+    fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"{f' style="object-position:{a["pos"]}"' if a.get('pos') else ''}></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
     ct, ctext, chref, clabel = a['cta']
     body = f'''{nav('journal.html')}
 <main id="main">
