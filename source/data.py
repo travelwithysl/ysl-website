@@ -106,6 +106,7 @@ CONTACT = dict(address='No 5, Lorong Sungai Puloh 13A,<br>Taman Klang Utama, 421
                phone='03-3290 3500', email='travelwithysl@gmail.com',
                hours='Mon to Fri, 9am to 6pm<br>Sat, 9am to 3pm<br>Closed on Sundays',
                maps='https://www.google.com/maps/search/?api=1&amp;query=YSL+Travel+%26+Tours+Sdn+Bhd+Taman+Klang+Utama',
+               whatsapp='+60 16-626 4500', wa='60166264500',  # office WhatsApp line, checked during office hours
                facebook='https://www.facebook.com/ysltravel', instagram='https://www.instagram.com/ysltravel/')
 
 # destinations the home-page pin opens onto; one is chosen per visit. Add YSL's own tour photos here.

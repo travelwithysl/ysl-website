@@ -513,6 +513,7 @@ UI = {
   '<dt>Phone</dt>': '<dt>电话</dt>',
   '<dt>Opening hours</dt>': '<dt>营业时间</dt>',
   '<dt>Payment</dt>': '<dt>付款方式</dt>',
+  'We reply during office hours.': '我们在办公时间内回复。',
   'Touch ’n Go eWallet accepted at our office': '本公司接受 Touch ’n Go eWallet 付款',
   'aria-label="Filter tours by region"': 'aria-label="按地区筛选旅游团"',
   'aria-label="Tours"': 'aria-label="旅游团"',

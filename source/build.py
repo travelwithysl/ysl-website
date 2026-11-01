@@ -47,7 +47,7 @@ def footer():
       <div class="foot-brand">{LOGO}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
       <div><h4>Explore</h4><ul>{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Visit us</h4><p style="margin:0">{CONTACT['address']}</p><p style="margin:12px 0 0">{CONTACT['hours']}</p></div>
-      <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">WhatsApp {CONTACT['whatsapp']}</a></li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
     </div>
     <div class="foot-base">
       <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
@@ -819,7 +819,7 @@ def build_contact():
       <dl class="detail-list">
         <div><dt>Office</dt><dd>{CONTACT['address']}</dd></div>
         <div><dt>Phone</dt><dd>{CONTACT['phone']}</dd></div>
-        <div><dt>WhatsApp</dt><dd><span class="tbc">+60 XX-XXX XXXX</span></dd></div>
+        <div><dt>WhatsApp</dt><dd><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">{CONTACT['whatsapp']}</a><br><small class="muted">We reply during office hours.</small></dd></div>
         <div><dt>Email</dt><dd>{CONTACT['email']}</dd></div>
         <div><dt>Opening hours</dt><dd>{CONTACT['hours']}</dd></div>
         <div><dt>Payment</dt><dd>Touch ’n Go eWallet accepted at our office</dd></div>
@@ -849,7 +849,7 @@ def build_contact():
     js = '''
 <script>
 (function () {
-  var WA_NUMBER = ''; // YSL to supply, digits only, e.g. 60123456789
+  var WA_NUMBER = '__WA__'; // office WhatsApp line, digits only
   var T = __T__;
   var form = document.getElementById('enquiry'), prev = document.getElementById('preview'), note = document.getElementById('formNote');
   function msg() {
@@ -869,6 +869,7 @@ def build_contact():
     var q = new URLSearchParams(location.search), NAMES = __NAMES__;
     var d = q.get('dest') || NAMES[q.get('tour')] || '';
     if (d && !form.elements.dest.value) form.elements.dest.value = d;
+    if (q.get('tour')) form.elements.type.selectedIndex = __TOURIDX__; // enquiries from a tour page are about that tour
   } catch (e) {}
   form.addEventListener('input', update); update();
   form.addEventListener('submit', function (e) {
@@ -880,6 +881,8 @@ def build_contact():
 })();
 </script>'''
     import json, html as _h
+    js = js.replace('__WA__', CONTACT['wa'])
+    js = js.replace('__TOURIDX__', str([s['slug'] for s in SERVICES].index('tours')))
     js = js.replace('__NAMES__', json.dumps({t['slug']: _h.unescape(t['title']) for t in TOURS}))
     js = js.replace('__T__', json.dumps(zh.CONTACT_JS if LANG == 'zh' else dict(
         hello='Hello YSL Travel & Tours,', ask='I\u2019d like to ask about ', lower=True, to=' to ', stop='.', when='When: ', pax='Travellers: ',
