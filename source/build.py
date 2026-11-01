@@ -8,7 +8,8 @@ from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG,
 
 # 'en' builds the English site into dist/, 'zh' the Simplified Chinese site into dist/zh/ (see zh.py)
 LANG = 'en'
-NO_ZH = {'feedback.html'}  # pages with no Chinese twin (the feedback form is already bilingual)
+NO_ZH = {'feedback.html'}
+SITE = 'https://www.ysltravel.com'  # official address: canonical links, sitemap and share images use it  # pages with no Chinese twin (the feedback form is already bilingual)
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(SRC, '..', 'dist')
@@ -94,14 +95,27 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
         switch = '../' + fname
     else:
         switch = 'zh/' + (fname if fname not in NO_ZH else 'index.html')
-    if fname not in NO_ZH and os.path.abspath(DIST) == MAIN_DIST:  # not for the stand-alone feedback site
-        other = 'zh-Hans' if LANG == 'en' else 'en'
-        extra_head = f'\n<link rel="alternate" hreflang="{other}" href="{switch}">' + extra_head
+    main = os.path.abspath(DIST) == MAIN_DIST  # not for the stand-alone feedback site
+    path = '' if fname == 'index.html' else fname
+    en_url, zh_url = f'{SITE}/{path}', f'{SITE}/zh/{path}'
+    url = zh_url if LANG == 'zh' else en_url
+    if main and fname not in NO_ZH and fname != '404.html':
+        extra_head = (f'\n<link rel="canonical" href="{url}">\n<link rel="alternate" hreflang="en" href="{en_url}">'
+                      f'\n<link rel="alternate" hreflang="zh-Hans" href="{zh_url}">\n<link rel="alternate" hreflang="x-default" href="{en_url}">') + extra_head
+    if main:
+        extra_head = ('\n<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">\n<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">'
+                      '\n<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">') + extra_head
+    og_abs = og_image if og_image.startswith('http') else f'{SITE}/{og_image}'
     head = f'''<title>{title}</title>
 <meta name="description" content="{desc}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="YSL Travel &amp; Tours">
+<meta property="og:locale" content="{'zh_CN' if LANG == 'zh' else 'en_GB'}">
+<meta property="og:url" content="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{og_image}">
+<meta property="og:image" content="{og_abs}">
+<meta name="twitter:card" content="summary_large_image">
 {FONTS}
 <link rel="stylesheet" href="assets/site.css">{extra_head}'''
     content = f'''{ICONS}
@@ -886,3 +900,16 @@ if __name__ == '__main__':
     SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES = zh.localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES)
     build_pages()
     zh.check(os.path.join(DIST, 'zh'))
+    # sitemap.xml and robots.txt, from the pages just written (both languages, no 404)
+    import datetime
+    today = datetime.date.today().isoformat()
+    pages = sorted(f for f in os.listdir(DIST) if f.endswith('.html') and f != '404.html' and os.path.exists(os.path.join(DIST, 'zh', f)))
+    urls = []
+    for f in pages:
+        p = '' if f == 'index.html' else f
+        alts = f'<xhtml:link rel="alternate" hreflang="en" href="{SITE}/{p}"/><xhtml:link rel="alternate" hreflang="zh-Hans" href="{SITE}/zh/{p}"/><xhtml:link rel="alternate" hreflang="x-default" href="{SITE}/{p}"/>'
+        for loc in (f'{SITE}/{p}', f'{SITE}/zh/{p}'):
+            urls.append(f'  <url><loc>{loc}</loc><lastmod>{today}</lastmod>{alts}</url>')
+    open(os.path.join(DIST, 'sitemap.xml'), 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(urls) + '\n</urlset>\n')
+    open(os.path.join(DIST, 'robots.txt'), 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
+    print('wrote sitemap.xml with', len(urls), 'URLs, and robots.txt')

@@ -16,6 +16,12 @@ Build: `cd source && python3 build.py` writes the HTML into `../dist` (images in
 `python3 standalone.py` rebuilds `../feedback-site` from the same form code (`feedback.py`).
 Commit the built output with the source change: Cloudflare serves the committed files, it does not build.
 
+## Domain and SEO
+
+- Domain ysltravel.com is registered at Squarespace. Official address: `SITE = 'https://www.ysltravel.com'` in `build.py` (www works with Squarespace DNS via a CNAME to Cloudflare Pages; the bare domain should forward to it). Change `SITE` if the address changes.
+- Every page gets a canonical link, hreflang alternates (en, zh-Hans, x-default), Open Graph and Twitter tags with absolute image URLs, and favicon links. `build.py` also writes `dist/sitemap.xml` (both languages, no 404) and `dist/robots.txt`.
+- Favicons: `dist/assets/favicon.svg` (the YSL pin from `entrance.html`), `favicon-32.png`, `apple-touch-icon.png` (pin on maroon), and `dist/favicon.ico`. Hand-placed: do not delete.
+
 ## Source map
 
 - `build.py`: page templates (`build_home`, `build_corporate`, `build_about`, `build_services`, `build_tours`, tour pages, journal, contact).
