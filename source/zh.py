@@ -7,6 +7,7 @@
 # When you change English wording in build.py, change the matching key here too; the build tells you which.
 import html as _html, json, os, re, datetime
 from tours_zh import QG_ZH, GD_ZH
+from data import month_runs
 from articles_zh import ARTICLES_ZH, CAT_LABEL_ZH
 
 FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500&display=swap">'
@@ -78,10 +79,14 @@ def _day(en, z):
 
 def _tour(en, z):
     q = dict(en)
-    for k in ('title', 'region', 'line', 'hotels', 'head', 'lead', 'highlights', 'included', 'excluded', 'notes', 'flights'):
+    for k in ('title', 'region', 'line', 'hotels', 'head', 'lead', 'highlights', 'included', 'excluded', 'notes', 'flights', 'hero_alt'):
         if k in z:
             q[k] = z[k]
     q['duration'] = z.get('duration') or _dur(en['duration'])
+    if en.get('hero') and 'hero_alt' not in z:
+        raise KeyError('missing Chinese hero_alt for ' + en['slug'])
+    if en.get('dates'):
+        q['departs'] = departs_zh(en['dates'])
     if en.get('notes') and 'notes' not in z:
         raise KeyError('missing Chinese notes for ' + en['slug'])
     assert len(z['days']) == len(en['days']), en['slug']
@@ -90,6 +95,19 @@ def _tour(en, z):
         q['features'] = [(im, t, x) for (im, _, _), (t, x) in zip(en['features'], z['features'])]
     q['zh'] = ''
     return q
+
+
+def departs_zh(dates):
+    """Chinese twin of data.departs_en: '2027年2月', '2027年1月至9月', '2026年12月至2027年3月'"""
+    out = []
+    for (y1, m1), (y2, m2) in month_runs(dates):
+        if (y1, m1) == (y2, m2):
+            out.append(f'{y1}年{m1}月')
+        elif y1 == y2:
+            out.append(f'{y1}年{m1}月至{m2}月')
+        else:
+            out.append(f'{y1}年{m1}月至{y2}年{m2}月')
+    return '、'.join(out)
 
 
 def zh_date(s):
@@ -110,6 +128,8 @@ def localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES
                 if k not in z:
                     z[k] = by[t['slug']][k]
         z.setdefault('short', t.get('short') or z.get('title'))  # photo-placeholder label: a place, so Chinese; Europe Legend keeps its tour name
+        if t.get('dates'):
+            z['departs'] = departs_zh(t['dates'])
         tours.append({**t, **z, 'dur': _dur(t['dur']), 'kind': '团体游'})
     contact = {**CONTACT, 'hours': HOURS_ZH}
     members = [(a, MEMBERS_ZH[a]) for a, _ in MEMBERS]
@@ -193,7 +213,6 @@ UI = {
   '<dt>Email</dt>': '<dt>电邮</dt>',
   '<dt>Visit</dt>': '<dt>地址</dt>',
   '<dd>Taman Klang Utama, Klang</dd>': '<dd>巴生 Taman Klang Utama</dd>',
-  'Tour photo to come': '旅游照片即将更新',
   'Photo to come': '照片即将更新',
   '<small>From</small>KUL': '<small>出发</small>KUL',
   '<small>To</small>': '<small>抵达</small>',
@@ -483,7 +502,8 @@ UI = {
   '<dt>Hotels</dt>': '<dt>酒店</dt>',
   '<dd>4-Diamond</dd>': '<dd>Ctrip 四钻</dd>',
   '<dd>2026, ask us</dd>': '<dd>2026年，欢迎询问</dd>',
-  '<dd>Guaranteed dates, ask us</dd>': '<dd>保证出发日期，欢迎询问</dd>',
+  '>Departure dates</h3>': '>出发日期</h3>',
+  'Group departures from Kuala Lumpur on Golden Destinations’ current schedule. Ask us which dates still have seats.': '吉隆坡出发，依 Golden Destinations 现行出团日期。欢迎询问哪些日期仍有空位。',
   '<dt>Tour by</dt>': '<dt>承办</dt>',
   '>Enquire on WhatsApp</a>': '>WhatsApp 咨询</a>',
   '>Download itinerary (PDF)</a>': '>下载行程（PDF）</a>',

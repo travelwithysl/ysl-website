@@ -385,3 +385,9 @@
   background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none' stroke='%23170407' stroke-width='1.3'%3E%3Crect x='1' y='4.5' width='8' height='6' rx='1'/%3E%3Cpath d='M3 4.5V3a2 2 0 0 1 4 0v1.5'/%3E%3C/svg%3E"); }
 .locked-note { margin-top: 12px; }
 .locked-note .zh { display: inline; }
+
+/* ---------- departure dates (Golden Destinations tour pages) ---------- */
+.dep-dates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.dep-dates li { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: baseline; gap: 14px; padding: 14px 20px; background: var(--paper); border-radius: 14px; font-size: 15px; font-weight: 600; }
+.dep-dates .code { text-transform: uppercase; }
+@media (max-width: 600px) { .dep-dates { grid-template-columns: minmax(0, 1fr); } }

@@ -35,23 +35,22 @@ SERVICES = [
          includes=['Coaches for groups of every size', 'Airport and event transfers', 'Day trips and outstation journeys']),
 ]
 
-# c1/c2 colour the art-directed photo slot until real photography arrives
 TOURS = [
     dict(slug='qinghai-gansu', dur='10D8N', iata='LHW', title='Majestic Qinghai & Gansu', region='China', cat='asia', kind='Group tour', line='Rainbow mountains, desert dunes and sky-mirror salt lakes', img='qg-card.jpg', page='tour-qinghai-gansu.html'),
     dict(slug='yunnan', dur='8D7N', iata='KMG', title='Yunnan & Shangri-La', region='China', cat='asia', kind='Group tour', line='Old towns, snow peaks and Tibetan monasteries', img='lake.jpg', page='tour-yunnan.html'),
     # signature group tours from Golden Destinations, a brand YSL carries (no prices; enquiries go to YSL)
     dict(slug='gd-europe-legend', dur='10D7N', page='tour-gd-europe-legend.html', brand='Golden Destinations', iata='CDG', short='Europe Legend', title='Europe Legend', region='Europe', cat='europe', kind='Group tour',
-         line='Paris, Brussels, Amsterdam, the Rhine, Titisee, Rhine Falls, Zurich and Lucerne', c1='#2e4f8a', c2='#0e1a33'),
+         line='Paris, Brussels, Amsterdam, the Rhine, Titisee, Rhine Falls, Zurich and Lucerne', img='gd-europe-legend-card.jpg'),
     dict(slug='gd-hokkaido', dur='6D4N', page='tour-gd-hokkaido.html', brand='Golden Destinations', iata='CTS', short='Hokkaido', title='Hokkaido Delight', region='Japan', cat='asia', kind='Group tour',
-         line='Noboribetsu, Lake Toya, Otaru and Sapporo', c1='#3f6f9a', c2='#0f2236'),
+         line='Noboribetsu, Lake Toya, Otaru and Sapporo', img='gd-hokkaido-card.jpg'),
     dict(slug='gd-turkiye', dur='9D7N', page='tour-gd-turkiye.html', brand='Golden Destinations', iata='IST', short='Türkiye', title='The Charms of Türkiye', region='Türkiye', cat='europe', kind='Group tour',
-         line='Istanbul, Canakkale, Ephesus, Pamukkale, Konya and Cappadocia', c1='#b57a3c', c2='#3b2412'),
+         line='Istanbul, Canakkale, Ephesus, Pamukkale, Konya and Cappadocia', img='gd-turkiye-card.jpg'),
     dict(slug='gd-eastern-europe', dur='9D6N', page='tour-gd-eastern-europe.html', brand='Golden Destinations', iata='BUD', short='Eastern Europe', title='Eastern Europe Vista', region='Europe', cat='europe', kind='Group tour',
-         line='Budapest, Bratislava, Vienna, Hallstatt, Salzburg, Cesky Krumlov and Prague', c1='#6b3a5e', c2='#22101e'),
+         line='Budapest, Bratislava, Vienna, Hallstatt, Salzburg, Cesky Krumlov and Prague', img='gd-eastern-europe-card.jpg'),
     dict(slug='gd-new-zealand', dur='9D7N', page='tour-gd-new-zealand.html', brand='Golden Destinations', iata='AKL', short='New Zealand', title='New Zealand North &amp; South Island', region='New Zealand', cat='longhaul', kind='Group tour',
-         line='Both islands, from Auckland to Queenstown', c1='#1f6a5a', c2='#082520'),
+         line='Both islands, from Auckland to Queenstown', img='gd-new-zealand-card.jpg'),
     dict(slug='gd-south-africa', dur='11D8N', page='tour-gd-south-africa.html', brand='Golden Destinations', iata='JNB', short='South Africa', title='Essence of South Africa', region='Africa', cat='longhaul', kind='Group tour',
-         line='Johannesburg, Cape Town, Botswana and Victoria Falls', c1='#9a5a1e', c2='#2e1606'),
+         line='Johannesburg, Cape Town, Botswana and Victoria Falls', img='gd-south-africa-card.jpg'),
 ]
 
 POSTS = [
@@ -150,12 +149,12 @@ QG = dict(
               'Recommended optionals: “Return to Zhangye” show and the Mingsha camel ride', 'Single supplement', 'Travel insurance (we can arrange this)', 'Personal expenses'],
 )
 
-# Golden Destinations group tours, written up from GD's published itineraries (no prices). Photos to be supplied by Twain / YSL.
+# Golden Destinations group tours, written up from GD's published itineraries (no prices). Photos from GD's itinerary pages and PDFs.
 def _d(t, meals, p, hotel='', note='', meal=''):
     return dict(t=t, meals=meals, p=p, hotel=hotel, note=note, meal=meal)
 
 GD_TOURS = [
-  dict(slug='gd-europe-legend', page='tour-gd-europe-legend.html', title='Europe Legend', region='Europe', duration='10 days, 7 nights', c1='#2e4f8a', c2='#0e1a33',
+  dict(slug='gd-europe-legend', page='tour-gd-europe-legend.html', title='Europe Legend', region='Europe', duration='10 days, 7 nights', hero='gd-europe-legend-hero.jpg', hero_alt='A Seine river cruise below the Eiffel Tower',
     line='Five countries, two river cruises, one classic loop.', hotels='4-star',
     head='From Paris to the Swiss lakes and back.',
     lead='A classic first trip to Western Europe: Brussels and Amsterdam, the Rhine and Black Forest, Rhine Falls, Zurich and Lucerne, finishing with two nights in Paris.',
@@ -175,7 +174,7 @@ GD_TOURS = [
     included=['Return flights from Kuala Lumpur', 'Seven nights in 4-star hotels or similar: Amsterdam 2, Heidelberg 1, Zurich 2, Paris 2', '7 breakfasts, 4 lunches and 2 dinners, including mussels, pork knuckle and a French escargot meal', 'Amsterdam canal cruise, Zaanse Schans and the Seine River cruise', 'One checked bag up to 20kg', 'Tour leader for groups of 15 or more'],
     excluded=['Mount Titlis cable car (optional)', 'Visa, travel insurance and tipping, unless stated', 'Meals not listed'],
   ),
-  dict(slug='gd-hokkaido', page='tour-gd-hokkaido.html', title='Hokkaido Delight', region='Japan', duration='6 days, 4 nights', c1='#3f6f9a', c2='#0f2236',
+  dict(slug='gd-hokkaido', page='tour-gd-hokkaido.html', title='Hokkaido Delight', region='Japan', duration='6 days, 4 nights', hero='gd-hokkaido-hero.jpg', hero_alt='The Mount Usu cable car over the forests above Lake Toya',
     line='Volcanoes, hot springs, Otaru’s canal and three nights in Sapporo.', hotels='3-star, with an onsen night',
     head='Japan’s far north, at an easy pace.',
     lead='Hell Valley at Noboribetsu, a cable car up Mount Usu and a hot-spring night on Lake Toya, the glassworks and canal of Otaru, then three nights in Sapporo with a free day to explore.',
@@ -192,7 +191,7 @@ GD_TOURS = [
     excluded=['Visa, travel insurance and tipping, unless stated', 'Meals not listed', 'Personal expenses'],
     notes='Good in every season: snow from December to February, flowers in summer, and autumn colour from September.',
   ),
-  dict(slug='gd-turkiye', page='tour-gd-turkiye.html', title='The Charms of Türkiye', region='Türkiye', duration='9 days, 7 nights', c1='#b57a3c', c2='#3b2412',
+  dict(slug='gd-turkiye', page='tour-gd-turkiye.html', title='The Charms of Türkiye', region='Türkiye', duration='9 days, 7 nights', hero='gd-turkiye-hero.jpg', hero_alt='Hot-air balloons over Cappadocia at sunrise',
     line='Istanbul, the Aegean, Pamukkale and two nights in Cappadocia.', hotels='5-star and cave hotels',
     head='A full circle of Türkiye.',
     lead='Istanbul’s great mosques and the Basilica Cistern, Troy and Ephesus on the Aegean, the white terraces of Pamukkale, two nights in a Cappadocia cave hotel, and a Bosphorus cruise to finish.',
@@ -212,7 +211,7 @@ GD_TOURS = [
     excluded=['Hot-air balloon and jeep safari (optional)', 'Troy Museum', 'Visa, travel insurance and tipping, unless stated'],
     notes='From June to mid September, Cappadocia nights may move to a 5-star hotel, as many cave hotels have no air conditioning.',
   ),
-  dict(slug='gd-eastern-europe', page='tour-gd-eastern-europe.html', title='Eastern Europe Vista', region='Europe', duration='9 days, 6 nights', c1='#6b3a5e', c2='#22101e',
+  dict(slug='gd-eastern-europe', page='tour-gd-eastern-europe.html', title='Eastern Europe Vista', region='Europe', duration='9 days, 6 nights', hero='gd-eastern-europe-hero.jpg', hero_alt='Hallstatt on its lake below the Alps',
     line='Budapest, Vienna, Hallstatt, Salzburg, Cesky Krumlov and Prague.', hotels='4-star',
     head='Four capitals and two fairytale towns.',
     lead='The Danube at Budapest, imperial Vienna, the lakeside village of Hallstatt, Mozart’s Salzburg, medieval Cesky Krumlov, and two nights in Prague.',
@@ -231,7 +230,7 @@ GD_TOURS = [
     included=['Return flights from Kuala Lumpur', 'Six nights in 4-star hotels or similar: Budapest 1, Vienna 2, Salzburg 1, Prague 2', '6 breakfasts, 2 lunches and 5 dinners', 'Danube cruise, Schönbrunn Palace and Prague Castle', 'One checked bag up to 20kg'],
     excluded=['Visa, travel insurance and tipping, unless stated', 'Meals not listed'],
   ),
-  dict(slug='gd-new-zealand', page='tour-gd-new-zealand.html', title='New Zealand North &amp; South Island', region='New Zealand', duration='9 days, 7 nights', c1='#1f6a5a', c2='#082520',
+  dict(slug='gd-new-zealand', page='tour-gd-new-zealand.html', title='New Zealand North &amp; South Island', region='New Zealand', duration='9 days, 7 nights', hero='gd-new-zealand-hero.jpg', hero_alt='A cruise boat beneath a waterfall in Milford Sound',
     line='Hobbiton, glowworms, Milford Sound and Mount Cook.', hotels='Hotels throughout',
     head='Both islands in nine days.',
     lead='Rotorua’s geysers and Māori culture, the Hobbiton set and Waitomo’s glowworm caves on the North Island, then Queenstown, Milford Sound, Mount Cook, Lake Tekapo and Christchurch on the South.',
@@ -250,7 +249,7 @@ GD_TOURS = [
     included=['Return flights from Kuala Lumpur, and domestic flights to Queenstown and from Christchurch', 'Seven nights in hotels', '7 breakfasts, 7 lunches and 7 dinners, including a Māori hangi, the Sky Tower Orbit restaurant and a barbecue lunch', 'Hobbiton, Te Puia, Waitomo, Agrodome, Milford Sound cruise and Avon punting', 'One checked bag up to 30kg'],
     excluded=['Visa, travel insurance and tipping, unless stated', 'Personal expenses'],
   ),
-  dict(slug='gd-south-africa', page='tour-gd-south-africa.html', title='Essence of South Africa', region='Africa', duration='11 days, 8 nights', c1='#9a5a1e', c2='#2e1606',
+  dict(slug='gd-south-africa', page='tour-gd-south-africa.html', title='Essence of South Africa', region='Africa', duration='11 days, 8 nights', hero='gd-south-africa-hero.jpg', hero_alt='A helicopter over Victoria Falls and the Zambezi gorge',
     line='Johannesburg, Chobe, Victoria Falls and four nights in Cape Town.', hotels='4 and 5-star',
     head='Safari, the Falls and the Cape.',
     lead='Game drives and a river cruise in Botswana’s Chobe, a helicopter flight over Victoria Falls, a Zambezi sunset, then Cape Town: the Peninsula, Table Mountain, penguins and the winelands.',
@@ -273,3 +272,67 @@ GD_TOURS = [
     notes='No visa is needed for Malaysian passport holders. No triple rooms on this tour.',
   ),
 ]
+
+# Golden Destinations departure dates, matched from gd.my on 1 November 2026 (prices deliberately left out).
+# slug: (GD tour code, dates). New Zealand: NZW (Dec 2026) and NZW(R) (2027) run the same itinerary.
+# To refresh, re-check https://www.gd.my/web/itinerary/<CODE>.
+GD_DATES = {
+    'gd-europe-legend': ('10EPP', '''
+        2027-02-10 2027-02-24
+        '''.split()),
+    'gd-hokkaido': ('JCS-12', '''
+        2026-12-22 2027-01-06 2027-01-12 2027-01-13 2027-01-26 2027-01-27 2027-02-24 2027-03-03
+        2027-03-17 2027-03-23
+        '''.split()),
+    'gd-turkiye': ('9XCA-1', '''
+        2026-11-26 2026-12-10 2026-12-24 2027-01-14 2027-01-16 2027-01-21 2027-01-22 2027-01-23
+        2027-02-01 2027-02-03 2027-02-04 2027-02-07 2027-02-08 2027-02-11 2027-02-13 2027-02-16
+        2027-02-18 2027-02-20 2027-02-24 2027-03-02 2027-03-03 2027-03-04 2027-03-06 2027-03-09
+        2027-03-16 2027-03-18 2027-03-23 2027-03-25 2027-03-30 2027-04-01 2027-04-06 2027-04-08
+        2027-04-13 2027-04-15 2027-04-20 2027-04-22 2027-04-27 2027-04-29 2027-05-04 2027-05-06
+        2027-05-11 2027-05-13 2027-05-14 2027-05-16 2027-05-17 2027-05-20 2027-05-25 2027-05-27
+        2027-06-01 2027-06-03 2027-06-06 2027-06-10 2027-06-17 2027-06-24 2027-07-01 2027-07-08
+        2027-07-15 2027-07-22 2027-07-29 2027-08-05 2027-08-12 2027-08-19
+        '''.split()),
+    'gd-eastern-europe': ('9EBP', '''
+        2027-02-18 2027-03-25 2027-04-11 2027-04-25 2027-05-13 2027-05-27
+        '''.split()),
+    'gd-new-zealand': ('NZW / NZW(R)', '''
+        2026-12-09 2027-05-19 2027-06-03
+        '''.split()),
+    'gd-south-africa': ('11XSA', '''
+        2027-01-12 2027-02-16 2027-03-16 2027-04-20 2027-05-26 2027-06-15 2027-07-06 2027-07-27
+        2027-08-10 2027-08-21 2027-09-14
+        '''.split()),
+}
+
+
+def month_runs(dates):
+    """ISO dates -> runs of consecutive months, as [((y, m), (y, m)), ...]"""
+    months = sorted({(int(d[:4]), int(d[5:7])) for d in dates})
+    runs = []
+    for y, m in months:
+        if runs and (runs[-1][1][0] * 12 + runs[-1][1][1]) + 1 == y * 12 + m:
+            runs[-1][1] = (y, m)
+        else:
+            runs.append([(y, m), (y, m)])
+    return [tuple(r) for r in runs]
+
+MON = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+def departs_en(dates):
+    """'Feb 2027', 'Jan to Sep 2027', 'Dec 2026 to Mar 2027', 'Dec 2026, May to Jun 2027'"""
+    out = []
+    for (y1, m1), (y2, m2) in month_runs(dates):
+        if (y1, m1) == (y2, m2):
+            out.append(f'{MON[m1]} {y1}')
+        elif y1 == y2:
+            out.append(f'{MON[m1]} to {MON[m2]} {y2}')
+        else:
+            out.append(f'{MON[m1]} {y1} to {MON[m2]} {y2}')
+    return ', '.join(out)
+
+for _t in TOURS + GD_TOURS:
+    if _t['slug'] in GD_DATES:
+        _t['gd_code'], _t['dates'] = GD_DATES[_t['slug']]
+        _t['departs'] = departs_en(_t['dates'])

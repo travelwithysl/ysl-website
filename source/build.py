@@ -3,7 +3,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from articles import ARTICLES
 import feedback
 import zh
-from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG, GD_TOURS
+from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG, GD_TOURS, MON
 
 # 'en' builds the English site into dist/, 'zh' the Simplified Chinese site into dist/zh/ (see zh.py)
 LANG = 'en'
@@ -684,10 +684,28 @@ def build_gd_tour(q):
     exc = ''.join(f'<li>{x}</li>' for x in q['excluded'])
     notes = f'<p class="d-note" style="margin-top:28px">{q["notes"]}</p>' if q.get('notes') else ''
     others = ''.join(tour_card(t) for t in [x for x in TOURS if x['slug'] != q['slug']][:3])
+    if q.get('hero'):
+        hero = f'''<section class="tour-hero on-dark">
+  <img src="assets/{q['hero']}" alt="{q['hero_alt']}">'''
+    else:
+        hero = f'''<section class="tour-hero slot-hero on-dark" style="--c1:{q['c1']};--c2:{q['c2']}">
+  <span class="slot-note">Tour photo to come</span>'''
+    dates = ''
+    if q.get('dates'):
+        by_month = {}
+        for d in q['dates']:
+            by_month.setdefault(d[:7], []).append(int(d[8:]))
+        if LANG == 'zh':
+            rows = ''.join(f'<li><span class="code">{int(k[:4])}年{int(k[5:])}月</span><span>{"、".join(f"{x}日" for x in v)}</span></li>' for k, v in by_month.items())
+        else:
+            rows = ''.join(f'<li><span class="code">{MON[int(k[5:])]} {k[:4]}</span><span>{", ".join(str(x) for x in v)}</span></li>' for k, v in by_month.items())
+        dates = f'''<h3 class="h-m" style="margin-bottom:8px">Departure dates</h3>
+      <p class="muted" style="margin:0 0 18px;font-size:14px">Group departures from Kuala Lumpur on Golden Destinations’ current schedule. Ask us which dates still have seats.</p>
+      <ul class="dep-dates" style="margin-bottom:64px">{rows}</ul>
+      '''
     body = f'''{nav('tours.html')}
 <main id="main">
-<section class="tour-hero slot-hero on-dark" style="--c1:{q['c1']};--c2:{q['c2']}">
-  <span class="slot-note">Tour photo to come</span>
+{hero}
   <div class="container">
     <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Holidays &amp; Tours</a></li><li aria-current="page">{q['region']}</li></ol>
     <p class="eyebrow">{q['region']} &nbsp; Group tour &nbsp; {q['duration']}</p>
@@ -703,7 +721,7 @@ def build_gd_tour(q):
       <p class="lead" style="margin-bottom:48px">{q['lead']}</p>
       <h3 class="h-m" style="margin-bottom:20px">Highlights</h3>
       <ul class="highlights" style="margin-bottom:56px">{hl}</ul>
-      <h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
+      {dates}<h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
       <ol class="days">{days}</ol>
     </div>
     <aside class="facts-card" aria-label="Tour details">
@@ -711,7 +729,7 @@ def build_gd_tour(q):
         <div><dt>Duration</dt><dd>{q['duration']}</dd></div>
         <div><dt>Tour type</dt><dd>Group tour</dd></div>
         <div><dt>Hotels</dt><dd>{q['hotels']}</dd></div>
-        <div><dt>Departures</dt><dd>Guaranteed dates, ask us</dd></div>
+        <div><dt>Departures</dt><dd>{q.get('departs') or 'Ask us'}</dd></div>
         <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
         <div><dt>Tour by</dt><dd>Golden Destinations</dd></div>
       </dl>
