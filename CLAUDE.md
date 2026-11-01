@@ -20,6 +20,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 
 - Domain ysltravel.com is registered at Squarespace. Official address: `SITE = 'https://www.ysltravel.com'` in `build.py` (www works with Squarespace DNS via a CNAME to Cloudflare Pages; the bare domain should forward to it). Change `SITE` if the address changes.
 - Before launch, ysltravel.com only forwards to YSL's Facebook page (no old website, so no redirects needed). At launch, replace that forwarding in Squarespace: `www` CNAME to the Cloudflare Pages project, and the bare domain forwarded to https://www.ysltravel.com.
+- The domain is linked to Google Workspace in Squarespace: never touch its MX or TXT records (email and Google verification). Today one forwarding rule sends both `www.ysltravel.com` and `ysltravel.com` to facebook.com/ysltravel (temporary, SSL off). At launch: take `www` out of that rule, point the bare domain to https://www.ysltravel.com (permanent, SSL on), then add the `www` CNAME from Cloudflare Pages.
 - Every page gets a canonical link, hreflang alternates (en, zh-Hans, x-default), Open Graph and Twitter tags with absolute image URLs, and favicon links. `build.py` also writes `dist/sitemap.xml` (both languages, no 404) and `dist/robots.txt`.
 - Favicons: `dist/assets/favicon.svg` (the YSL pin from `entrance.html`), `favicon-32.png`, `apple-touch-icon.png` (pin on maroon), and `dist/favicon.ico`. Hand-placed: do not delete.
 
