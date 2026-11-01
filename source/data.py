@@ -65,17 +65,17 @@ TOURS = [
          line='The Pyramids, Abu Simbel, three nights on the Nile, Luxor and Alexandria', img='gd-egypt-card.jpg'),
     # partner tours from Apple Vacations (applevacations.my), named only on their tour pages
     dict(slug='ap-zhangjiajie', dur='9D6N', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', iata='CSX', short='Zhangjiajie', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', cat='asia', kind='Group tour',
-         line='The sandstone pillars, the glass bridge, Tianmen Mountain and Phoenix Ancient Town', c1='#3d6b4f', c2='#10241a'),
+         line='The sandstone pillars, the glass bridge, Tianmen Mountain and Phoenix Ancient Town', img='ap-zhangjiajie-card.jpg'),
     dict(slug='ap-dongbei', dur='8D7N', page='tour-ap-dongbei.html', brand='Apple Vacations', iata='CGQ', short='Harbin', title='Snowy Dongbei: Changbai Mountain &amp; Harbin', region='China', cat='asia', kind='Group tour',
-         line='Rime forests, hot springs in the snow and Harbin’s Ice and Snow World', c1='#5d7fa8', c2='#142236'),
+         line='Rime forests, hot springs in the snow and Harbin’s Ice and Snow World', img='ap-dongbei-card.jpg'),
     dict(slug='ap-spain-portugal', dur='12D9N', page='tour-ap-spain-portugal.html', brand='Apple Vacations', iata='OPO', short='Spain', title='Spain &amp; Portugal', region='Europe', cat='europe', kind='Group tour',
-         line='Porto, Lisbon, Seville, Ronda, Córdoba, Toledo, Madrid and Barcelona', c1='#b5652e', c2='#3a1a0a'),
+         line='Porto, Lisbon, Seville, Ronda, Córdoba, Toledo, Madrid and Barcelona', img='ap-spain-portugal-card.jpg'),
     dict(slug='ap-greece', dur='10D7N', page='tour-ap-greece.html', brand='Apple Vacations', iata='SKG', short='Greece', title='Greece: Meteora, Mykonos &amp; Santorini', region='Europe', cat='europe', kind='Group tour',
          line='Meteora, Delphi, Athens, Mykonos and two nights on Santorini', c1='#2f6fa6', c2='#0b1f33'),
     dict(slug='ap-finland', dur='10D7N', page='tour-ap-finland.html', brand='Apple Vacations', iata='RVN', short='Lapland', title='Finnish Lapland &amp; the Northern Lights', region='Europe', cat='europe', kind='Group tour',
-         line='Huskies, reindeer, king crab in Norway and the Northern Lights', c1='#2e5d6e', c2='#081a22'),
+         line='Huskies, reindeer, king crab in Norway and the Northern Lights', img='ap-finland-card.jpg'),
     dict(slug='ap-australia', dur='9D6N', page='tour-ap-australia.html', brand='Apple Vacations', iata='SYD', short='Australia', title='Sydney &amp; Melbourne', region='Australia', cat='oceania', kind='Group tour',
-         line='Sydney Harbour, the Blue Mountains, the Great Ocean Road and the Penguin Parade', c1='#2f78a0', c2='#0c2333'),
+         line='Sydney Harbour, the Blue Mountains, the Great Ocean Road and the Penguin Parade', img='ap-australia-card.jpg'),
 ]
 
 POSTS = [
@@ -412,7 +412,7 @@ GD_TOURS = [
     excluded=['Entry inside the Pyramids', 'Optional extras: Nubian village, sound and light show and hot-air balloon', 'Travel insurance and tipping, unless stated'],
     notes='Malaysian passport holders can currently enter Egypt visa-free or with a visa on arrival for up to 15 days; we confirm the rule when you book.',
   ),
-  dict(slug='ap-zhangjiajie', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', duration='9 days, 6 nights', c1='#3d6b4f', c2='#10241a',
+  dict(slug='ap-zhangjiajie', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', duration='9 days, 6 nights', hero='ap-zhangjiajie-hero.jpg', hero_alt='Sandstone pillars rising from the forest in Zhangjiajie', c1='#3d6b4f', c2='#10241a',
     seo='Zhangjiajie Tour Package from Malaysia: Tianmen Mountain, Glass Bridge and Phoenix Town',
     line='Sandstone pillars, a glass bridge over the canyon, and Phoenix Ancient Town by night.', hotels='Hilton Garden Inn and Park Hyatt, or similar',
     head='Hunan’s mountains, at an unhurried pace.',
@@ -433,7 +433,7 @@ GD_TOURS = [
     excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
     notes='Led by a Mandarin-speaking guide. The glass bridge and cable car depend on the weather; closed sections are refunded or replaced.',
   ),
-  dict(slug='ap-dongbei', page='tour-ap-dongbei.html', brand='Apple Vacations', title='Snowy Dongbei: Changbai Mountain &amp; Harbin', region='China', duration='8 days, 7 nights', c1='#5d7fa8', c2='#142236',
+  dict(slug='ap-dongbei', page='tour-ap-dongbei.html', brand='Apple Vacations', title='Snowy Dongbei: Changbai Mountain &amp; Harbin', region='China', duration='8 days, 7 nights', hero='ap-dongbei-hero.jpg', hero_alt='Ice castles at Harbin Ice and Snow World', c1='#5d7fa8', c2='#142236',
     seo='Harbin Tour Package from Malaysia: Ice and Snow World and Changbai Mountain',
     line='Rime forests, hot springs in the snow and the ice city of Harbin.', hotels='Including the Shangri-La Changchun and a hot-spring resort',
     head='China’s far north, at its whitest.',
@@ -453,7 +453,7 @@ GD_TOURS = [
     excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
     notes='Expect temperatures well below freezing. If you have no winter wear, there is a stop to buy it on day 2.',
   ),
-  dict(slug='ap-spain-portugal', page='tour-ap-spain-portugal.html', brand='Apple Vacations', title='Spain &amp; Portugal', region='Europe', duration='12 days, 9 nights', c1='#b5652e', c2='#3a1a0a',
+  dict(slug='ap-spain-portugal', page='tour-ap-spain-portugal.html', brand='Apple Vacations', title='Spain &amp; Portugal', region='Europe', duration='12 days, 9 nights', hero='ap-spain-portugal-hero.jpg', hero_alt='Porto and the Luís I Bridge over the Douro', c1='#b5652e', c2='#3a1a0a',
     seo='Spain and Portugal Tour Package from Malaysia: Lisbon, Seville and Barcelona',
     line='From the port cellars of Porto to Gaudí’s Barcelona.', hotels='4-star',
     head='The Iberian Peninsula, end to end.',
@@ -498,7 +498,7 @@ GD_TOURS = [
     excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
     notes='In rough seas a high-speed ferry may be swapped for a slower one of up to five hours.',
   ),
-  dict(slug='ap-finland', page='tour-ap-finland.html', brand='Apple Vacations', title='Finnish Lapland &amp; the Northern Lights', region='Europe', duration='10 days, 7 nights', c1='#2e5d6e', c2='#081a22',
+  dict(slug='ap-finland', page='tour-ap-finland.html', brand='Apple Vacations', title='Finnish Lapland &amp; the Northern Lights', region='Europe', duration='10 days, 7 nights', hero='ap-finland-hero.jpg', hero_alt='A reindeer sleigh in a snowy Lapland forest', c1='#2e5d6e', c2='#081a22',
     seo='Finland Northern Lights Tour from Malaysia: Lapland, Huskies and Santa Claus Village',
     line='Huskies, reindeer, king crab in Norway and the Northern Lights.', hotels='Lapland hotels, including Santa’s Hotels',
     head='A week above the Arctic Circle.',
@@ -520,7 +520,7 @@ GD_TOURS = [
     excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
     notes='Arctic weather sets the order of activities. The Northern Lights are never guaranteed, but December to February gives the longest, darkest nights.',
   ),
-  dict(slug='ap-australia', page='tour-ap-australia.html', brand='Apple Vacations', title='Sydney &amp; Melbourne', region='Australia', duration='9 days, 6 nights', c1='#2f78a0', c2='#0c2333',
+  dict(slug='ap-australia', page='tour-ap-australia.html', brand='Apple Vacations', title='Sydney &amp; Melbourne', region='Australia', duration='9 days, 6 nights', hero='ap-australia-hero.jpg', hero_alt='Sydney Opera House and the city skyline', c1='#2f78a0', c2='#0c2333',
     seo='Australia Tour Package from Malaysia: Sydney, Blue Mountains and Melbourne',
     line='The harbour, the Blue Mountains, the Great Ocean Road and the Penguin Parade.', hotels='4-star',
     head='Australia’s two great cities, and the coast between.',
@@ -656,6 +656,16 @@ def departs_en(dates):
         else:
             out.append(f'{MON[m1]} {y1} to {MON[m2]} {y2}')
     return ', '.join(out)
+
+# YSL's own tours: dates from YSL (seat counts and fares stay off the site)
+YSL_DATES = {
+    'qinghai-gansu': '2027-05-28 2027-06-04 2027-06-18 2027-09-01 2027-10-22'.split(),
+}
+QG['date_notes'] = {'2027-05-28': 'School holidays', '2027-06-18': 'Fully booked'}
+for _t in TOURS + [QG]:
+    if _t['slug'] in YSL_DATES:
+        _t['dates'] = YSL_DATES[_t['slug']]
+        _t['departs'] = departs_en(_t['dates'])
 
 for _t in TOURS + GD_TOURS:
     if _t['slug'] in GD_DATES:

@@ -582,6 +582,29 @@ def build_tour_detail():
 {footer()}'''
     page('tour-yunnan.html', 'Yunnan & Shangri-La | YSL Travel & Tours', 'Group tour through Kunming, Dali, Lijiang and Shangri-La.', body, 'tours.html')
 
+DATE_NOTES = {'School holidays': '学校假期', 'Fully booked': '已满'}
+
+def dates_block(q):
+    """Departure dates grouped by month; q['date_notes'] can tag single dates (school holidays, fully booked)."""
+    if not q.get('dates'):
+        return ''
+    notes = q.get('date_notes', {})
+    by_month = {}
+    for d in q['dates']:
+        by_month.setdefault(d[:7], []).append(d)
+    def day(d):
+        n = notes.get(d)
+        label = f'{int(d[8:])}日' if LANG == 'zh' else str(int(d[8:]))
+        if n:
+            label += f' <small class="dep-note">{DATE_NOTES[n] if LANG == "zh" else n}</small>'
+        return label
+    sep = '、' if LANG == 'zh' else ', '
+    rows = ''.join(f'<li><span class="code">{f"{int(k[:4])}年{int(k[5:])}月" if LANG == "zh" else f"{MON[int(k[5:])]} {k[:4]}"}</span><span>{sep.join(day(d) for d in v)}</span></li>' for k, v in by_month.items())
+    return f'''<h3 class="h-m" style="margin-bottom:8px">Departure dates</h3>
+      <p class="muted" style="margin:0 0 18px;font-size:14px">Group departures from Kuala Lumpur. Ask us which dates still have seats.</p>
+      <ul class="dep-dates" style="margin-bottom:64px">{rows}</ul>
+      '''
+
 # ======================= QINGHAI & GANSU =======================
 def build_tour_qg():
     q = QG
@@ -625,7 +648,7 @@ def build_tour_qg():
       <h3 class="h-m" style="margin-bottom:8px">Flights</h3>
       <p class="muted" style="margin:0 0 18px;font-size:14px">China Eastern, tentative and subject to airline confirmation. One checked bag up to 23kg, through-checked to Lanzhou.</p>
       <ul class="flights" style="margin-bottom:64px">{fl}</ul>
-      <h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
+      {dates_block(q)}<h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
       <ol class="days">{days}</ol>
     </div>
     <aside class="facts-card" aria-label="Tour details">
@@ -635,7 +658,7 @@ def build_tour_qg():
         <div><dt>Route</dt><dd>Lanzhou to Lanzhou</dd></div>
         <div><dt>Airline</dt><dd>China Eastern</dd></div>
         <div><dt>Hotels</dt><dd>4-Diamond</dd></div>
-        <div><dt>Departures</dt><dd>2026, ask us</dd></div>
+        <div><dt>Departures</dt><dd>{q.get('departs') or 'Ask us'}</dd></div>
         <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
       </dl>
       <a class="btn btn--red" href="contact.html">Enquire on WhatsApp</a>
@@ -689,19 +712,7 @@ def build_gd_tour(q):
     else:
         hero = f'''<section class="tour-hero slot-hero on-dark" style="--c1:{q['c1']};--c2:{q['c2']}">
   <span class="slot-note">Tour photo to come</span>'''
-    dates = ''
-    if q.get('dates'):
-        by_month = {}
-        for d in q['dates']:
-            by_month.setdefault(d[:7], []).append(int(d[8:]))
-        if LANG == 'zh':
-            rows = ''.join(f'<li><span class="code">{int(k[:4])}年{int(k[5:])}月</span><span>{"、".join(f"{x}日" for x in v)}</span></li>' for k, v in by_month.items())
-        else:
-            rows = ''.join(f'<li><span class="code">{MON[int(k[5:])]} {k[:4]}</span><span>{", ".join(str(x) for x in v)}</span></li>' for k, v in by_month.items())
-        dates = f'''<h3 class="h-m" style="margin-bottom:8px">Departure dates</h3>
-      <p class="muted" style="margin:0 0 18px;font-size:14px">Group departures from Kuala Lumpur. Ask us which dates still have seats.</p>
-      <ul class="dep-dates" style="margin-bottom:64px">{rows}</ul>
-      '''
+    dates = dates_block(q)
     body = f'''{nav('tours.html')}
 <main id="main">
 {hero}
@@ -745,7 +756,7 @@ def build_gd_tour(q):
       <div><h3>Included</h3><ul>{inc}</ul></div>
       <div><h3>Not included</h3><ul>{exc}</ul></div>
     </div>{notes}
-    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by {q.get('brand', 'Golden Destinations')}. {'Images are from internet sources and are for illustration purposes only. ' if q.get('brand') == 'Apple Vacations' else ''}Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
+    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by {q.get('brand', 'Golden Destinations')}. {'Images are for illustration purposes only. ' if q.get('brand') == 'Apple Vacations' else ''}Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
   </div>
 </section>
 <section class="section" aria-labelledby="more-h">

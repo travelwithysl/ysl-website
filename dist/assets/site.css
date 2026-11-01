@@ -628,6 +628,7 @@ a:hover .media img { transform: scale(1.04); }
 .dep-dates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .dep-dates li { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: baseline; gap: 14px; padding: 14px 20px; background: var(--paper); border-radius: 14px; font-size: 15px; font-weight: 600; }
 .dep-dates .code { text-transform: uppercase; }
+.dep-note { font-size: 12px; font-weight: 500; color: var(--stone); }
 @media (max-width: 600px) { .dep-dates { grid-template-columns: minmax(0, 1fr); } }
 /* ---------- home: red hero fades to ivory, motion tapers as you scroll ---------- */
 .section--ivory { background: var(--ivory); }
