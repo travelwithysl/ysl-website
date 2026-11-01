@@ -22,6 +22,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Before launch, ysltravel.com only forwards to YSL's Facebook page (no old website, so no redirects needed). At launch, replace that forwarding in Squarespace: `www` CNAME to the Cloudflare Pages project, and the bare domain forwarded to https://www.ysltravel.com.
 - The domain is linked to Google Workspace in Squarespace: never touch its MX or TXT records (email and Google verification). Today one forwarding rule sends both `www.ysltravel.com` and `ysltravel.com` to facebook.com/ysltravel (temporary, SSL off). At launch: take `www` out of that rule, point the bare domain to https://www.ysltravel.com (permanent, SSL on), then add the `www` CNAME from Cloudflare Pages.
 - Every page gets a canonical link, hreflang alternates (en, zh-Hans, x-default), Open Graph and Twitter tags with absolute image URLs, and favicon links. `build.py` also writes `dist/sitemap.xml` (both languages, no 404) and `dist/robots.txt`.
+- Analytics: Cloudflare Web Analytics only, switched on in the `ysl-website` Pages project (Metrics → Web Analytics); Cloudflare injects its beacon, so nothing goes in the HTML. No Google Analytics (YSL's choice). It sets no cookies; if Google Analytics or another tracker is ever added, update the Privacy Notice in `legal.py`.
 - Favicons: `dist/assets/favicon.svg` (the YSL pin from `entrance.html`), `favicon-32.png`, `apple-touch-icon.png` (pin on maroon), and `dist/favicon.ico`. Hand-placed: do not delete.
 
 ## Source map
@@ -74,6 +75,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Partners (confirmed): Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours (less active, still listed), Golden Destinations.
 - No case studies or named past projects on the corporate page: corporate work is usually under NDA. No client logos either (`dist/assets/clients.jpg` is kept but unused). Corporate figures: largest single group 300+, MICE projects delivered 100+ (confirm with YSL if they change).
 - No home-page testimonial until the feedback form brings in good reviews. The main site has no copy of the feedback form (it lives only at feedback.ysltravel.com).
+- No payment methods on the site (client request).
 - Social: Facebook /ysltravel and Instagram @ysltravel (`CONTACT` in `data.py`).
 - WhatsApp: +60 16-626 4500, the office line (no one carries it; checked during office hours), so the site says "We reply during office hours." Every enquiry button leads to the contact form, which opens WhatsApp with the message filled in (`CONTACT['wa']`); from a tour page it presets "Tour packages".
 - The "Planning a company incentive trip" journal story is held back until YSL's client approves it (it was in `articles.py` / `articles_zh.py`; restore from git history).
