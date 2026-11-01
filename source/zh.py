@@ -497,7 +497,6 @@ UI = {
   '<dt>Office</dt>': '<dt>办公室</dt>',
   '<dt>Phone</dt>': '<dt>电话</dt>',
   '<dt>Opening hours</dt>': '<dt>营业时间</dt>',
-  '<dt>Payment</dt>': '<dt>付款方式</dt>',
   'We reply during office hours.': '我们在办公时间内回复。',
   '<span class="lbl">Proud member of</span>': '<span class="lbl">会员资格</span>',
   'aria-label="Memberships"': 'aria-label="会员资格"',
@@ -505,7 +504,6 @@ UI = {
   'MITA, Malaysian Inbound Tourism Association': 'MITA 马来西亚入境旅游协会',
   'MICA, Malaysia Inbound Chinese Association': 'MICA 马来西亚中国入境旅游协会',
   'MCTA, Malaysian Chinese Tourism Association': 'MCTA 马来西亚华人旅游协会',
-  'Touch ’n Go eWallet accepted at our office': '本公司接受 Touch ’n Go eWallet 付款',
   'aria-label="Filter tours by region"': 'aria-label="按地区筛选旅游团"',
   'aria-label="Tours"': 'aria-label="旅游团"',
   'class="t-stub"><span>Partner tour</span>': 'class="t-stub"><span>合作伙伴团</span>',
@@ -597,7 +595,7 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
         'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
         'Eiger Express', 'Golden Pass', 'Glacier 3000',
-        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'Subang SkyPark', 'Batik Air', 'Rick’s Café', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
+        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'Subang SkyPark', 'Batik Air', 'Rick’s Café', 'FS Holidays', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
 
 
 def check(zh_dir):

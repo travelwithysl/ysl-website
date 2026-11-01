@@ -821,7 +821,6 @@ def build_contact():
         <div><dt>WhatsApp</dt><dd><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">{CONTACT['whatsapp']}</a><br><small class="muted">We reply during office hours.</small></dd></div>
         <div><dt>Email</dt><dd>{CONTACT['email']}</dd></div>
         <div><dt>Opening hours</dt><dd>{CONTACT['hours']}</dd></div>
-        <div><dt>Payment</dt><dd>Touch ’n Go eWallet accepted at our office</dd></div>
       </dl>
       <div class="btn-row" style="margin-top:32px"><a class="btn btn--line-dark" href="{CONTACT['maps']}" target="_blank" rel="noopener">Open in Google Maps</a></div>
     </div>
