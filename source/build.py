@@ -49,7 +49,7 @@ def footer():
     </div>
     <div class="foot-base">
       <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
-      <span>Licence KPL 6107 &nbsp; IATA accredited &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
+      <span>Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
     </div>
   </div>
 </footer>'''
@@ -258,7 +258,7 @@ def build_home():
       <div class="creds">
         <div class="cred">
           <h3 class="code">Licensed &amp; registered</h3>
-          <ul class="legal"><li><b>KPL 6107</b><span>Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)</span></li><li><b>877803-T</b><span>YSL Travel &amp; Tours Sdn Bhd, registered with SSM</span></li><li><b>IATA</b><span>Accredited agent, International Air Transport Association</span></li></ul>
+          <ul class="legal"><li><b>KPL 6107</b><span>Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)</span></li><li><b>877803-T</b><span>YSL Travel &amp; Tours Sdn Bhd, registered with SSM</span></li></ul>
         </div>
         <div class="cred">
           <h3 class="code">Member of</h3>
@@ -398,7 +398,7 @@ def build_corporate():
       <h2 class="h-l" id="c-h">Trusted by more than 50 companies across the region.</h2>
       <ul class="proof-list">
         <li><span class="code">A</span><div><b>Since 2009</b><span>Led by a founder with more than 25 years in travel.</span></div></li>
-        <li><span class="code">B</span><div><b>Licensed and accredited</b><span>KPL 6107, IATA accredited, and members of MATTA, MITA, MICA and MCTA.</span></div></li>
+        <li><span class="code">B</span><div><b>Licensed and accredited</b><span>KPL 6107, and members of MATTA, MITA, MICA and MCTA.</span></div></li>
         <li><span class="code">C</span><div><b>Clear quotations</b><span>Itemised proposals and a reconciled final account your finance team can sign off.</span></div></li>
       </ul>
     </div>
@@ -450,7 +450,7 @@ def build_about():
 </section>
 <section class="section" aria-labelledby="mem-h">
   <div class="container">
-    <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T). An IATA-accredited travel agent.</p></div></div>
+    <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).</p></div></div>
     <ul class="member-grid rv">{members}</ul>
   </div>
 </section>
@@ -745,7 +745,7 @@ def build_gd_tour(q):
       <div><h3>Included</h3><ul>{inc}</ul></div>
       <div><h3>Not included</h3><ul>{exc}</ul></div>
     </div>{notes}
-    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by {q.get('brand', 'Golden Destinations')}. Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
+    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by {q.get('brand', 'Golden Destinations')}. {'Images are from internet sources and are for illustration purposes only. ' if q.get('brand') == 'Apple Vacations' else ''}Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
   </div>
 </section>
 <section class="section" aria-labelledby="more-h">

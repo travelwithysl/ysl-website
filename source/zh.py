@@ -212,8 +212,7 @@ UI = {
   '<h4>Visit us</h4>': '<h4>欢迎到访</h4>',
   '<h4>Get in touch</h4>': '<h4>联系方式</h4>',
   '>Google Maps</a>': '>谷歌地图</a>',
-  'Licence KPL 6107 &nbsp; IATA accredited &nbsp; Member of MATTA, MITA, MICA and MCTA': '旅行社执照 KPL 6107 &nbsp; IATA 认可代理 &nbsp; MATTA、MITA、MICA 及 MCTA 会员',
-  'Accredited agent, International Air Transport Association': '国际航空运输协会（IATA）认可代理',
+  'Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA': '旅行社执照 KPL 6107 &nbsp; MATTA、MITA、MICA 及 MCTA 会员',
 
   # shared blocks
   '<p class="eyebrow">Talk to us</p>': '<p class="eyebrow">联系我们</p>',
@@ -395,7 +394,7 @@ UI = {
   '<b>Since 2009</b>': '<b>始于2009年</b>',
   'Led by a founder with more than 25 years in travel.': '由拥有逾25年旅游业经验的创办人领导。',
   '<b>Licensed and accredited</b>': '<b>持牌与认证</b>',
-  'KPL 6107, IATA accredited, and members of MATTA, MITA, MICA and MCTA.': '执照 KPL 6107，IATA 认可代理，并为 MATTA、MITA、MICA 及 MCTA 会员。',
+  'KPL 6107, and members of MATTA, MITA, MICA and MCTA.': '执照 KPL 6107，并为 MATTA、MITA、MICA 及 MCTA 会员。',
   '<b>Clear quotations</b>': '<b>报价清楚</b>',
   'Itemised proposals and a reconciled final account your finance team can sign off.': '逐项列明的方案，以及财务部门可直接核准的最终账目。',
   'Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M': '客户标志，包括 Kossan、Kitacon、TOLi、Econframe、Max Filter Industries、Sendok Group、Megastra Jaya、MAARA、Wesglow 及 C.A.M',
@@ -431,7 +430,6 @@ UI = {
   '<p class="eyebrow">Credentials</p>': '<p class="eyebrow">资质</p>',
   'Licensed, registered and accredited.': '持牌、注册、获认证。',
   'Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).': '持有马来西亚旅游、艺术及文化部执照（KPL 6107），并以 YSL Travel &amp; Tours Sdn Bhd（877803-T）名义于马来西亚公司委员会（SSM）注册。',
-  ' An IATA-accredited travel agent.': '国际航空运输协会（IATA）认可旅行代理。',
   'Trusted by more than 50 companies.': '深受50多家企业信赖。',
   'Companies of every size rely on us for business travel and group trips that are well organised, good value and handled with discretion.': '各种规模的企业都把商务旅行和团体旅游交给我们：安排周到、物有所值、处事稳妥。',
 
@@ -533,6 +531,7 @@ UI = {
   'What’s included.': '费用包括哪些。',
   'Operated by Golden Destinations. ': '由 Golden Destinations 承办。',
   'Operated by Apple Vacations. ': '由 Apple Vacations 承办。',
+  'Images are from internet sources and are for illustration purposes only. ': '图片来自网络，仅供参考。',
   'Tour photo to come': '旅游照片即将更新',
   'Booked through YSL. We handle your booking, documents and questions from start to finish.': '通过 YSL 预订。从预订、证件到各种疑问，我们全程为您处理。',
   'Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.': '行程顺序和酒店可能因当地活动、天气或供应情况而调整。团费、日期及完整行程以预订时确认为准。',
