@@ -113,7 +113,7 @@
   function update() { prev.textContent = msg(); }
   // arriving from a tour or a landmark on the globe: fill in the destination
   try {
-    var q = new URLSearchParams(location.search), NAMES = {"qinghai-gansu": "\u5927\u7f8e\u9752\u7518", "yunnan": "\u4e91\u5357\u9999\u683c\u91cc\u62c9", "gd-europe-legend": "Europe Legend", "gd-hokkaido": "Hokkaido Delight", "gd-turkiye": "The Charms of T\u00fcrkiye", "gd-eastern-europe": "Eastern Europe Vista", "gd-new-zealand": "New Zealand North & South Island", "gd-south-africa": "Essence of South Africa"};
+    var q = new URLSearchParams(location.search), NAMES = {"qinghai-gansu": "\u5927\u7f8e\u9752\u7518", "yunnan": "\u4e91\u5357\u9999\u683c\u91cc\u62c9", "gd-europe-legend": "Europe Legend", "gd-hokkaido": "Hokkaido Delight", "gd-turkiye": "The Charms of T\u00fcrkiye", "gd-eastern-europe": "Eastern Europe Vista", "gd-new-zealand": "New Zealand North & South Island", "gd-south-africa": "Essence of South Africa", "gd-japan": "\u4e1c\u4eac\u81f3\u5927\u962a\uff1a\u5bcc\u58eb\u5c71\u4e0e\u767d\u5ddd\u4e61", "gd-korea": "\u9996\u5c14\u3001\u5357\u6021\u5c9b\u4e0e\u96ea\u5cb3\u5c71", "gd-taiwan": "\u53f0\u5317\u3001\u4e5d\u4efd\u4e0e\u5b9c\u5170", "gd-vietnam": "\u5c98\u6e2f\u3001\u4f1a\u5b89\u4e0e\u987a\u5316", "gd-switzerland-italy": "\u745e\u58eb\u4e0e\u610f\u5927\u5229", "gd-egypt": "The Grand Egypt Tour"};
     var d = q.get('dest') || NAMES[q.get('tour')] || '';
     if (d && !form.elements.dest.value) form.elements.dest.value = d;
   } catch (e) {}

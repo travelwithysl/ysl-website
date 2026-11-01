@@ -87,7 +87,7 @@ def post_card(p):
         vis = f'<div class="media slot" style="--c1:{c1};--c2:{c2}"><b>{lab}</b><small>Photo to come</small></div>'
     return f'''<a class="post-card rv" href="{p['href']}" data-cat="{p['cat']}">{vis}<span class="tag">{p['cat_label']}</span><h3>{p['title']}</h3><p>{p['excerpt']}</p><span class="date">{p['date']}</span></a>'''
 
-def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=''):
+def page(fname, title, desc, body, current, home=False, extra_head='', extra_js='', og_image='assets/hero.jpg'):
     if LANG == 'zh':
         extra_head = '\n' + zh.FONTS + extra_head
         switch = '../' + fname
@@ -100,7 +100,7 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
 <meta name="description" content="{desc}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="assets/hero.jpg">
+<meta property="og:image" content="{og_image}">
 {FONTS}
 <link rel="stylesheet" href="assets/site.css">{extra_head}'''
     content = f'''{ICONS}
@@ -518,7 +518,7 @@ def build_tours():
 </main>
 {cta_band()}
 {footer()}'''
-    page('tours.html', 'Holidays & Tours | YSL Travel & Tours', 'YSL group tours and signature group tours from Golden Destinations.', body, 'tours.html')
+    page('tours.html', 'Tour Packages from Malaysia | YSL Travel & Tours', 'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL group tours and Golden Destinations tours, booked in Klang.', body, 'tours.html')
 
 # ======================= TOUR DETAIL =======================
 def build_tour_detail():
@@ -683,7 +683,10 @@ def build_gd_tour(q):
     inc = ''.join(f'<li>{x}</li>' for x in q['included'])
     exc = ''.join(f'<li>{x}</li>' for x in q['excluded'])
     notes = f'<p class="d-note" style="margin-top:28px">{q["notes"]}</p>' if q.get('notes') else ''
-    others = ''.join(tour_card(t) for t in [x for x in TOURS if x['slug'] != q['slug']][:3])
+    i = next((n for n, t in enumerate(TOURS) if t['slug'] == q['slug']), -1)
+    me = TOURS[i] if i >= 0 else {}
+    rest = TOURS[i + 1:] + TOURS[:max(i, 0)]  # the tours that follow this one first, so related links spread across pages
+    others = ''.join(tour_card(t) for t in ([x for x in rest if x.get('cat') == me.get('cat')] + [x for x in rest if x.get('cat') != me.get('cat')])[:3])
     if q.get('hero'):
         hero = f'''<section class="tour-hero on-dark">
   <img src="assets/{q['hero']}" alt="{q['hero_alt']}">'''
@@ -758,7 +761,12 @@ def build_gd_tour(q):
 </main>
 {cta_band()}
 {footer()}'''
-    page(q['page'], f"{q['title'].replace('&amp;', '&')} | YSL Travel & Tours", f"{q['duration']} group tour: {q['line']}", body, 'tours.html')
+    name = (q.get('seo') or q['title']).replace('&amp;', '&')
+    if LANG == 'zh':
+        desc = f"{q['duration']}团体游，吉隆坡出发：{q['line']}" + (f"出发月份：{q['departs']}。" if q.get('departs') else '') + '团费欢迎询问，由 YSL Travel & Tours 代订。'
+    else:
+        desc = f"{q['duration']} group tour from Kuala Lumpur: {q['line']}" + (f" Departs {q['departs']}." if q.get('departs') else '') + ' Fares on request from YSL Travel & Tours.'
+    page(q['page'], f"{name} | YSL Travel & Tours", desc, body, 'tours.html', og_image=f"assets/{q['hero']}" if q.get('hero') else 'assets/hero.jpg')
 
 # ======================= JOURNAL =======================
 def _by_date(a):

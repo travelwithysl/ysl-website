@@ -51,6 +51,18 @@ TOURS = [
          line='Both islands, from Auckland to Queenstown', img='gd-new-zealand-card.jpg'),
     dict(slug='gd-south-africa', dur='11D8N', page='tour-gd-south-africa.html', brand='Golden Destinations', iata='JNB', short='South Africa', title='Essence of South Africa', region='Africa', cat='longhaul', kind='Group tour',
          line='Johannesburg, Cape Town, Botswana and Victoria Falls', img='gd-south-africa-card.jpg'),
+    dict(slug='gd-japan', dur='7D6N', page='tour-gd-japan.html', brand='Golden Destinations', iata='NRT', short='Japan', title='Tokyo to Osaka via Mount Fuji &amp; Shirakawa-go', region='Japan', cat='asia', kind='Group tour',
+         line='Asakusa, Mount Fuji, Takayama, Shirakawa-go, Kyoto and Osaka', img='gd-japan-card.jpg'),
+    dict(slug='gd-korea', dur='6D4N', page='tour-gd-korea.html', brand='Golden Destinations', iata='ICN', short='Korea', title='Seoul, Nami Island &amp; Mount Sorak', region='South Korea', cat='asia', kind='Group tour',
+         line='Nami Island, Mount Sorak, Everland and Gyeongbokgung in hanbok', img='gd-korea-card.jpg'),
+    dict(slug='gd-taiwan', dur='5D4N', page='tour-gd-taiwan.html', brand='Golden Destinations', iata='TPE', short='Taiwan', title='Taipei, Jiufen &amp; Yilan', region='Taiwan', cat='asia', kind='Group tour',
+         line='Yehliu, Jiufen, Shifen, a hot-spring night in Jiaoxi and Taipei', img='gd-taiwan-card.jpg'),
+    dict(slug='gd-vietnam', dur='5D4N', page='tour-gd-vietnam.html', brand='Golden Destinations', iata='DAD', short='Da Nang', title='Da Nang, Hoi An &amp; Hue', region='Vietnam', cat='asia', kind='Group tour',
+         line='Hoi An’s old town, the Golden Bridge at Ba Na Hills and imperial Hue', img='gd-vietnam-card.jpg'),
+    dict(slug='gd-switzerland-italy', dur='10D7N', page='tour-gd-switzerland-italy.html', brand='Golden Destinations', iata='MXP', short='Switzerland', title='Switzerland &amp; Italy', region='Europe', cat='europe', kind='Group tour',
+         line='Jungfraujoch, Glacier 3000, the Golden Pass train, Lake Geneva and Milan', img='gd-switzerland-italy-card.jpg'),
+    dict(slug='gd-egypt', dur='9D7N', page='tour-gd-egypt.html', brand='Golden Destinations', iata='CAI', short='Egypt', title='The Grand Egypt Tour', region='Egypt', cat='longhaul', kind='Group tour',
+         line='The Pyramids, Abu Simbel, three nights on the Nile, Luxor and Alexandria', img='gd-egypt-card.jpg'),
 ]
 
 POSTS = [
@@ -155,6 +167,7 @@ def _d(t, meals, p, hotel='', note='', meal=''):
 
 GD_TOURS = [
   dict(slug='gd-europe-legend', page='tour-gd-europe-legend.html', title='Europe Legend', region='Europe', duration='10 days, 7 nights', hero='gd-europe-legend-hero.jpg', hero_alt='A Seine river cruise below the Eiffel Tower',
+    seo='Europe Tour Package from Malaysia: Paris, Amsterdam, the Rhine and Switzerland',
     line='Five countries, two river cruises, one classic loop.', hotels='4-star',
     head='From Paris to the Swiss lakes and back.',
     lead='A classic first trip to Western Europe: Brussels and Amsterdam, the Rhine and Black Forest, Rhine Falls, Zurich and Lucerne, finishing with two nights in Paris.',
@@ -175,6 +188,7 @@ GD_TOURS = [
     excluded=['Mount Titlis cable car (optional)', 'Visa, travel insurance and tipping, unless stated', 'Meals not listed'],
   ),
   dict(slug='gd-hokkaido', page='tour-gd-hokkaido.html', title='Hokkaido Delight', region='Japan', duration='6 days, 4 nights', hero='gd-hokkaido-hero.jpg', hero_alt='The Mount Usu cable car over the forests above Lake Toya',
+    seo='Hokkaido Tour Package from Malaysia: Noboribetsu, Lake Toya, Otaru and Sapporo',
     line='Volcanoes, hot springs, Otaru’s canal and three nights in Sapporo.', hotels='3-star, with an onsen night',
     head='Japan’s far north, at an easy pace.',
     lead='Hell Valley at Noboribetsu, a cable car up Mount Usu and a hot-spring night on Lake Toya, the glassworks and canal of Otaru, then three nights in Sapporo with a free day to explore.',
@@ -192,6 +206,7 @@ GD_TOURS = [
     notes='Good in every season: snow from December to February, flowers in summer, and autumn colour from September.',
   ),
   dict(slug='gd-turkiye', page='tour-gd-turkiye.html', title='The Charms of Türkiye', region='Türkiye', duration='9 days, 7 nights', hero='gd-turkiye-hero.jpg', hero_alt='Hot-air balloons over Cappadocia at sunrise',
+    seo='Türkiye Tour Package from Malaysia: Istanbul, Pamukkale and Cappadocia',
     line='Istanbul, the Aegean, Pamukkale and two nights in Cappadocia.', hotels='5-star and cave hotels',
     head='A full circle of Türkiye.',
     lead='Istanbul’s great mosques and the Basilica Cistern, Troy and Ephesus on the Aegean, the white terraces of Pamukkale, two nights in a Cappadocia cave hotel, and a Bosphorus cruise to finish.',
@@ -212,6 +227,7 @@ GD_TOURS = [
     notes='From June to mid September, Cappadocia nights may move to a 5-star hotel, as many cave hotels have no air conditioning.',
   ),
   dict(slug='gd-eastern-europe', page='tour-gd-eastern-europe.html', title='Eastern Europe Vista', region='Europe', duration='9 days, 6 nights', hero='gd-eastern-europe-hero.jpg', hero_alt='Hallstatt on its lake below the Alps',
+    seo='Eastern Europe Tour Package from Malaysia: Budapest, Vienna, Hallstatt and Prague',
     line='Budapest, Vienna, Hallstatt, Salzburg, Cesky Krumlov and Prague.', hotels='4-star',
     head='Four capitals and two fairytale towns.',
     lead='The Danube at Budapest, imperial Vienna, the lakeside village of Hallstatt, Mozart’s Salzburg, medieval Cesky Krumlov, and two nights in Prague.',
@@ -231,6 +247,7 @@ GD_TOURS = [
     excluded=['Visa, travel insurance and tipping, unless stated', 'Meals not listed'],
   ),
   dict(slug='gd-new-zealand', page='tour-gd-new-zealand.html', title='New Zealand North &amp; South Island', region='New Zealand', duration='9 days, 7 nights', hero='gd-new-zealand-hero.jpg', hero_alt='A cruise boat beneath a waterfall in Milford Sound',
+    seo='New Zealand Tour Package from Malaysia: North and South Island',
     line='Hobbiton, glowworms, Milford Sound and Mount Cook.', hotels='Hotels throughout',
     head='Both islands in nine days.',
     lead='Rotorua’s geysers and Māori culture, the Hobbiton set and Waitomo’s glowworm caves on the North Island, then Queenstown, Milford Sound, Mount Cook, Lake Tekapo and Christchurch on the South.',
@@ -250,6 +267,7 @@ GD_TOURS = [
     excluded=['Visa, travel insurance and tipping, unless stated', 'Personal expenses'],
   ),
   dict(slug='gd-south-africa', page='tour-gd-south-africa.html', title='Essence of South Africa', region='Africa', duration='11 days, 8 nights', hero='gd-south-africa-hero.jpg', hero_alt='A helicopter over Victoria Falls and the Zambezi gorge',
+    seo='South Africa Tour Package from Malaysia: Cape Town, Chobe and Victoria Falls',
     line='Johannesburg, Chobe, Victoria Falls and four nights in Cape Town.', hotels='4 and 5-star',
     head='Safari, the Falls and the Cape.',
     lead='Game drives and a river cruise in Botswana’s Chobe, a helicopter flight over Victoria Falls, a Zambezi sunset, then Cape Town: the Peninsula, Table Mountain, penguins and the winelands.',
@@ -271,10 +289,121 @@ GD_TOURS = [
     excluded=['Travel insurance and tipping, unless stated', 'Personal expenses'],
     notes='No visa is needed for Malaysian passport holders. No triple rooms on this tour.',
   ),
+  dict(slug='gd-japan', page='tour-gd-japan.html', title='Tokyo to Osaka via Mount Fuji &amp; Shirakawa-go', region='Japan', duration='7 days, 6 nights', hero='gd-japan-hero.jpg', hero_alt='Thatched gassho-zukuri farmhouses in Shirakawa-go',
+    seo='Japan Tour Package from Malaysia: Tokyo, Mount Fuji, Shirakawa-go and Kyoto',
+    line='Mount Fuji, the Japan Alps and Kyoto, from Tokyo to Osaka.', hotels='4-star, with an onsen night by Mount Fuji',
+    head='Across Japan, from Tokyo to Osaka.',
+    lead='Asakusa in Tokyo, a hot-spring night below Mount Fuji, Matsumoto Castle and old Takayama in the Japan Alps, the thatched farmhouses of Shirakawa-go, then Kyoto’s Golden Pavilion and torii gates, and Osaka’s Dotonbori to finish.',
+    highlights=['Sensoji and Nakamise Street, Asakusa', 'Mount Fuji 5th Station', 'Onsen night near Mount Fuji', 'Matsumoto Castle', 'Takayama old town', 'Shirakawa-go, a UNESCO village', 'Kinkakuji and Fushimi Inari', 'Osaka Castle and Dotonbori'],
+    days=[
+      _d('Kuala Lumpur to Tokyo', '', ['Fly to Tokyo and check in near Narita.'], 'Narita'),
+      _d('Tokyo, Hakone, Mount Fuji', 'B, L, D', ['<b>Sensoji</b>, Tokyo’s oldest temple, and the snack stalls of Nakamise Street.', '<b>Mount Fuji 5th Station</b>, weather permitting, looking out over the Fuji Five Lakes.'], 'Mount Fuji area, onsen resort', note='From 20 April to 25 May the day takes in the Fuji Shibazakura Festival, hillsides of pink moss phlox, in place of the 5th Station.', meal='Hot-spring hotel dinner'),
+      _d('Mount Fuji, Matsumoto, Takayama', 'B, L, D', ['<b>Daio Wasabi Farm</b>, fed by Alpine spring water.', '<b>Matsumoto Castle</b>, one of Japan’s great original castles, seen from the grounds.'], 'Takayama'),
+      _d('Takayama, Shirakawa-go, Gifu', 'B, L, D', ['<b>Takayama old town</b> and its Edo-period merchant streets.', '<b>Shirakawa-go</b>, the UNESCO-listed village of steep thatched farmhouses built to carry the winter snow.'], 'Gifu', meal='Hida beef'),
+      _d('Gifu, Kyoto, Osaka', 'B, L, D', ['<b>Kinkakuji</b>, the Golden Pavilion.', '<b>Nishiki Market</b>, Kyoto’s food street.', '<b>Fushimi Inari Taisha</b> and its tunnels of vermilion torii gates.'], 'Osaka'),
+      _d('Osaka', 'B, D', ['<b>Osaka Castle Park.</b>', 'Shinsaibashi and <b>Dotonbori</b>, then the outlet mall at Rinku Town.'], 'Near Kansai Airport', meal='Barbecue buffet'),
+      _d('Osaka to Kuala Lumpur', 'B', ['Fly home from Kansai.']),
+    ],
+    included=['Return flights from Kuala Lumpur, into Tokyo and home from Osaka', 'Six nights in 4-star hotels or similar: Narita 1, Mount Fuji 1 (onsen resort), Takayama 1, Gifu 1, Osaka 1, Kansai 1', '6 breakfasts, 4 lunches and 5 dinners, including Hida beef, a pork cutlet set and hot-spring hotel cuisine', 'One checked bag up to 20kg'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed', 'Personal expenses'],
+  ),
+  dict(slug='gd-korea', page='tour-gd-korea.html', title='Seoul, Nami Island &amp; Mount Sorak', region='South Korea', duration='6 days, 4 nights', hero='gd-korea-hero.jpg', hero_alt='Visitors in hanbok at Gyeongbokgung Palace, Seoul',
+    seo='Korea Tour Package from Malaysia: Seoul, Nami Island and Mount Sorak',
+    line='Nami Island, Seoraksan by cable car, Everland, and Seoul in hanbok.', hotels='4-star, with a 5-star resort at Mount Sorak',
+    head='Korea’s classic first trip.',
+    lead='The Garden of Morning Calm and the tree-lined avenues of Nami Island, a temple and a cable car in Seoraksan National Park, a full day at Everland, then Seoul: the Lotte World Tower, Starfield Library and Gyeongbokgung Palace, visited in hanbok.',
+    highlights=['Nami Island', 'The Garden of Morning Calm', 'Seoraksan cable car', 'Sinheungsa Temple', 'Everland, with unlimited rides', 'Seoul Sky at Lotte World Tower', 'Starfield Library', 'Gyeongbokgung Palace in hanbok'],
+    days=[
+      _d('Kuala Lumpur to Incheon', '', ['Overnight flight to Incheon.']),
+      _d('Incheon, Gapyeong, Mount Sorak', 'L, D', ['<b>The Garden of Morning Calm</b>, Korea’s oldest private garden.', '<b>Nami Island</b>, whose avenues of tall trees starred in Korean drama.'], 'Mount Sorak, 5-star resort'),
+      _d('Seoraksan and Everland', 'B, L', ['<b>Seoraksan National Park.</b> Sinheungsa Temple, and the cable car up to Gwongeumseong Fortress, weather permitting.', '<b>Everland</b>, Korea’s biggest theme park, on a ticket with unlimited rides.'], 'Yongin'),
+      _d('Seoul', 'B, L, D', ['Make your own kimchi and seaweed snacks at the Seaweed Museum.', '<b>Seoul Sky</b>, the observation floors near the top of the Lotte World Tower.', '<b>Starfield Library</b> in COEX Mall.', '<b>The Painters</b>, a live-painting stage show.'], 'Seoul', meal='All-you-can-eat Korean barbecue'),
+      _d('Seoul in hanbok', 'B, L, D', ['<b>Gyeongbokgung Palace</b>, visited in hanbok. On Tuesdays, when it closes, Deoksugung Palace takes its place.', 'The National Folk Museum, and a drive past the Blue House.', '<b>Myeongdong</b> for shopping and street food.'], 'Incheon', meal='Ginseng chicken soup'),
+      _d('Incheon to Kuala Lumpur', 'B', ['Fly home.']),
+    ],
+    included=['Return flights from Kuala Lumpur', 'Four nights: Mount Sorak 1 (5-star resort), Yongin 1, Seoul 1, Incheon 1', '4 breakfasts, 4 lunches and 3 dinners, including bibimbap, dakgalbi, Korean barbecue and ginseng chicken soup', 'Everland ticket, Seoraksan cable car, Seoul Sky and The Painters show', 'Hanbok for the palace visit'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed', 'Personal expenses'],
+    notes='The tour includes short shopping stops at a ginseng outlet, a cosmetics shop and a duty-free shop.',
+  ),
+  dict(slug='gd-taiwan', page='tour-gd-taiwan.html', title='Taipei, Jiufen &amp; Yilan', region='Taiwan', duration='5 days, 4 nights', hero='gd-taiwan-hero.jpg', hero_alt='Taipei 101 above the city at dusk',
+    seo='Taiwan Tour Package from Malaysia: Taipei, Jiufen and Yilan',
+    line='Night markets, the hillside lanes of Jiufen and a hot-spring night in Yilan.', hotels='3 and 4-star, with a hot-spring resort',
+    head='Northern Taiwan, one night market at a time.',
+    lead='Keelung’s Miaokou night market on arrival, Yehliu’s rock formations and the hillside lanes of Jiufen, Shifen’s railway street and waterfall, a hot-spring night in Jiaoxi, then two nights in Taipei with Taipei 101, Tamsui and Ximending.',
+    highlights=['Miaokou Night Market, Keelung', 'Yehliu Geopark', 'Jiufen Old Street', 'Shifen Old Street and waterfall', 'Hot-spring resort in Jiaoxi', 'Tamsui and Fisherman’s Wharf', 'Taipei 101', 'Raohe Night Market and Ximending'],
+    days=[
+      _d('Kuala Lumpur to Taoyuan, Keelung', '', ['Fly to Taoyuan and transfer to Keelung.', '<b>Miaokou Night Market</b>, known across Taiwan for its seafood and snacks (dinner at own expense).'], 'Keelung'),
+      _d('Yehliu, Jiufen, Shifen, Yilan', 'B', ['<b>Yehliu Geopark</b> and its wind-carved rocks.', '<b>Jiufen Old Street</b>, the hillside town of teahouses and taro balls.', '<b>Shifen Old Street</b>, where the train runs between the shops, with Shifen Waterfall and the Jingan suspension bridge. Sky lanterns are at own expense.', 'Tangweigou hot-spring park in Jiaoxi.'], 'Jiaoxi, hot-spring resort'),
+      _d('Yilan to Taipei', 'B, L', ['Make your own scallion pancakes.', '<b>Jimmy Park</b>, built around the illustrator’s picture books.', '<b>Tamsui Old Street</b> and Fisherman’s Wharf.', '<b>Raohe Night Market.</b>'], 'Taipei'),
+      _d('Taipei', 'B, L, D', ['The National Revolutionary Martyrs’ Shrine and the Shilin Residence gardens.', '<b>Taipei 101</b> and Four Four South Village.', '<b>Ximending</b>, Taipei’s youth and fashion district.'], 'Taipei', meal='Dumplings'),
+      _d('Taipei to Kuala Lumpur', 'B', ['Free time, then the flight home.']),
+    ],
+    included=['Return flights from Kuala Lumpur', 'Four nights in 3 and 4-star hotels or similar: Keelung 1, Jiaoxi 1 (hot-spring resort), Taipei 2', '4 breakfasts, 2 lunches and 1 dinner, including dumplings and Taiwanese home cooking', 'Scallion pancake workshop'],
+    excluded=['Sky lanterns at Shifen', 'Meals not listed, including night-market dinners', 'Travel insurance and tipping, unless stated'],
+    notes='The tour includes short shopping stops at a local products shop, a pearl centre and a souvenir shop.',
+  ),
+  dict(slug='gd-vietnam', page='tour-gd-vietnam.html', title='Da Nang, Hoi An &amp; Hue', region='Vietnam', duration='5 days, 4 nights', hero='gd-vietnam-hero.jpg', hero_alt='The Golden Bridge held up by two stone hands at Ba Na Hills',
+    seo='Da Nang Tour Package from Malaysia: Hoi An, Hue and Ba Na Hills',
+    line='Hoi An by lantern light, the Golden Bridge and the citadel at Hue.', hotels='4-star',
+    head='Central Vietnam in five easy days.',
+    lead='An evening in Hoi An’s old town, basket boats through a coconut forest, the Marble Mountains and Da Nang’s riverside, the cable car up to Ba Na Hills and its Golden Bridge, then the imperial city of Hue.',
+    highlights=['Hoi An Ancient Town', 'Basket boats at Cam Thanh', 'Marble Mountains', 'Dragon Bridge, Da Nang', 'Ba Na Hills cable car', 'The Golden Bridge', 'Hue Imperial Citadel', 'Thien Mu Pagoda by boat'],
+    days=[
+      _d('Kuala Lumpur to Da Nang, Hoi An', 'L, D', ['Fly to Da Nang and drive to Hoi An.', '<b>Hoi An Ancient Town</b>, the old trading port: the Japanese Covered Bridge and the Cantonese Assembly Hall, then the night market.'], 'Hoi An'),
+      _d('Hoi An to Da Nang', 'B, L, D', ['<b>Cam Thanh coconut village</b> by round basket boat, with a fresh coconut.', 'Make your own silk lantern.', '<b>Marble Mountains</b>, with the lift both ways.', 'Da Nang’s pink cathedral, the Dragon Bridge and the riverfront, and Han Market.'], 'Da Nang'),
+      _d('Ba Na Hills to Hue', 'B, L, D', ['Cable car up to <b>Ba Na Hills</b>: the <b>Golden Bridge</b>, held up by two giant stone hands, the French Village and Linh Ung Pagoda.', 'On to Hue.'], 'Hue', meal='Buffet lunch at Ba Na Hills'),
+      _d('Hue to Da Nang', 'B, L, D', ['<b>Thien Mu Pagoda</b>, reached by boat on the Perfume River.', 'The <b>Imperial Citadel</b> by buggy, modelled on Beijing’s Forbidden City.', 'Thuy Xuan incense village and Lang Co lagoon.', '<b>Son Tra Peninsula</b>, then Son Tra Night Market.'], 'Da Nang', meal='Hue royal cuisine'),
+      _d('Da Nang to Kuala Lumpur', 'B', ['Fly home.']),
+    ],
+    included=['Return flights from Kuala Lumpur', 'Four nights in 4-star hotels or similar: Hoi An 1, Hue 1, Da Nang 2', '4 breakfasts, 4 lunches and 4 dinners, including pho, Hoi An’s cao lau noodles, the Ba Na Hills buffet and Hue royal cuisine', 'Ba Na Hills cable car, Marble Mountains lift, basket boat and lantern workshop'],
+    excluded=['Optional extras: hot-stone massage, Han River night cruise and a cyclo ride in Hue', 'Travel insurance and tipping, unless stated'],
+  ),
+  dict(slug='gd-switzerland-italy', page='tour-gd-switzerland-italy.html', title='Switzerland &amp; Italy', region='Europe', duration='10 days, 7 nights', hero='gd-switzerland-italy-hero.jpg', hero_alt='The Jungfrau railway below the north face of the Eiger',
+    seo='Switzerland Tour Package from Malaysia: Jungfraujoch, Glacier 3000 and Milan',
+    line='Two Alpine summits, a panoramic train and Lake Geneva, starting and ending in Milan.', hotels='3 and 4-star',
+    head='The Swiss Alps, with Italy either side.',
+    lead='From Milan past Lake Lugano to Interlaken, up to the Jungfraujoch by cogwheel train and down by the Eiger Express, out on the Peak Walk at Glacier 3000, along Lake Geneva by the Golden Pass line, then Genoa and two nights in Milan.',
+    highlights=['Jungfraujoch, the Top of Europe', 'Eiger Express to Grindelwald', 'Lauterbrunnen valley', 'Glacier 3000 and the Peak Walk', 'Golden Pass panoramic train', 'Chillon Castle', 'Lake Geneva and the Jet d’Eau', 'Milan Cathedral'],
+    days=[
+      _d('Kuala Lumpur to Milan', '', ['Overnight flight to Milan.']),
+      _d('Milan, Lugano, Interlaken', 'L, D', ['Shopping at Fox Town, the outlet village on the Swiss border.', '<b>Lake Lugano.</b>', 'Over the Alps to Interlaken.'], 'Interlaken'),
+      _d('Jungfraujoch', 'B, L', ['<b>Lauterbrunnen</b> and Staubbach Falls, in the valley of 72 waterfalls.', 'Cogwheel train up to the <b>Jungfraujoch</b> at 3,454m: the Sphinx terrace above the Aletsch Glacier, the Ice Palace and Alpine Sensation.', 'Down by the <b>Eiger Express</b> gondola to Grindelwald.'], 'Interlaken'),
+      _d('Glacier 3000', 'B, D', ['Cable car from Les Diablerets up to <b>Glacier 3000</b>.', 'The <b>Peak Walk by Tissot</b>, a suspension bridge strung between two summits, then the Ice Express chairlift, sledging and a glacier walk.', '<b>Optional:</b> the Alpine Coaster, in summer.'], 'Leysin', note='Activities on the glacier depend on the weather on the day.'),
+      _d('Golden Pass, Montreux, Lausanne, Geneva', 'B, L, D', ['The <b>Golden Pass</b> panoramic train from Château-d’Oex towards Montreux.', '<b>Chillon Castle</b> on Lake Geneva, and the Freddie Mercury statue in Montreux.', 'Vevey’s giant fork and Charlie Chaplin statue, and Lausanne’s Olympic Park and Ouchy lakefront.'], 'Geneva or Annemasse'),
+      _d('Geneva to Genoa', 'B, D', ['<b>Geneva.</b> The Jet d’Eau and the Flower Clock.', '<b>Genoa.</b> Piazza Matteotti, the Palazzo Ducale, San Lorenzo Cathedral and the palaces of Via Garibaldi.'], 'Genoa'),
+      _d('Genoa to Milan', 'B, D', ['Shopping at Serravalle Designer Outlet.'], 'Milan'),
+      _d('Milan', 'B, D', ['<b>Sforza Castle</b> and <b>Milan Cathedral</b>.', 'The Galleria Vittorio Emanuele II, one of the world’s oldest shopping arcades.'], 'Milan'),
+      _d('Milan to Kuala Lumpur', 'B', ['Free until the flight home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur', 'Seven nights in 3 and 4-star hotels or similar: Interlaken 2, Leysin 1, Geneva or Annemasse 1, Genoa 1, Milan 2', '7 hot breakfasts, 3 lunches and 6 dinners, Western and Chinese, with a Swiss cheese fondue', 'Jungfraujoch by cogwheel train and Eiger Express, Glacier 3000 with the Peak Walk, the Golden Pass train and Chillon Castle'],
+    excluded=['Alpine Coaster at Glacier 3000 (optional)', 'Travel insurance and tipping, unless stated', 'Meals not listed'],
+  ),
+  dict(slug='gd-egypt', page='tour-gd-egypt.html', title='The Grand Egypt Tour', region='Egypt', duration='9 days, 7 nights', hero='gd-egypt-hero.jpg', hero_alt='The rock-cut temple of Ramesses II at Abu Simbel',
+    seo='Egypt Tour Package from Malaysia: Pyramids, Nile Cruise and Abu Simbel',
+    line='The Pyramids, a Nile cruise from Aswan to Luxor, and Alexandria.', hotels='5-star hotels and Nile cruise',
+    head='Egypt end to end, with three nights on the Nile.',
+    lead='The Pyramids, the Sphinx and the Grand Egyptian Museum at Giza, a flight south to Aswan and three nights cruising the Nile by way of Abu Simbel, Kom Ombo and Edfu to Luxor and the Valley of the Kings, finishing on the Mediterranean in Alexandria.',
+    highlights=['Pyramids of Giza and the Sphinx', 'Grand Egyptian Museum', 'Abu Simbel', 'Three nights on a 5-star Nile cruise', 'Felucca sail at Aswan', 'Karnak and Luxor temples', 'Valley of the Kings', 'Qaitbay Citadel, Alexandria'],
+    days=[
+      _d('Kuala Lumpur to Cairo', 'L, D', ['Fly to Cairo.', 'The <b>Citadel of Saladin</b> and the Mosque of Muhammad Ali.', '<b>Khan el-Khalili</b>, Cairo’s great bazaar.'], 'Cairo'),
+      _d('Giza, then fly to Aswan', 'B, L, D', ['<b>The Pyramids of Giza and the Sphinx</b>, with a camel ride.', 'The step pyramid at Saqqara, and Memphis.', '<b>The Grand Egyptian Museum</b>, the new home of Egypt’s antiquities beside the Pyramids.', 'Fly to Aswan.'], 'Aswan'),
+      _d('Aswan, board the Nile cruise', 'B, L, D', ['The <b>High Dam</b> and the Unfinished Obelisk.', 'Board the cruise ship, and sail around Elephantine Island by <b>felucca</b>.', '<b>Optional:</b> a Nubian village, and a sound and light show.'], 'Nile cruise'),
+      _d('Abu Simbel, Kom Ombo, Edfu', 'B, L, D', ['An early start for <b>Abu Simbel</b>, the rock temples of Ramesses II.', 'Sail to <b>Kom Ombo</b> and its double temple, then on to Edfu.'], 'Nile cruise'),
+      _d('Edfu, Esna, Luxor', 'B, L, D', ['By horse carriage to the <b>Temple of Horus</b> at Edfu, one of the best preserved in Egypt.', 'Through the Esna lock to Luxor.', 'A galabeya party on board.'], 'Nile cruise'),
+      _d('Luxor, then fly to Cairo', 'B, L, D', ['The Colossi of Memnon.', '<b>The Valley of the Kings</b> and the Temple of Hatshepsut.', '<b>Karnak</b> and <b>Luxor Temple</b>.', '<b>Optional:</b> a sunrise hot-air balloon flight.', 'Fly back to Cairo.'], 'Cairo'),
+      _d('Alexandria', 'B, L, D', ['The Catacombs of Kom el Shoqafa, Pompey’s Pillar and the Roman amphitheatre.', '<b>Qaitbay Citadel</b>, on the site of the ancient Lighthouse of Alexandria.', 'Back to Cairo.'], 'Cairo'),
+      _d('Cairo to Kuala Lumpur', 'B', ['Fly home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur, and domestic flights from Cairo to Aswan and Luxor to Cairo', 'Seven nights: Cairo 3 and Aswan 1 in 5-star hotels, and three nights on a 5-star Nile cruise', '7 breakfasts, 7 lunches and 7 dinners', 'Entrance to the Pyramids area, the Grand Egyptian Museum, Abu Simbel, the Valley of the Kings, and Karnak and Luxor temples', 'Camel ride at Giza, felucca sail at Aswan and horse carriage at Edfu'],
+    excluded=['Entry inside the Pyramids', 'Optional extras: Nubian village, sound and light show and hot-air balloon', 'Travel insurance and tipping, unless stated'],
+    notes='Malaysian passport holders can currently enter Egypt visa-free or with a visa on arrival for up to 15 days; we confirm the rule when you book.',
+  ),
 ]
 
 # Golden Destinations departure dates, matched from gd.my on 1 November 2026 (prices deliberately left out).
-# slug: (GD tour code, dates). New Zealand: NZW (Dec 2026) and NZW(R) (2027) run the same itinerary.
+# slug: (GD tour code, dates); the last six were added later, checked 1 November 2026. New Zealand: NZW (Dec 2026) and NZW(R) (2027) run the same itinerary.
 # To refresh, re-check https://www.gd.my/web/itinerary/<CODE>.
 GD_DATES = {
     'gd-europe-legend': ('10EPP', '''
@@ -303,6 +432,37 @@ GD_DATES = {
     'gd-south-africa': ('11XSA', '''
         2027-01-12 2027-02-16 2027-03-16 2027-04-20 2027-05-26 2027-06-15 2027-07-06 2027-07-27
         2027-08-10 2027-08-21 2027-09-14
+        '''.split()),
+    'gd-japan': ('JDR-21', '''
+        2026-12-01 2026-12-22 2027-01-05 2027-01-26 2027-01-27 2027-02-02 2027-02-04 2027-02-09
+        2027-02-21 2027-02-23 2027-03-09 2027-03-16 2027-03-30 2027-04-06 2027-04-15 2027-04-29
+        2027-05-04 2027-05-13 2027-05-25 2027-05-26 2027-05-29 2027-06-02
+        '''.split()),
+    'gd-korea': ('DZP-10', '''
+        2026-11-25 2026-11-28 2027-02-26 2027-03-05 2027-03-06 2027-03-07 2027-03-08 2027-03-10
+        2027-03-11 2027-03-12 2027-03-20 2027-03-24 2027-03-27 2027-03-28 2027-04-03 2027-04-04
+        2027-04-07 2027-04-11 2027-04-14 2027-04-17 2027-04-18 2027-04-20 2027-04-21 2027-04-25
+        2027-04-30 2027-05-06 2027-05-09 2027-05-13 2027-05-16 2027-05-19 2027-05-20 2027-05-23
+        2027-05-24 2027-05-27 2027-05-28 2027-06-02 2027-06-09 2027-06-18 2027-07-02 2027-07-17
+        '''.split()),
+    'gd-taiwan': ('WLB-11', '''
+        2026-12-01 2026-12-08 2026-12-15 2026-12-23 2026-12-29 2026-12-30 2027-02-17 2027-02-23
+        2027-02-24 2027-03-17 2027-04-07 2027-04-28 2027-05-18 2027-05-28 2027-06-03 2027-06-30
+        2027-07-21 2027-08-04
+        '''.split()),
+    'gd-vietnam': ('VDG-8U', '''
+        2026-11-25 2026-11-27 2026-12-05 2026-12-07 2026-12-09 2026-12-10 2026-12-14 2026-12-16
+        2026-12-20 2026-12-21 2026-12-27 2026-12-29 2026-12-30 2027-01-13 2027-01-20 2027-01-22
+        2027-01-28 2027-02-03 2027-02-04 2027-02-05 2027-02-09 2027-02-10 2027-02-24 2027-03-03
+        2027-03-08 2027-03-09 2027-03-27 2027-04-09 2027-04-23 2027-05-13 2027-05-20 2027-06-03
+        '''.split()),
+    'gd-switzerland-italy': ('10ESI', '''
+        2026-12-08 2026-12-15 2027-02-07 2027-02-22 2027-02-25 2027-03-07 2027-03-08 2027-03-16
+        2027-03-30 2027-04-06 2027-04-12 2027-04-22 2027-05-04 2027-05-14 2027-05-17 2027-05-29
+        '''.split()),
+    'gd-egypt': ('9XCG', '''
+        2027-01-15 2027-01-22 2027-02-01 2027-02-02 2027-02-03 2027-02-09 2027-02-21 2027-03-03
+        2027-03-07 2027-03-17 2027-04-11 2027-04-18 2027-04-25
         '''.split()),
 }
 

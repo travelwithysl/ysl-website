@@ -324,10 +324,11 @@ a:hover .media img { transform: scale(1.04); }
 /* ---------- tour detail ---------- */
 .tour-hero { position: relative; min-height: clamp(460px, 62vh, 720px); display: grid; align-items: end; color: #fff; overflow: hidden; }
 .tour-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.tour-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(22,17,18,.05) 30%, rgba(22,17,18,.72) 100%); }
+.tour-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,17,18,.5) 0%, rgba(22,17,18,.18) 45%, rgba(22,17,18,0) 70%), linear-gradient(180deg, rgba(22,17,18,.05) 30%, rgba(22,17,18,.72) 100%); }
 .tour-hero .container { position: relative; z-index: 2; padding-block: 56px; }
 .tour-hero .crumbs, .tour-hero .crumbs li::before { color: rgba(255,255,255,.75); }
 .tour-hero .h-xxl { max-width: 13ch; }
+.tour-hero.on-dark .eyebrow { color: rgba(255,235,228,.9); }
 .tour-hero .line { margin: 18px 0 0; font-size: clamp(17px, 1.4vw, 20px); color: rgba(255,255,255,.88); }
 .tour-layout { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
 .tour-layout > * { min-width: 0; }

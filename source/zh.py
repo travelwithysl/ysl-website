@@ -49,6 +49,12 @@ TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card a
     'gd-eastern-europe': dict(short='东欧', line='布达佩斯、布拉迪斯拉发、维也纳、哈尔施塔特、萨尔茨堡、克鲁姆洛夫与布拉格'),
     'gd-new-zealand': dict(short='纽西兰', line='南北两岛，从奥克兰到皇后镇'),
     'gd-south-africa': dict(short='南非', line='约翰内斯堡、开普敦、博茨瓦纳与维多利亚瀑布'),
+    'gd-japan': dict(short='日本', line='浅草、富士山、高山、白川乡、京都与大阪'),
+    'gd-korea': dict(short='韩国', line='南怡岛、雪岳山、Everland，穿韩服游景福宫'),
+    'gd-taiwan': dict(short='台湾', line='野柳、九份、十分，礁溪温泉一晚，再游台北'),
+    'gd-vietnam': dict(short='岘港', line='会安古镇、巴拿山黄金桥与顺化皇城'),
+    'gd-switzerland-italy': dict(short='瑞士', line='少女峰、Glacier 3000、Golden Pass 观光列车、日内瓦湖与米兰'),
+    'gd-egypt': dict(short='埃及', line='金字塔、阿布辛贝、尼罗河游船三晚、卢克索与亚历山大'),
 }
 
 MEMBERS_ZH = {'MATTA': '马来西亚旅游代理商协会', 'MITA': '马来西亚入境旅游协会',
@@ -79,7 +85,7 @@ def _day(en, z):
 
 def _tour(en, z):
     q = dict(en)
-    for k in ('title', 'region', 'line', 'hotels', 'head', 'lead', 'highlights', 'included', 'excluded', 'notes', 'flights', 'hero_alt'):
+    for k in ('title', 'region', 'line', 'hotels', 'head', 'lead', 'highlights', 'included', 'excluded', 'notes', 'flights', 'hero_alt', 'seo'):
         if k in z:
             q[k] = z[k]
     q['duration'] = z.get('duration') or _dur(en['duration'])
@@ -169,7 +175,6 @@ UI = {
   'Corporate Travel & MICE | ': '商务旅游与 MICE | ',
   'About YSL Travel & Tours': '关于 YSL Travel & Tours',
   'Services | ': '旅游服务 | ',
-  'Holidays & Tours | ': '假期与旅游团 | ',
   'Yunnan & Shangri-La | ': '云南香格里拉 | ',
   'Majestic Qinghai & Gansu | ': '大美青甘 | ',
   'Journal | ': '旅游札记 | ',
@@ -178,10 +183,10 @@ UI = {
   'Meetings, incentives, conferences and exhibitions at any scale: group air, hotels, coaches, gala nights and on-site teams from YSL Travel & Tours.': '会议、奖励旅游、研讨会与展览，规模不限：团体机票、酒店、巴士、晚宴及现场团队，由 YSL Travel & Tours 一手包办。',
   'Founded in Klang in 2009, YSL Travel & Tours plans holidays, group tours and business travel for families and companies. Licensed by MOTAC (KPL 6107).': 'YSL Travel & Tours 2009年创立于巴生，为家庭与企业安排假期、团体游及商务旅行。持有马来西亚旅游、艺术及文化部执照（KPL 6107）。',
   'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.': '机票、旅游配套、酒店、邮轮、保险、签证、奖励旅游团及巴士租赁。',
-  'YSL group tours and signature group tours from Golden Destinations.': 'YSL 自营团体游，以及 Golden Destinations 的招牌团体游。',
+  'Tour Packages from Malaysia | YSL Travel & Tours': '旅游配套，吉隆坡出发 | YSL Travel & Tours',
+  'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL group tours and Golden Destinations tours, booked in Klang.': '吉隆坡出发的团体旅游配套：中国、日本、韩国、台湾、越南、欧洲、瑞士、土耳其、埃及、南非与纽西兰。YSL 自营团体游及 Golden Destinations 团体游，在巴生预订。',
   'Group tour through Kunming, Dali, Lijiang and Shangri-La.': '昆明、大理、丽江、香格里拉团体游。',
   '10-day group tour through Gansu and Qinghai: the Rainbow Mountains, Mogao Caves, Chaka Salt Lake and Qinghai Lake.': '甘肃、青海10天团体游：七彩丹霞、莫高窟、茶卡盐湖与青海湖。',
-  ' group tour: ': '团体游：',
   'Destination guides, travel tips and corporate travel advice from YSL Travel & Tours.': 'YSL Travel & Tours 的目的地指南、旅行贴士与商务旅游建议。',
   'Visit, call or message YSL Travel & Tours in Klang, Selangor.': '到访、致电或留言给位于雪兰莪巴生的 YSL Travel & Tours。',
 
@@ -608,7 +613,9 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'No 5, Lorong Sungai Puloh 13A', 'Taman Klang Utama', 'Klang, Selangor', 'Max Filter Industries', 'Sendok Group', 'Megastra Jaya',
         'Ctrip', 'The Boma', 'Spice Route', 'China Eastern', 'Kitaichi Glass', 'Shiroi Koibito Park', 'Shiroi Koibito', 'Mitsui Outlet Park',
         'Galeries Lafayette', 'Parndorf Designer Outlet', 'Sky Tower Orbit',
-        'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa']  # brand names stay in English
+        'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
+        'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
+        'Eiger Express', 'Golden Pass', 'Glacier 3000']  # brand names stay in English
 
 
 def check(zh_dir):
