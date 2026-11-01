@@ -35,6 +35,8 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - YSL's own tour dates: `YSL_DATES` in `data.py` (dates from YSL); `QG['date_notes']` tags single dates (School holidays, Fully booked). Seat counts and fares stay off the site.
 - GD tour SEO: each GD tour has `seo` (the page `<title>`, keyword first: "Korea Tour Package from Malaysia: ..."; Chinese "韩国旅游配套：..." in `tours_zh.py`). The meta description adds the departure months; the share image is the tour hero.
 - `feedback.py`: the feedback form (also used by `standalone.py`, which also holds the Google Apps Script for the response sheet).
+- Logo: header and footer use `source/logo-full.svg` (YSL's own full lockup with TRAVEL & TOURS, trimmed, colours inlined); header 84px tall on desktop, logo 60px (50px on mobile). `logo.svg` (mark only) is still used for the favicon source.
+- Icons: `source/icons.svg`. The eight service icons (air, ins, hotel, tour, visa, mice, transfer, coach) come from YSL's own `YSL2026 - services.svg`; cruise and the corporate-page icons were redrawn to match (thin 0.85 line on a 24 grid). Keep any new icon in that style.
 - CSS is concatenated in this order: `site.css`, `pages.css`, `home.css`, `premium.css`, `type.css`, `red.css`, `zh.css`. Later files override earlier ones. `zh.css` only applies under `html:lang(zh)`.
 - Home hero: `globe.js` + `globe.css` (d3-geo orthographic globe), landmark line art in `art/*.svg`, imported by `import_art.py` into `landmark-art.js`.
 

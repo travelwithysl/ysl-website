@@ -244,7 +244,7 @@
 .scale-photo figcaption { margin-top: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); }
 .scale-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .scale-grid li { padding: 24px 22px 26px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); display: grid; align-content: start; gap: 8px; }
-.scale-grid svg.ic, .local-grid svg.ic { width: 34px; height: 34px; color: var(--red); margin-bottom: 6px; }
+.scale-grid svg.ic, .local-grid svg.ic { width: 46px; height: 46px; color: var(--red); margin-bottom: 6px; }
 .scale-grid b { font-family: var(--display); font-size: 19px; font-weight: 800; }
 .scale-grid p { margin: 0; font-size: 15px; color: var(--stone); }
 .runway { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(255,255,255,.25); }

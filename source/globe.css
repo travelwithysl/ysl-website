@@ -1,7 +1,7 @@
 /* ---------- home hero: the globe and its landmarks ---------- */
 .globe-hero { position: relative; overflow: hidden; isolation: isolate; color: #fff;
   background: radial-gradient(65% 85% at 70% 58%, #4a0910 0%, #2a050a 55%, #160306 100%);
-  height: max(calc(100svh - 76px), 620px); max-height: 980px; }
+  height: max(calc(100svh - 89px), 620px); max-height: 980px; }
 .globe-hero canvas.globe { position: absolute; inset: 0; z-index: 0; }
 .globe-hero .lm-layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: visible; }
 .lm { fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }

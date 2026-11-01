@@ -17,6 +17,7 @@ MAIN_DIST = os.path.abspath(DIST)
 read = lambda f: open(os.path.join(SRC, f), encoding='utf-8').read()
 
 LOGO = read('logo.svg')
+LOGO_FULL = read('logo-full.svg')  # full lockup with TRAVEL & TOURS, from YSL-Logo---Dark_BG.svg
 ICONS = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + read('icons.svg') + '</defs></svg>'
 ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg>'
 ARROW_L = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8H2M7 3L2 8l5 5"/></svg>'
@@ -30,7 +31,7 @@ def nav(current):
     items = ''.join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{t}</a></li>' for h, t in NAV)
     return f'''<header class="site-nav">
   <div class="container">
-    <a class="brand" href="index.html" aria-label="YSL Travel and Tours, home">{LOGO}<span>Travel &amp; Tours</span></a>
+    <a class="brand" href="index.html" aria-label="YSL Travel and Tours, home">{LOGO_FULL}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       {items}
@@ -54,7 +55,7 @@ def footer():
 <footer class="site-footer on-dark">
   <div class="container">
     <div class="foot-grid">
-      <div class="foot-brand">{LOGO}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
+      <div class="foot-brand">{LOGO_FULL}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
       <div><h4>Explore</h4><ul>{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Visit us</h4><p style="margin:0">{CONTACT['address']}</p><p style="margin:12px 0 0">{CONTACT['hours']}</p></div>
       <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">WhatsApp {CONTACT['whatsapp']}</a></li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
