@@ -77,7 +77,7 @@ def tour_card(t, cls='ticket rv'):
         vis = f'<div class="media"><span class="pill">{t.get("dur", t["kind"])}</span><img src="assets/{t["img"]}" alt=""></div>'
     else:
         vis = f'<div class="slot" style="--c1:{t["c1"]};--c2:{t["c2"]}"><span class="pill">{t.get("dur", t["kind"])}</span><b>{t.get("short", t["region"])}</b><small>Tour photo to come</small></div>'
-    return f'''<a class="{cls}" href="{href}" data-cat="{t['cat']}">{vis}<span class="t-body"><span class="t-route"><span><small>From</small>KUL</span><i>{MINI_PIN}</i><span><small>To</small>{t['iata']}</span></span><b class="t-title">{t['title']}</b><span class="t-line">{t['line']}</span><span class="t-dep"><span>Departs</span>{t['departs'] if t.get('departs') else '<span class="tbc">Months from YSL</span>'}</span></span><span class="t-stub"><span>{'Partner tour' if t.get('brand') else 'YSL Travel &amp; Tours'}</span><span>{'View' if t.get('page') else 'Enquire'} {ARROW}</span></span></a>'''
+    return f'''<a class="{cls}" href="{href}" data-cat="{t['cat']}">{vis}<span class="t-body"><span class="t-route"><span><small>From</small>{t.get('origin', 'KUL')}</span><i>{MINI_PIN}</i><span><small>To</small>{t['iata']}</span></span><b class="t-title">{t['title']}</b><span class="t-line">{t['line']}</span><span class="t-dep"><span>Departs</span>{t['departs'] if t.get('departs') else '<span class="tbc">Months from YSL</span>'}</span></span><span class="t-stub"><span>{'Partner tour' if t.get('brand') else 'YSL Travel &amp; Tours'}</span><span>{'View' if t.get('page') else 'Enquire'} {ARROW}</span></span></a>'''
 
 def post_card(p):
     if p.get('img'):

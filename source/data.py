@@ -37,7 +37,7 @@ SERVICES = [
 
 TOURS = [
     dict(slug='qinghai-gansu', dur='10D8N', iata='LHW', title='Majestic Qinghai & Gansu', region='China', cat='asia', kind='Group tour', line='Rainbow mountains, desert dunes and sky-mirror salt lakes', img='qg-card.jpg', page='tour-qinghai-gansu.html'),
-    dict(slug='yunnan', dur='9D7N', iata='KMG', title='Golden Peak, Hidden Lake', region='China', cat='asia', kind='Group tour', line='Dali, Lugu Lake, Lijiang, Shangri-La and sunrise on Meili Snow Mountain', img='yn-card.jpg', page='tour-yunnan.html'),
+    dict(slug='yunnan', dur='9D7N', origin='SZB', iata='KMG', title='Golden Peak, Hidden Lake', region='China', cat='asia', kind='Group tour', line='Dali, Lugu Lake, Lijiang, Shangri-La and sunrise on Meili Snow Mountain', img='yn-card.jpg', page='tour-yunnan.html'),
     # signature group tours from Golden Destinations, a brand YSL carries (no prices; enquiries go to YSL)
     dict(slug='gd-europe-legend', dur='10D7N', page='tour-gd-europe-legend.html', brand='Golden Destinations', iata='CDG', short='Europe Legend', title='Europe Legend', region='Europe', cat='europe', kind='Group tour',
          line='Paris, Brussels, Amsterdam, the Rhine, Titisee, Rhine Falls, Zurich and Lucerne', img='gd-europe-legend-card.jpg'),
@@ -110,7 +110,7 @@ CONTACT = dict(address='No 5, Lorong Sungai Puloh 13A,<br>Taman Klang Utama, 421
 
 # destinations the home-page pin opens onto; one is chosen per visit. Add YSL's own tour photos here.
 OPENINGS = [
-    dict(img='lake.jpg', code='KMG', place='Kunming, Yunnan', tour='Golden Peak, Hidden Lake', href='tour-yunnan.html', kind='Group tour'),
+    dict(img='yn-hero.jpg', code='KMG', place='Kunming, Yunnan', tour='Golden Peak, Hidden Lake', href='tour-yunnan.html', kind='Group tour'),
 ]
 
 # Majestic Qinghai & Gansu, from YSL's 2026 itinerary (prices deliberately left out)
@@ -548,7 +548,7 @@ GD_TOURS = [
     lead='Dali on the shore of Erhai, Lugu Lake and the Mosuo, the old town of Lijiang, Shangri-La’s great prayer wheel, sunrise on Meili Snow Mountain and the hidden valley of Balagezong, returning to Kunming by high-speed train.',
     highlights=['Dali Ancient City', 'Lugu Lake by dugout boat', 'Lijiang Old Town, a UNESCO site', 'Dukezong and the giant prayer wheel', 'Napa Lake in Tibetan dress', 'First Bend of the Jinsha River', 'Sunrise on Meili Snow Mountain', 'Balagezong Grand Canyon'],
     days=[
-      _d('Kuala Lumpur to Kunming', '', ['Our tour leader helps you check in for the direct flight to Kunming, where your Yunnan guide meets you with flowers and takes you to the hotel.'], 'Kunming, near the airport'),
+      _d('Kuala Lumpur to Kunming', '', ['Meet at Subang Airport (Sultan Abdul Aziz Shah, SkyPark Terminal), where our tour leader helps you check in for the evening flight to Kunming, where your Yunnan guide meets you with flowers and takes you to the hotel.'], 'Kunming, near the airport'),
       _d('Kunming to Dali', 'B, L, D', ['About four and a half hours by expressway to Dali.', 'An evening in the lantern-lit lanes of <b>Dali Ancient City</b> and Foreigner Street.', '<b>Optional:</b> the Erhai Lake ecological corridor, with a music car-cruise, Golden Flower dancing and travel photos.'], 'Dali Old Town', meal='Bai heritage banquet'),
       _d('Dali to Lugu Lake', 'B, L, D', ['A scenic drive of about four and a half hours to <b>Lugu Lake</b>, the “Highland Pearl”.', 'The lake viewing platform, a coach loop past Lovers’ Beach, and a bonfire party under the stars.'], 'Lugu Lake, boutique guesthouse', meal='Wild-mushroom hot pot'),
       _d('Lugu Lake to Lijiang', 'B, L, D', ['Sunrise over the lake if the weather allows, then a traditional dugout boat to Liwubi Island and a visit to a Mosuo weaving house.', '<b>Lijiang Old Town</b>, the UNESCO-listed Naxi town of canals and cobbles, and Sifang Street.'], 'Lijiang, near the old town', meal='Lijiang imperial feast, in costume, with a show'),
@@ -558,7 +558,7 @@ GD_TOURS = [
       _d('High-speed train to Kunming', 'B, L, D', ['The early high-speed train back to Kunming, about four hours, with your luggage sent by road.', '<b>Dounan Flower Market</b>, the largest in Asia, then Nanping Street and the Jinma Biji archways.', 'Late-night flight home.'], meal='Crossing-the-bridge rice noodles'),
       _d('Arrive in Kuala Lumpur', '', ['Home in the early morning.']),
     ],
-    included=['Direct return flights between Kuala Lumpur and Kunming', 'Seven nights: Kunming 1, Dali 1, Lugu Lake 1, Lijiang 1, Shangri-La 2, Deqin 1', 'Daily breakfast, and lunch and dinner from day 2 to day 8, including a Bai banquet, wild-mushroom hot pot and the Lijiang imperial feast', 'Dugout boat on Lugu Lake, Dongba Secret Realm and Balagezong eco-shuttles, and the high-speed train to Kunming', 'Tour leader from Kuala Lumpur'],
+    included=['Direct return flights with Batik Air between Subang and Kunming', 'Seven nights: Kunming 1, Dali 1, Lugu Lake 1, Lijiang 1, Shangri-La 2, Deqin 1', 'Daily breakfast, and lunch and dinner from day 2 to day 8, including a Bai banquet, wild-mushroom hot pot and the Lijiang imperial feast', 'Dugout boat on Lugu Lake, Dongba Secret Realm and Balagezong eco-shuttles, and the high-speed train to Kunming', 'Tour leader from Kuala Lumpur'],
     excluded=['Optional extras: the Erhai corridor experience and horse riding at Napa Lake', 'Travel insurance (strongly recommended) and tipping, unless stated'],
     notes='Meili’s golden sunrise depends on clear skies; we wait for it, but nobody can promise it. Shangri-La and Deqin are above 3,000m, so take it slowly on arrival.',
   ),

@@ -580,7 +580,7 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
         'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
         'Eiger Express', 'Golden Pass', 'Glacier 3000',
-        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
+        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'Subang SkyPark', 'Batik Air', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
 
 
 def check(zh_dir):

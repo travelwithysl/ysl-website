@@ -47,6 +47,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Colour: ivory body, dark maroon bands (#4a0a19 family), bright logo red #e72629 for the closing band, primary buttons, figures and accent words. 5px red rule under the header.
 - Buttons: subtle, all caps, no arrows. No dash before eyebrows.
 - Airport codes (KUL etc.) stay: they tie to the YSL name card.
+- Tour cards show `From KUL` unless the tour sets `origin` (Golden Peak, Hidden Lake flies Batik Air OD696/OD697 from Subang, `SZB`).
 
 ## Content rules
 

@@ -8,7 +8,7 @@ ARTICLES = [
   dict(slug='yunnan', cat='dest', title="A first-timer’s guide to Yunnan’s high country",
     lead='Kunming, Lijiang and Shangri-La climb from a mild spring city to the edge of the Tibetan plateau in a single trip. A little preparation makes the first days much easier.',
     excerpt='Kunming, Lijiang and Shangri-La, and how to enjoy the climb.',
-    date='2 October 2026', read='5 min read', img='lake.jpg', alt='A traveller standing on a rocky shore above a turquoise mountain lake',
+    date='2 October 2026', read='5 min read', img='jr-yunnan.jpg', alt='Black Dragon Pool in Lijiang, with Jade Dragon Snow Mountain behind',
     body='''<p>Yunnan is one of the most rewarding routes we run, and one of the most surprising for first-time visitors. The province rises in steps. Most tours start in Kunming, move up to the old town of Lijiang, then climb again to Shangri-La, where the air is thinner and the views open onto snow peaks and monastery roofs.</p>
     <p>None of this is difficult for a healthy traveller, but it does change how you pace the first few days. Here is what we tell every group before they fly.</p>
     <h2>Three cities, three heights</h2>
@@ -64,7 +64,7 @@ ARTICLES = [
   dict(slug='hokkaido', cat='dest', title='Hokkaido through the seasons',
     lead='Japan’s northern island changes completely from one season to the next. Here is how to choose the Hokkaido that suits you.',
     excerpt='Snow festivals, lavender fields and early autumn colour.',
-    date='18 October 2026', read='5 min read', slot=('#3f6f9a', '#0f2236', 'Hokkaido'), alt='',
+    date='18 October 2026', read='5 min read', img='jr-hokkaido.jpg', alt='Lavender and flower fields in Furano in summer',
     body='''<p>Hokkaido is the Japan many travellers fall for on a second trip: wide skies, lakes and volcanoes, hot springs, and seafood that is hard to match anywhere. It is also strongly seasonal, so the first question is not where to go but when.</p>
     <h2>Winter: December to February</h2>
     <p>Deep, dry snow, ski resorts and hot-spring towns. The Sapporo Snow Festival, held in early February, fills the city with giant snow and ice sculptures. Further northeast, drift ice reaches the coast in late winter. Days are short and very cold, so dress for it and the season is magical.</p>
@@ -82,7 +82,7 @@ ARTICLES = [
   dict(slug='documents', cat='tips', title='Passport, visa, insurance: sort these first',
     lead='Three things decide whether a trip starts smoothly. Check them before you pay a deposit, not the week before you fly.',
     excerpt='The three things to check before you pay a deposit.',
-    date='2 September 2026', read='4 min read', img='passport.jpg', alt='A passport and boarding pass on a table',
+    date='2 September 2026', read='4 min read', img='airport.jpg', alt='Two travellers with a suitcase in an airport terminal',
     body='''<p>Most travel problems we help clients solve could have been avoided with ten minutes of checking at the start. Before you commit to a trip, look at these three things.</p>
     <h2>1. Your passport</h2>
     <ul><li><b>Validity.</b> Many countries require your passport to be valid for at least six months after the date you arrive. Check the expiry date now, not at the airport.</li><li><b>Blank pages.</b> Some countries need one or two clean pages for stamps or visa stickers.</li><li><b>Condition.</b> A damaged passport, with water marks or a loose page, can be refused. If in doubt, renew it.</li><li><b>Names.</b> The name on your flight booking must match your passport exactly.</li></ul>
