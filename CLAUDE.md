@@ -54,7 +54,8 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Placeholders YSL still has to supply are marked with the `tbc` class (yellow highlight).
 - Golden Destinations stays low-key (client request): no GD headings or sections. Partner-tour cards say "Partner tour"; GD is named only in the partner list (`BRANDS`), the "Tour by" line and the small print on its tour pages.
 - Holidays & Tours is one grid filtered by region (`cat` in `TOURS`: asia, europe, africa, oceania), YSL's own tours first. No airline logos or lists: YSL sells all airlines.
-- Credentials: MOTAC KPL 6107, IATA accredited, MATTA, MITA, MICA, MCTA. Partners on the shop door (2026): Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Golden Destinations; Parlo Tours from the earlier brief.
+- Credentials (all confirmed by YSL): MOTAC KPL 6107, IATA accredited, MATTA, MITA, MICA, MCTA. Shown as text until YSL supplies the logo files; for IATA only the "IATA Accredited Agent" mark from IATA's agent portal may be used.
+- Partners (confirmed): Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours (less active, still listed), Golden Destinations.
 - The "Planning a company incentive trip" journal story is held back until YSL's client approves it (it was in `articles.py` / `articles_zh.py`; restore from git history).
 
 ## Feedback form
