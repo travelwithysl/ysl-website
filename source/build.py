@@ -335,10 +335,6 @@ def build_corporate():
     ]
     local_html = ''.join(f'<li class="rv"><svg class="ic" aria-hidden="true"><use href="#ic-{ic}"/></svg><b>{t}</b><p>{d}</p></li>' for ic, t, d in local)
     places_html = ''.join(f'<span class="b">{p}</span>' for p in ['Langkawi', 'Penang', 'Genting Highlands', 'Cameron Highlands', 'Port Dickson', 'Desaru', 'Melaka', 'Sabah'])
-    cases = [('Incentive', 'Company name', 'Destination', 'Number of travellers'),
-             ('Conference', 'Company name', 'Destination', 'Number of delegates'),
-             ('Company trip', 'Company name', 'Destination', 'Number of travellers')]
-    cases_html = ''.join(f'''<li class="rv"><div class="slot" style="--c1:#8a1a22;--c2:#2a0609"><span class="pill">{k}</span><b>{k}</b><small>Project photo to come</small></div><div class="case-body"><p class="tag" style="margin:0 0 6px">{k}</p><h3><span class="tbc">{c}</span></h3><p><span class="tbc">{d}</span> &nbsp; <span class="tbc">{n}</span></p></div></li>''' for k, c, d, n in cases)
     brief = ['Purpose of the trip, and who is going', 'Group size, even a range', 'Preferred dates or months', 'Budget per person', 'Destinations you have in mind', 'Any dietary, faith or accessibility needs']
     brief_html = ''.join(f'<li>{b}</li>' for b in brief)
     body = f'''{nav('corporate.html')}
@@ -393,13 +389,6 @@ def build_corporate():
     <div class="chapter-head"><div><p class="eyebrow">Local MICE</p><h2 class="h-xl" id="lo-h">Closer to home.</h2></div><p class="lead">Not every company event needs a passport. We plan team days, retreats and celebrations across Malaysia, with transport for everyone arranged.</p></div>
     <ul class="local-grid">{local_html}</ul>
     <div class="local-places rv"><span class="lbl">Popular for company groups</span>{places_html}</div>
-  </div>
-</section>
-
-<section class="section section--paper" aria-labelledby="cs-h">
-  <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">Selected projects</p><h2 class="h-l" id="cs-h">Recent MICE programmes.</h2></div><p class="lead"><span class="tbc">Three past projects to be supplied by YSL: client (or industry), destination, group size and one photo each.</span></p></div>
-    <ul class="case-grid">{cases_html}</ul>
   </div>
 </section>
 
