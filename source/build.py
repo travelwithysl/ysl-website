@@ -40,8 +40,18 @@ def nav(current):
   </div>
 </header>'''
 
+ASSOC = [('matta', 'MATTA, Malaysian Association of Tour and Travel Agents', 'https://www.matta.org.my/'),
+         ('mita', 'MITA, Malaysian Inbound Tourism Association', 'https://www.mita.org.my/'),
+         ('mica', 'MICA, Malaysia Inbound Chinese Association', ''),
+         ('mcta', 'MCTA, Malaysian Chinese Tourism Association', '')]
+
+def assoc_strip():
+    items = ''.join((f'<li><a href="{u}" target="_blank" rel="noopener"><img src="assets/assoc-{k}.png" alt="{a}" loading="lazy"></a></li>' if u else f'<li><img src="assets/assoc-{k}.png" alt="{a}" loading="lazy"></li>') for k, a, u in ASSOC)
+    return f'<aside class="assoc-strip" aria-label="Memberships"><div class="container"><span class="lbl">Proud member of</span><ul>{items}</ul></div></aside>'
+
 def footer():
-    return f'''<footer class="site-footer on-dark">
+    return f'''{assoc_strip()}
+<footer class="site-footer on-dark">
   <div class="container">
     <div class="foot-grid">
       <div class="foot-brand">{LOGO}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
