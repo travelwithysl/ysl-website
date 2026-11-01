@@ -233,9 +233,9 @@ UI = {
 
   # home
   'aria-label="Welcome"': 'aria-label="欢迎"',
-  'From Klang. To the world.': '从巴生，到世界。',
-  '<h1>Every journey<br> begins with a<br> <em>point<br> on the map.</em></h1>': '<h1>每一段旅程，<br>都始于地图上的<br><em>一个点。</em></h1>',
-  '<p class="sub">From that first point to the flight home, <br>we plan every step.</p>': '<p class="sub">从出发的那一点到回程航班，<br>每一步都由我们安排。</p>',
+  'From Klang. To the world.': '自巴生，行天下。',
+  '<h1>Every journey<br> begins with a<br> <em>point<br> on the map.</em></h1>': '<h1>千里之行，<br><em>始于图上一点。</em></h1>',
+  '<p class="sub">From that first point to the flight home, <br>we plan every step.</p>': '<p class="sub">从启程到归途，<br>每一步，都为您安排。</p>',
   '>Explore tours</a>': '>探索旅游团</a>',
   '>Replay</button>': '>重播</button>',
   'Where we’re <em>going next.</em>': '我们的<em>下一站。</em>',
@@ -273,8 +273,8 @@ UI = {
   'alt="A corporate group arriving at a seaside venue, welcomed by a host"': 'alt="企业团体抵达海边会场，接待人员上前迎接"',
   '<li aria-current="page">Corporate Travel</li>': '<li aria-current="page">商务旅游</li>',
   'Corporate Travel &amp; MICE': '商务旅游与 MICE',
-  'Business travel and MICE, <em>at any scale.</em>': '商务旅游与 MICE，<em>规模不限。</em>',
-  'From a board retreat of twelve to an incentive of hundreds, one team plans, moves and looks after your people.': '从十二人的董事会外地会议，到数百人的奖励旅游，同一个团队负责策划、出行和全程照顾。',
+  'Business travel and MICE, <em>at any scale.</em>': '<span class="nw">商旅与 MICE，</span><br><span class="nw"><em>不拘规模。</em></span>',
+  'From a board retreat of twelve to an incentive of hundreds, one team plans, moves and looks after your people.': '<span class="nw">小至十二人的董事会议，</span><span class="nw">大至数百人的奖励旅游，</span><span class="nw">同一团队，</span><span class="nw">从策划到归程，</span><span class="nw">全程照顾。</span>',
   '>Request a MICE proposal</a>': '>索取 MICE 方案</a>',
   '>How we plan it</a>': '>我们如何策划</a>',
   'aria-label="YSL in numbers"': 'aria-label="YSL 数据一览"',
@@ -420,7 +420,7 @@ UI = {
   '>Ask about ': '>咨询',
 
   # tours
-  'Where will you go next?': '下一站，您想去哪里？',
+  'Where will you go next?': '<span class="nw">下一站，</span><span class="nw">去哪里？</span>',
   'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.': 'YSL 自营团体游，以及马来西亚知名旅游品牌的招牌团体游，全部由 YSL 为您预订和照顾。',
   '<b>Looking for something else?</b> We also book packages from Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours and Golden Destinations. Tell us where you want to go and we’ll compare options for you.': '<b>想找其他行程？</b>我们也代订 Apple Vacations、Lovely Vacation、UbinGO Vacations、FS Holidays、Parlo Tours 及 Golden Destinations 的配套。告诉我们您想去哪里，我们为您比较各种选择。',
 
