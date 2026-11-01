@@ -1070,3 +1070,7 @@ html:lang(zh) .d-num span, html:lang(zh) .itin .day, html:lang(zh) .lm-label em,
 html:lang(zh) .eyebrow { font-size: 12.5px; }
 html:lang(zh) .btn { font-size: 13px; }
 html:lang(zh) .d-num span { font-size: 10px; letter-spacing: 0; }
+
+/* lines break only after punctuation: phrases from zh.phrase_breaks() */
+html:lang(zh) .ph { display: inline-block; max-width: 100%; }
+html:lang(zh) .tour-hero .h-xxl, html:lang(zh) .h-xxl { max-width: none; }
