@@ -63,6 +63,19 @@ TOURS = [
          line='Jungfraujoch, Glacier 3000, the Golden Pass train, Lake Geneva and Milan', img='gd-switzerland-italy-card.jpg'),
     dict(slug='gd-egypt', dur='9D7N', page='tour-gd-egypt.html', brand='Golden Destinations', iata='CAI', short='Egypt', title='The Grand Egypt Tour', region='Egypt', cat='africa', kind='Group tour',
          line='The Pyramids, Abu Simbel, three nights on the Nile, Luxor and Alexandria', img='gd-egypt-card.jpg'),
+    # partner tours from Apple Vacations (applevacations.my), named only on their tour pages
+    dict(slug='ap-zhangjiajie', dur='9D6N', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', iata='CSX', short='Zhangjiajie', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', cat='asia', kind='Group tour',
+         line='The sandstone pillars, the glass bridge, Tianmen Mountain and Phoenix Ancient Town', c1='#3d6b4f', c2='#10241a'),
+    dict(slug='ap-dongbei', dur='8D7N', page='tour-ap-dongbei.html', brand='Apple Vacations', iata='CGQ', short='Harbin', title='Snowy Dongbei: Changbai Mountain &amp; Harbin', region='China', cat='asia', kind='Group tour',
+         line='Rime forests, hot springs in the snow and Harbin’s Ice and Snow World', c1='#5d7fa8', c2='#142236'),
+    dict(slug='ap-spain-portugal', dur='12D9N', page='tour-ap-spain-portugal.html', brand='Apple Vacations', iata='OPO', short='Spain', title='Spain &amp; Portugal', region='Europe', cat='europe', kind='Group tour',
+         line='Porto, Lisbon, Seville, Ronda, Córdoba, Toledo, Madrid and Barcelona', c1='#b5652e', c2='#3a1a0a'),
+    dict(slug='ap-greece', dur='10D7N', page='tour-ap-greece.html', brand='Apple Vacations', iata='SKG', short='Greece', title='Greece: Meteora, Mykonos &amp; Santorini', region='Europe', cat='europe', kind='Group tour',
+         line='Meteora, Delphi, Athens, Mykonos and two nights on Santorini', c1='#2f6fa6', c2='#0b1f33'),
+    dict(slug='ap-finland', dur='10D7N', page='tour-ap-finland.html', brand='Apple Vacations', iata='RVN', short='Lapland', title='Finnish Lapland &amp; the Northern Lights', region='Europe', cat='europe', kind='Group tour',
+         line='Huskies, reindeer, king crab in Norway and the Northern Lights', c1='#2e5d6e', c2='#081a22'),
+    dict(slug='ap-australia', dur='9D6N', page='tour-ap-australia.html', brand='Apple Vacations', iata='SYD', short='Australia', title='Sydney &amp; Melbourne', region='Australia', cat='oceania', kind='Group tour',
+         line='Sydney Harbour, the Blue Mountains, the Great Ocean Road and the Penguin Parade', c1='#2f78a0', c2='#0c2333'),
 ]
 
 POSTS = [
@@ -399,6 +412,134 @@ GD_TOURS = [
     excluded=['Entry inside the Pyramids', 'Optional extras: Nubian village, sound and light show and hot-air balloon', 'Travel insurance and tipping, unless stated'],
     notes='Malaysian passport holders can currently enter Egypt visa-free or with a visa on arrival for up to 15 days; we confirm the rule when you book.',
   ),
+  dict(slug='ap-zhangjiajie', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', duration='9 days, 6 nights', c1='#3d6b4f', c2='#10241a',
+    seo='Zhangjiajie Tour Package from Malaysia: Tianmen Mountain, Glass Bridge and Phoenix Town',
+    line='Sandstone pillars, a glass bridge over the canyon, and Phoenix Ancient Town by night.', hotels='Hilton Garden Inn and Park Hyatt, or similar',
+    head='Hunan’s mountains, at an unhurried pace.',
+    lead='Zhangjiajie’s forest of sandstone pillars, the glass bridge over the Grand Canyon, the cable car and cliff walkway of Tianmen Mountain, the waterfall town of Furong and the riverside lanes of Phoenix, with a VIP coach throughout and the high-speed train back to Changsha.',
+    highlights=['Zhangjiajie National Forest Park', 'Bailong Elevator, VIP lane', 'Grand Canyon glass bridge', 'Tianmen Mountain cable car', 'Tianmen cliff glass walkway', 'Furong Town by its waterfall', 'Phoenix Ancient Town at night', 'High-speed train to Changsha'],
+    days=[
+      _d('Kuala Lumpur to Changsha', '', ['Fly to Changsha.'], 'Changsha, or on the overnight flight'),
+      _d('Changsha, Changde, Zhangjiajie', 'L, D', ['<b>Daxiaohe Street</b> in Changde, an old-style quarter of folk customs and street food.', 'On to Zhangjiajie.'], 'Zhangjiajie, Wulingyuan'),
+      _d('Zhangjiajie National Forest Park', 'B, L, D', ['<b>Zhangjiajie National Forest Park</b> and its towering sandstone pillars: up the Bailong Elevator by the VIP lane, Yuanjiajie and the natural stone bridge, the Ten-Mile Gallery by train and Golden Whip Stream.', 'A coach for the group alone inside the park.'], 'Zhangjiajie, Wulingyuan'),
+      _d('The Grand Canyon glass bridge', 'B, L, D', ['<b>Zhangjiajie Grand Canyon</b> and its glass bridge, with a zipline, a slide and a boat ride.', 'Make your own sandstone painting.', 'The <b>72 Tujia Stilted Buildings</b> lit up at night, and the Tianmen Fox Fairy show, staged on the mountain itself.'], 'Zhangjiajie, near Tianmen Mountain', note='From 8 December to 8 March the Fox Fairy show is replaced by the Charming Xiangxi show.'),
+      _d('Tianmen Mountain and Furong Town', 'B, L, D', ['<b>Tianmen Mountain</b>: the long cable car up by the VIP lane, the glass walkway on the cliff, the view down the 99-bend road and Tianmen Cave.', '<b>Furong Town</b>, the thousand-year-old town of stilted houses beside a waterfall.'], 'Furong Town', note='From December to February the Tianmen Cave escalator and shuttle are closed.'),
+      _d('Phoenix Ancient Town', 'B, D', ['<b>Phoenix Ancient Town</b>: a boat on the Tuo River, the Hongqiao bridge, the stilted houses, and the old town lit up at night.', 'Dress in Miao costume for a short drone video, then a drink at the hotel bar.'], 'Fenghuang'),
+      _d('High-speed train to Changsha', 'B, L', ['Three hours to Changsha by high-speed train, with your luggage sent on ahead.'], 'Changsha, Park Hyatt or similar'),
+      _d('Changsha, fly home', 'B, D', ['<b>Orange Isle</b> on the Xiang River, by electric cart.', 'Fly home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur', 'Six nights in hotels including the Hilton Garden Inn in Zhangjiajie and the Park Hyatt in Changsha, or similar', 'Most meals, including a Tujia lei cha banquet, a firewood-fish banquet and Hunan cooking', 'Glass bridge, Tianmen Mountain cable car and glass walkway, Phoenix Town and all listed entrances', 'A 1+1 VIP coach throughout, and a charter coach inside the scenic areas', 'High-speed train with luggage forwarding'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
+    notes='Led by a Mandarin-speaking guide. The glass bridge and cable car depend on the weather; closed sections are refunded or replaced.',
+  ),
+  dict(slug='ap-dongbei', page='tour-ap-dongbei.html', brand='Apple Vacations', title='Snowy Dongbei: Changbai Mountain &amp; Harbin', region='China', duration='8 days, 7 nights', c1='#5d7fa8', c2='#142236',
+    seo='Harbin Tour Package from Malaysia: Ice and Snow World and Changbai Mountain',
+    line='Rime forests, hot springs in the snow and the ice city of Harbin.', hotels='Including the Shangri-La Changchun and a hot-spring resort',
+    head='China’s far north, at its whitest.',
+    lead='Frost-coated trees along the Songhua River, two nights at a hot-spring resort below Changbai Mountain, the snow villages of Mojie and Xueling, the frozen falls of Jingpo Lake, then Harbin’s Ice and Snow World and its snow sculptures.',
+    highlights=['Harbin Ice and Snow World', 'Sun Island Snow Sculpture Expo', 'St Sophia Cathedral and Central Street', 'Ashihada Rime Corridor', 'Changbai Mountain', 'Hot springs in the snow', 'Xueling snow village', 'Sleigh rides, reindeer and winter rafting'],
+    days=[
+      _d('Kuala Lumpur to Changchun', '', ['Fly to Changchun, with one connection.'], 'Changchun, Shangri-La or similar'),
+      _d('Changchun to Jilin', 'B, L, D', ['The old Changchun Film Studio, now a museum.', 'A stop for winter clothing, if you need warmer layers.'], 'Jilin'),
+      _d('Rime corridor and Changbai Mountain', 'B, L, D', ['The <b>Ashihada Rime Corridor</b>, trees coated in frost along the Songhua River.', 'The Beauty Pine sky bridge, then hot springs in the snow at the resort.'], 'Changbai Mountain, hot-spring resort'),
+      _d('Changbai Mountain', 'B, L, D', ['The north slope of <b>Changbai Mountain</b>, in deep winter snow.'], 'Changbai Mountain, hot-spring resort'),
+      _d('Mojie and Xueling', 'B, L, D', ['<b>Mojie</b>, a valley of rime and icefalls.', '<b>Xueling</b>, a village buried in snow like a castle of white.', 'On to Dunhua.'], 'Dunhua'),
+      _d('Jingpo Lake to Harbin', 'B, L, D', ['<b>Jingpo Lake</b> and its frozen waterfall.', '<b>Harbin Ice and Snow World</b>, the ice city lit up after dark.'], 'Harbin', meal='Jingpo Lake fish feast'),
+      _d('Harbin', 'B, D', ['The <b>Sun Island Snow Sculpture Expo</b>.', 'The Harbin Snowman, <b>St Sophia Cathedral</b> and Central Street.'], 'Harbin'),
+      _d('Harbin to Kuala Lumpur', 'B', ['Fly home, with one connection.']),
+    ],
+    included=['Return flights from Kuala Lumpur, with one connection each way', 'Seven nights: Changchun 1, Jilin 1, Changbai Mountain 2 (hot-spring resort), Dunhua 1, Harbin 2', 'Most meals, including the ice-palace steamboat at the Shangri-La, Dongbei stews and ginseng chicken pot', 'Electric cars in the scenic areas, and a hand warmer for everyone'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
+    notes='Expect temperatures well below freezing. If you have no winter wear, there is a stop to buy it on day 2.',
+  ),
+  dict(slug='ap-spain-portugal', page='tour-ap-spain-portugal.html', brand='Apple Vacations', title='Spain &amp; Portugal', region='Europe', duration='12 days, 9 nights', c1='#b5652e', c2='#3a1a0a',
+    seo='Spain and Portugal Tour Package from Malaysia: Lisbon, Seville and Barcelona',
+    line='From the port cellars of Porto to Gaudí’s Barcelona.', hotels='4-star',
+    head='The Iberian Peninsula, end to end.',
+    lead='Port wine and the Douro in Porto, a chartered tram in Lisbon, Roman Évora, Seville’s cathedral, Ronda on its gorge, Córdoba’s Mezquita, Toledo and Madrid, then the AVE train to Barcelona for Park Güell and the Sagrada Família.',
+    highlights=['Douro river boat ride, Porto', 'Port wine tasting', 'Jerónimos Monastery, Lisbon', 'Seville Cathedral and the Giralda', 'Ronda’s Puente Nuevo', 'The Mezquita, Córdoba', 'Royal Palace, Madrid', 'Sagrada Família and Park Güell'],
+    days=[
+      _d('Kuala Lumpur to Porto', '', ['Overnight flight to Porto.']),
+      _d('Porto', 'L, D', ['Porto Cathedral and the Ribeira riverfront, a <b>boat on the Douro</b> and the Luís I Bridge.', 'A port cellar visit and tasting in Vila Nova de Gaia.'], 'Porto'),
+      _d('Porto to Lisbon', 'B, L, D', ['To Lisbon, and a vintage <b>tram</b> chartered for the group.', 'Rossio Square.'], 'Lisbon'),
+      _d('Lisbon to Évora', 'B, L, D', ['<b>Jerónimos Monastery</b>, Belém Tower and the Monument to the Discoveries.', '<b>Évora</b>: the Roman temple, the cathedral and the old university.'], 'Évora'),
+      _d('Évora to Seville', 'B, L, D', ['<b>Seville Cathedral</b> and the Giralda, Plaza de España and the Santa Cruz quarter.'], 'Seville'),
+      _d('Ronda to Córdoba', 'B, L, D', ['<b>Ronda</b> on its gorge: the Puente Nuevo and the old bullring.', 'On to Córdoba.'], 'Córdoba'),
+      _d('Córdoba to Madrid', 'B, L, D', ['<b>The Mezquita</b>, the Alcázar of the Christian Monarchs and the Roman bridge.', 'On to Madrid.'], 'Madrid'),
+      _d('Toledo and Madrid', 'B, D', ['<b>Toledo</b> and the Church of Santo Tomé.', 'The Santiago Bernabéu stadium and El Corte Inglés.'], 'Madrid', meal='Flamenco dinner and show'),
+      _d('Madrid to Barcelona', 'B, D', ['The <b>Royal Palace</b> and Plaza de España.', 'High-speed AVE train to Barcelona.'], 'Barcelona'),
+      _d('Barcelona', 'B, D', ['Montjuïc and the Olympic Park, and <b>Park Güell</b>.', 'Shopping at La Roca Village.'], 'Barcelona'),
+      _d('Barcelona, fly home', 'B', ['<b>The Sagrada Família</b> and Casa Milà.', 'La Rambla and Plaça de Catalunya, then the flight home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur, into Porto and home from Barcelona', 'Nine nights in 4-star hotels or similar: Porto 1, Lisbon 1, Évora 1, Seville 1, Córdoba 1, Madrid 2, Barcelona 2', 'Most meals, including a seafood platter, bacalhau, paella, Segovia-style suckling pig, tapas and a flamenco dinner', 'Entrance to the Sagrada Família, Casa Milà, Park Güell, the Mezquita, the Royal Palace and Jerónimos Monastery', 'High-speed AVE train from Madrid to Barcelona'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
+  ),
+  dict(slug='ap-greece', page='tour-ap-greece.html', brand='Apple Vacations', title='Greece: Meteora, Mykonos &amp; Santorini', region='Europe', duration='10 days, 7 nights', c1='#2f6fa6', c2='#0b1f33',
+    seo='Greece Tour Package from Malaysia: Santorini, Mykonos and Meteora',
+    line='Monasteries in the sky, two islands and the Acropolis.', hotels='Hotels throughout',
+    head='Mainland Greece, then the islands.',
+    lead='Thessaloniki, the cliff-top monasteries of Meteora, the oracle at Delphi, Athens, then by ferry to Mykonos and Santorini for the caldera, the volcano and sunset at Oia, finishing at the Acropolis.',
+    highlights=['Meteora monasteries', 'Delphi and the Temple of Apollo', 'Mykonos windmills and Little Venice', 'Santorini caldera walk', 'Private boat to the Santorini volcano', 'Sunset at Oia', 'The Acropolis and its museum', 'Dinner at a Michelin-listed restaurant in Athens'],
+    days=[
+      _d('Kuala Lumpur to Thessaloniki', '', ['Overnight flight to Thessaloniki.']),
+      _d('Thessaloniki to Kalambaka', 'L, D', ['<b>Thessaloniki</b>: the upper town, the Church of Saint Demetrius, the Arch of Galerius and the White Tower on the seafront.', 'On to Kalambaka.'], 'Kalambaka'),
+      _d('Meteora to Delphi', 'B, L, D', ['<b>Meteora</b>, two of the monasteries built on top of its rock pillars.', 'On to Delphi.'], 'Delphi'),
+      _d('Delphi to Athens', 'B, L, D', ['<b>Delphi</b>: the Temple of Apollo, home of the oracle, and the museum.', '<b>Athens</b>: Syntagma Square, the Tomb of the Unknown Soldier, the Temple of Olympian Zeus and the Panathenaic Stadium.'], 'Athens'),
+      _d('Ferry to Mykonos', 'B, L, D', ['High-speed ferry to <b>Mykonos</b>.', 'The windmills, Little Venice and the lanes of Mykonos Town, and Paradise Beach.'], 'Mykonos'),
+      _d('Ferry to Santorini', 'B, D', ['A free morning on Mykonos, then the ferry to <b>Santorini</b>.', 'The caldera walk from Firostefani to Fira.'], 'Santorini'),
+      _d('The volcano and Oia', 'B, L', ['A private boat to the volcano at Nea Kameni, and the warm springs of Palea Kameni.', 'Up from the old port by cable car or donkey.', '<b>Sunset at Oia.</b>'], 'Santorini'),
+      _d('Santorini to Athens', 'B, L, D', ['Wine tasting and lunch at a volcanic winery, then Pyrgos, Profitis Ilias and the black sand of Kamari.', 'Evening flight to Athens.'], 'Athens'),
+      _d('Athens, fly home', 'B', ['<b>The Acropolis</b>: the Propylaea, the Temple of Athena Nike and the Parthenon, then the Acropolis Museum.', 'Free time in Monastiraki before the flight home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur, and the flight from Santorini to Athens', 'Seven nights: Kalambaka 1, Delphi 1, Athens 2, Mykonos 1, Santorini 2', 'High-speed ferries from Athens to Mykonos and Mykonos to Santorini', 'Most meals, including a lobster menu and dinner at a Michelin-listed restaurant in Athens', 'Meteora, Delphi, the Acropolis and its museum, and a private volcano cruise'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
+    notes='In rough seas a high-speed ferry may be swapped for a slower one of up to five hours.',
+  ),
+  dict(slug='ap-finland', page='tour-ap-finland.html', brand='Apple Vacations', title='Finnish Lapland &amp; the Northern Lights', region='Europe', duration='10 days, 7 nights', c1='#2e5d6e', c2='#081a22',
+    seo='Finland Northern Lights Tour from Malaysia: Lapland, Huskies and Santa Claus Village',
+    line='Huskies, reindeer, king crab in Norway and the Northern Lights.', hotels='Lapland hotels, including Santa’s Hotels',
+    head='A week above the Arctic Circle.',
+    lead='Rovaniemi and the Arctic Circle, an amethyst mine on a snowy fell, a Northern Lights evening at Inari, a king crab safari over the border in Norway, then huskies and Santa Claus Village before flying home.',
+    highlights=['Northern Lights evening tour', 'Husky safari', 'Snowmobile and reindeer ride', 'Arctic king crab safari, Norway', 'Santa Claus Village and the Arctic Circle', 'Amethyst mine at Luosto', 'Arktikum museum', 'Nordic skiing'],
+    days=[
+      _d('Kuala Lumpur to Rovaniemi', '', ['Overnight flight to Rovaniemi.']),
+      _d('Rovaniemi', 'D', ['The <b>Arktikum</b>, Lapland’s museum of the Arctic.'], 'Rovaniemi'),
+      _d('Luosto to Saariselkä', 'B, L, D', ['Up the fell at Luosto to Europe’s only working <b>amethyst mine</b>, and dig for a stone of your own.'], 'Saariselkä'),
+      _d('Inari and the Northern Lights', 'B, L, D', ['A <b>snowmobile</b> ride and a reindeer sleigh.', 'An evening <b>Northern Lights</b> tour.'], 'Inari'),
+      _d('King crab in Norway', 'B, L, D', ['Over the border to Kirkenes for an <b>Arctic king crab safari</b>.'], 'Kirkenes, Norway', meal='King crab'),
+      _d('Back to Finland', 'B, L, D', ['Back across the border, with Nordic skiing on the way.'], 'Saariselkä'),
+      _d('Huskies and Santa Claus Village', 'B, L, D', ['A <b>husky safari</b>.', '<b>Santa Claus Village</b> on the Arctic Circle, with your crossing certificate.'], 'Rovaniemi'),
+      _d('Rovaniemi', 'B, D', ['A day around Rovaniemi; November departures visit Ranua Wildlife Park.'], 'Rovaniemi'),
+      _d('Rovaniemi to Kuala Lumpur', 'B', ['Fly home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur', 'Seven nights: Rovaniemi 3, Saariselkä 2, Inari 1, Kirkenes 1', 'Most meals, including a Lappish menu, reindeer and king crab', 'Husky safari, snowmobile and reindeer rides, king crab safari, Northern Lights tour, amethyst mine and Arctic Circle certificate'],
+    excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
+    notes='Arctic weather sets the order of activities. The Northern Lights are never guaranteed, but December to February gives the longest, darkest nights.',
+  ),
+  dict(slug='ap-australia', page='tour-ap-australia.html', brand='Apple Vacations', title='Sydney &amp; Melbourne', region='Australia', duration='9 days, 6 nights', c1='#2f78a0', c2='#0c2333',
+    seo='Australia Tour Package from Malaysia: Sydney, Blue Mountains and Melbourne',
+    line='The harbour, the Blue Mountains, the Great Ocean Road and the Penguin Parade.', hotels='4-star',
+    head='Australia’s two great cities, and the coast between.',
+    lead='Three nights in Sydney with a harbour cruise, the Blue Mountains and a free day, then Melbourne: the Great Ocean Road, Phillip Island’s Penguin Parade, the Puffing Billy steam train and the city’s laneways.',
+    highlights=['Sydney Opera House', 'Sydney Harbour cruise', 'Blue Mountains Scenic World', 'Great Ocean Road and the Twelve Apostles', 'Penguin Parade, Phillip Island', 'Puffing Billy steam train', 'Melbourne’s laneways', 'Eureka Skydeck'],
+    days=[
+      _d('Kuala Lumpur to Sydney', '', ['Overnight flight to Sydney.']),
+      _d('Sydney Harbour', 'L, D', ['Mrs Macquarie’s Chair and the <b>Sydney Opera House</b>.', 'A <b>Sydney Harbour cruise</b>.'], 'Sydney'),
+      _d('The Blue Mountains', 'B, L, D', ['Calmsley Hill City Farm, to meet and feed the animals.', '<b>The Blue Mountains</b>: the Scenic World railway, cableway and skyway, and the Three Sisters from Echo Point.'], 'Sydney'),
+      _d('Sydney at leisure', 'B', ['A free day in Sydney. Tell us before you go if you would like anything booked.'], 'Sydney'),
+      _d('Sydney to Melbourne', 'B, D', ['The Rocks, and lunch at the <b>Sydney Fish Market</b> (own expense).', 'Evening flight to Melbourne.'], 'Melbourne'),
+      _d('The Great Ocean Road', 'B, L, D', ['<b>The Great Ocean Road</b> and the Twelve Apostles, from September to May.', 'From June to August, <b>Sovereign Hill</b> and its gold-mine tour instead.'], 'Melbourne'),
+      _d('Phillip Island', 'B, L, D', ['Wine tasting and lunch at a winery, and a chocolate stop.', 'The <b>Penguin Parade</b> from the Penguins Plus platform, as the little penguins come ashore at dusk.'], 'Melbourne', meal='Winery lunch'),
+      _d('Melbourne, fly home', 'B, L, D', ['The <b>Puffing Billy</b> steam train through the Dandenong Ranges, and Brighton Beach.', 'Federation Square, Flinders Street Station, the laneways and arcades, and a flat white.', '<b>Eureka Skydeck</b>, with The Edge.', 'Late flight home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur, and the flight from Sydney to Melbourne', 'Six nights in 4-star hotels or similar: Sydney 3, Melbourne 3', 'Most meals, including dinner on the harbour cruise, a winery lunch and an Asian dinner with lobster', 'Harbour cruise, Scenic World, Penguins Plus, Puffing Billy and Eureka Skydeck with The Edge'],
+    excluded=['Australian ETA, travel insurance and tipping, unless stated', 'Meals not listed'],
+  ),
 ]
 
 # Golden Destinations departure dates, matched from gd.my on 1 November 2026 (prices deliberately left out).
@@ -462,6 +603,31 @@ GD_DATES = {
     'gd-egypt': ('9XCG', '''
         2027-01-15 2027-01-22 2027-02-01 2027-02-02 2027-02-03 2027-02-09 2027-02-21 2027-03-03
         2027-03-07 2027-03-17 2027-04-11 2027-04-18 2027-04-25
+        '''.split()),
+    # Apple Vacations tours, bookable dates from applevacations.my/en/tour.php?pckg_id=<id>, checked 1 November 2026 (dates marked Full left out)
+    'ap-zhangjiajie': ('CNEZJ09', '''
+        2026-12-01 2026-12-14 2026-12-22 2027-01-13 2027-01-20 2027-02-20 2027-03-07 2027-03-08
+        2027-03-14 2027-03-28 2027-04-10 2027-04-17 2027-04-19 2027-04-21 2027-05-08 2027-05-13
+        2027-05-15 2027-05-22 2027-05-24 2027-05-27 2027-05-31 2027-06-10 2027-06-21 2027-06-28
+        2027-07-08 2027-07-19 2027-07-26 2027-08-05 2027-08-16 2027-08-23 2027-09-02 2027-09-13
+        2027-09-20 2027-10-11 2027-10-18
+        '''.split()),
+    'ap-australia': ('AUMEL09', '''
+        2027-02-04 2027-04-17 2027-05-15 2027-05-27 2027-06-08
+        '''.split()),
+    'ap-dongbei': ('CNSDB08', '''
+        2026-12-18 2026-12-22 2026-12-23 2027-01-10 2027-01-15 2027-12-19 2027-12-21
+        '''.split()),
+    'ap-spain-portugal': ('EULIS12', '''
+        2027-01-18 2027-02-01 2027-02-06 2027-02-08 2027-03-03 2027-03-10 2027-04-12 2027-04-21
+        2027-05-05 2027-05-17 2027-09-13 2027-09-21 2027-10-11 2027-10-25
+        '''.split()),
+    'ap-finland': ('EULRVN10', '''
+        2026-12-12 2026-12-16 2026-12-18 2026-12-25 2026-12-28 2026-12-30 2027-01-29 2027-02-03
+        2027-02-05 2027-02-06 2027-02-08 2027-02-12 2027-02-19 2027-02-22
+        '''.split()),
+    'ap-greece': ('EUSKG10', '''
+        2027-04-23 2027-05-07 2027-05-13 2027-09-03 2027-09-15 2027-10-12
         '''.split()),
 }
 

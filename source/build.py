@@ -497,7 +497,7 @@ def build_services():
 
 # ======================= TOURS =======================
 def build_tours():
-    regions = [('all', 'All tours', '全部'), ('asia', 'Asia', '亚洲'), ('europe', 'Europe', '欧洲'), ('africa', 'Africa', '非洲'), ('oceania', 'New Zealand', '纽西兰')]
+    regions = [('all', 'All tours', '全部'), ('asia', 'Asia', '亚洲'), ('europe', 'Europe', '欧洲'), ('africa', 'Africa', '非洲'), ('oceania', 'Australia &amp; New Zealand', '澳洲与纽西兰')]
     chips = '<div class="chips" data-filter-group="tourGrid" role="group" aria-label="Filter tours by region">' + ''.join(
         f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{z if LANG == "zh" else e}</button>' for k, e, z in regions) + '</div>'
     order = [k for k, _, _ in regions]
@@ -730,7 +730,7 @@ def build_gd_tour(q):
         <div><dt>Hotels</dt><dd>{q['hotels']}</dd></div>
         <div><dt>Departures</dt><dd>{q.get('departs') or 'Ask us'}</dd></div>
         <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
-        <div><dt>Tour by</dt><dd>Golden Destinations</dd></div>
+        <div><dt>Tour by</dt><dd>{q.get('brand', 'Golden Destinations')}</dd></div>
       </dl>
       <a class="btn btn--red" href="contact.html?tour={q['slug']}">Enquire on WhatsApp</a>
       <a class="btn btn--line-dark" href="contact.html?tour={q['slug']}">Ask for fares and dates</a>
@@ -745,7 +745,7 @@ def build_gd_tour(q):
       <div><h3>Included</h3><ul>{inc}</ul></div>
       <div><h3>Not included</h3><ul>{exc}</ul></div>
     </div>{notes}
-    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by Golden Destinations. Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
+    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by {q.get('brand', 'Golden Destinations')}. Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
   </div>
 </section>
 <section class="section" aria-labelledby="more-h">

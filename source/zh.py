@@ -55,6 +55,12 @@ TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card a
     'gd-vietnam': dict(short='岘港', line='会安古镇、巴拿山黄金桥与顺化皇城'),
     'gd-switzerland-italy': dict(short='瑞士', line='少女峰、Glacier 3000、Golden Pass 观光列车、日内瓦湖与米兰'),
     'gd-egypt': dict(short='埃及', line='金字塔、阿布辛贝、尼罗河游船三晚、卢克索与亚历山大'),
+    'ap-zhangjiajie': dict(short='张家界', line='砂岩峰林、峡谷玻璃桥、天门山与凤凰古城'),
+    'ap-dongbei': dict(short='哈尔滨', line='雾凇、雪中温泉与哈尔滨冰雪大世界'),
+    'ap-spain-portugal': dict(short='西班牙', line='波尔图、里斯本、塞维利亚、龙达、科尔多瓦、托莱多、马德里与巴塞罗那'),
+    'ap-greece': dict(short='希腊', line='迈泰奥拉、德尔斐、雅典、米科诺斯，圣托里尼住两晚'),
+    'ap-finland': dict(short='拉普兰', line='哈士奇、驯鹿、挪威帝王蟹与北极光'),
+    'ap-australia': dict(short='澳洲', line='悉尼港、蓝山、大洋路与企鹅归巢'),
 }
 
 MEMBERS_ZH = {'MATTA': '马来西亚旅游代理商协会', 'MITA': '马来西亚入境旅游协会',
@@ -526,6 +532,8 @@ UI = {
   '<span>Stay</span>': '<span>住宿</span>',
   'What’s included.': '费用包括哪些。',
   'Operated by Golden Destinations. ': '由 Golden Destinations 承办。',
+  'Operated by Apple Vacations. ': '由 Apple Vacations 承办。',
+  'Tour photo to come': '旅游照片即将更新',
   'Booked through YSL. We handle your booking, documents and questions from start to finish.': '通过 YSL 预订。从预订、证件到各种疑问，我们全程为您处理。',
   'Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.': '行程顺序和酒店可能因当地活动、天气或供应情况而调整。团费、日期及完整行程以预订时确认为准。',
 
@@ -619,7 +627,7 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
         'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
         'Eiger Express', 'Golden Pass', 'Glacier 3000',
-        'Lovely Vacation', 'UbinGO Vacations', 'FS Holidays', 'Touch ’n Go eWallet']  # brand names stay in English
+        'Lovely Vacation', 'UbinGO Vacations', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
 
 
 def check(zh_dir):

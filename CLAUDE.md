@@ -21,6 +21,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - `build.py`: page templates (`build_home`, `build_corporate`, `build_about`, `build_services`, `build_tours`, tour pages, journal, contact).
 - `data.py`: tours, services, contact details, Golden Destinations itineraries. `articles.py`: journal articles.
 - Golden Destinations dates: `GD_DATES` in `data.py` (GD tour code + ISO dates, from `https://www.gd.my/b2c2b/api/v1/series/<CODE>?business_type=b2c2b&type=series`, the JSON behind `gd.my/web/itinerary/<CODE>`). Card months (`departs`) and the tour-page date list are built from it, in both languages. GD photos: `dist/assets/gd-<tour>-card.jpg` (5:4) and `-hero.jpg`.
+- Apple Vacations tours (`ap-*` slugs) use the same `GD_TOURS` / `GD_DATES` structures with `brand='Apple Vacations'`. Source: `applevacations.my/en/tour.php?pckg_id=<id>` (server-rendered HTML: days, hotels, meals, and a departure table where bookable rows have a `booking.php` link; rows marked Full are left out). Photos and PDFs sit on `aws.applevacations.my:2030`, which needs allowing in the environment's network settings. Apple says its images come from internet sources, so prefer YSL's or GD's own photos where possible.
 - GD tour SEO: each GD tour has `seo` (the page `<title>`, keyword first: "Korea Tour Package from Malaysia: ..."; Chinese "韩国旅游配套：..." in `tours_zh.py`). The meta description adds the departure months; the share image is the tour hero.
 - `feedback.py`: the feedback form (also used by `standalone.py`, which also holds the Google Apps Script for the response sheet).
 - CSS is concatenated in this order: `site.css`, `pages.css`, `home.css`, `premium.css`, `type.css`, `red.css`, `zh.css`. Later files override earlier ones. `zh.css` only applies under `html:lang(zh)`.
@@ -52,7 +53,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Do not feature YSL's own coaches.
 - British spelling. Plain, confident copy; no filler.
 - Placeholders YSL still has to supply are marked with the `tbc` class (yellow highlight).
-- Golden Destinations stays low-key (client request): no GD headings or sections. Partner-tour cards say "Partner tour"; GD is named only in the partner list (`BRANDS`), the "Tour by" line and the small print on its tour pages.
+- Golden Destinations and Apple Vacations stay low-key (client request): no brand headings or sections. Partner-tour cards say "Partner tour"; the brand is named only in the partner list (`BRANDS`), the "Tour by" line and the small print on its tour pages.
 - Holidays & Tours is one grid filtered by region (`cat` in `TOURS`: asia, europe, africa, oceania), YSL's own tours first. No airline logos or lists: YSL sells all airlines.
 - Credentials (all confirmed by YSL): MOTAC KPL 6107, IATA accredited, MATTA, MITA, MICA, MCTA. Shown as text until YSL supplies the logo files; for IATA only the "IATA Accredited Agent" mark from IATA's agent portal may be used.
 - Partners (confirmed): Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours (less active, still listed), Golden Destinations.
