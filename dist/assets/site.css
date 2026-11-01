@@ -1031,6 +1031,10 @@ html .mice-grid p, html .scale-grid p, html .local-grid p, html .case-body p { f
 html .h-xxl, html .h-xl, html .h-l, html .h-m, html .globe-copy h1, html .plan-band h2, html .cta-band .h-xl,
 html .slot b, html .t-title, html .mice-grid h3, html .page-head h1, html .tour-hero h1 { font-style: normal; }
 html .h-xxl em, html .h-xl em, html .h-l em, html .h-m em, html .globe-copy h1 em, html .plan-band h2 em, html .cta-band .h-xl em { font-style: italic; }
+/* "Where to next?" band: no dark wash or dimming, so the YSL branding on the photo shows in full */
+.plan-band::after { display: none; }
+.plan-band img.bg { filter: none; }
+.plan-band .eyebrow { color: #fff; }
 
 /* Chinese site (dist/zh/, <html lang="zh-Hans">). Latin text keeps the site's typefaces; Chinese falls through to
    Noto Serif SC for headings and Noto Sans SC for text. Chinese has no italics, so red accent words stay upright
