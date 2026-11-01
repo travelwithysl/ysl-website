@@ -43,30 +43,6 @@ ARTICLES = [
     <p>The season runs from late spring to early autumn. July and August bring the rapeseed flowers at Qinghai Lake; September brings clear skies and fewer crowds. Winter is very cold on the plateau, and some sights close or shorten their hours.</p>''',
     cta=('Travel to Qinghai and Gansu with us', 'Our ten-day group tour covers the full route, from Lanzhou through Dunhuang to Qinghai Lake, with flights, hotels and meals arranged.', 'tour-qinghai-gansu.html', 'See the tour')),
 
-  dict(slug='incentive', cat='corp', title='Planning a company incentive trip',
-    lead='A reward trip works when the people who earned it feel looked after from the first email to the flight home. Here is the checklist we walk HR teams through.',
-    excerpt='A checklist for HR teams, from budget to boarding.',
-    date='15 September 2026', read='6 min read', img='business.jpg', alt='Two colleagues walking through an airport with their luggage',
-    body='''<p>An incentive trip is not just a holiday paid for by the company. It is a message to your best people, and every detail either supports that message or undercuts it. The good news is that most of what makes a trip feel generous is planning, not budget.</p>
-    <h2>1. Start with the purpose</h2>
-    <p>Decide what the trip is for before you decide where it goes. A reward for top performers, a dealer conference with a holiday attached, and a whole-company celebration need different pacing, hotels and programmes. Write the purpose in one sentence and test every later decision against it.</p>
-    <h2>2. Set the budget per person</h2>
-    <p>Agree a figure per traveller that covers flights, hotels, meals, activities, the gala night and a contingency. Working per person makes it easy to compare destinations fairly and to see what changes if the group grows.</p>
-    <h2>3. Give yourself time</h2>
-    <p>For large groups we recommend starting at least six months ahead. That is what it takes to hold group seats on the right flights, secure room blocks in one hotel, and avoid paying peak rates for anything booked late.</p>
-    <p class="pull">Most of what makes a trip feel generous is planning, not budget.</p>
-    <h2>4. Choose dates with care</h2>
-    <p>Check the dates against school holidays, festive seasons and your own busy periods. Avoiding the peaks often saves more than switching to a cheaper hotel, and it keeps the destination pleasant rather than crowded.</p>
-    <h2>5. Match the destination to the group</h2>
-    <p>Flight time matters. Four or five days suit a short-haul destination; a long-haul trip needs a week or more to feel worth the journey. Think about the mix of ages, dietary needs and how active your group really is.</p>
-    <h2>6. Plan for every guest</h2>
-    <ul><li>Halal and vegetarian meals, confirmed with each restaurant in advance</li><li>Prayer times and space where they are needed</li><li>Mobility needs, room preferences and roommates</li><li>Passports, visas and insurance checked early, not the week before</li></ul>
-    <h2>7. Build in one moment to remember</h2>
-    <p>Most groups remember one evening more than anything else: a gala dinner, an awards night, a private venue. Put a share of the budget there, and keep the rest of the programme relaxed enough that people enjoy it.</p>
-    <h2>8. Close it properly</h2>
-    <p>Ask for a reconciled final account, collect feedback while the trip is fresh, and keep the photos. They make next year’s announcement much easier.</p>''',
-    cta=('Plan your incentive trip with us', 'Send us a short brief: rough numbers, dates and budget. We’ll come back with options and an itemised quotation.', 'corporate.html', 'MICE and corporate travel')),
-
   dict(slug='retreat', cat='corp', title='A company retreat close to home',
     lead='Not every team trip needs a passport. Malaysia has islands, highlands and heritage towns within an easy flight or drive, and a well-planned local retreat can feel every bit as special.',
     excerpt='Eight Malaysian destinations for team building and company trips.',

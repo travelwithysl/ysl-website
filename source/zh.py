@@ -184,7 +184,7 @@ UI = {
   'Founded in Klang in 2009, YSL Travel & Tours plans holidays, group tours and business travel for families and companies. Licensed by MOTAC (KPL 6107).': 'YSL Travel & Tours 2009年创立于巴生，为家庭与企业安排假期、团体游及商务旅行。持有马来西亚旅游、艺术及文化部执照（KPL 6107）。',
   'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.': '机票、旅游配套、酒店、邮轮、保险、签证、奖励旅游团及巴士租赁。',
   'Tour Packages from Malaysia | YSL Travel & Tours': '旅游配套，吉隆坡出发 | YSL Travel & Tours',
-  'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL group tours and Golden Destinations tours, booked in Klang.': '吉隆坡出发的团体旅游配套：中国、日本、韩国、台湾、越南、欧洲、瑞士、土耳其、埃及、南非与纽西兰。YSL 自营团体游及 Golden Destinations 团体游，在巴生预订。',
+  'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.': '吉隆坡出发的团体旅游配套：中国、日本、韩国、台湾、越南、欧洲、瑞士、土耳其、埃及、南非与纽西兰。YSL 自营团体游及合作伙伴团，在巴生预订。',
   'Group tour through Kunming, Dali, Lijiang and Shangri-La.': '昆明、大理、丽江、香格里拉团体游。',
   '10-day group tour through Gansu and Qinghai: the Rainbow Mountains, Mogao Caves, Chaka Salt Lake and Qinghai Lake.': '甘肃、青海10天团体游：七彩丹霞、莫高窟、茶卡盐湖与青海湖。',
   'Destination guides, travel tips and corporate travel advice from YSL Travel & Tours.': 'YSL Travel & Tours 的目的地指南、旅行贴士与商务旅游建议。',
@@ -206,7 +206,8 @@ UI = {
   '<h4>Visit us</h4>': '<h4>欢迎到访</h4>',
   '<h4>Get in touch</h4>': '<h4>联系方式</h4>',
   '>Google Maps</a>': '>谷歌地图</a>',
-  'Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA': '旅行社执照 KPL 6107 &nbsp; MATTA、MITA、MICA 及 MCTA 会员',
+  'Licence KPL 6107 &nbsp; IATA accredited &nbsp; Member of MATTA, MITA, MICA and MCTA': '旅行社执照 KPL 6107 &nbsp; IATA 认可代理 &nbsp; MATTA、MITA、MICA 及 MCTA 会员',
+  'Accredited agent, International Air Transport Association': '国际航空运输协会（IATA）认可代理',
 
   # shared blocks
   '<p class="eyebrow">Talk to us</p>': '<p class="eyebrow">联系我们</p>',
@@ -388,7 +389,7 @@ UI = {
   '<b>Since 2009</b>': '<b>始于2009年</b>',
   'Led by a founder with more than 25 years in travel.': '由拥有逾25年旅游业经验的创办人领导。',
   '<b>Licensed and accredited</b>': '<b>持牌与认证</b>',
-  'KPL 6107, and members of MATTA, MITA, MICA and MCTA.': '执照 KPL 6107，并为 MATTA、MITA、MICA 及 MCTA 会员。',
+  'KPL 6107, IATA accredited, and members of MATTA, MITA, MICA and MCTA.': '执照 KPL 6107，IATA 认可代理，并为 MATTA、MITA、MICA 及 MCTA 会员。',
   '<b>Clear quotations</b>': '<b>报价清楚</b>',
   'Itemised proposals and a reconciled final account your finance team can sign off.': '逐项列明的方案，以及财务部门可直接核准的最终账目。',
   'Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M': '客户标志，包括 Kossan、Kitacon、TOLi、Econframe、Max Filter Industries、Sendok Group、Megastra Jaya、MAARA、Wesglow 及 C.A.M',
@@ -424,6 +425,7 @@ UI = {
   '<p class="eyebrow">Credentials</p>': '<p class="eyebrow">资质</p>',
   'Licensed, registered and accredited.': '持牌、注册、获认证。',
   'Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).': '持有马来西亚旅游、艺术及文化部执照（KPL 6107），并以 YSL Travel &amp; Tours Sdn Bhd（877803-T）名义于马来西亚公司委员会（SSM）注册。',
+  ' An IATA-accredited travel agent.': '国际航空运输协会（IATA）认可旅行代理。',
   'Trusted by more than 50 companies.': '深受50多家企业信赖。',
   'Companies of every size rely on us for business travel and group trips that are well organised, good value and handled with discretion.': '各种规模的企业都把商务旅行和团体旅游交给我们：安排周到、物有所值、处事稳妥。',
 
@@ -436,14 +438,9 @@ UI = {
   '>Ask about ': '>咨询',
 
   # tours
-  '<p class="eyebrow">YSL group tours</p>': '<p class="eyebrow">YSL 团体游</p>',
   'Where will you go next?': '下一站，您想去哪里？',
   'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.': 'YSL 自营团体游，以及马来西亚知名旅游品牌的招牌团体游，全部由 YSL 为您预订和照顾。',
-  'Journeys we design and lead.': '我们亲自设计、带领的旅程。',
-  '<p class="eyebrow">Signature group tours</p>': '<p class="eyebrow">招牌团体游</p>',
-  'From Golden Destinations.': '来自 Golden Destinations。',
-  'Popular guaranteed-departure tours from one of the brands we carry. Book through YSL and we look after you from enquiry to the flight home.': '合作品牌的热门保证出发团。通过 YSL 预订，从咨询到回程航班，我们全程照顾您。',
-  '<b>Looking for something else?</b> We also book packages from Golden Destinations, Parlo Tours and Apple Vacations. Tell us where you want to go and we’ll compare options for you.': '<b>想找其他行程？</b>我们也代订 Golden Destinations、Parlo Tours 及 Apple Vacations 的配套。告诉我们您想去哪里，我们为您比较各种选择。',
+  '<b>Looking for something else?</b> We also book packages from Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours and Golden Destinations. Tell us where you want to go and we’ll compare options for you.': '<b>想找其他行程？</b>我们也代订 Apple Vacations、Lovely Vacation、UbinGO Vacations、FS Holidays、Parlo Tours 及 Golden Destinations 的配套。告诉我们您想去哪里，我们为您比较各种选择。',
 
   # tour pages
   'Sample tour page: itinerary, duration and inclusions are placeholders to show the layout.': '示范行程页：行程、天数和费用包括项目均为占位内容，仅用于展示版面。',
@@ -508,7 +505,7 @@ UI = {
   '<dd>4-Diamond</dd>': '<dd>Ctrip 四钻</dd>',
   '<dd>2026, ask us</dd>': '<dd>2026年，欢迎询问</dd>',
   '>Departure dates</h3>': '>出发日期</h3>',
-  'Group departures from Kuala Lumpur on Golden Destinations’ current schedule. Ask us which dates still have seats.': '吉隆坡出发，依 Golden Destinations 现行出团日期。欢迎询问哪些日期仍有空位。',
+  'Group departures from Kuala Lumpur. Ask us which dates still have seats.': '吉隆坡出发。欢迎询问哪些日期仍有空位。',
   '<dt>Tour by</dt>': '<dt>承办</dt>',
   '>Enquire on WhatsApp</a>': '>WhatsApp 咨询</a>',
   '>Download itinerary (PDF)</a>': '>下载行程（PDF）</a>',
@@ -528,7 +525,8 @@ UI = {
   '<span>Featured meal</span>': '<span>特色餐</span>',
   '<span>Stay</span>': '<span>住宿</span>',
   'What’s included.': '费用包括哪些。',
-  'Booked through YSL, operated by Golden Destinations. We handle your booking, documents and questions from start to finish.': '通过 YSL 预订，由 Golden Destinations 承办。从预订、证件到各种疑问，我们全程为您处理。',
+  'Operated by Golden Destinations. ': '由 Golden Destinations 承办。',
+  'Booked through YSL. We handle your booking, documents and questions from start to finish.': '通过 YSL 预订。从预订、证件到各种疑问，我们全程为您处理。',
   'Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.': '行程顺序和酒店可能因当地活动、天气或供应情况而调整。团费、日期及完整行程以预订时确认为准。',
 
   # journal
@@ -559,6 +557,11 @@ UI = {
   '<dt>Office</dt>': '<dt>办公室</dt>',
   '<dt>Phone</dt>': '<dt>电话</dt>',
   '<dt>Opening hours</dt>': '<dt>营业时间</dt>',
+  '<dt>Payment</dt>': '<dt>付款方式</dt>',
+  'Touch ’n Go eWallet accepted at our office': '本公司接受 Touch ’n Go eWallet 付款',
+  'aria-label="Filter tours by region"': 'aria-label="按地区筛选旅游团"',
+  'aria-label="Tours"': 'aria-label="旅游团"',
+  'class="t-stub"><span>Partner tour</span>': 'class="t-stub"><span>合作伙伴团</span>',
   '>Open in Google Maps</a>': '>在谷歌地图中打开</a>',
   'Send us a trip enquiry': '发送行程咨询',
   'Fill in what you know. We’ll turn it into a WhatsApp message so you can send it in one tap.': '填写您已知道的资料，我们会把它整理成一条 WhatsApp 信息，一键即可发送。',
@@ -615,7 +618,8 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'Galeries Lafayette', 'Parndorf Designer Outlet', 'Sky Tower Orbit',
         'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
         'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
-        'Eiger Express', 'Golden Pass', 'Glacier 3000']  # brand names stay in English
+        'Eiger Express', 'Golden Pass', 'Glacier 3000',
+        'Lovely Vacation', 'UbinGO Vacations', 'FS Holidays', 'Touch ’n Go eWallet']  # brand names stay in English
 
 
 def check(zh_dir):

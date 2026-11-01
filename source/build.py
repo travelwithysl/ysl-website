@@ -49,7 +49,7 @@ def footer():
     </div>
     <div class="foot-base">
       <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
-      <span>Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
+      <span>Licence KPL 6107 &nbsp; IATA accredited &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
     </div>
   </div>
 </footer>'''
@@ -77,7 +77,7 @@ def tour_card(t, cls='ticket rv'):
         vis = f'<div class="media"><span class="pill">{t.get("dur", t["kind"])}</span><img src="assets/{t["img"]}" alt=""></div>'
     else:
         vis = f'<div class="slot" style="--c1:{t["c1"]};--c2:{t["c2"]}"><span class="pill">{t.get("dur", t["kind"])}</span><b>{t.get("short", t["region"])}</b><small>Tour photo to come</small></div>'
-    return f'''<a class="{cls}" href="{href}" data-cat="{t['cat']}">{vis}<span class="t-body"><span class="t-route"><span><small>From</small>KUL</span><i>{MINI_PIN}</i><span><small>To</small>{t['iata']}</span></span><b class="t-title">{t['title']}</b><span class="t-line">{t['line']}</span><span class="t-dep"><span>Departs</span>{t['departs'] if t.get('departs') else '<span class="tbc">Months from YSL</span>'}</span></span><span class="t-stub"><span>{t.get('brand', 'YSL Travel &amp; Tours')}</span><span>{'View' if t.get('page') else 'Enquire'} {ARROW}</span></span></a>'''
+    return f'''<a class="{cls}" href="{href}" data-cat="{t['cat']}">{vis}<span class="t-body"><span class="t-route"><span><small>From</small>KUL</span><i>{MINI_PIN}</i><span><small>To</small>{t['iata']}</span></span><b class="t-title">{t['title']}</b><span class="t-line">{t['line']}</span><span class="t-dep"><span>Departs</span>{t['departs'] if t.get('departs') else '<span class="tbc">Months from YSL</span>'}</span></span><span class="t-stub"><span>{'Partner tour' if t.get('brand') else 'YSL Travel &amp; Tours'}</span><span>{'View' if t.get('page') else 'Enquire'} {ARROW}</span></span></a>'''
 
 def post_card(p):
     if p.get('img'):
@@ -258,7 +258,7 @@ def build_home():
       <div class="creds">
         <div class="cred">
           <h3 class="code">Licensed &amp; registered</h3>
-          <ul class="legal"><li><b>KPL 6107</b><span>Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)</span></li><li><b>877803-T</b><span>YSL Travel &amp; Tours Sdn Bhd, registered with SSM</span></li></ul>
+          <ul class="legal"><li><b>KPL 6107</b><span>Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)</span></li><li><b>877803-T</b><span>YSL Travel &amp; Tours Sdn Bhd, registered with SSM</span></li><li><b>IATA</b><span>Accredited agent, International Air Transport Association</span></li></ul>
         </div>
         <div class="cred">
           <h3 class="code">Member of</h3>
@@ -398,7 +398,7 @@ def build_corporate():
       <h2 class="h-l" id="c-h">Trusted by more than 50 companies across the region.</h2>
       <ul class="proof-list">
         <li><span class="code">A</span><div><b>Since 2009</b><span>Led by a founder with more than 25 years in travel.</span></div></li>
-        <li><span class="code">B</span><div><b>Licensed and accredited</b><span>KPL 6107, and members of MATTA, MITA, MICA and MCTA.</span></div></li>
+        <li><span class="code">B</span><div><b>Licensed and accredited</b><span>KPL 6107, IATA accredited, and members of MATTA, MITA, MICA and MCTA.</span></div></li>
         <li><span class="code">C</span><div><b>Clear quotations</b><span>Itemised proposals and a reconciled final account your finance team can sign off.</span></div></li>
       </ul>
     </div>
@@ -450,7 +450,7 @@ def build_about():
 </section>
 <section class="section" aria-labelledby="mem-h">
   <div class="container">
-    <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).</p></div></div>
+    <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T). An IATA-accredited travel agent.</p></div></div>
     <ul class="member-grid rv">{members}</ul>
   </div>
 </section>
@@ -497,28 +497,24 @@ def build_services():
 
 # ======================= TOURS =======================
 def build_tours():
-    own = ''.join(tour_card(t) for t in TOURS if not t.get('brand'))
-    gd = ''.join(tour_card(t) for t in TOURS if t.get('brand') == 'Golden Destinations')
+    regions = [('all', 'All tours', '全部'), ('asia', 'Asia', '亚洲'), ('europe', 'Europe', '欧洲'), ('africa', 'Africa', '非洲'), ('oceania', 'New Zealand', '纽西兰')]
+    chips = '<div class="chips" data-filter-group="tourGrid" role="group" aria-label="Filter tours by region">' + ''.join(
+        f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{z if LANG == "zh" else e}</button>' for k, e, z in regions) + '</div>'
+    order = [k for k, _, _ in regions]
+    cards = ''.join(tour_card(t) for t in sorted(TOURS, key=lambda t: (bool(t.get('brand')), order.index(t['cat']))))  # YSL's own tours first, then partner tours by region
     body = f'''{nav('tours.html')}
 <main id="main">
-{head_block([('index.html', 'Home'), (None, 'Holidays &amp; Tours')], 'Holidays &amp; Tours', 'Where will you go next?', 'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.')}
-<section class="section" aria-labelledby="own-h" style="padding-top:clamp(40px,5vw,72px)">
+{head_block([('index.html', 'Home'), (None, 'Holidays &amp; Tours')], 'Holidays &amp; Tours', 'Where will you go next?', 'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.', chips)}
+<section class="section" aria-label="Tours" style="padding-top:clamp(40px,5vw,72px)">
   <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">YSL group tours</p><h2 class="h-l" id="own-h">Journeys we design and lead.</h2></div></div>
-    <div class="tour-grid">{own}</div>
-  </div>
-</section>
-<section class="section section--paper" aria-labelledby="gd-h">
-  <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">Signature group tours</p><h2 class="h-l" id="gd-h">From Golden Destinations.</h2></div><p class="lead">Popular guaranteed-departure tours from one of the brands we carry. Book through YSL and we look after you from enquiry to the flight home.</p></div>
-    <div class="tour-grid">{gd}</div>
+    <div class="tour-grid" id="tourGrid">{cards}</div>
     <div class="brand-note rv"><p><b>Looking for something else?</b> We also book packages from {', '.join(BRANDS[:-1])} and {BRANDS[-1]}. Tell us where you want to go and we’ll compare options for you.</p><a class="btn btn--red" href="contact.html">{WA}</a></div>
   </div>
 </section>
 </main>
 {cta_band()}
 {footer()}'''
-    page('tours.html', 'Tour Packages from Malaysia | YSL Travel & Tours', 'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL group tours and Golden Destinations tours, booked in Klang.', body, 'tours.html')
+    page('tours.html', 'Tour Packages from Malaysia | YSL Travel & Tours', 'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.', body, 'tours.html')
 
 # ======================= TOUR DETAIL =======================
 def build_tour_detail():
@@ -703,7 +699,7 @@ def build_gd_tour(q):
         else:
             rows = ''.join(f'<li><span class="code">{MON[int(k[5:])]} {k[:4]}</span><span>{", ".join(str(x) for x in v)}</span></li>' for k, v in by_month.items())
         dates = f'''<h3 class="h-m" style="margin-bottom:8px">Departure dates</h3>
-      <p class="muted" style="margin:0 0 18px;font-size:14px">Group departures from Kuala Lumpur on Golden Destinations’ current schedule. Ask us which dates still have seats.</p>
+      <p class="muted" style="margin:0 0 18px;font-size:14px">Group departures from Kuala Lumpur. Ask us which dates still have seats.</p>
       <ul class="dep-dates" style="margin-bottom:64px">{rows}</ul>
       '''
     body = f'''{nav('tours.html')}
@@ -744,12 +740,12 @@ def build_gd_tour(q):
 </section>
 <section class="section section--paper" aria-labelledby="pk-h">
   <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">The package</p><h2 class="h-l" id="pk-h">What’s included.</h2></div><p class="lead">Booked through YSL, operated by Golden Destinations. We handle your booking, documents and questions from start to finish.</p></div>
+    <div class="chapter-head"><div><p class="eyebrow">The package</p><h2 class="h-l" id="pk-h">What’s included.</h2></div><p class="lead">Booked through YSL. We handle your booking, documents and questions from start to finish.</p></div>
     <div class="inc-grid">
       <div><h3>Included</h3><ul>{inc}</ul></div>
       <div><h3>Not included</h3><ul>{exc}</ul></div>
     </div>{notes}
-    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
+    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by Golden Destinations. Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
   </div>
 </section>
 <section class="section" aria-labelledby="more-h">
@@ -840,6 +836,7 @@ def build_contact():
         <div><dt>WhatsApp</dt><dd><span class="tbc">+60 XX-XXX XXXX</span></dd></div>
         <div><dt>Email</dt><dd>{CONTACT['email']}</dd></div>
         <div><dt>Opening hours</dt><dd>{CONTACT['hours']}</dd></div>
+        <div><dt>Payment</dt><dd>Touch ’n Go eWallet accepted at our office</dd></div>
       </dl>
       <div class="btn-row" style="margin-top:32px"><a class="btn btn--line-dark" href="{CONTACT['maps']}" target="_blank" rel="noopener">Open in Google Maps</a></div>
     </div>

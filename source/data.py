@@ -47,9 +47,9 @@ TOURS = [
          line='Istanbul, Canakkale, Ephesus, Pamukkale, Konya and Cappadocia', img='gd-turkiye-card.jpg'),
     dict(slug='gd-eastern-europe', dur='9D6N', page='tour-gd-eastern-europe.html', brand='Golden Destinations', iata='BUD', short='Eastern Europe', title='Eastern Europe Vista', region='Europe', cat='europe', kind='Group tour',
          line='Budapest, Bratislava, Vienna, Hallstatt, Salzburg, Cesky Krumlov and Prague', img='gd-eastern-europe-card.jpg'),
-    dict(slug='gd-new-zealand', dur='9D7N', page='tour-gd-new-zealand.html', brand='Golden Destinations', iata='AKL', short='New Zealand', title='New Zealand North &amp; South Island', region='New Zealand', cat='longhaul', kind='Group tour',
+    dict(slug='gd-new-zealand', dur='9D7N', page='tour-gd-new-zealand.html', brand='Golden Destinations', iata='AKL', short='New Zealand', title='New Zealand North &amp; South Island', region='New Zealand', cat='oceania', kind='Group tour',
          line='Both islands, from Auckland to Queenstown', img='gd-new-zealand-card.jpg'),
-    dict(slug='gd-south-africa', dur='11D8N', page='tour-gd-south-africa.html', brand='Golden Destinations', iata='JNB', short='South Africa', title='Essence of South Africa', region='Africa', cat='longhaul', kind='Group tour',
+    dict(slug='gd-south-africa', dur='11D8N', page='tour-gd-south-africa.html', brand='Golden Destinations', iata='JNB', short='South Africa', title='Essence of South Africa', region='Africa', cat='africa', kind='Group tour',
          line='Johannesburg, Cape Town, Botswana and Victoria Falls', img='gd-south-africa-card.jpg'),
     dict(slug='gd-japan', dur='7D6N', page='tour-gd-japan.html', brand='Golden Destinations', iata='NRT', short='Japan', title='Tokyo to Osaka via Mount Fuji &amp; Shirakawa-go', region='Japan', cat='asia', kind='Group tour',
          line='Asakusa, Mount Fuji, Takayama, Shirakawa-go, Kyoto and Osaka', img='gd-japan-card.jpg'),
@@ -61,7 +61,7 @@ TOURS = [
          line='Hoi An’s old town, the Golden Bridge at Ba Na Hills and imperial Hue', img='gd-vietnam-card.jpg'),
     dict(slug='gd-switzerland-italy', dur='10D7N', page='tour-gd-switzerland-italy.html', brand='Golden Destinations', iata='MXP', short='Switzerland', title='Switzerland &amp; Italy', region='Europe', cat='europe', kind='Group tour',
          line='Jungfraujoch, Glacier 3000, the Golden Pass train, Lake Geneva and Milan', img='gd-switzerland-italy-card.jpg'),
-    dict(slug='gd-egypt', dur='9D7N', page='tour-gd-egypt.html', brand='Golden Destinations', iata='CAI', short='Egypt', title='The Grand Egypt Tour', region='Egypt', cat='longhaul', kind='Group tour',
+    dict(slug='gd-egypt', dur='9D7N', page='tour-gd-egypt.html', brand='Golden Destinations', iata='CAI', short='Egypt', title='The Grand Egypt Tour', region='Egypt', cat='africa', kind='Group tour',
          line='The Pyramids, Abu Simbel, three nights on the Nile, Luxor and Alexandria', img='gd-egypt-card.jpg'),
 ]
 
@@ -70,8 +70,6 @@ POSTS = [
          excerpt='Kunming, Lijiang and Shangri-La, and how to enjoy the climb.', img='lake.jpg', href='journal-yunnan.html'),
     dict(slug='fair', title='Meet us at GD Travel Fair, 9 to 11 October', cat='news', cat_label='News', date='28 September 2026',
          excerpt='Fair-only fares at The Starling Mall, ground floor.', img='airport.jpg', href='journal-yunnan.html'),
-    dict(slug='incentive', title='Planning a company incentive trip', cat='corp', cat_label='Corporate travel', date='15 September 2026',
-         excerpt='A checklist for HR teams, from budget to boarding.', img='business.jpg', href='journal-yunnan.html'),
     dict(slug='docs', title='Passport, visa, insurance: sort these first', cat='tips', cat_label='Travel tips', date='2 September 2026',
          excerpt='The three things to check before you pay a deposit.', img='passport.jpg', href='journal-yunnan.html'),
     dict(slug='packing', title='Packing light for a two-week tour', cat='tips', cat_label='Travel tips', date='20 August 2026',
@@ -80,7 +78,8 @@ POSTS = [
          excerpt='What happens between your first quote and departure day.', img='laptop.jpg', href='journal-yunnan.html'),
 ]
 
-BRANDS = ['Golden Destinations', 'Parlo Tours', 'Apple Vacations']
+# tour brands YSL is an authorised agent or partner of (shop door, 2026); Golden Destinations kept low-key at the client's request
+BRANDS = ['Apple Vacations', 'Lovely Vacation', 'UbinGO Vacations', 'FS Holidays', 'Parlo Tours', 'Golden Destinations']
 
 FAIRS = [('GD Travel Fair', 'The Starling Mall, 9 to 11 October 2026'),
          ('MATTA Fair', 'MITEC, Kuala Lumpur')]
