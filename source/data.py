@@ -33,6 +33,10 @@ SERVICES = [
          short='Luxury air-conditioned coaches for groups.',
          body='Luxury air-conditioned coaches for tour groups, company trips, school outings and events, with experienced drivers who know the routes.',
          includes=['Coaches for groups of every size', 'Airport and event transfers', 'Day trips and outstation journeys']),
+    dict(slug='transfer', icon='transfer', title='Private transfer',
+         short='Airport, hotel and city transfers by private car.',
+         body='A private car or van with a driver for airport pick-ups, hotel transfers and getting around town, in Malaysia and overseas. Booked on its own or added to any trip, and timed to your flight.',
+         includes=['Airport pick-ups and drop-offs', 'Hotel and city transfers', 'Cars and vans for families and small groups', 'In Malaysia and overseas']),
 ]
 
 TOURS = [

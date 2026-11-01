@@ -17,6 +17,7 @@ MAIN_DIST = os.path.abspath(DIST)
 read = lambda f: open(os.path.join(SRC, f), encoding='utf-8').read()
 
 LOGO = read('logo.svg')
+LOGO_FULL = read('logo-full.svg')  # full lockup with TRAVEL & TOURS, from YSL-Logo---Dark_BG.svg
 ICONS = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + read('icons.svg') + '</defs></svg>'
 ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg>'
 ARROW_L = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8H2M7 3L2 8l5 5"/></svg>'
@@ -30,7 +31,7 @@ def nav(current):
     items = ''.join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{t}</a></li>' for h, t in NAV)
     return f'''<header class="site-nav">
   <div class="container">
-    <a class="brand" href="index.html" aria-label="YSL Travel and Tours, home">{LOGO}<span>Travel &amp; Tours</span></a>
+    <a class="brand" href="index.html" aria-label="YSL Travel and Tours, home">{LOGO_FULL}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       {items}
@@ -54,7 +55,7 @@ def footer():
 <footer class="site-footer on-dark">
   <div class="container">
     <div class="foot-grid">
-      <div class="foot-brand">{LOGO}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
+      <div class="foot-brand">{LOGO_FULL}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
       <div><h4>Explore</h4><ul>{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Visit us</h4><p style="margin:0">{CONTACT['address']}</p><p style="margin:12px 0 0">{CONTACT['hours']}</p></div>
       <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">WhatsApp {CONTACT['whatsapp']}</a></li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
@@ -93,7 +94,7 @@ def tour_card(t, cls='ticket rv'):
 
 def post_card(p):
     if p.get('img'):
-        vis = f'<div class="media"><img src="assets/{p['img']}" alt=""></div>'
+        vis = f'<div class="media"><img src="assets/{p['img']}" alt=""{f' style="object-position:{p["pos"]}"' if p.get('pos') else ''}></div>'
     else:
         c1, c2, lab = p['slot']
         vis = f'<div class="media slot" style="--c1:{c1};--c2:{c2}"><b>{lab}</b><small>Photo to come</small></div>'
@@ -427,7 +428,14 @@ def build_corporate():
 
 # ======================= ABOUT =======================
 def build_about():
-    members = ''.join(f'<li><b>{a}</b><span>{n}</span></li>' for a, n in MEMBERS)
+    links = {k: u for k, _, u in ASSOC}
+    def mem(a, n):
+        logo = f'<img src="assets/assoc-{a.lower()}.png" alt="{a}" loading="lazy">'
+        u = links.get(a.lower())
+        if u:
+            logo = f'<a href="{u}" target="_blank" rel="noopener">{logo}</a>'
+        return f'<li>{logo}<b>{a}</b><span>{n}</span></li>'
+    members = ''.join(mem(a, n) for a, n in MEMBERS)
     body = f'''{nav('about.html')}
 <main id="main">
 {head_block([('index.html', 'Home'), (None, 'About')], 'About us', 'From Klang <span class="nw"><em>to the world</em>,</span><br> since 2009.', 'A licensed Malaysian travel agency planning holidays, group tours and business travel.')}
@@ -474,7 +482,7 @@ def build_services():
     blocks = ''.join(f'''<article class="svc-block" id="{s['slug']}"><svg class="ic" aria-hidden="true"><use href="#ic-{s['icon']}"/></svg><div><h2 class="h-l">{s['title']}</h2><p>{s['body']}</p><ul class="ticks">{''.join(f'<li>{i}</li>' for i in s['includes'])}</ul><a class="btn btn--line-dark" href="contact.html">Ask about {s['title'].lower()}</a></div></article>''' for s in SERVICES)
     body = f'''{nav('services.html')}
 <main id="main">
-{head_block([('index.html', 'Home'), (None, 'Services')], 'What we do', 'Everything between here and there.', 'Eight services under one roof, so one team can look after your whole trip, or your whole company’s.')}
+{head_block([('index.html', 'Home'), (None, 'Services')], 'What we do', 'Everything between here and there.', 'Nine services under one roof, so one team can look after your whole trip, or your whole company’s.')}
 <section class="section">
   <div class="container svc-layout">
     <nav class="svc-nav" aria-label="Services"><ul>{navl}</ul></nav>
@@ -496,7 +504,7 @@ def build_services():
   [].forEach.call(document.querySelectorAll('.svc-block'), function (b) { io.observe(b); });
 })();
 </script>'''
-    page('services.html', 'Services | YSL Travel & Tours', 'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.', body, 'services.html', extra_js=js)
+    page('services.html', 'Services | YSL Travel & Tours', 'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups, coach hire and private transfers.', body, 'services.html', extra_js=js)
 
 # ======================= TOURS =======================
 def build_tours():
@@ -753,7 +761,7 @@ def build_journal():
     chips = '<div class="chips" data-filter-group="postGrid" role="group" aria-label="Filter stories">' + ''.join(
         f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{l}</button>' for k, l in [('all', 'All stories'), ('dest', 'Destinations'), ('tips', 'Travel tips'), ('corp', 'Corporate travel')]) + '</div>'
     grid = ''.join(post_card(p) for p in rest)
-    fvis = f'<div class="media"><img src="assets/{f['img']}" alt="{f['alt']}"></div>' if f.get('img') else f'<div class="media slot" style="--c1:{f['slot'][0]};--c2:{f['slot'][1]}"><b>{f['slot'][2]}</b><small>Photo to come</small></div>'
+    fvis = f'<div class="media"><img src="assets/{f['img']}" alt="{f['alt']}"{f' style="object-position:{f["pos"]}"' if f.get('pos') else ''}></div>' if f.get('img') else f'<div class="media slot" style="--c1:{f['slot'][0]};--c2:{f['slot'][1]}"><b>{f['slot'][2]}</b><small>Photo to come</small></div>'
     body = f'''{nav('journal.html')}
 <main id="main">
 {head_block([('index.html', 'Home'), (None, 'Journal')], 'Journal', 'Stories from <span class="nw"><em>the road.</em></span>', 'Destination guides, travel tips and corporate travel advice from the YSL Travel &amp; Tours team.', chips)}
@@ -771,7 +779,7 @@ def build_article(a):
     others = [p for p in sorted(ARTICLES, key=_by_date, reverse=True) if p['slug'] != a['slug']]
     same = [p for p in others if p['cat'] == a['cat']]
     rel = ''.join(post_card(p) for p in (same + [p for p in others if p not in same])[:3])
-    fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
+    fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"{f' style="object-position:{a["pos"]}"' if a.get('pos') else ''}></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
     ct, ctext, chref, clabel = a['cta']
     body = f'''{nav('journal.html')}
 <main id="main">
