@@ -38,6 +38,9 @@ SERVICES_ZH = {
     'coach': dict(title='巴士租赁', short='团体专用豪华冷气巴士。',
         body='为旅游团、公司旅行、学校出游及各类活动提供豪华冷气巴士，司机经验丰富，熟悉路线。',
         includes=['各种人数的团体巴士', '机场及活动接送', '一日游及外州行程']),
+    'transfer': dict(title='私人接送', short='私家车机场、酒店及市区接送。',
+        body='配备司机的私家车或客货车，提供机场接送、酒店接驳及市内出行，马来西亚境内及海外皆可。可单独预订，也可加入任何行程，按您的航班时间安排。',
+        includes=['机场接机及送机', '酒店及市区接送', '适合家庭及小团体的轿车与客货车', '马来西亚境内及海外']),
 }
 
 TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card and page always agree
@@ -186,7 +189,7 @@ UI = {
   'YSL Travel & Tours: corporate travel, holidays and tours from Klang, Malaysia, since 2009.': 'YSL Travel & Tours：自2009年起，从马来西亚巴生出发，提供商务旅游、假期与旅游团服务。',
   'Meetings, incentives, conferences and exhibitions at any scale: group air, hotels, coaches, gala nights and on-site teams from YSL Travel & Tours.': '会议、奖励旅游、研讨会与展览，规模不限：团体机票、酒店、巴士、晚宴及现场团队，由 YSL Travel & Tours 一手包办。',
   'Founded in Klang in 2009, YSL Travel & Tours plans holidays, group tours and business travel for families and companies. Licensed by MOTAC (KPL 6107).': 'YSL Travel & Tours 2009年创立于巴生，为家庭与企业安排假期、团体游及商务旅行。持有马来西亚旅游、艺术及文化部执照（KPL 6107）。',
-  'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.': '机票、旅游配套、酒店、邮轮、保险、签证、奖励旅游团及巴士租赁。',
+  'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups, coach hire and private transfers.': '机票、旅游配套、酒店、邮轮、保险、签证、奖励旅游团、巴士租赁及私人接送。',
   'Tour Packages from Malaysia | YSL Travel & Tours': '旅游配套，吉隆坡出发 | YSL Travel & Tours',
   'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.': '吉隆坡出发的团体旅游配套：中国、日本、韩国、台湾、越南、欧洲、瑞士、土耳其、埃及、南非与纽西兰。YSL 自营团体游及合作伙伴团，在巴生预订。',
   '10-day group tour through Gansu and Qinghai: the Rainbow Mountains, Mogao Caves, Chaka Salt Lake and Qinghai Lake.': '甘肃、青海10天团体游：七彩丹霞、莫高窟、茶卡盐湖与青海湖。',
@@ -412,7 +415,7 @@ UI = {
   '<li aria-current="page">Services</li>': '<li aria-current="page">旅游服务</li>',
   '<p class="eyebrow">What we do</p>': '<p class="eyebrow">服务项目</p>',
   'Everything between here and there.': '从这里到那里，一切都为您安排。',
-  'Eight services under one roof, so one team can look after your whole trip, or your whole company’s.': '八项服务一站齐全，由同一个团队照顾您的整趟旅程，或整个公司的出行。',
+  'Nine services under one roof, so one team can look after your whole trip, or your whole company’s.': '九项服务一站齐全，由同一个团队照顾您的整趟旅程，或整个公司的出行。',
   'aria-label="Services"': 'aria-label="服务项目"',
   '>Ask about ': '>咨询',
 

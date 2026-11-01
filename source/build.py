@@ -482,7 +482,7 @@ def build_services():
     blocks = ''.join(f'''<article class="svc-block" id="{s['slug']}"><svg class="ic" aria-hidden="true"><use href="#ic-{s['icon']}"/></svg><div><h2 class="h-l">{s['title']}</h2><p>{s['body']}</p><ul class="ticks">{''.join(f'<li>{i}</li>' for i in s['includes'])}</ul><a class="btn btn--line-dark" href="contact.html">Ask about {s['title'].lower()}</a></div></article>''' for s in SERVICES)
     body = f'''{nav('services.html')}
 <main id="main">
-{head_block([('index.html', 'Home'), (None, 'Services')], 'What we do', 'Everything between here and there.', 'Eight services under one roof, so one team can look after your whole trip, or your whole company’s.')}
+{head_block([('index.html', 'Home'), (None, 'Services')], 'What we do', 'Everything between here and there.', 'Nine services under one roof, so one team can look after your whole trip, or your whole company’s.')}
 <section class="section">
   <div class="container svc-layout">
     <nav class="svc-nav" aria-label="Services"><ul>{navl}</ul></nav>
@@ -504,7 +504,7 @@ def build_services():
   [].forEach.call(document.querySelectorAll('.svc-block'), function (b) { io.observe(b); });
 })();
 </script>'''
-    page('services.html', 'Services | YSL Travel & Tours', 'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.', body, 'services.html', extra_js=js)
+    page('services.html', 'Services | YSL Travel & Tours', 'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups, coach hire and private transfers.', body, 'services.html', extra_js=js)
 
 # ======================= TOURS =======================
 def build_tours():
