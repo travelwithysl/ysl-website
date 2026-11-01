@@ -2,6 +2,7 @@ import os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from articles import ARTICLES
 import feedback
+import legal
 import zh
 from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG, GD_TOURS, MON
 
@@ -45,11 +46,11 @@ def footer():
       <div class="foot-brand">{LOGO}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
       <div><h4>Explore</h4><ul>{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Visit us</h4><p style="margin:0">{CONTACT['address']}</p><p style="margin:12px 0 0">{CONTACT['hours']}</p></div>
-      <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
     </div>
     <div class="foot-base">
       <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
-      <span>Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
+      <span><a href="privacy.html">Privacy Notice</a> &nbsp; Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
     </div>
   </div>
 </footer>'''
@@ -264,9 +265,6 @@ def build_home():
           <h3 class="code">Member of</h3>
           <ul class="badges">{members}</ul>
         </div>
-      </div>
-      <div class="proof-foot proof-foot--solo">
-        <blockquote class="quote"><p>“Client testimonial to come. A short line from a tour guest or a corporate client, in their own words.”</p><footer><span class="tbc">Name, company, to be supplied by YSL</span></footer></blockquote>
       </div>
     </div>
   </div>
@@ -516,6 +514,35 @@ def build_tours():
 {footer()}'''
     page('tours.html', 'Tour Packages from Malaysia | YSL Travel & Tours', 'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.', body, 'tours.html')
 
+# ======================= PRIVACY NOTICE AND 404 =======================
+def build_privacy():
+    if LANG == 'zh':
+        content = legal.sections(legal.ZH) + '<p class="muted">如中文版本与英文版本有出入，以英文版本为准。<a href="../privacy.html">英文及马来文版本</a></p>'
+        updated = legal.UPDATED[1]
+    else:
+        content = legal.sections(legal.EN) + '<p class="muted">If there is any difference between versions of this notice, the English version prevails.</p><h2 id="bm" lang="ms" style="margin-top:56px">Notis Privasi (Bahasa Malaysia)</h2>' + f'<div lang="ms">{legal.sections(legal.MS)}</div>'
+        updated = legal.UPDATED[0]
+    T = dict(h='隐私声明', eb='2010年个人资料保护法令', upd='最后更新：', end='。', title='隐私声明 | YSL Travel & Tours', desc='YSL Travel & Tours 依据《2010年个人资料保护法令》收集、使用及保护个人资料的方式。') if LANG == 'zh' else dict(h='Privacy Notice', eb='Personal Data Protection Act 2010', upd='Last updated ', end='.', title='Privacy Notice | YSL Travel & Tours', desc='How YSL Travel & Tours collects, uses and protects personal data under the Personal Data Protection Act 2010.')
+    body = f'''{nav('')}
+<main id="main">
+{head_block([('index.html', 'Home'), (None, T['h'])], T['eb'], T['h'], T['upd'] + updated + T['end'])}
+<section class="section" style="padding-top:clamp(32px,4vw,56px)">
+  <div class="container"><div class="article-body legal-body">{content}</div></div>
+</section>
+</main>
+{footer()}'''
+    page('privacy.html', T['title'], T['desc'], body, '')
+
+def build_404():
+    zhp = LANG == 'zh'
+    T = dict(eb='找不到页面', h='这个页面<span class="nw">已经搬走了。</span>', lead='链接可能已过时，或页面已更改。看看我们的旅游配套，或告诉我们您想去哪里。', tours='浏览行程', contact='联络我们', title='找不到页面 | YSL Travel & Tours', desc='找不到此页面。') if zhp else dict(eb='Page not found', h='This page has <span class="nw"><em>moved on.</em></span>', lead='The link may be old, or the page may have changed. Try our tours, or tell us where you want to go.', tours='Browse tours', contact='Contact us', title='Page not found | YSL Travel & Tours', desc='This page could not be found.')
+    body = f'''{nav('')}
+<main id="main">
+{head_block([('index.html', 'Home'), (None, '404')], T['eb'], T['h'], T['lead'], f'<div class="btn-row" style="margin-top:32px"><a class="btn btn--red" href="tours.html">{T["tours"]}</a><a class="btn btn--line-dark" href="contact.html">{T["contact"]}</a></div>')}
+</main>
+{footer()}'''
+    page('404.html', T['title'], T['desc'], body, '', extra_head=f'<base href="{'/zh/' if zhp else '/'}">\n<meta name="robots" content="noindex">')
+
 # ======================= DEPARTURE DATES =======================
 DATE_NOTES = {'School holidays': '学校假期', 'Fully booked': '已满'}
 
@@ -742,7 +769,6 @@ def build_article(a):
     fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
     ct, ctext, chref, clabel = a['cta']
     body = f'''{nav('journal.html')}
-<p class="sample-note">Draft article for YSL to review before publishing.</p>
 <main id="main">
 <article>
   <header class="article-head">
@@ -765,7 +791,7 @@ def build_article(a):
 </main>
 {footer()}'''
     import html as _h
-    page(a['href'], f"{_h.unescape(a['title'])} | YSL Journal", _h.unescape(a['excerpt']), body, 'journal.html')
+    page(a['href'], f"{_h.unescape(a.get('seo') or a['title'])} | YSL Travel & Tours", _h.unescape(re.sub('<[^>]+>', '', a['lead'])), body, 'journal.html', og_image=f"assets/{a['img']}" if a.get('img') else 'assets/hero.jpg')
 
 # ======================= CONTACT =======================
 def build_contact():
@@ -800,7 +826,7 @@ def build_contact():
       </div>
       <p class="preview-label">Your message</p>
       <div class="preview" id="preview" aria-live="polite"></div>
-      <div class="form-actions"><button class="btn btn--red" type="submit">Send on WhatsApp</button><small id="formNote">Opens WhatsApp with your message ready to send.</small></div>
+      <div class="form-actions"><button class="btn btn--red" type="submit">Send on WhatsApp</button><small id="formNote">Opens WhatsApp with your message ready to send. See our <a href="privacy.html">Privacy Notice</a>.</small></div>
     </form>
   </div>
 </section>
@@ -852,8 +878,8 @@ if __name__ == '__main__':
     open(os.path.join(DIST, 'assets', 'site.js'), 'w', encoding='utf-8').write(read('site.js'))
     open(os.path.join(DIST, 'assets', 'landmarks.js'), 'w', encoding='utf-8').write(read('landmark-art.js'))
     def build_pages():
-        build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact()
-    build_pages(); feedback.build(page, nav, head_block, footer)
+        build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact(); build_privacy(); build_404()
+    build_pages()
     # Chinese site: same templates, Chinese content from zh.py, written to dist/zh/
     os.makedirs(os.path.join(DIST, 'zh'), exist_ok=True)
     LANG = 'zh'

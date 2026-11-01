@@ -70,8 +70,8 @@ TOURS = [
          line='Rime forests, hot springs in the snow and Harbin’s Ice and Snow World', img='ap-dongbei-card.jpg'),
     dict(slug='ap-spain-portugal', dur='12D9N', page='tour-ap-spain-portugal.html', brand='Apple Vacations', iata='OPO', short='Spain', title='Spain &amp; Portugal', region='Europe', cat='europe', kind='Group tour',
          line='Porto, Lisbon, Seville, Ronda, Córdoba, Toledo, Madrid and Barcelona', img='ap-spain-portugal-card.jpg'),
-    dict(slug='ap-greece', dur='10D7N', page='tour-ap-greece.html', brand='Apple Vacations', iata='SKG', short='Greece', title='Greece: Meteora, Mykonos &amp; Santorini', region='Europe', cat='europe', kind='Group tour',
-         line='Meteora, Delphi, Athens, Mykonos and two nights on Santorini', c1='#2f6fa6', c2='#0b1f33'),
+    dict(slug='ap-morocco', dur='11D8N', page='tour-ap-morocco.html', brand='Apple Vacations', iata='CMN', short='Morocco', title='Morocco: Chefchaouen, Fez &amp; the Sahara', region='Africa', cat='africa', kind='Group tour',
+         line='Casablanca, the blue town of Chefchaouen, Fez, a night by the Sahara and Marrakesh', img='ap-morocco-card.jpg'),
     dict(slug='ap-finland', dur='10D7N', page='tour-ap-finland.html', brand='Apple Vacations', iata='RVN', short='Lapland', title='Finnish Lapland &amp; the Northern Lights', region='Europe', cat='europe', kind='Group tour',
          line='Huskies, reindeer, king crab in Norway and the Northern Lights', img='ap-finland-card.jpg'),
     dict(slug='ap-australia', dur='9D6N', page='tour-ap-australia.html', brand='Apple Vacations', iata='SYD', short='Australia', title='Sydney &amp; Melbourne', region='Australia', cat='oceania', kind='Group tour',
@@ -106,7 +106,7 @@ CONTACT = dict(address='No 5, Lorong Sungai Puloh 13A,<br>Taman Klang Utama, 421
                phone='03-3290 3500', email='travelwithysl@gmail.com',
                hours='Mon to Fri, 9am to 6pm<br>Sat, 9am to 3pm<br>Closed on Sundays',
                maps='https://www.google.com/maps/search/?api=1&amp;query=YSL+Travel+%26+Tours+Sdn+Bhd+Taman+Klang+Utama',
-               facebook='https://www.facebook.com/ysltravel')
+               facebook='https://www.facebook.com/ysltravel', instagram='https://www.instagram.com/ysltravel/')
 
 # destinations the home-page pin opens onto; one is chosen per visit. Add YSL's own tour photos here.
 OPENINGS = [
@@ -476,27 +476,28 @@ GD_TOURS = [
     included=['Return flights from Kuala Lumpur, into Porto and home from Barcelona', 'Nine nights in 4-star hotels or similar: Porto 1, Lisbon 1, Évora 1, Seville 1, Córdoba 1, Madrid 2, Barcelona 2', 'Most meals, including a seafood platter, bacalhau, paella, Segovia-style suckling pig, tapas and a flamenco dinner', 'Entrance to the Sagrada Família, Casa Milà, Park Güell, the Mezquita, the Royal Palace and Jerónimos Monastery', 'High-speed AVE train from Madrid to Barcelona'],
     excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
   ),
-  dict(slug='ap-greece', page='tour-ap-greece.html', brand='Apple Vacations', title='Greece: Meteora, Mykonos &amp; Santorini', region='Europe', duration='10 days, 7 nights', c1='#2f6fa6', c2='#0b1f33',
-    seo='Greece Tour Package from Malaysia: Santorini, Mykonos and Meteora',
-    line='Monasteries in the sky, two islands and the Acropolis.', hotels='Hotels throughout',
-    head='Mainland Greece, then the islands.',
-    lead='Thessaloniki, the cliff-top monasteries of Meteora, the oracle at Delphi, Athens, then by ferry to Mykonos and Santorini for the caldera, the volcano and sunset at Oia, finishing at the Acropolis.',
-    highlights=['Meteora monasteries', 'Delphi and the Temple of Apollo', 'Mykonos windmills and Little Venice', 'Santorini caldera walk', 'Private boat to the Santorini volcano', 'Sunset at Oia', 'The Acropolis and its museum', 'Dinner at a Michelin-listed restaurant in Athens'],
+  dict(slug='ap-morocco', page='tour-ap-morocco.html', brand='Apple Vacations', title='Morocco: Chefchaouen, Fez &amp; the Sahara', region='Africa', duration='11 days, 8 nights', hero='ap-morocco-hero.jpg', hero_alt='A camel caravan crossing the Sahara dunes at Merzouga', c1='#b5652e', c2='#3a1a0a',
+    seo='Morocco Tour Package from Malaysia: Chefchaouen, Fez, Sahara and Marrakesh',
+    line='Blue lanes, old medinas, a ride into the dunes and the souks of Marrakesh.', hotels='5-star hotels, and a riad in Chefchaouen',
+    head='From the Atlantic coast to the edge of the Sahara.',
+    lead='Casablanca’s great mosque, royal Rabat, the blue-washed lanes of Chefchaouen, the medina and tanneries of Fez, over the Atlas to the Sahara for a 4WD and camel ride at Merzouga, then the kasbahs of the south and two nights in Marrakesh.',
+    highlights=['Hassan II Mosque, Casablanca', 'Kasbah of the Udayas, Rabat', 'The blue town of Chefchaouen', 'Fez medina and leather tanneries', '4WD and camel ride in the Sahara', 'Todra Gorge', 'Aït Benhaddou kasbah', 'Bahia Palace and Majorelle Garden, Marrakesh'],
     days=[
-      _d('Kuala Lumpur to Thessaloniki', '', ['Overnight flight to Thessaloniki.']),
-      _d('Thessaloniki to Kalambaka', 'L, D', ['<b>Thessaloniki</b>: the upper town, the Church of Saint Demetrius, the Arch of Galerius and the White Tower on the seafront.', 'On to Kalambaka.'], 'Kalambaka'),
-      _d('Meteora to Delphi', 'B, L, D', ['<b>Meteora</b>, two of the monasteries built on top of its rock pillars.', 'On to Delphi.'], 'Delphi'),
-      _d('Delphi to Athens', 'B, L, D', ['<b>Delphi</b>: the Temple of Apollo, home of the oracle, and the museum.', '<b>Athens</b>: Syntagma Square, the Tomb of the Unknown Soldier, the Temple of Olympian Zeus and the Panathenaic Stadium.'], 'Athens'),
-      _d('Ferry to Mykonos', 'B, L, D', ['High-speed ferry to <b>Mykonos</b>.', 'The windmills, Little Venice and the lanes of Mykonos Town, and Paradise Beach.'], 'Mykonos'),
-      _d('Ferry to Santorini', 'B, D', ['A free morning on Mykonos, then the ferry to <b>Santorini</b>.', 'The caldera walk from Firostefani to Fira.'], 'Santorini'),
-      _d('The volcano and Oia', 'B, L', ['A private boat to the volcano at Nea Kameni, and the warm springs of Palea Kameni.', 'Up from the old port by cable car or donkey.', '<b>Sunset at Oia.</b>'], 'Santorini'),
-      _d('Santorini to Athens', 'B, L, D', ['Wine tasting and lunch at a volcanic winery, then Pyrgos, Profitis Ilias and the black sand of Kamari.', 'Evening flight to Athens.'], 'Athens'),
-      _d('Athens, fly home', 'B', ['<b>The Acropolis</b>: the Propylaea, the Temple of Athena Nike and the Parthenon, then the Acropolis Museum.', 'Free time in Monastiraki before the flight home.']),
+      _d('Kuala Lumpur to Casablanca', '', ['Overnight flight to Casablanca.']),
+      _d('Casablanca', 'D', ['Arrive in Casablanca and an introduction to the city on the Atlantic.'], 'Casablanca, 5-star'),
+      _d('Casablanca to Rabat', 'B, L, D', ['Inside the <b>Hassan II Mosque</b>, built out over the ocean.', 'On to Rabat: the <b>Hassan Tower</b> and the blue-and-white lanes of the <b>Kasbah of the Udayas</b>.'], 'Rabat, 5-star'),
+      _d('Rabat to Chefchaouen', 'B, L, D', ['Into the Rif mountains to <b>Chefchaouen</b>, the town painted in every shade of blue.'], 'Chefchaouen, riad'),
+      _d('Chefchaouen to Fez', 'B, L, D', ['<b>Fez</b>: the old medina, a maze of lanes and workshops, and the leather tanneries from above.'], 'Fez, 5-star'),
+      _d('Over the Atlas to Erfoud', 'B, L, D', ['<b>Ifrane</b>, the alpine-style town in the Middle Atlas, then over the Tizi n’Talghamt pass to Erfoud on the edge of the desert.'], 'Erfoud, 5-star'),
+      _d('The Sahara and Todra Gorge', 'B, L, D', ['A <b>4WD ride into the dunes at Merzouga</b>, and a camel ride across the sand.', '<b>Todra Gorge</b>, its walls rising straight from the river, then on to Ouarzazate.'], 'Ouarzazate'),
+      _d('Ouarzazate to Marrakesh', 'B, L, D', ['The Atlas Film Studios, and the fortified village of <b>Aït Benhaddou</b>.', 'Over the High Atlas to Marrakesh.'], 'Marrakesh, 5-star'),
+      _d('Marrakesh', 'B, L, D', ['The <b>Bahia Palace</b> and the blue <b>Majorelle Garden</b>.', 'The souks and the square of Jemaa el-Fna.'], 'Marrakesh, 5-star'),
+      _d('Marrakesh, fly home', 'B', ['Fly home.']),
       _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
     ],
-    included=['Return flights from Kuala Lumpur, and the flight from Santorini to Athens', 'Seven nights: Kalambaka 1, Delphi 1, Athens 2, Mykonos 1, Santorini 2', 'High-speed ferries from Athens to Mykonos and Mykonos to Santorini', 'Most meals, including a lobster menu and dinner at a Michelin-listed restaurant in Athens', 'Meteora, Delphi, the Acropolis and its museum, and a private volcano cruise'],
+    included=['Return flights from Kuala Lumpur', 'Eight nights: Casablanca 1, Rabat 1, Chefchaouen 1 (riad), Fez 1, Erfoud 1, Ouarzazate 1, Marrakesh 2, mostly in 5-star hotels', 'Most meals, including tagine and Moroccan kebabs, and a farewell dinner at Rick’s Café in Casablanca', 'Hassan II Mosque, Fez medina, 4WD desert safari and camel ride, Aït Benhaddou, Bahia Palace and Majorelle Garden'],
     excluded=['Travel insurance and tipping, unless stated', 'Meals not listed'],
-    notes='In rough seas a high-speed ferry may be swapped for a slower one of up to five hours.',
+    notes='Malaysian passport holders can visit Morocco visa-free for up to 90 days; we confirm the current rule when you book.',
   ),
   dict(slug='ap-finland', page='tour-ap-finland.html', brand='Apple Vacations', title='Finnish Lapland &amp; the Northern Lights', region='Europe', duration='10 days, 7 nights', hero='ap-finland-hero.jpg', hero_alt='A reindeer sleigh in a snowy Lapland forest', c1='#2e5d6e', c2='#081a22',
     seo='Finland Northern Lights Tour from Malaysia: Lapland, Huskies and Santa Claus Village',
@@ -648,8 +649,8 @@ GD_DATES = {
         2026-12-12 2026-12-16 2026-12-18 2026-12-25 2026-12-28 2026-12-30 2027-01-29 2027-02-03
         2027-02-05 2027-02-06 2027-02-08 2027-02-12 2027-02-19 2027-02-22
         '''.split()),
-    'ap-greece': ('EUSKG10', '''
-        2027-04-23 2027-05-07 2027-05-13 2027-09-03 2027-09-15 2027-10-12
+    'ap-morocco': ('AFCMN11', '''
+        2027-02-03 2027-02-07 2027-03-09 2027-10-27 2027-11-17 2027-12-08 2027-12-15
         '''.split()),
 }
 

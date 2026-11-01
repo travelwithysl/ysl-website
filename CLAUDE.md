@@ -19,9 +19,10 @@ Commit the built output with the source change: Cloudflare serves the committed 
 ## Source map
 
 - `build.py`: page templates (`build_home`, `build_corporate`, `build_about`, `build_services`, `build_tours`, tour pages, journal, contact).
-- `data.py`: tours, services, contact details, Golden Destinations itineraries. `articles.py`: journal articles.
+- `data.py`: tours, services, contact details, Golden Destinations itineraries. `articles.py`: journal articles (each has `seo`, the page title; the lead is the meta description; the photo is the share image).
+- `legal.py`: Privacy Notice text (English and Bahasa Malaysia on `privacy.html`, as the PDPA requires both; Chinese on `zh/privacy.html`). `build_404()` writes `404.html` and `zh/404.html` with a `<base>` tag, so they work at any URL on Cloudflare Pages.
 - Golden Destinations dates: `GD_DATES` in `data.py` (GD tour code + ISO dates, from `https://www.gd.my/b2c2b/api/v1/series/<CODE>?business_type=b2c2b&type=series`, the JSON behind `gd.my/web/itinerary/<CODE>`). Card months (`departs`) and the tour-page date list are built from it, in both languages. GD photos: `dist/assets/gd-<tour>-card.jpg` (5:4) and `-hero.jpg`.
-- Apple Vacations tours (`ap-*` slugs) use the same `GD_TOURS` / `GD_DATES` structures with `brand='Apple Vacations'`. Source: `applevacations.my/en/tour.php?pckg_id=<id>` (server-rendered HTML: days, hotels, meals, and a departure table where bookable rows have a `booking.php` link; rows marked Full are left out). Apple's photos sit on `aws.applevacations.my:2030`, which the environment's proxy cannot reach (non-443 port), so Apple tour pages use GD photos of the same places (Greece has none yet: `tbc`). Apple pages say "Images are for illustration purposes only." in the small print.
+- Apple Vacations tours (`ap-*` slugs) use the same `GD_TOURS` / `GD_DATES` structures with `brand='Apple Vacations'`. Source: `applevacations.my/en/tour.php?pckg_id=<id>` (server-rendered HTML: days, hotels, meals, and a departure table where bookable rows have a `booking.php` link; rows marked Full are left out). Apple's photos sit on `aws.applevacations.my:2030`, which the environment's proxy cannot reach (non-443 port), so Apple tour pages use GD photos of the same places (Greece was swapped for Morocco for lack of photos). Apple pages say "Images are for illustration purposes only." in the small print.
 - YSL's own tours: Majestic Qinghai & Gansu (大美青甘, own template `build_tour_qg`) and Golden Peak, Hidden Lake (金山秘湖, `tour-yunnan.html`, from YSL's itinerary PDF, built with the partner template and `brand='YSL Travel &amp; Tours'`). The old "Yunnan & Shangri-La" sample page is gone.
 - YSL's own tour dates: `YSL_DATES` in `data.py` (dates from YSL); `QG['date_notes']` tags single dates (School holidays, Fully booked). Seat counts and fares stay off the site.
 - GD tour SEO: each GD tour has `seo` (the page `<title>`, keyword first: "Korea Tour Package from Malaysia: ..."; Chinese "韩国旅游配套：..." in `tours_zh.py`). The meta description adds the departure months; the share image is the tour hero.
@@ -60,6 +61,8 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Holidays & Tours is one grid filtered by region (`cat` in `TOURS`: asia, europe, africa, oceania), YSL's own tours first. No airline logos or lists: YSL sells all airlines.
 - Credentials (confirmed by YSL): MOTAC KPL 6107, MATTA, MITA, MICA, MCTA. Shown as text until YSL supplies the logo files. IATA is held back for now at YSL's request (if it returns, only the "IATA Accredited Agent" mark from IATA's agent portal may be used).
 - Partners (confirmed): Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours (less active, still listed), Golden Destinations.
+- No home-page testimonial until the feedback form brings in good reviews. The main site has no copy of the feedback form (it lives only at feedback.ysltravel.com).
+- Social: Facebook /ysltravel and Instagram @ysltravel (`CONTACT` in `data.py`).
 - The "Planning a company incentive trip" journal story is held back until YSL's client approves it (it was in `articles.py` / `articles_zh.py`; restore from git history).
 
 ## Feedback form

@@ -58,7 +58,7 @@ TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card a
     'ap-zhangjiajie': dict(short='张家界', line='砂岩峰林、峡谷玻璃桥、天门山与凤凰古城'),
     'ap-dongbei': dict(short='哈尔滨', line='雾凇、雪中温泉与哈尔滨冰雪大世界'),
     'ap-spain-portugal': dict(short='西班牙', line='波尔图、里斯本、塞维利亚、龙达、科尔多瓦、托莱多、马德里与巴塞罗那'),
-    'ap-greece': dict(short='希腊', line='迈泰奥拉、德尔斐、雅典、米科诺斯，圣托里尼住两晚'),
+    'ap-morocco': dict(short='摩洛哥', line='卡萨布兰卡、蓝色小镇舍夫沙万、菲斯、撒哈拉一夜与马拉喀什'),
     'ap-finland': dict(short='拉普兰', line='哈士奇、驯鹿、挪威帝王蟹与北极光'),
     'ap-australia': dict(short='澳洲', line='悉尼港、蓝山、大洋路与企鹅归巢'),
 }
@@ -149,7 +149,7 @@ def localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES
     articles = []
     for a in ARTICLES:
         z = ARTICLES_ZH[a['slug']]
-        b = {**a, **{k: z[k] for k in ('title', 'lead', 'excerpt', 'read', 'alt', 'body')}}
+        b = {**a, **{k: z[k] for k in ('title', 'lead', 'excerpt', 'read', 'alt', 'body', 'seo') if k in z}}
         b['cta'] = (z['cta'][0], z['cta'][1], a['cta'][2], z['cta'][2])
         if a.get('slot'):
             b['slot'] = (a['slot'][0], a['slot'][1], z['slot_label'])
@@ -177,7 +177,6 @@ def globe_js():
 # ---------------------------------------------------------------- template wording
 UI = {
   # page titles and descriptions
-  ' | YSL Journal': ' | YSL 旅游札记',
   'Corporate Travel & MICE | ': '商务旅游与 MICE | ',
   'About YSL Travel & Tours': '关于 YSL Travel & Tours',
   'Services | ': '旅游服务 | ',
@@ -222,7 +221,6 @@ UI = {
   '<dt>Email</dt>': '<dt>电邮</dt>',
   '<dt>Visit</dt>': '<dt>地址</dt>',
   '<dd>Taman Klang Utama, Klang</dd>': '<dd>巴生 Taman Klang Utama</dd>',
-  'Photo to come': '照片即将更新',
   '<small>From</small>KUL': '<small>出发</small>KUL',
   '<small>To</small>': '<small>抵达</small>',
   '<span>Departs</span>': '<span>出发</span>',
@@ -263,8 +261,6 @@ UI = {
   'Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)': '马来西亚旅游、艺术及文化部（MOTAC）颁发的旅行社执照',
   'YSL Travel &amp; Tours Sdn Bhd, registered with SSM': 'YSL Travel &amp; Tours Sdn Bhd，于马来西亚公司委员会（SSM）注册',
   '<h3 class="code">Member of</h3>': '<h3 class="code">所属协会</h3>',
-  '“Client testimonial to come. A short line from a tour guest or a corporate client, in their own words.”': '“客户评价即将更新：一句来自团员或企业客户的真实感言。”',
-  'Name, company, to be supplied by YSL': '姓名与公司，待 YSL 提供',
   'Your next point on the map.': '您在地图上的下一个点。',
   '>Where to next?</h2>': '>下一站去哪里？</h2>',
   'Tell us where, when and who is coming. A consultant replies within one working day.': '告诉我们想去哪里、什么时候出发、有谁同行。旅游顾问会在一个工作日内回复您。',
@@ -486,7 +482,6 @@ UI = {
   'Operated by Golden Destinations. ': '由 Golden Destinations 承办。',
   'Operated by Apple Vacations. ': '由 Apple Vacations 承办。',
   'Images are for illustration purposes only. ': '图片仅供参考。',
-  'Tour photo to come': '旅游照片即将更新',
   'Booked through YSL. We handle your booking, documents and questions from start to finish.': '通过 YSL 预订。从预订、证件到各种疑问，我们全程为您处理。',
   'Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.': '行程顺序和酒店可能因当地活动、天气或供应情况而调整。团费、日期及完整行程以预订时确认为准。',
 
@@ -502,7 +497,6 @@ UI = {
   '>Corporate travel</button>': '>商务旅游</button>',
   'Read the story <svg': '阅读全文 <svg',
   'No stories in this topic yet.': '此类别暂时没有文章。',
-  'Draft article for YSL to review before publishing.': '文章草稿，待 YSL 审阅后发布。',
   '<li><a href="journal.html">Journal</a></li>': '<li><a href="journal.html">旅游札记</a></li>',
   '<span>By the YSL team</span>': '<span>YSL 团队</span>',
   '<span>Share this story</span>': '<span>分享本文</span>',
@@ -541,6 +535,8 @@ UI = {
   '<p class="preview-label">Your message</p>': '<p class="preview-label">您的信息</p>',
   '>Send on WhatsApp</button>': '>通过 WhatsApp 发送</button>',
   'Opens WhatsApp with your message ready to send.': '将打开 WhatsApp，信息已准备好，可直接发送。',
+  ' See our <a href="privacy.html">Privacy Notice</a>.': '详见<a href="privacy.html">隐私声明</a>。',
+  '<a href="privacy.html">Privacy Notice</a>': '<a href="privacy.html">隐私声明</a>',
 }
 
 # patterns that carry a number
@@ -580,7 +576,7 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
         'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
         'Eiger Express', 'Golden Pass', 'Glacier 3000',
-        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'Subang SkyPark', 'Batik Air', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
+        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'Subang SkyPark', 'Batik Air', 'Rick’s Café', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
 
 
 def check(zh_dir):
