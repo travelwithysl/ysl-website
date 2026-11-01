@@ -46,7 +46,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Content: `zh.py` (services, tour cards, members, hours), `tours_zh.py` (itineraries), `articles_zh.py` (journal). Overlays keyed by slug; images, codes and links stay in `data.py` / `articles.py`.
 - Template wording: the `UI` dict in `zh.py` maps exact English fragments of the rendered HTML to Chinese. When you change English copy in `build.py`, update the matching key. The build stops if a key no longer matches anything, or if a run of English words is left on a Chinese page (allowed names are in `KEEP`).
 - Brand names stay in English on the Chinese site: YSL Travel & Tours (or YSL), tour brands and Golden Destinations tour names, airlines, Ctrip, shops and venues. Exception: YSL's own tours 大美青甘 and 金山秘湖. Add any new brand to `KEEP` in `zh.py`.
-- Malaysian Chinese usage: 配套, 纽西兰, 巴生, 冷气. Chinese has no italics: red accent words stay upright.
+- Malaysian Chinese usage: 配套, 纽西兰, 巴生, 冷气, 联络 (not 联系), 讯息 (not 信息, for messages), 雪糕 (not 冰淇淋), 手信, 巴士 (not 大巴), 电动车 (not 电瓶车), 名牌折扣商场 (not 奥特莱斯), 专人负责 (not 对接), 办理登机 (not 值机), 度假会议/度假营 (not 退修), 外州, 华语. Chinese has no italics: red accent words stay upright.
 
 ## Output gotcha
 
