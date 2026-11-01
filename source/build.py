@@ -516,72 +516,7 @@ def build_tours():
 {footer()}'''
     page('tours.html', 'Tour Packages from Malaysia | YSL Travel & Tours', 'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.', body, 'tours.html')
 
-# ======================= TOUR DETAIL =======================
-def build_tour_detail():
-    days = [
-        ('Kuala Lumpur to Kunming', 'Fly to Kunming, the City of Eternal Spring. Check in and welcome dinner.'),
-        ('Kunming to Dali', 'Travel west to Dali. Evening walk through Dali Old Town.'),
-        ('Dali to Lijiang', 'Erhai Lake in the morning, then on to the UNESCO-listed old town of Lijiang.'),
-        ('Lijiang', 'Jade Dragon Snow Mountain and Blue Moon Valley, then a free evening in the old town.'),
-        ('Lijiang to Shangri-La', 'Stop at Tiger Leaping Gorge on the road north to Shangri-La.'),
-        ('Shangri-La', 'Songzanlin Monastery and Pudacuo National Park.'),
-        ('Shangri-La to Kunming', 'Return to Kunming for a final night and farewell dinner.'),
-        ('Kunming to Kuala Lumpur', 'Free morning, then fly home.'),
-    ]
-    itin = ''.join(f'<li><details{" open" if i == 0 else ""}><summary><span class="day">Day {i + 1}</span><span class="ttl">{t}</span><span class="plus" aria-hidden="true"></span></summary><p>{d}</p></details></li>' for i, (t, d) in enumerate(days))
-    others = ''.join(tour_card(t) for t in [x for x in TOURS if x['slug'] != 'yunnan'][:3])
-    body = f'''{nav('tours.html')}
-<p class="sample-note">Sample tour page: itinerary, duration and inclusions are placeholders to show the layout.</p>
-<main id="main">
-<section class="tour-hero on-dark">
-  <img src="assets/lake.jpg" alt="A traveller looking over a mountain lake">
-  <div class="container">
-    <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Tours</a></li><li aria-current="page">Yunnan</li></ol>
-    <p class="eyebrow">China &nbsp; Group tour</p>
-    <h1 class="h-xxl">Yunnan &amp; Shangri-La</h1>
-    <p class="line">Old towns, snow peaks and Tibetan monasteries.</p>
-  </div>
-</section>
-<section class="section">
-  <div class="container tour-layout">
-    <div>
-      <p class="eyebrow">Overview</p>
-      <h2 class="h-l" style="margin-bottom:24px">From the City of Eternal Spring to the edge of the Tibetan plateau.</h2>
-      <p class="lead" style="margin-bottom:48px">This journey climbs gradually through Yunnan, from mild Kunming to the old towns of Dali and Lijiang, then up to Shangri-La. The pace gives you time to adjust to the altitude, and to enjoy each place properly.</p>
-      <h3 class="h-m" style="margin-bottom:20px">Highlights</h3>
-      <ul class="highlights" style="margin-bottom:56px"><li>Lijiang Old Town, a UNESCO World Heritage Site</li><li>Jade Dragon Snow Mountain and Blue Moon Valley</li><li>Tiger Leaping Gorge</li><li>Songzanlin Monastery in Shangri-La</li></ul>
-      <h3 class="h-m" style="margin-bottom:12px">Day by day</h3>
-      <ol class="itin" style="margin-bottom:56px">{itin}</ol>
-      <div class="inc-grid">
-        <div><h3>Included</h3><ul><li>Return flights from Kuala Lumpur</li><li>Hotels throughout</li><li>Meals as listed in the itinerary</li><li>Coach transport and entrance fees</li><li>Tour leader from Malaysia</li></ul></div>
-        <div><h3>Not included</h3><ul><li>Travel insurance (we can arrange this)</li><li>Visa fees, if applicable</li><li>Tipping for guides and drivers</li><li>Personal expenses</li></ul></div>
-      </div>
-    </div>
-    <aside class="facts-card" aria-label="Tour details">
-      <dl>
-        <div><dt>Duration</dt><dd><span class="tbc">8 days</span></dd></div>
-        <div><dt>Tour type</dt><dd>Group tour</dd></div>
-        <div><dt>Best season</dt><dd>Spring and autumn</dd></div>
-        <div><dt>Departures</dt><dd>Ask us</dd></div>
-        <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
-      </dl>
-      <a class="btn btn--red" href="contact.html">Enquire on WhatsApp</a>
-      <a class="btn btn--line-dark" href="#">Download itinerary (PDF)</a>
-      <p class="facts-note">Need a visa or travel insurance for this trip? <a href="services.html#visa">We arrange both.</a></p>
-    </aside>
-  </div>
-</section>
-<section class="section section--paper" aria-labelledby="more-h">
-  <div class="container">
-    <div class="rail-head"><div><p class="eyebrow">You might also like</p><h2 class="h-l" id="more-h">More journeys</h2></div><a class="link-arrow" href="tours.html">All tours {ARROW}</a></div>
-    <div class="tour-grid">{others}</div>
-  </div>
-</section>
-</main>
-{cta_band()}
-{footer()}'''
-    page('tour-yunnan.html', 'Yunnan & Shangri-La | YSL Travel & Tours', 'Group tour through Kunming, Dali, Lijiang and Shangri-La.', body, 'tours.html')
-
+# ======================= DEPARTURE DATES =======================
 DATE_NOTES = {'School holidays': '学校假期', 'Fully booked': '已满'}
 
 def dates_block(q):
@@ -720,7 +655,7 @@ def build_gd_tour(q):
     <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Holidays &amp; Tours</a></li><li aria-current="page">{q['region']}</li></ol>
     <p class="eyebrow">{q['region']} &nbsp; Group tour &nbsp; {q['duration']}</p>
     <h1 class="h-xxl">{q['title']}</h1>
-    <p class="line">{q['line']}</p>
+    <p class="line">{f'<span lang="zh-Hans" class="zh">{q["zh"]}</span> ' if q.get('zh') else ''}{q['line']}</p>
   </div>
 </section>
 <section class="section">
@@ -756,7 +691,7 @@ def build_gd_tour(q):
       <div><h3>Included</h3><ul>{inc}</ul></div>
       <div><h3>Not included</h3><ul>{exc}</ul></div>
     </div>{notes}
-    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Operated by {q.get('brand', 'Golden Destinations')}. {'Images are for illustration purposes only. ' if q.get('brand') == 'Apple Vacations' else ''}Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
+    <p class="muted" style="margin:24px 0 0;font-size:13.5px">{'' if q.get('brand', '').startswith('YSL') else 'Operated by ' + q.get('brand', 'Golden Destinations') + '. '}{'Images are for illustration purposes only. ' if q.get('brand') == 'Apple Vacations' else ''}Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
   </div>
 </section>
 <section class="section" aria-labelledby="more-h">
@@ -917,7 +852,7 @@ if __name__ == '__main__':
     open(os.path.join(DIST, 'assets', 'site.js'), 'w', encoding='utf-8').write(read('site.js'))
     open(os.path.join(DIST, 'assets', 'landmarks.js'), 'w', encoding='utf-8').write(read('landmark-art.js'))
     def build_pages():
-        build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_detail(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact()
+        build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact()
     build_pages(); feedback.build(page, nav, head_block, footer)
     # Chinese site: same templates, Chinese content from zh.py, written to dist/zh/
     os.makedirs(os.path.join(DIST, 'zh'), exist_ok=True)

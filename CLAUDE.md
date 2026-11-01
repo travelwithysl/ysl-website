@@ -22,6 +22,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - `data.py`: tours, services, contact details, Golden Destinations itineraries. `articles.py`: journal articles.
 - Golden Destinations dates: `GD_DATES` in `data.py` (GD tour code + ISO dates, from `https://www.gd.my/b2c2b/api/v1/series/<CODE>?business_type=b2c2b&type=series`, the JSON behind `gd.my/web/itinerary/<CODE>`). Card months (`departs`) and the tour-page date list are built from it, in both languages. GD photos: `dist/assets/gd-<tour>-card.jpg` (5:4) and `-hero.jpg`.
 - Apple Vacations tours (`ap-*` slugs) use the same `GD_TOURS` / `GD_DATES` structures with `brand='Apple Vacations'`. Source: `applevacations.my/en/tour.php?pckg_id=<id>` (server-rendered HTML: days, hotels, meals, and a departure table where bookable rows have a `booking.php` link; rows marked Full are left out). Apple's photos sit on `aws.applevacations.my:2030`, which the environment's proxy cannot reach (non-443 port), so Apple tour pages use GD photos of the same places (Greece has none yet: `tbc`). Apple pages say "Images are for illustration purposes only." in the small print.
+- YSL's own tours: Majestic Qinghai & Gansu (大美青甘, own template `build_tour_qg`) and Golden Peak, Hidden Lake (金山秘湖, `tour-yunnan.html`, from YSL's itinerary PDF, built with the partner template and `brand='YSL Travel &amp; Tours'`). The old "Yunnan & Shangri-La" sample page is gone.
 - YSL's own tour dates: `YSL_DATES` in `data.py` (dates from YSL); `QG['date_notes']` tags single dates (School holidays, Fully booked). Seat counts and fares stay off the site.
 - GD tour SEO: each GD tour has `seo` (the page `<title>`, keyword first: "Korea Tour Package from Malaysia: ..."; Chinese "韩国旅游配套：..." in `tours_zh.py`). The meta description adds the departure months; the share image is the tour hero.
 - `feedback.py`: the feedback form (also used by `standalone.py`, which also holds the Google Apps Script for the response sheet).
@@ -33,7 +34,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 `build.py` builds every page twice: English into `dist/`, then Chinese into `dist/zh/` (the feedback form is already bilingual and has no twin).
 - Content: `zh.py` (services, tour cards, members, hours), `tours_zh.py` (itineraries), `articles_zh.py` (journal). Overlays keyed by slug; images, codes and links stay in `data.py` / `articles.py`.
 - Template wording: the `UI` dict in `zh.py` maps exact English fragments of the rendered HTML to Chinese. When you change English copy in `build.py`, update the matching key. The build stops if a key no longer matches anything, or if a run of English words is left on a Chinese page (allowed names are in `KEEP`).
-- Brand names stay in English on the Chinese site: YSL Travel & Tours (or YSL), tour brands and Golden Destinations tour names, airlines, Ctrip, shops and venues. Exception: YSL's own tour 大美青甘. Add any new brand to `KEEP` in `zh.py`.
+- Brand names stay in English on the Chinese site: YSL Travel & Tours (or YSL), tour brands and Golden Destinations tour names, airlines, Ctrip, shops and venues. Exception: YSL's own tours 大美青甘 and 金山秘湖. Add any new brand to `KEEP` in `zh.py`.
 - Malaysian Chinese usage: 配套, 纽西兰, 巴生, 冷气. Chinese has no italics: red accent words stay upright.
 
 ## Output gotcha

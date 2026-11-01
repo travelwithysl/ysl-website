@@ -42,7 +42,7 @@ SERVICES_ZH = {
 
 TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card and page always agree
     'qinghai-gansu': dict(region='中国', line='七彩丹霞、大漠沙丘与天空之镜盐湖'),
-    'yunnan': dict(title='云南香格里拉', region='中国', line='古城、雪山与藏传佛教寺院'),
+    'yunnan': dict(line='大理、泸沽湖、丽江、香格里拉与梅里雪山日照金山'),
     'gd-europe-legend': dict(line='巴黎、布鲁塞尔、阿姆斯特丹、莱茵河、蒂蒂湖、莱茵瀑布、苏黎世与琉森'),
     'gd-hokkaido': dict(short='北海道', line='登别、洞爷湖、小樽与札幌'),
     'gd-turkiye': dict(short='土耳其', line='伊斯坦布尔、恰纳卡莱、以弗所、棉花堡、科尼亚与卡帕多奇亚'),
@@ -145,7 +145,7 @@ def localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES
         tours.append({**t, **z, 'dur': _dur(t['dur']), 'kind': '团体游'})
     contact = {**CONTACT, 'hours': HOURS_ZH}
     members = [(a, MEMBERS_ZH[a]) for a, _ in MEMBERS]
-    openings = [{**o, 'tour': '云南香格里拉', 'kind': '团体游', 'place': '云南昆明'} for o in OPENINGS]
+    openings = [{**o, 'tour': '金山秘湖', 'kind': '团体游', 'place': '云南昆明'} for o in OPENINGS]
     articles = []
     for a in ARTICLES:
         z = ARTICLES_ZH[a['slug']]
@@ -181,7 +181,6 @@ UI = {
   'Corporate Travel & MICE | ': '商务旅游与 MICE | ',
   'About YSL Travel & Tours': '关于 YSL Travel & Tours',
   'Services | ': '旅游服务 | ',
-  'Yunnan & Shangri-La | ': '云南香格里拉 | ',
   'Majestic Qinghai & Gansu | ': '大美青甘 | ',
   'Journal | ': '旅游札记 | ',
   'Contact | ': '联系我们 | ',
@@ -191,7 +190,6 @@ UI = {
   'Air tickets, tours, hotels, cruises, insurance, visas, incentive groups and coach hire.': '机票、旅游配套、酒店、邮轮、保险、签证、奖励旅游团及巴士租赁。',
   'Tour Packages from Malaysia | YSL Travel & Tours': '旅游配套，吉隆坡出发 | YSL Travel & Tours',
   'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.': '吉隆坡出发的团体旅游配套：中国、日本、韩国、台湾、越南、欧洲、瑞士、土耳其、埃及、南非与纽西兰。YSL 自营团体游及合作伙伴团，在巴生预订。',
-  'Group tour through Kunming, Dali, Lijiang and Shangri-La.': '昆明、大理、丽江、香格里拉团体游。',
   '10-day group tour through Gansu and Qinghai: the Rainbow Mountains, Mogao Caves, Chaka Salt Lake and Qinghai Lake.': '甘肃、青海10天团体游：七彩丹霞、莫高窟、茶卡盐湖与青海湖。',
   'Destination guides, travel tips and corporate travel advice from YSL Travel & Tours.': 'YSL Travel & Tours 的目的地指南、旅行贴士与商务旅游建议。',
   'Visit, call or message YSL Travel & Tours in Klang, Selangor.': '到访、致电或留言给位于雪兰莪巴生的 YSL Travel & Tours。',
@@ -228,7 +226,6 @@ UI = {
   '<small>From</small>KUL': '<small>出发</small>KUL',
   '<small>To</small>': '<small>抵达</small>',
   '<span>Departs</span>': '<span>出发</span>',
-  'Months from YSL': '月份待 YSL 提供',
   '<span>View <svg': '<span>查看 <svg',
   '<li><a href="index.html">Home</a></li>': '<li><a href="index.html">首页</a></li>',
   'All tours <svg': '全部旅游团 <svg',
@@ -447,59 +444,18 @@ UI = {
   '<b>Looking for something else?</b> We also book packages from Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours and Golden Destinations. Tell us where you want to go and we’ll compare options for you.': '<b>想找其他行程？</b>我们也代订 Apple Vacations、Lovely Vacation、UbinGO Vacations、FS Holidays、Parlo Tours 及 Golden Destinations 的配套。告诉我们您想去哪里，我们为您比较各种选择。',
 
   # tour pages
-  'Sample tour page: itinerary, duration and inclusions are placeholders to show the layout.': '示范行程页：行程、天数和费用包括项目均为占位内容，仅用于展示版面。',
-  'alt="A traveller looking over a mountain lake"': 'alt="一位旅客眺望高山湖泊"',
-  '<li><a href="tours.html">Tours</a></li>': '<li><a href="tours.html">旅游团</a></li>',
-  '<li aria-current="page">Yunnan</li>': '<li aria-current="page">云南</li>',
-  '<p class="eyebrow">China &nbsp; Group tour</p>': '<p class="eyebrow">中国 &nbsp; 团体游</p>',
   '<p class="eyebrow">China &nbsp; Group tour &nbsp;': '<p class="eyebrow">中国 &nbsp; 团体游 &nbsp;',
   '&nbsp; Group tour &nbsp;': '&nbsp; 团体游 &nbsp;',
-  '<h1 class="h-xxl">Yunnan &amp; Shangri-La</h1>': '<h1 class="h-xxl">云南香格里拉</h1>',
-  '<p class="line">Old towns, snow peaks and Tibetan monasteries.</p>': '<p class="line">古城、雪山与藏传佛教寺院。</p>',
   '<p class="eyebrow">Overview</p>': '<p class="eyebrow">行程概览</p>',
-  'From the City of Eternal Spring to the edge of the Tibetan plateau.': '从春城出发，直抵青藏高原的边缘。',
-  'This journey climbs gradually through Yunnan, from mild Kunming to the old towns of Dali and Lijiang, then up to Shangri-La. The pace gives you time to adjust to the altitude, and to enjoy each place properly.': '这趟旅程在云南逐步爬升：从气候温和的昆明，到大理、丽江两座古城，再上到香格里拉。节奏从容，让您有时间适应海拔，也好好欣赏每一个地方。',
   '>Highlights</h3>': '>行程亮点</h3>',
-  '<li>Lijiang Old Town, a UNESCO World Heritage Site</li>': '<li>丽江古城，联合国教科文组织世界遗产</li>',
-  '<li>Jade Dragon Snow Mountain and Blue Moon Valley</li>': '<li>玉龙雪山与蓝月谷</li>',
-  '<li>Tiger Leaping Gorge</li>': '<li>虎跳峡</li>',
-  '<li>Songzanlin Monastery in Shangri-La</li>': '<li>香格里拉松赞林寺</li>',
   '>Day by day</h3>': '>每日行程</h3>',
-  '<span class="ttl">Kuala Lumpur to Kunming</span>': '<span class="ttl">吉隆坡至昆明</span>',
-  'Fly to Kunming, the City of Eternal Spring. Check in and welcome dinner.': '飞往“春城”昆明。入住酒店，享用欢迎晚宴。',
-  '<span class="ttl">Kunming to Dali</span>': '<span class="ttl">昆明至大理</span>',
-  'Travel west to Dali. Evening walk through Dali Old Town.': '西行前往大理，傍晚漫步大理古城。',
-  '<span class="ttl">Dali to Lijiang</span>': '<span class="ttl">大理至丽江</span>',
-  'Erhai Lake in the morning, then on to the UNESCO-listed old town of Lijiang.': '上午游洱海，随后前往列入世界遗产的丽江古城。',
-  '<span class="ttl">Lijiang</span>': '<span class="ttl">丽江</span>',
-  'Jade Dragon Snow Mountain and Blue Moon Valley, then a free evening in the old town.': '游玉龙雪山与蓝月谷，晚上在古城自由活动。',
-  '<span class="ttl">Lijiang to Shangri-La</span>': '<span class="ttl">丽江至香格里拉</span>',
-  'Stop at Tiger Leaping Gorge on the road north to Shangri-La.': '北上香格里拉途中，停留虎跳峡。',
-  '<span class="ttl">Shangri-La</span>': '<span class="ttl">香格里拉</span>',
-  'Songzanlin Monastery and Pudacuo National Park.': '游松赞林寺与普达措国家公园。',
-  '<span class="ttl">Shangri-La to Kunming</span>': '<span class="ttl">香格里拉至昆明</span>',
-  'Return to Kunming for a final night and farewell dinner.': '返回昆明，度过最后一晚，享用惜别晚宴。',
-  '<span class="ttl">Kunming to Kuala Lumpur</span>': '<span class="ttl">昆明至吉隆坡</span>',
-  'Free morning, then fly home.': '上午自由活动，随后搭机回国。',
   '<h3>Included</h3>': '<h3>费用包括</h3>',
   '<h3>Not included</h3>': '<h3>费用不包括</h3>',
-  '<li>Return flights from Kuala Lumpur</li>': '<li>吉隆坡往返机票</li>',
-  '<li>Hotels throughout</li>': '<li>全程酒店住宿</li>',
-  '<li>Meals as listed in the itinerary</li>': '<li>行程所列餐食</li>',
-  '<li>Coach transport and entrance fees</li>': '<li>巴士交通及门票</li>',
-  '<li>Tour leader from Malaysia</li>': '<li>马来西亚随团领队</li>',
-  '<li>Travel insurance (we can arrange this)</li>': '<li>旅游保险（可代为安排）</li>',
-  '<li>Visa fees, if applicable</li>': '<li>签证费（如适用）</li>',
-  '<li>Tipping for guides and drivers</li>': '<li>导游及司机小费</li>',
-  '<li>Personal expenses</li>': '<li>个人开销</li>',
   'aria-label="Tour details"': 'aria-label="行程资料"',
   '<dt>Duration</dt>': '<dt>天数</dt>',
   '<dt>Tour type</dt>': '<dt>类型</dt>',
   '<dd>Group tour</dd>': '<dd>团体游</dd>',
-  '<dt>Best season</dt>': '<dt>最佳季节</dt>',
-  '<dd>Spring and autumn</dd>': '<dd>春季及秋季</dd>',
   '<dt>Departures</dt>': '<dt>出发日期</dt>',
-  '<dd>Ask us</dd>': '<dd>欢迎询问</dd>',
   '<dt>Fares</dt>': '<dt>团费</dt>',
   '<dd>Latest fares on request</dd>': '<dd>最新团费，欢迎询问</dd>',
   '<dt>Route</dt>': '<dt>路线</dt>',
@@ -511,7 +467,6 @@ UI = {
   'Group departures from Kuala Lumpur. Ask us which dates still have seats.': '吉隆坡出发。欢迎询问哪些日期仍有空位。',
   '<dt>Tour by</dt>': '<dt>承办</dt>',
   '>Enquire on WhatsApp</a>': '>WhatsApp 咨询</a>',
-  '>Download itinerary (PDF)</a>': '>下载行程（PDF）</a>',
   '>Ask for fares and dates</a>': '>询问团费与日期</a>',
   'Need a visa or travel insurance for this trip? <a href="services.html#visa">We arrange both.</a>': '这趟旅程需要签证或旅游保险吗？<a href="services.html#visa">我们都能代办。</a>',
   '<p class="eyebrow">You might also like</p>': '<p class="eyebrow">您可能也喜欢</p>',
@@ -625,7 +580,7 @@ KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'G
         'Europe Legend', 'Hokkaido Delight', 'The Charms of Türkiye', 'Eastern Europe Vista', 'New Zealand North & South Island', 'Essence of South Africa',
         'The Grand Egypt Tour', 'Starfield Library', 'The Painters', 'Seoul Sky', 'Fox Town', 'Serravalle Designer Outlet', 'Peak Walk by Tissot', 'Peak Walk',
         'Eiger Express', 'Golden Pass', 'Glacier 3000',
-        'Lovely Vacation', 'UbinGO Vacations', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
+        'Lovely Vacation', 'UbinGO Vacations', 'Golden Peak, Hidden Lake', 'FS Holidays', 'Touch ’n Go eWallet', 'Penguins Plus', 'Santa’s Hotels', 'The Edge']  # brand names stay in English
 
 
 def check(zh_dir):
