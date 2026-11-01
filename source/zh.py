@@ -249,6 +249,7 @@ UI = {
   '</svg>Hotels</a>': '</svg>酒店</a>',
   '>All services</a>': '>全部服务</a>',
   'Why travel with YSL': '为何选择 YSL',
+  '<p class="eyebrow">Why YSL</p>': '<p class="eyebrow">为何选择 YSL</p>',
   'Licensed, accredited and trusted since 2009.': '持牌经营，业界认可，自2009年起深受信赖。',
   'A registered, licensed travel agency and an active member of Malaysia’s travel associations.': '注册持牌旅行社，也是马来西亚多个旅游业协会的活跃会员。',
   '<dt>Year founded</dt>': '<dt>创立年份</dt>',
@@ -368,7 +369,6 @@ UI = {
   '<span class="b">Desaru</span>': '<span class="b">迪沙鲁</span>',
   '<span class="b">Melaka</span>': '<span class="b">马六甲</span>',
   '<span class="b">Sabah</span>': '<span class="b">沙巴</span>',
-  '<p class="eyebrow">Our clients</p>': '<p class="eyebrow">我们的客户</p>',
   'Trusted by more than 50 companies across the region.': '深受区域内50多家企业信赖。',
   '<b>Since 2009</b>': '<b>始于2009年</b>',
   'Led by a founder with more than 25 years in travel.': '由拥有逾25年旅游业经验的创办人领导。',
@@ -376,8 +376,6 @@ UI = {
   'KPL 6107, and members of MATTA, MITA, MICA and MCTA.': '执照 KPL 6107，并为 MATTA、MITA、MICA 及 MCTA 会员。',
   '<b>Clear quotations</b>': '<b>报价清楚</b>',
   'Itemised proposals and a reconciled final account your finance team can sign off.': '逐项列明的方案，以及财务部门可直接核准的最终账目。',
-  'Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M': '客户标志，包括 Kossan、Kitacon、TOLi、Econframe、Max Filter Industries、Sendok Group、Megastra Jaya、MAARA、Wesglow 及 C.A.M',
-  'A selection of our corporate clients': '部分企业客户',
   '<p class="eyebrow">Start a proposal</p>': '<p class="eyebrow">开始规划方案</p>',
   'Send us a brief.': '把需求告诉我们。',
   'A rough brief is enough to start. We reply with options and an itemised quotation.': '只需大概的需求就能开始，我们会回复几个方案和逐项报价。',
@@ -409,8 +407,6 @@ UI = {
   '<p class="eyebrow">Credentials</p>': '<p class="eyebrow">资质</p>',
   'Licensed, registered and accredited.': '持牌、注册、获认证。',
   'Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).': '持有马来西亚旅游、艺术及文化部执照（KPL 6107），并以 YSL Travel &amp; Tours Sdn Bhd（877803-T）名义于马来西亚公司委员会（SSM）注册。',
-  'Trusted by more than 50 companies.': '深受50多家企业信赖。',
-  'Companies of every size rely on us for business travel and group trips that are well organised, good value and handled with discretion.': '各种规模的企业都把商务旅行和团体旅游交给我们：安排周到、物有所值、处事稳妥。',
 
   # services
   '<li aria-current="page">Services</li>': '<li aria-current="page">旅游服务</li>',

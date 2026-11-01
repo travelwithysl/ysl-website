@@ -162,7 +162,6 @@ def head_block(crumb, eyebrow, title, lead, extra=''):
 PIN = re.search(r'<g id="pinMark">(.*?)</g>', read('entrance.html'), re.S).group(1)
 PIN_PATHS = re.findall(r'<path fill="([^"]+)" d="([^"]+)"/>', PIN)  # white silhouette, then the four horizons
 MINI_PIN = '<svg viewBox="70 198 140 192" aria-hidden="true">' + PIN + '</svg>'
-CLIENTS_ALT = 'Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M'
 
 def horizon(bottom, top='transparent', cls=''):
     """Layered horizons from the YSL mark: orange, rust, red, deep red, then the next section's colour."""
@@ -357,8 +356,8 @@ def build_corporate():
     <dl class="stats" style="margin-top:0;border-top:0;padding-top:0">
       <div><dt>Corporate travel since</dt><dd class="num">2009</dd></div>
       <div><dt>Corporate clients</dt><dd class="num">50+</dd></div>
-      <div><dt>Largest single group</dt><dd class="num"><span class="tbc">XXX</span></dd></div>
-      <div><dt>MICE projects delivered</dt><dd class="num"><span class="tbc">XXX</span></dd></div>
+      <div><dt>Largest single group</dt><dd class="num">300+</dd></div>
+      <div><dt>MICE projects delivered</dt><dd class="num">100+</dd></div>
     </dl>
   </div>
 </section>
@@ -393,9 +392,9 @@ def build_corporate():
 </section>
 
 <section class="section section--ink on-dark" aria-labelledby="c-h">
-  <div class="container corp">
+  <div class="container corp corp--solo">
     <div class="rv">
-      <p class="eyebrow">Our clients</p>
+      <p class="eyebrow">Why YSL</p>
       <h2 class="h-l" id="c-h">Trusted by more than 50 companies across the region.</h2>
       <ul class="proof-list">
         <li><span class="code">A</span><div><b>Since 2009</b><span>Led by a founder with more than 25 years in travel.</span></div></li>
@@ -403,7 +402,6 @@ def build_corporate():
         <li><span class="code">C</span><div><b>Clear quotations</b><span>Itemised proposals and a reconciled final account your finance team can sign off.</span></div></li>
       </ul>
     </div>
-    <figure class="rv" style="margin:0"><div class="logos-panel"><img src="assets/clients.jpg" alt="{CLIENTS_ALT}"></div><figcaption>A selection of our corporate clients</figcaption></figure>
   </div>
 </section>
 
@@ -453,12 +451,6 @@ def build_about():
   <div class="container">
     <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).</p></div></div>
     <ul class="member-grid rv">{members}</ul>
-  </div>
-</section>
-<section class="section section--paper" aria-labelledby="cl-h">
-  <div class="container split split--center">
-    <div><p class="eyebrow">Our clients</p><h2 class="h-l" id="cl-h">Trusted by more than 50 companies.</h2><p class="muted" style="margin:20px 0 0;max-width:46ch">Companies of every size rely on us for business travel and group trips that are well organised, good value and handled with discretion.</p></div>
-    <div class="logos-panel rv"><img src="assets/clients.jpg" alt="Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M"></div>
   </div>
 </section>
 </main>

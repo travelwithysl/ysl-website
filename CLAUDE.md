@@ -69,7 +69,7 @@ Commit the built output with the source change: Cloudflare serves the committed 
 - Holidays & Tours is one grid filtered by region (`cat` in `TOURS`: asia, europe, africa, oceania), YSL's own tours first. No airline logos or lists: YSL sells all airlines.
 - Credentials (confirmed by YSL): MOTAC KPL 6107, MATTA, MITA, MICA, MCTA. Shown as text until YSL supplies the logo files. IATA is held back for now at YSL's request (if it returns, only the "IATA Accredited Agent" mark from IATA's agent portal may be used).
 - Partners (confirmed): Apple Vacations, Lovely Vacation, UbinGO Vacations, FS Holidays, Parlo Tours (less active, still listed), Golden Destinations.
-- No case studies or named past projects on the corporate page: corporate work is usually under NDA. The client-logo panel stays (logos only, no project details).
+- No case studies or named past projects on the corporate page: corporate work is usually under NDA. No client logos either (`dist/assets/clients.jpg` is kept but unused). Corporate figures: largest single group 300+, MICE projects delivered 100+ (confirm with YSL if they change).
 - No home-page testimonial until the feedback form brings in good reviews. The main site has no copy of the feedback form (it lives only at feedback.ysltravel.com).
 - Social: Facebook /ysltravel and Instagram @ysltravel (`CONTACT` in `data.py`).
 - WhatsApp: +60 16-626 4500, the office line (no one carries it; checked during office hours), so the site says "We reply during office hours." Every enquiry button leads to the contact form, which opens WhatsApp with the message filled in (`CONTACT['wa']`); from a tour page it presets "Tour packages".
