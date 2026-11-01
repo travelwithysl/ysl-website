@@ -1,0 +1,39 @@
+
+/* Chinese site (dist/zh/, <html lang="zh-Hans">). Latin text keeps the site's typefaces; Chinese falls through to
+   Noto Serif SC for headings and Noto Sans SC for text. Chinese has no italics, so red accent words stay upright
+   and keep their colour; negative tracking and tight leading are opened up for the characters. */
+html:lang(zh) {
+  --display: "Instrument Serif", "Noto Serif SC", "Songti SC", serif;
+  --body: "Inter Tight", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono: "IBM Plex Mono", "Noto Sans SC", "PingFang SC", ui-monospace, monospace;
+}
+html:lang(zh) body { line-height: 1.85; letter-spacing: .02em; }
+html:lang(zh) em, html:lang(zh) i, html:lang(zh) .h-xxl, html:lang(zh) .h-xl, html:lang(zh) .h-l, html:lang(zh) .h-m,
+html:lang(zh) .globe-copy h1, html:lang(zh) .globe-copy h1 em, html:lang(zh) .plan-band h2, html:lang(zh) .cta-band .h-xl, html:lang(zh) .hero h1 { font-style: normal !important; }
+
+/* headings: Noto Serif SC at its regular weight, a touch smaller than the Latin serif and with room between lines */
+html:lang(zh) .h-xxl, html:lang(zh) .h-xl, html:lang(zh) .h-l, html:lang(zh) .h-m, html:lang(zh) .globe-copy h1, html:lang(zh) .plan-band h2,
+html:lang(zh) .slot b, html:lang(zh) .t-title, html:lang(zh) .tour-card h3, html:lang(zh) .post-card h3, html:lang(zh) .article-body h2,
+html:lang(zh) .pull, html:lang(zh) .d-body h3, html:lang(zh) .itin .ttl, html:lang(zh) .inc-grid h3, html:lang(zh) .mice-grid h3,
+html:lang(zh) .scale-grid b, html:lang(zh) .runway b, html:lang(zh) .local-grid b, html:lang(zh) .case-body h3, html:lang(zh) .qg-feats b { letter-spacing: .02em !important; font-weight: 500 !important; }
+html:lang(zh) .h-xxl { font-size: clamp(40px, 5.6vw, 88px); line-height: 1.16; }
+html:lang(zh) .h-xl { font-size: clamp(32px, 4.2vw, 64px); line-height: 1.2; }
+html:lang(zh) .h-l { font-size: clamp(27px, 3vw, 44px); line-height: 1.25; }
+html:lang(zh) .h-m { line-height: 1.35; }
+html:lang(zh) .globe-copy h1 { font-size: clamp(40px, 5vw, 80px); line-height: 1.16; }
+html:lang(zh) .plan-band h2 { line-height: 1.2; }
+html:lang(zh) .t-title { font-size: 21px; line-height: 1.35; }
+html:lang(zh) .mice-grid h3, html:lang(zh) .case-body h3, html:lang(zh) .inc-grid h3, html:lang(zh) .tour-card h3, html:lang(zh) .post-card h3 { font-size: clamp(21px, 1.7vw, 24px); line-height: 1.35; }
+html:lang(zh) .d-body h3, html:lang(zh) .itin .ttl { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.4; }
+html:lang(zh) .scale-grid b, html:lang(zh) .local-grid b, html:lang(zh) .runway b, html:lang(zh) .qg-feats b { font-size: clamp(18px, 1.4vw, 21px); line-height: 1.4; }
+html:lang(zh) .slot b { line-height: 1.2; }
+html:lang(zh) .lead { line-height: 1.8; }
+html:lang(zh) .pull { line-height: 1.5; }
+
+/* small labels: Chinese reads better with less tracking than the all-caps Latin labels */
+html:lang(zh) .eyebrow, html:lang(zh) .btn, html:lang(zh) .code, html:lang(zh) .tag, html:lang(zh) .t-stub, html:lang(zh) .t-dep > span:first-child,
+html:lang(zh) .t-route small, html:lang(zh) .brand-strip .lbl, html:lang(zh) .svc-strip .lbl, html:lang(zh) .plan-band dt, html:lang(zh) .corp figcaption,
+html:lang(zh) .d-num span, html:lang(zh) .itin .day, html:lang(zh) .lm-label em, html:lang(zh) .globe-replay, html:lang(zh) .stats dt { letter-spacing: .08em; }
+html:lang(zh) .eyebrow { font-size: 12.5px; }
+html:lang(zh) .btn { font-size: 13px; }
+html:lang(zh) .d-num span { font-size: 10px; letter-spacing: 0; }

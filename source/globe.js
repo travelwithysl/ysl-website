@@ -15,13 +15,15 @@
   var LOOP = ['dps', 'syd', 'hnd', 'icn', 'pek', 'dxb', 'cai', 'nav', 'fco', 'zrh', 'cdg', 'jfk', 'kul'];
   var W, H, R, CX, CY, DPR, LM, phone;
   // where each landmark leads: a tour that goes there, or an enquiry for that place
+  // labels can be swapped per language (the Chinese site sets window.GLOBE_TEXT and translates LANDMARKS places)
+  var TX = window.GLOBE_TEXT || { see: 'See tour', china: 'China tours', plan: 'Plan a trip' };
   var TO = {
-    CDG: ['tour-gd-europe-legend.html', 'See tour'], ZRH: ['tour-gd-europe-legend.html', 'See tour'],
-    NAV: ['tour-gd-turkiye.html', 'See tour'], HND: ['tour-gd-hokkaido.html', 'See tour'], PEK: ['tours.html', 'China tours']
+    CDG: ['tour-gd-europe-legend.html', TX.see], ZRH: ['tour-gd-europe-legend.html', TX.see],
+    NAV: ['tour-gd-turkiye.html', TX.see], HND: ['tour-gd-hokkaido.html', TX.see], PEK: ['tours.html', TX.china]
   };
   function linkFor(l) {
     if (l.home) return null;
-    return TO[l.code] || ['contact.html?dest=' + encodeURIComponent(l.place), 'Plan a trip'];
+    return TO[l.code] || ['contact.html?dest=' + encodeURIComponent(l.place), TX.plan];
   }
   var hover = false, lastNow = 0;
   label.addEventListener('mouseenter', function () { hover = true; });

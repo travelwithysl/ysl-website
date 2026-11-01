@@ -73,7 +73,7 @@
     b.addEventListener('click', function () {
       var text = b.getAttribute('data-copy') || location.href.split('#')[0];
       var label = b.textContent;
-      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = label; }, 1800); };
+      var done = function () { b.textContent = b.getAttribute('data-copied') || 'Copied'; setTimeout(function () { b.textContent = label; }, 1800); };
       try { navigator.clipboard.writeText(text).then(done, function () { b.textContent = text; }); } catch (e) { b.textContent = text; }
     });
   });

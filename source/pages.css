@@ -87,10 +87,11 @@
 /* ---------- tour detail ---------- */
 .tour-hero { position: relative; min-height: clamp(460px, 62vh, 720px); display: grid; align-items: end; color: #fff; overflow: hidden; }
 .tour-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.tour-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(22,17,18,.05) 30%, rgba(22,17,18,.72) 100%); }
+.tour-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,17,18,.5) 0%, rgba(22,17,18,.18) 45%, rgba(22,17,18,0) 70%), linear-gradient(180deg, rgba(22,17,18,.05) 30%, rgba(22,17,18,.72) 100%); }
 .tour-hero .container { position: relative; z-index: 2; padding-block: 56px; }
 .tour-hero .crumbs, .tour-hero .crumbs li::before { color: rgba(255,255,255,.75); }
 .tour-hero .h-xxl { max-width: 13ch; }
+.tour-hero.on-dark .eyebrow { color: rgba(255,235,228,.9); }
 .tour-hero .line { margin: 18px 0 0; font-size: clamp(17px, 1.4vw, 20px); color: rgba(255,255,255,.88); }
 .tour-layout { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
 .tour-layout > * { min-width: 0; }
@@ -173,7 +174,7 @@
 @media (max-width: 560px) { .fields { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- full tour page: Qinghai & Gansu ---------- */
-.tour-hero .line .zh { font-weight: 700; margin-right: 10px; letter-spacing: .08em; }
+.tour-hero .line .zh { font-weight: 700; margin-right: 10px; letter-spacing: .08em; color: #fff; }
 .flights { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .flights li { display: grid; grid-template-columns: 64px 70px minmax(0, 1.2fr) minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 16px 20px; background: var(--paper); border-radius: 14px; font-size: 15px; }
 .flights b { font-family: var(--mono); font-weight: 500; }
@@ -385,3 +386,18 @@
   background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none' stroke='%23170407' stroke-width='1.3'%3E%3Crect x='1' y='4.5' width='8' height='6' rx='1'/%3E%3Cpath d='M3 4.5V3a2 2 0 0 1 4 0v1.5'/%3E%3C/svg%3E"); }
 .locked-note { margin-top: 12px; }
 .locked-note .zh { display: inline; }
+
+/* ---------- departure dates (Golden Destinations tour pages) ---------- */
+.dep-dates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.dep-dates li { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: baseline; gap: 14px; padding: 14px 20px; background: var(--paper); border-radius: 14px; font-size: 15px; font-weight: 600; }
+.dep-dates .code { text-transform: uppercase; }
+.dep-note { font-size: 12px; font-weight: 500; color: var(--stone); }
+@media (max-width: 600px) { .dep-dates { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- association logos, above the footer on every page ---------- */
+.assoc-strip { background: var(--paper, #f5f0e8); border-top: 1px solid var(--line); padding: 28px 0; }
+.assoc-strip .container { display: flex; align-items: center; gap: clamp(20px, 4vw, 56px); flex-wrap: wrap; }
+.assoc-strip .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--stone); }
+.assoc-strip ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: clamp(24px, 4vw, 56px); flex-wrap: wrap; }
+.assoc-strip img { height: 52px; width: auto; display: block; }
+@media (max-width: 600px) { .assoc-strip img { height: 40px; } .assoc-strip ul { gap: 20px 28px; } }

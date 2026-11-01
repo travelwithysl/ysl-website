@@ -2,10 +2,18 @@ import os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from articles import ARTICLES
 import feedback
-from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG, GD_TOURS
+import legal
+import zh
+from data import SERVICES, TOURS, BRANDS, MEMBERS, CONTACT, FAIRS, OPENINGS, QG, GD_TOURS, MON
+
+# 'en' builds the English site into dist/, 'zh' the Simplified Chinese site into dist/zh/ (see zh.py)
+LANG = 'en'
+NO_ZH = {'feedback.html'}
+SITE = 'https://www.ysltravel.com'  # official address: canonical links, sitemap and share images use it  # pages with no Chinese twin (the feedback form is already bilingual)
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(SRC, '..', 'dist')
+MAIN_DIST = os.path.abspath(DIST)
 read = lambda f: open(os.path.join(SRC, f), encoding='utf-8').read()
 
 LOGO = read('logo.svg')
@@ -26,24 +34,34 @@ def nav(current):
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       {items}
-      <li><a class="lang" href="#" lang="zh-Hans">中文</a></li>
+      <li><a class="lang" href="__LANGSWITCH__" {'lang="en" hreflang="en">EN' if LANG == 'zh' else 'lang="zh-Hans" hreflang="zh-Hans">中文'}</a></li>
       <li><a class="nav-cta" href="contact.html"{" aria-current=\"page\"" if current == "contact.html" else ""}>Plan a trip</a></li>
     </ul>
   </div>
 </header>'''
 
+ASSOC = [('matta', 'MATTA, Malaysian Association of Tour and Travel Agents', 'https://www.matta.org.my/'),
+         ('mita', 'MITA, Malaysian Inbound Tourism Association', 'https://www.mita.org.my/'),
+         ('mica', 'MICA, Malaysia Inbound Chinese Association', ''),
+         ('mcta', 'MCTA, Malaysian Chinese Tourism Association', '')]
+
+def assoc_strip():
+    items = ''.join((f'<li><a href="{u}" target="_blank" rel="noopener"><img src="assets/assoc-{k}.png" alt="{a}" loading="lazy"></a></li>' if u else f'<li><img src="assets/assoc-{k}.png" alt="{a}" loading="lazy"></li>') for k, a, u in ASSOC)
+    return f'<aside class="assoc-strip" aria-label="Memberships"><div class="container"><span class="lbl">Proud member of</span><ul>{items}</ul></div></aside>'
+
 def footer():
-    return f'''<footer class="site-footer on-dark">
+    return f'''{assoc_strip()}
+<footer class="site-footer on-dark">
   <div class="container">
     <div class="foot-grid">
       <div class="foot-brand">{LOGO}<p>Travel services for individuals and companies, from Klang to the world since 2009.</p></div>
       <div><h4>Explore</h4><ul>{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Visit us</h4><p style="margin:0">{CONTACT['address']}</p><p style="margin:12px 0 0">{CONTACT['hours']}</p></div>
-      <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">WhatsApp {CONTACT['whatsapp']}</a></li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
     </div>
     <div class="foot-base">
       <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
-      <span>Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
+      <span><a href="privacy.html">Privacy Notice</a> &nbsp; Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
     </div>
   </div>
 </footer>'''
@@ -71,7 +89,7 @@ def tour_card(t, cls='ticket rv'):
         vis = f'<div class="media"><span class="pill">{t.get("dur", t["kind"])}</span><img src="assets/{t["img"]}" alt=""></div>'
     else:
         vis = f'<div class="slot" style="--c1:{t["c1"]};--c2:{t["c2"]}"><span class="pill">{t.get("dur", t["kind"])}</span><b>{t.get("short", t["region"])}</b><small>Tour photo to come</small></div>'
-    return f'''<a class="{cls}" href="{href}" data-cat="{t['cat']}">{vis}<span class="t-body"><span class="t-route"><span><small>From</small>KUL</span><i>{MINI_PIN}</i><span><small>To</small>{t['iata']}</span></span><b class="t-title">{t['title']}</b><span class="t-line">{t['line']}</span><span class="t-dep"><span>Departs</span>{t['departs'] if t.get('departs') else '<span class="tbc">Months from YSL</span>'}</span></span><span class="t-stub"><span>{t.get('brand', 'YSL Travel &amp; Tours')}</span><span>{'View' if t.get('page') else 'Enquire'} {ARROW}</span></span></a>'''
+    return f'''<a class="{cls}" href="{href}" data-cat="{t['cat']}">{vis}<span class="t-body"><span class="t-route"><span><small>From</small>{t.get('origin', 'KUL')}</span><i>{MINI_PIN}</i><span><small>To</small>{t['iata']}</span></span><b class="t-title">{t['title']}</b><span class="t-line">{t['line']}</span><span class="t-dep"><span>Departs</span>{t['departs'] if t.get('departs') else '<span class="tbc">Months from YSL</span>'}</span></span><span class="t-stub"><span>{'Partner tour' if t.get('brand') else 'YSL Travel &amp; Tours'}</span><span>{'View' if t.get('page') else 'Enquire'} {ARROW}</span></span></a>'''
 
 def post_card(p):
     if p.get('img'):
@@ -81,12 +99,33 @@ def post_card(p):
         vis = f'<div class="media slot" style="--c1:{c1};--c2:{c2}"><b>{lab}</b><small>Photo to come</small></div>'
     return f'''<a class="post-card rv" href="{p['href']}" data-cat="{p['cat']}">{vis}<span class="tag">{p['cat_label']}</span><h3>{p['title']}</h3><p>{p['excerpt']}</p><span class="date">{p['date']}</span></a>'''
 
-def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=''):
+def page(fname, title, desc, body, current, home=False, extra_head='', extra_js='', og_image='assets/hero.jpg'):
+    if LANG == 'zh':
+        extra_head = '\n' + zh.FONTS + extra_head
+        switch = '../' + fname
+    else:
+        switch = 'zh/' + (fname if fname not in NO_ZH else 'index.html')
+    main = os.path.abspath(DIST) == MAIN_DIST  # not for the stand-alone feedback site
+    path = '' if fname == 'index.html' else fname
+    en_url, zh_url = f'{SITE}/{path}', f'{SITE}/zh/{path}'
+    url = zh_url if LANG == 'zh' else en_url
+    if main and fname not in NO_ZH and fname != '404.html':
+        extra_head = (f'\n<link rel="canonical" href="{url}">\n<link rel="alternate" hreflang="en" href="{en_url}">'
+                      f'\n<link rel="alternate" hreflang="zh-Hans" href="{zh_url}">\n<link rel="alternate" hreflang="x-default" href="{en_url}">') + extra_head
+    if main:
+        extra_head = ('\n<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">\n<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">'
+                      '\n<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">') + extra_head
+    og_abs = og_image if og_image.startswith('http') else f'{SITE}/{og_image}'
     head = f'''<title>{title}</title>
 <meta name="description" content="{desc}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="YSL Travel &amp; Tours">
+<meta property="og:locale" content="{'zh_CN' if LANG == 'zh' else 'en_GB'}">
+<meta property="og:url" content="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="assets/hero.jpg">
+<meta property="og:image" content="{og_abs}">
+<meta name="twitter:card" content="summary_large_image">
 {FONTS}
 <link rel="stylesheet" href="assets/site.css">{extra_head}'''
     content = f'''{ICONS}
@@ -97,7 +136,7 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
         html = head + '\n' + content
     else:
         html = f'''<!doctype html>
-<html lang="en-GB">
+<html lang="{'zh-Hans' if LANG == 'zh' else 'en-GB'}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -107,9 +146,16 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
 {content}
 </body>
 </html>'''
+    if LANG == 'zh':
+        if home:
+            html = '<html lang="zh-Hans">\n' + html
+        html = zh.translate_html(html, fname)
+        html = re.sub(r'(src|href|content)="assets/', r'\1="../assets/', html)
+    html = html.replace('__LANGSWITCH__', switch)
     html = html.encode('ascii', 'xmlcharrefreplace').decode('ascii')
-    open(os.path.join(DIST, fname), 'w', encoding='utf-8').write(html)
-    print('wrote', fname, len(html) // 1024, 'KB')
+    out = os.path.join(DIST, 'zh') if LANG == 'zh' else DIST
+    open(os.path.join(out, fname), 'w', encoding='utf-8').write(html)
+    print('wrote', os.path.relpath(os.path.join(out, fname), DIST), len(html) // 1024, 'KB')
 
 def head_block(crumb, eyebrow, title, lead, extra=''):
     crumbs = ''.join(f'<li><a href="{h}">{t}</a></li>' if h else f'<li aria-current="page">{t}</li>' for h, t in crumb)
@@ -126,7 +172,6 @@ def head_block(crumb, eyebrow, title, lead, extra=''):
 PIN = re.search(r'<g id="pinMark">(.*?)</g>', read('entrance.html'), re.S).group(1)
 PIN_PATHS = re.findall(r'<path fill="([^"]+)" d="([^"]+)"/>', PIN)  # white silhouette, then the four horizons
 MINI_PIN = '<svg viewBox="70 198 140 192" aria-hidden="true">' + PIN + '</svg>'
-CLIENTS_ALT = 'Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M'
 
 def horizon(bottom, top='transparent', cls=''):
     """Layered horizons from the YSL mark: orange, rust, red, deep red, then the next section's colour."""
@@ -244,9 +289,6 @@ def build_home():
           <ul class="badges">{members}</ul>
         </div>
       </div>
-      <div class="proof-foot proof-foot--solo">
-        <blockquote class="quote"><p>“Client testimonial to come. A short line from a tour guest or a corporate client, in their own words.”</p><footer><span class="tbc">Name, company, to be supplied by YSL</span></footer></blockquote>
-      </div>
     </div>
   </div>
 </section>
@@ -254,7 +296,7 @@ def build_home():
 {plan_band()}
 {footer()}'''
     css = '<style>\n' + read('globe.css') + '\n</style>'
-    js = '\n<script src="assets/landmarks.js"></script>\n<script>\n' + read('d3geo.min.js') + '\n' + read('land.js') + '\n' + read('landmarks.js') + '\n' + read('globe.js') + '\n</script>'
+    js = '\n<script src="assets/landmarks.js"></script>\n<script>\n' + read('d3geo.min.js') + '\n' + read('land.js') + '\n' + read('landmarks.js') + '\n' + (zh.globe_js() if LANG == 'zh' else '') + read('globe.js') + '\n</script>'
     page('index.html', 'YSL Travel & Tours', 'YSL Travel & Tours: corporate travel, holidays and tours from Klang, Malaysia, since 2009.', body, 'index.html', home=True, extra_head='\n' + css, extra_js=js)
 
 # ======================= CORPORATE & MICE =======================
@@ -302,10 +344,6 @@ def build_corporate():
     ]
     local_html = ''.join(f'<li class="rv"><svg class="ic" aria-hidden="true"><use href="#ic-{ic}"/></svg><b>{t}</b><p>{d}</p></li>' for ic, t, d in local)
     places_html = ''.join(f'<span class="b">{p}</span>' for p in ['Langkawi', 'Penang', 'Genting Highlands', 'Cameron Highlands', 'Port Dickson', 'Desaru', 'Melaka', 'Sabah'])
-    cases = [('Incentive', 'Company name', 'Destination', 'Number of travellers'),
-             ('Conference', 'Company name', 'Destination', 'Number of delegates'),
-             ('Company trip', 'Company name', 'Destination', 'Number of travellers')]
-    cases_html = ''.join(f'''<li class="rv"><div class="slot" style="--c1:#8a1a22;--c2:#2a0609"><span class="pill">{k}</span><b>{k}</b><small>Project photo to come</small></div><div class="case-body"><p class="tag" style="margin:0 0 6px">{k}</p><h3><span class="tbc">{c}</span></h3><p><span class="tbc">{d}</span> &nbsp; <span class="tbc">{n}</span></p></div></li>''' for k, c, d, n in cases)
     brief = ['Purpose of the trip, and who is going', 'Group size, even a range', 'Preferred dates or months', 'Budget per person', 'Destinations you have in mind', 'Any dietary, faith or accessibility needs']
     brief_html = ''.join(f'<li>{b}</li>' for b in brief)
     body = f'''{nav('corporate.html')}
@@ -328,8 +366,8 @@ def build_corporate():
     <dl class="stats" style="margin-top:0;border-top:0;padding-top:0">
       <div><dt>Corporate travel since</dt><dd class="num">2009</dd></div>
       <div><dt>Corporate clients</dt><dd class="num">50+</dd></div>
-      <div><dt>Largest single group</dt><dd class="num"><span class="tbc">XXX</span></dd></div>
-      <div><dt>MICE projects delivered</dt><dd class="num"><span class="tbc">XXX</span></dd></div>
+      <div><dt>Largest single group</dt><dd class="num">300+</dd></div>
+      <div><dt>MICE projects delivered</dt><dd class="num">100+</dd></div>
     </dl>
   </div>
 </section>
@@ -363,17 +401,10 @@ def build_corporate():
   </div>
 </section>
 
-<section class="section section--paper" aria-labelledby="cs-h">
-  <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">Selected projects</p><h2 class="h-l" id="cs-h">Recent MICE programmes.</h2></div><p class="lead"><span class="tbc">Three past projects to be supplied by YSL: client (or industry), destination, group size and one photo each.</span></p></div>
-    <ul class="case-grid">{cases_html}</ul>
-  </div>
-</section>
-
 <section class="section section--ink on-dark" aria-labelledby="c-h">
-  <div class="container corp">
+  <div class="container corp corp--solo">
     <div class="rv">
-      <p class="eyebrow">Our clients</p>
+      <p class="eyebrow">Why YSL</p>
       <h2 class="h-l" id="c-h">Trusted by more than 50 companies across the region.</h2>
       <ul class="proof-list">
         <li><span class="code">A</span><div><b>Since 2009</b><span>Led by a founder with more than 25 years in travel.</span></div></li>
@@ -381,7 +412,6 @@ def build_corporate():
         <li><span class="code">C</span><div><b>Clear quotations</b><span>Itemised proposals and a reconciled final account your finance team can sign off.</span></div></li>
       </ul>
     </div>
-    <figure class="rv" style="margin:0"><div class="logos-panel"><img src="assets/clients.jpg" alt="{CLIENTS_ALT}"></div><figcaption>A selection of our corporate clients</figcaption></figure>
   </div>
 </section>
 
@@ -433,12 +463,6 @@ def build_about():
     <ul class="member-grid rv">{members}</ul>
   </div>
 </section>
-<section class="section section--paper" aria-labelledby="cl-h">
-  <div class="container split split--center">
-    <div><p class="eyebrow">Our clients</p><h2 class="h-l" id="cl-h">Trusted by more than 50 companies.</h2><p class="muted" style="margin:20px 0 0;max-width:46ch">Companies of every size rely on us for business travel and group trips that are well organised, good value and handled with discretion.</p></div>
-    <div class="logos-panel rv"><img src="assets/clients.jpg" alt="Client logos including Kossan, Kitacon, TOLi, Econframe, Max Filter Industries, Sendok Group, Megastra Jaya, MAARA, Wesglow and C.A.M"></div>
-  </div>
-</section>
 </main>
 {cta_band()}
 {footer()}'''
@@ -476,94 +500,77 @@ def build_services():
 
 # ======================= TOURS =======================
 def build_tours():
-    own = ''.join(tour_card(t) for t in TOURS if not t.get('brand'))
-    gd = ''.join(tour_card(t) for t in TOURS if t.get('brand') == 'Golden Destinations')
+    regions = [('all', 'All tours', '全部'), ('asia', 'Asia', '亚洲'), ('europe', 'Europe', '欧洲'), ('africa', 'Africa', '非洲'), ('oceania', 'Australia &amp; New Zealand', '澳洲与纽西兰')]
+    chips = '<div class="chips" data-filter-group="tourGrid" role="group" aria-label="Filter tours by region">' + ''.join(
+        f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{z if LANG == "zh" else e}</button>' for k, e, z in regions) + '</div>'
+    order = [k for k, _, _ in regions]
+    cards = ''.join(tour_card(t) for t in sorted(TOURS, key=lambda t: (bool(t.get('brand')), order.index(t['cat']))))  # YSL's own tours first, then partner tours by region
     body = f'''{nav('tours.html')}
 <main id="main">
-{head_block([('index.html', 'Home'), (None, 'Holidays &amp; Tours')], 'Holidays &amp; Tours', 'Where will you go next?', 'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.')}
-<section class="section" aria-labelledby="own-h" style="padding-top:clamp(40px,5vw,72px)">
+{head_block([('index.html', 'Home'), (None, 'Holidays &amp; Tours')], 'Holidays &amp; Tours', 'Where will you go next?', 'Our own group tours, and signature group tours from Malaysia’s leading tour brands, all booked and looked after by YSL.', chips)}
+<section class="section" aria-label="Tours" style="padding-top:clamp(40px,5vw,72px)">
   <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">YSL group tours</p><h2 class="h-l" id="own-h">Journeys we design and lead.</h2></div></div>
-    <div class="tour-grid">{own}</div>
-  </div>
-</section>
-<section class="section section--paper" aria-labelledby="gd-h">
-  <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">Signature group tours</p><h2 class="h-l" id="gd-h">From Golden Destinations.</h2></div><p class="lead">Popular guaranteed-departure tours from one of the brands we carry. Book through YSL and we look after you from enquiry to the flight home.</p></div>
-    <div class="tour-grid">{gd}</div>
+    <div class="tour-grid" id="tourGrid">{cards}</div>
     <div class="brand-note rv"><p><b>Looking for something else?</b> We also book packages from {', '.join(BRANDS[:-1])} and {BRANDS[-1]}. Tell us where you want to go and we’ll compare options for you.</p><a class="btn btn--red" href="contact.html">{WA}</a></div>
   </div>
 </section>
 </main>
 {cta_band()}
 {footer()}'''
-    page('tours.html', 'Holidays & Tours | YSL Travel & Tours', 'YSL group tours and signature group tours from Golden Destinations.', body, 'tours.html')
+    page('tours.html', 'Tour Packages from Malaysia | YSL Travel & Tours', 'Group tour packages from Kuala Lumpur to China, Japan, Korea, Taiwan, Vietnam, Europe, Switzerland, Türkiye, Egypt, South Africa and New Zealand. YSL’s own group tours and partner tours, booked in Klang.', body, 'tours.html')
 
-# ======================= TOUR DETAIL =======================
-def build_tour_detail():
-    days = [
-        ('Kuala Lumpur to Kunming', 'Fly to Kunming, the City of Eternal Spring. Check in and welcome dinner.'),
-        ('Kunming to Dali', 'Travel west to Dali. Evening walk through Dali Old Town.'),
-        ('Dali to Lijiang', 'Erhai Lake in the morning, then on to the UNESCO-listed old town of Lijiang.'),
-        ('Lijiang', 'Jade Dragon Snow Mountain and Blue Moon Valley, then a free evening in the old town.'),
-        ('Lijiang to Shangri-La', 'Stop at Tiger Leaping Gorge on the road north to Shangri-La.'),
-        ('Shangri-La', 'Songzanlin Monastery and Pudacuo National Park.'),
-        ('Shangri-La to Kunming', 'Return to Kunming for a final night and farewell dinner.'),
-        ('Kunming to Kuala Lumpur', 'Free morning, then fly home.'),
-    ]
-    itin = ''.join(f'<li><details{" open" if i == 0 else ""}><summary><span class="day">Day {i + 1}</span><span class="ttl">{t}</span><span class="plus" aria-hidden="true"></span></summary><p>{d}</p></details></li>' for i, (t, d) in enumerate(days))
-    others = ''.join(tour_card(t) for t in [x for x in TOURS if x['slug'] != 'yunnan'][:3])
-    body = f'''{nav('tours.html')}
-<p class="sample-note">Sample tour page: itinerary, duration and inclusions are placeholders to show the layout.</p>
+# ======================= PRIVACY NOTICE AND 404 =======================
+def build_privacy():
+    if LANG == 'zh':
+        content = legal.sections(legal.ZH) + '<p class="muted">如中文版本与英文版本有出入，以英文版本为准。<a href="../privacy.html">英文及马来文版本</a></p>'
+        updated = legal.UPDATED[1]
+    else:
+        content = legal.sections(legal.EN) + '<p class="muted">If there is any difference between versions of this notice, the English version prevails.</p><h2 id="bm" lang="ms" style="margin-top:56px">Notis Privasi (Bahasa Malaysia)</h2>' + f'<div lang="ms">{legal.sections(legal.MS)}</div>'
+        updated = legal.UPDATED[0]
+    T = dict(h='隐私声明', eb='2010年个人资料保护法令', upd='最后更新：', end='。', title='隐私声明 | YSL Travel & Tours', desc='YSL Travel & Tours 依据《2010年个人资料保护法令》收集、使用及保护个人资料的方式。') if LANG == 'zh' else dict(h='Privacy Notice', eb='Personal Data Protection Act 2010', upd='Last updated ', end='.', title='Privacy Notice | YSL Travel & Tours', desc='How YSL Travel & Tours collects, uses and protects personal data under the Personal Data Protection Act 2010.')
+    body = f'''{nav('')}
 <main id="main">
-<section class="tour-hero on-dark">
-  <img src="assets/lake.jpg" alt="A traveller looking over a mountain lake">
-  <div class="container">
-    <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Tours</a></li><li aria-current="page">Yunnan</li></ol>
-    <p class="eyebrow">China &nbsp; Group tour</p>
-    <h1 class="h-xxl">Yunnan &amp; Shangri-La</h1>
-    <p class="line">Old towns, snow peaks and Tibetan monasteries.</p>
-  </div>
-</section>
-<section class="section">
-  <div class="container tour-layout">
-    <div>
-      <p class="eyebrow">Overview</p>
-      <h2 class="h-l" style="margin-bottom:24px">From the City of Eternal Spring to the edge of the Tibetan plateau.</h2>
-      <p class="lead" style="margin-bottom:48px">This journey climbs gradually through Yunnan, from mild Kunming to the old towns of Dali and Lijiang, then up to Shangri-La. The pace gives you time to adjust to the altitude, and to enjoy each place properly.</p>
-      <h3 class="h-m" style="margin-bottom:20px">Highlights</h3>
-      <ul class="highlights" style="margin-bottom:56px"><li>Lijiang Old Town, a UNESCO World Heritage Site</li><li>Jade Dragon Snow Mountain and Blue Moon Valley</li><li>Tiger Leaping Gorge</li><li>Songzanlin Monastery in Shangri-La</li></ul>
-      <h3 class="h-m" style="margin-bottom:12px">Day by day</h3>
-      <ol class="itin" style="margin-bottom:56px">{itin}</ol>
-      <div class="inc-grid">
-        <div><h3>Included</h3><ul><li>Return flights from Kuala Lumpur</li><li>Hotels throughout</li><li>Meals as listed in the itinerary</li><li>Coach transport and entrance fees</li><li>Tour leader from Malaysia</li></ul></div>
-        <div><h3>Not included</h3><ul><li>Travel insurance (we can arrange this)</li><li>Visa fees, if applicable</li><li>Tipping for guides and drivers</li><li>Personal expenses</li></ul></div>
-      </div>
-    </div>
-    <aside class="facts-card" aria-label="Tour details">
-      <dl>
-        <div><dt>Duration</dt><dd><span class="tbc">8 days</span></dd></div>
-        <div><dt>Tour type</dt><dd>Group tour</dd></div>
-        <div><dt>Best season</dt><dd>Spring and autumn</dd></div>
-        <div><dt>Departures</dt><dd>Ask us</dd></div>
-        <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
-      </dl>
-      <a class="btn btn--red" href="contact.html">Enquire on WhatsApp</a>
-      <a class="btn btn--line-dark" href="#">Download itinerary (PDF)</a>
-      <p class="facts-note">Need a visa or travel insurance for this trip? <a href="services.html#visa">We arrange both.</a></p>
-    </aside>
-  </div>
-</section>
-<section class="section section--paper" aria-labelledby="more-h">
-  <div class="container">
-    <div class="rail-head"><div><p class="eyebrow">You might also like</p><h2 class="h-l" id="more-h">More journeys</h2></div><a class="link-arrow" href="tours.html">All tours {ARROW}</a></div>
-    <div class="tour-grid">{others}</div>
-  </div>
+{head_block([('index.html', 'Home'), (None, T['h'])], T['eb'], T['h'], T['upd'] + updated + T['end'])}
+<section class="section" style="padding-top:clamp(32px,4vw,56px)">
+  <div class="container"><div class="article-body legal-body">{content}</div></div>
 </section>
 </main>
-{cta_band()}
 {footer()}'''
-    page('tour-yunnan.html', 'Yunnan & Shangri-La | YSL Travel & Tours', 'Group tour through Kunming, Dali, Lijiang and Shangri-La.', body, 'tours.html')
+    page('privacy.html', T['title'], T['desc'], body, '')
+
+def build_404():
+    zhp = LANG == 'zh'
+    T = dict(eb='找不到页面', h='这个页面<span class="nw">已经搬走了。</span>', lead='链接可能已过时，或页面已更改。看看我们的旅游配套，或告诉我们您想去哪里。', tours='浏览行程', contact='联络我们', title='找不到页面 | YSL Travel & Tours', desc='找不到此页面。') if zhp else dict(eb='Page not found', h='This page has <span class="nw"><em>moved on.</em></span>', lead='The link may be old, or the page may have changed. Try our tours, or tell us where you want to go.', tours='Browse tours', contact='Contact us', title='Page not found | YSL Travel & Tours', desc='This page could not be found.')
+    body = f'''{nav('')}
+<main id="main">
+{head_block([('index.html', 'Home'), (None, '404')], T['eb'], T['h'], T['lead'], f'<div class="btn-row" style="margin-top:32px"><a class="btn btn--red" href="tours.html">{T["tours"]}</a><a class="btn btn--line-dark" href="contact.html">{T["contact"]}</a></div>')}
+</main>
+{footer()}'''
+    page('404.html', T['title'], T['desc'], body, '', extra_head=f'<base href="{'/zh/' if zhp else '/'}">\n<meta name="robots" content="noindex">')
+
+# ======================= DEPARTURE DATES =======================
+DATE_NOTES = {'School holidays': '学校假期', 'Fully booked': '已满'}
+
+def dates_block(q):
+    """Departure dates grouped by month; q['date_notes'] can tag single dates (school holidays, fully booked)."""
+    if not q.get('dates'):
+        return ''
+    notes = q.get('date_notes', {})
+    by_month = {}
+    for d in q['dates']:
+        by_month.setdefault(d[:7], []).append(d)
+    def day(d):
+        n = notes.get(d)
+        label = f'{int(d[8:])}日' if LANG == 'zh' else str(int(d[8:]))
+        if n:
+            label += f' <small class="dep-note">{DATE_NOTES[n] if LANG == "zh" else n}</small>'
+        return label
+    sep = '、' if LANG == 'zh' else ', '
+    rows = ''.join(f'<li><span class="code">{f"{int(k[:4])}年{int(k[5:])}月" if LANG == "zh" else f"{MON[int(k[5:])]} {k[:4]}"}</span><span>{sep.join(day(d) for d in v)}</span></li>' for k, v in by_month.items())
+    return f'''<h3 class="h-m" style="margin-bottom:8px">Departure dates</h3>
+      <p class="muted" style="margin:0 0 18px;font-size:14px">Group departures from Kuala Lumpur. Ask us which dates still have seats.</p>
+      <ul class="dep-dates" style="margin-bottom:64px">{rows}</ul>
+      '''
 
 # ======================= QINGHAI & GANSU =======================
 def build_tour_qg():
@@ -594,7 +601,7 @@ def build_tour_qg():
     <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Holidays &amp; Tours</a></li><li aria-current="page">Qinghai &amp; Gansu</li></ol>
     <p class="eyebrow">China &nbsp; Group tour &nbsp; {q['duration']}</p>
     <h1 class="h-xxl">{q['title']}</h1>
-    <p class="line"><span lang="zh-Hans" class="zh">{q['zh']}</span> {q['line']}</p>
+    <p class="line">{f'<span lang="zh-Hans" class="zh">{q["zh"]}</span> ' if q.get('zh') else ''}{q['line']}</p>
   </div>
 </section>
 <section class="section">
@@ -608,7 +615,7 @@ def build_tour_qg():
       <h3 class="h-m" style="margin-bottom:8px">Flights</h3>
       <p class="muted" style="margin:0 0 18px;font-size:14px">China Eastern, tentative and subject to airline confirmation. One checked bag up to 23kg, through-checked to Lanzhou.</p>
       <ul class="flights" style="margin-bottom:64px">{fl}</ul>
-      <h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
+      {dates_block(q)}<h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
       <ol class="days">{days}</ol>
     </div>
     <aside class="facts-card" aria-label="Tour details">
@@ -618,7 +625,7 @@ def build_tour_qg():
         <div><dt>Route</dt><dd>Lanzhou to Lanzhou</dd></div>
         <div><dt>Airline</dt><dd>China Eastern</dd></div>
         <div><dt>Hotels</dt><dd>4-Diamond</dd></div>
-        <div><dt>Departures</dt><dd>2026, ask us</dd></div>
+        <div><dt>Departures</dt><dd>{q.get('departs') or 'Ask us'}</dd></div>
         <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
       </dl>
       <a class="btn btn--red" href="contact.html">Enquire on WhatsApp</a>
@@ -662,16 +669,25 @@ def build_gd_tour(q):
     inc = ''.join(f'<li>{x}</li>' for x in q['included'])
     exc = ''.join(f'<li>{x}</li>' for x in q['excluded'])
     notes = f'<p class="d-note" style="margin-top:28px">{q["notes"]}</p>' if q.get('notes') else ''
-    others = ''.join(tour_card(t) for t in [x for x in TOURS if x['slug'] != q['slug']][:3])
+    i = next((n for n, t in enumerate(TOURS) if t['slug'] == q['slug']), -1)
+    me = TOURS[i] if i >= 0 else {}
+    rest = TOURS[i + 1:] + TOURS[:max(i, 0)]  # the tours that follow this one first, so related links spread across pages
+    others = ''.join(tour_card(t) for t in ([x for x in rest if x.get('cat') == me.get('cat')] + [x for x in rest if x.get('cat') != me.get('cat')])[:3])
+    if q.get('hero'):
+        hero = f'''<section class="tour-hero on-dark">
+  <img src="assets/{q['hero']}" alt="{q['hero_alt']}">'''
+    else:
+        hero = f'''<section class="tour-hero slot-hero on-dark" style="--c1:{q['c1']};--c2:{q['c2']}">
+  <span class="slot-note">Tour photo to come</span>'''
+    dates = dates_block(q)
     body = f'''{nav('tours.html')}
 <main id="main">
-<section class="tour-hero slot-hero on-dark" style="--c1:{q['c1']};--c2:{q['c2']}">
-  <span class="slot-note">Tour photo to come</span>
+{hero}
   <div class="container">
     <ol class="crumbs"><li><a href="index.html">Home</a></li><li><a href="tours.html">Holidays &amp; Tours</a></li><li aria-current="page">{q['region']}</li></ol>
     <p class="eyebrow">{q['region']} &nbsp; Group tour &nbsp; {q['duration']}</p>
     <h1 class="h-xxl">{q['title']}</h1>
-    <p class="line">{q['line']}</p>
+    <p class="line">{f'<span lang="zh-Hans" class="zh">{q["zh"]}</span> ' if q.get('zh') else ''}{q['line']}</p>
   </div>
 </section>
 <section class="section">
@@ -682,7 +698,7 @@ def build_gd_tour(q):
       <p class="lead" style="margin-bottom:48px">{q['lead']}</p>
       <h3 class="h-m" style="margin-bottom:20px">Highlights</h3>
       <ul class="highlights" style="margin-bottom:56px">{hl}</ul>
-      <h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
+      {dates}<h3 class="h-m" style="margin-bottom:24px">Day by day</h3>
       <ol class="days">{days}</ol>
     </div>
     <aside class="facts-card" aria-label="Tour details">
@@ -690,9 +706,9 @@ def build_gd_tour(q):
         <div><dt>Duration</dt><dd>{q['duration']}</dd></div>
         <div><dt>Tour type</dt><dd>Group tour</dd></div>
         <div><dt>Hotels</dt><dd>{q['hotels']}</dd></div>
-        <div><dt>Departures</dt><dd>Guaranteed dates, ask us</dd></div>
+        <div><dt>Departures</dt><dd>{q.get('departs') or 'Ask us'}</dd></div>
         <div><dt>Fares</dt><dd>Latest fares on request</dd></div>
-        <div><dt>Tour by</dt><dd>Golden Destinations</dd></div>
+        <div><dt>Tour by</dt><dd>{q.get('brand', 'Golden Destinations')}</dd></div>
       </dl>
       <a class="btn btn--red" href="contact.html?tour={q['slug']}">Enquire on WhatsApp</a>
       <a class="btn btn--line-dark" href="contact.html?tour={q['slug']}">Ask for fares and dates</a>
@@ -702,12 +718,12 @@ def build_gd_tour(q):
 </section>
 <section class="section section--paper" aria-labelledby="pk-h">
   <div class="container">
-    <div class="chapter-head"><div><p class="eyebrow">The package</p><h2 class="h-l" id="pk-h">What’s included.</h2></div><p class="lead">Booked through YSL, operated by Golden Destinations. We handle your booking, documents and questions from start to finish.</p></div>
+    <div class="chapter-head"><div><p class="eyebrow">The package</p><h2 class="h-l" id="pk-h">What’s included.</h2></div><p class="lead">Booked through YSL. We handle your booking, documents and questions from start to finish.</p></div>
     <div class="inc-grid">
       <div><h3>Included</h3><ul>{inc}</ul></div>
       <div><h3>Not included</h3><ul>{exc}</ul></div>
     </div>{notes}
-    <p class="muted" style="margin:24px 0 0;font-size:13.5px">Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
+    <p class="muted" style="margin:24px 0 0;font-size:13.5px">{'' if q.get('brand', '').startswith('YSL') else 'Operated by ' + q.get('brand', 'Golden Destinations') + '. '}{'Images are for illustration purposes only. ' if q.get('brand') == 'Apple Vacations' else ''}Itinerary order and hotels may change with local events, weather or availability. Fares, dates and the full itinerary are confirmed when you book.</p>
   </div>
 </section>
 <section class="section" aria-labelledby="more-h">
@@ -719,12 +735,17 @@ def build_gd_tour(q):
 </main>
 {cta_band()}
 {footer()}'''
-    page(q['page'], f"{q['title'].replace('&amp;', '&')} | YSL Travel & Tours", f"{q['duration']} group tour: {q['line']}", body, 'tours.html')
+    name = (q.get('seo') or q['title']).replace('&amp;', '&')
+    if LANG == 'zh':
+        desc = f"{q['duration']}团体游，吉隆坡出发：{q['line']}" + (f"出发月份：{q['departs']}。" if q.get('departs') else '') + '团费欢迎询问，由 YSL Travel & Tours 代订。'
+    else:
+        desc = f"{q['duration']} group tour from Kuala Lumpur: {q['line']}" + (f" Departs {q['departs']}." if q.get('departs') else '') + ' Fares on request from YSL Travel & Tours.'
+    page(q['page'], f"{name} | YSL Travel & Tours", desc, body, 'tours.html', og_image=f"assets/{q['hero']}" if q.get('hero') else 'assets/hero.jpg')
 
 # ======================= JOURNAL =======================
 def _by_date(a):
     import datetime
-    return datetime.datetime.strptime(a['date'], '%d %B %Y')
+    return datetime.datetime.strptime(a.get('date_en', a['date']), '%d %B %Y')
 
 def build_journal():
     posts = sorted(ARTICLES, key=_by_date, reverse=True)
@@ -753,7 +774,6 @@ def build_article(a):
     fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
     ct, ctext, chref, clabel = a['cta']
     body = f'''{nav('journal.html')}
-<p class="sample-note">Draft article for YSL to review before publishing.</p>
 <main id="main">
 <article>
   <header class="article-head">
@@ -767,7 +787,7 @@ def build_article(a):
   <div class="article-body">
     {a['body']}
     <div class="inline-cta on-dark"><h2 class="h-m">{ct}</h2><p>{ctext}</p><div class="btn-row"><a class="btn btn--white" href="{chref}">{clabel}</a><a class="btn btn--line-light" href="contact.html">{WA}</a></div></div>
-    <div class="share-row"><span>Share this story</span><button type="button" data-copy="">Copy link</button></div>
+    <div class="share-row"><span>Share this story</span><button type="button" data-copy="" data-copied="Copied">Copy link</button></div>
   </div>
 </article>
 <section class="section section--paper" aria-labelledby="rel-h">
@@ -776,7 +796,7 @@ def build_article(a):
 </main>
 {footer()}'''
     import html as _h
-    page(a['href'], f"{_h.unescape(a['title'])} | YSL Journal", _h.unescape(a['excerpt']), body, 'journal.html')
+    page(a['href'], f"{_h.unescape(a.get('seo') or a['title'])} | YSL Travel & Tours", _h.unescape(re.sub('<[^>]+>', '', a['lead'])), body, 'journal.html', og_image=f"assets/{a['img']}" if a.get('img') else 'assets/hero.jpg')
 
 # ======================= CONTACT =======================
 def build_contact():
@@ -790,9 +810,10 @@ def build_contact():
       <dl class="detail-list">
         <div><dt>Office</dt><dd>{CONTACT['address']}</dd></div>
         <div><dt>Phone</dt><dd>{CONTACT['phone']}</dd></div>
-        <div><dt>WhatsApp</dt><dd><span class="tbc">+60 XX-XXX XXXX</span></dd></div>
+        <div><dt>WhatsApp</dt><dd><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">{CONTACT['whatsapp']}</a><br><small class="muted">We reply during office hours.</small></dd></div>
         <div><dt>Email</dt><dd>{CONTACT['email']}</dd></div>
         <div><dt>Opening hours</dt><dd>{CONTACT['hours']}</dd></div>
+        <div><dt>Payment</dt><dd>Touch ’n Go eWallet accepted at our office</dd></div>
       </dl>
       <div class="btn-row" style="margin-top:32px"><a class="btn btn--line-dark" href="{CONTACT['maps']}" target="_blank" rel="noopener">Open in Google Maps</a></div>
     </div>
@@ -810,7 +831,7 @@ def build_contact():
       </div>
       <p class="preview-label">Your message</p>
       <div class="preview" id="preview" aria-live="polite"></div>
-      <div class="form-actions"><button class="btn btn--red" type="submit">Send on WhatsApp</button><small id="formNote">Opens WhatsApp with your message ready to send.</small></div>
+      <div class="form-actions"><button class="btn btn--red" type="submit">Send on WhatsApp</button><small id="formNote">Opens WhatsApp with your message ready to send. See our <a href="privacy.html">Privacy Notice</a>.</small></div>
     </form>
   </div>
 </section>
@@ -819,17 +840,18 @@ def build_contact():
     js = '''
 <script>
 (function () {
-  var WA_NUMBER = ''; // YSL to supply, digits only, e.g. 60123456789
+  var WA_NUMBER = '__WA__'; // office WhatsApp line, digits only
+  var T = __T__;
   var form = document.getElementById('enquiry'), prev = document.getElementById('preview'), note = document.getElementById('formNote');
   function msg() {
     var v = function (n) { return (form.elements[n].value || '').trim(); };
-    var lines = ['Hello YSL Travel & Tours,'];
-    lines.push('I\\u2019d like to ask about ' + v('type').toLowerCase() + (v('dest') ? ' to ' + v('dest') : '') + '.');
-    if (v('month')) lines.push('When: ' + v('month'));
-    if (v('pax')) lines.push('Travellers: ' + v('pax'));
-    if (v('co')) lines.push('Company: ' + v('co'));
+    var lines = [T.hello];
+    lines.push(T.ask + (T.lower ? v('type').toLowerCase() : v('type')) + (v('dest') ? T.to + v('dest') : '') + T.stop);
+    if (v('month')) lines.push(T.when + v('month'));
+    if (v('pax')) lines.push(T.pax + v('pax'));
+    if (v('co')) lines.push(T.co + v('co'));
     if (v('msg')) lines.push(v('msg'));
-    lines.push('Thank you' + (v('name') ? ', ' + v('name') : '') + '.');
+    lines.push(T.thanks + (v('name') ? T.sign + v('name') : '') + T.end);
     return lines.join('\\n');
   }
   function update() { prev.textContent = msg(); }
@@ -838,23 +860,50 @@ def build_contact():
     var q = new URLSearchParams(location.search), NAMES = __NAMES__;
     var d = q.get('dest') || NAMES[q.get('tour')] || '';
     if (d && !form.elements.dest.value) form.elements.dest.value = d;
+    if (q.get('tour')) form.elements.type.selectedIndex = __TOURIDX__; // enquiries from a tour page are about that tour
   } catch (e) {}
   form.addEventListener('input', update); update();
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!WA_NUMBER) { note.textContent = 'Prototype: the WhatsApp number will be added once YSL confirms it.'; return; }
+    if (!WA_NUMBER) { note.textContent = T.proto; return; }
     var a = document.createElement('a'); a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg()); a.target = '_blank'; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
   });
 })();
 </script>'''
     import json, html as _h
+    js = js.replace('__WA__', CONTACT['wa'])
+    js = js.replace('__TOURIDX__', str([s['slug'] for s in SERVICES].index('tours')))
     js = js.replace('__NAMES__', json.dumps({t['slug']: _h.unescape(t['title']) for t in TOURS}))
+    js = js.replace('__T__', json.dumps(zh.CONTACT_JS if LANG == 'zh' else dict(
+        hello='Hello YSL Travel & Tours,', ask='I\u2019d like to ask about ', lower=True, to=' to ', stop='.', when='When: ', pax='Travellers: ',
+        co='Company: ', thanks='Thank you', sign=', ', end='.', proto='Prototype: the WhatsApp number will be added once YSL confirms it.')))
     page('contact.html', 'Contact | YSL Travel & Tours', 'Visit, call or message YSL Travel & Tours in Klang, Selangor.', body, 'contact.html', extra_js=js)
 
 if __name__ == '__main__':
     os.makedirs(os.path.join(DIST, 'assets'), exist_ok=True)
-    open(os.path.join(DIST, 'assets', 'site.css'), 'w', encoding='utf-8').write(read('site.css') + read('pages.css') + read('home.css') + read('premium.css') + read('type.css') + read('red.css'))
+    open(os.path.join(DIST, 'assets', 'site.css'), 'w', encoding='utf-8').write(read('site.css') + read('pages.css') + read('home.css') + read('premium.css') + read('type.css') + read('red.css') + read('zh.css'))
     open(os.path.join(DIST, 'assets', 'site.js'), 'w', encoding='utf-8').write(read('site.js'))
     open(os.path.join(DIST, 'assets', 'landmarks.js'), 'w', encoding='utf-8').write(read('landmark-art.js'))
-    build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_detail(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact(); feedback.build(page, nav, head_block, footer)
+    def build_pages():
+        build_home(); build_corporate(); build_about(); build_services(); build_tours(); build_tour_qg(); [build_gd_tour(q) for q in GD_TOURS]; build_journal(); [build_article(a) for a in ARTICLES]; build_contact(); build_privacy(); build_404()
+    build_pages()
+    # Chinese site: same templates, Chinese content from zh.py, written to dist/zh/
+    os.makedirs(os.path.join(DIST, 'zh'), exist_ok=True)
+    LANG = 'zh'
+    SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES = zh.localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES)
+    build_pages()
+    zh.check(os.path.join(DIST, 'zh'))
+    # sitemap.xml and robots.txt, from the pages just written (both languages, no 404)
+    import datetime
+    today = datetime.date.today().isoformat()
+    pages = sorted(f for f in os.listdir(DIST) if f.endswith('.html') and f != '404.html' and os.path.exists(os.path.join(DIST, 'zh', f)))
+    urls = []
+    for f in pages:
+        p = '' if f == 'index.html' else f
+        alts = f'<xhtml:link rel="alternate" hreflang="en" href="{SITE}/{p}"/><xhtml:link rel="alternate" hreflang="zh-Hans" href="{SITE}/zh/{p}"/><xhtml:link rel="alternate" hreflang="x-default" href="{SITE}/{p}"/>'
+        for loc in (f'{SITE}/{p}', f'{SITE}/zh/{p}'):
+            urls.append(f'  <url><loc>{loc}</loc><lastmod>{today}</lastmod>{alts}</url>')
+    open(os.path.join(DIST, 'sitemap.xml'), 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(urls) + '\n</urlset>\n')
+    open(os.path.join(DIST, 'robots.txt'), 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
+    print('wrote sitemap.xml with', len(urls), 'URLs, and robots.txt')

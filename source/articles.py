@@ -5,15 +5,15 @@
 WA = 'Chat on WhatsApp'
 
 ARTICLES = [
-  dict(slug='yunnan', cat='dest', title="A first-timer’s guide to Yunnan’s high country",
+  dict(slug='yunnan', cat='dest', seo='Yunnan Travel Guide for First-Timers: Altitude, Packing and When to Go', title="A first-timer’s guide to Yunnan’s high country",
     lead='Kunming, Lijiang and Shangri-La climb from a mild spring city to the edge of the Tibetan plateau in a single trip. A little preparation makes the first days much easier.',
     excerpt='Kunming, Lijiang and Shangri-La, and how to enjoy the climb.',
-    date='2 October 2026', read='5 min read', img='lake.jpg', alt='A traveller standing on a rocky shore above a turquoise mountain lake',
-    body='''<p>Yunnan is one of the most rewarding routes we run, and one of the most surprising for first-time visitors. The province rises in steps. Most tours start in Kunming, move up to the old town of Lijiang, then climb again to Shangri-La, where the air is thinner and the views open onto snow peaks and monastery roofs.</p>
+    date='2 October 2026', read='5 min read', img='jr-yunnan.jpg', alt='Black Dragon Pool in Lijiang, with Jade Dragon Snow Mountain behind',
+    body='''<p>Yunnan is one of the most rewarding routes we run, and one of the most surprising for first-time visitors. The province rises in steps. Most tours start in Kunming, move up through Dali and the old town of Lijiang, then climb again to Shangri-La, where the air is thinner and the views open onto snow peaks and monastery roofs. Ours goes higher still, to Deqin below Meili Snow Mountain.</p>
     <p>None of this is difficult for a healthy traveller, but it does change how you pace the first few days. Here is what we tell every group before they fly.</p>
-    <h2>Three cities, three heights</h2>
+    <h2>The route, step by step</h2>
     <p>The altitude rises gradually along the usual route, which gives your body time to adjust.</p>
-    <table class="data-table"><thead><tr><th scope="col">City</th><th scope="col" class="r">Approx. altitude</th></tr></thead><tbody><tr><td>Kunming</td><td class="r">1,900 m</td></tr><tr><td>Lijiang</td><td class="r">2,400 m</td></tr><tr><td>Shangri-La</td><td class="r">3,200 m</td></tr></tbody></table>
+    <table class="data-table"><thead><tr><th scope="col">City</th><th scope="col" class="r">Approx. altitude</th></tr></thead><tbody><tr><td>Kunming</td><td class="r">1,900 m</td></tr><tr><td>Dali</td><td class="r">2,000 m</td></tr><tr><td>Lijiang</td><td class="r">2,400 m</td></tr><tr><td>Lugu Lake</td><td class="r">2,700 m</td></tr><tr><td>Shangri-La</td><td class="r">3,200 m</td></tr><tr><td>Deqin, for Meili Snow Mountain</td><td class="r">3,400 m</td></tr></tbody></table>
     <h2>Take the first day slowly</h2>
     <p>At Shangri-La’s height, a mild headache or shortness of breath on the stairs is common on the first day. Walk at an easy pace, drink plenty of water, and skip alcohol on the first night. Most people feel settled by the second morning.</p>
     <p class="pull">Walk slowly, drink water, and let the first afternoon be an easy one.</p>
@@ -24,9 +24,9 @@ ARTICLES = [
     <ul><li>A warm jacket or down layer, plus a fleece or jumper</li><li>Comfortable walking shoes with good grip</li><li>Sunscreen, sunglasses, a hat and lip balm</li><li>A reusable water bottle</li><li>Your own medication, with enough for the whole trip</li><li>A universal plug adaptor and a power bank</li></ul>
     <h2>When to go</h2>
     <p>Spring and autumn are the favourites, with clear skies and comfortable days. Winter brings crisp, quiet days in Shangri-La but cold nights. Summer is the rainy season, when the hills turn green and the crowds thin out.</p>''',
-    cta=('Travel to Yunnan with us', 'Our Yunnan and Shangri-La group tours are led by experienced tour leaders, with hotels, meals and transfers arranged before you leave.', 'tour-yunnan.html', 'See the tour')),
+    cta=('Travel to Yunnan with us', 'Golden Peak, Hidden Lake is our nine-day Yunnan tour: Dali, Lugu Lake, Lijiang, Shangri-La and sunrise on Meili Snow Mountain, with a tour leader from Kuala Lumpur.', 'tour-yunnan.html', 'See the tour')),
 
-  dict(slug='qinghai-gansu', cat='dest', title='Qinghai and Gansu: a Silk Road in colour',
+  dict(slug='qinghai-gansu', cat='dest', seo='Qinghai and Gansu Travel Guide: Zhangye, Dunhuang and Chaka Salt Lake', title='Qinghai and Gansu: a Silk Road in colour',
     lead='Striped mountains, desert dunes, cave murals and a salt lake that mirrors the sky. Northwest China packs more landscape into ten days than almost anywhere we go.',
     excerpt='Rainbow mountains, the Mogao Caves and the sky mirror of Chaka.',
     date='24 October 2026', read='6 min read', img='qg-chaka.jpg', alt='A traveller in a red scarf reflected in the still water of Chaka Salt Lake',
@@ -43,52 +43,31 @@ ARTICLES = [
     <p>The season runs from late spring to early autumn. July and August bring the rapeseed flowers at Qinghai Lake; September brings clear skies and fewer crowds. Winter is very cold on the plateau, and some sights close or shorten their hours.</p>''',
     cta=('Travel to Qinghai and Gansu with us', 'Our ten-day group tour covers the full route, from Lanzhou through Dunhuang to Qinghai Lake, with flights, hotels and meals arranged.', 'tour-qinghai-gansu.html', 'See the tour')),
 
-  dict(slug='incentive', cat='corp', title='Planning a company incentive trip',
-    lead='A reward trip works when the people who earned it feel looked after from the first email to the flight home. Here is the checklist we walk HR teams through.',
-    excerpt='A checklist for HR teams, from budget to boarding.',
-    date='15 September 2026', read='6 min read', img='business.jpg', alt='Two colleagues walking through an airport with their luggage',
-    body='''<p>An incentive trip is not just a holiday paid for by the company. It is a message to your best people, and every detail either supports that message or undercuts it. The good news is that most of what makes a trip feel generous is planning, not budget.</p>
-    <h2>1. Start with the purpose</h2>
-    <p>Decide what the trip is for before you decide where it goes. A reward for top performers, a dealer conference with a holiday attached, and a whole-company celebration need different pacing, hotels and programmes. Write the purpose in one sentence and test every later decision against it.</p>
-    <h2>2. Set the budget per person</h2>
-    <p>Agree a figure per traveller that covers flights, hotels, meals, activities, the gala night and a contingency. Working per person makes it easy to compare destinations fairly and to see what changes if the group grows.</p>
-    <h2>3. Give yourself time</h2>
-    <p>For large groups we recommend starting at least six months ahead. That is what it takes to hold group seats on the right flights, secure room blocks in one hotel, and avoid paying peak rates for anything booked late.</p>
-    <p class="pull">Most of what makes a trip feel generous is planning, not budget.</p>
-    <h2>4. Choose dates with care</h2>
-    <p>Check the dates against school holidays, festive seasons and your own busy periods. Avoiding the peaks often saves more than switching to a cheaper hotel, and it keeps the destination pleasant rather than crowded.</p>
-    <h2>5. Match the destination to the group</h2>
-    <p>Flight time matters. Four or five days suit a short-haul destination; a long-haul trip needs a week or more to feel worth the journey. Think about the mix of ages, dietary needs and how active your group really is.</p>
-    <h2>6. Plan for every guest</h2>
-    <ul><li>Halal and vegetarian meals, confirmed with each restaurant in advance</li><li>Prayer times and space where they are needed</li><li>Mobility needs, room preferences and roommates</li><li>Passports, visas and insurance checked early, not the week before</li></ul>
-    <h2>7. Build in one moment to remember</h2>
-    <p>Most groups remember one evening more than anything else: a gala dinner, an awards night, a private venue. Put a share of the budget there, and keep the rest of the programme relaxed enough that people enjoy it.</p>
-    <h2>8. Close it properly</h2>
-    <p>Ask for a reconciled final account, collect feedback while the trip is fresh, and keep the photos. They make next year’s announcement much easier.</p>''',
-    cta=('Plan your incentive trip with us', 'Send us a short brief: rough numbers, dates and budget. We’ll come back with options and an itemised quotation.', 'corporate.html', 'MICE and corporate travel')),
+  dict(slug='company-trips', cat='corp', seo='Company Trips Abroad from Malaysia: Five Short-Haul Destinations', title='Company trips abroad: five short-haul favourites',
+    lead='An overseas company trip does not need a long flight. These five destinations are a short hop from Kuala Lumpur, easy on entry rules for Malaysians, and full of things a group can do together.',
+    excerpt='Five overseas destinations a short flight away, for team trips and incentives.',
+    date='12 October 2026', read='5 min read', img='jr-company-trips.jpg', alt='Round basket boats on the river at Cam Thanh, near Hoi An',
+    body='''<p>Overseas company trips used to mean a long-haul reward for a handful of top performers. More companies now take the whole team somewhere close for four or five days, and get the same lift with far less planning. These are the places our corporate groups ask for most.</p>
+    <h2>1. Da Nang and Hoi An, Vietnam</h2>
+    <p>Under three hours away, with beach resorts that handle large groups, Hoi An’s lantern-lit old town for a group dinner, basket boats at Cam Thanh and the Golden Bridge at Ba Na Hills. Good value, and easy to love. <a href="tour-gd-vietnam.html">See our Da Nang tour</a>.</p>
+    <h2>2. Taipei, Taiwan</h2>
+    <p>Night markets for every taste, Jiufen and Shifen for a day out, and hot-spring resorts in Yilan for the evening after. Short, safe and built around food, which suits teams of every age. <a href="tour-gd-taiwan.html">See our Taipei tour</a>.</p>
+    <h2>3. Seoul, South Korea</h2>
+    <p>Gyeongbokgung in hanbok makes the group photo, Nami Island and Everland fill the days, and Korean barbecue fills the evenings. Spring blossom and autumn colour are the best seasons. <a href="tour-gd-korea.html">See our Korea tour</a>.</p>
+    <h2>4. Hokkaido, Japan</h2>
+    <p>Snow from December to February is a novelty Malaysian teams remember for years, and summer brings flower fields and cool air. Hot-spring hotels make an easy setting for an awards night. <a href="tour-gd-hokkaido.html">See our Hokkaido tour</a>.</p>
+    <h2>5. Zhangjiajie, China</h2>
+    <p>For teams that like a challenge: the glass bridge over the canyon, the cliff walkway on Tianmen Mountain and the sandstone pillars of the national park. Chinese-speaking guides and familiar food keep it relaxed. <a href="tour-ap-zhangjiajie.html">See our Zhangjiajie tour</a>.</p>
+    <p class="pull">Four or five days, one short flight, and a story the whole team shares.</p>
+    <h2>Making it work for a group</h2>
+    <ul><li>Fix the dates early: group seats on the right flights go first</li><li>Check passports and entry rules for every traveller, including staff of other nationalities</li><li>Plan one shared highlight, such as a gala dinner or a private activity</li><li>Confirm halal, vegetarian and other dietary needs with every restaurant</li><li>Leave free time in the programme; people remember a trip better when they are not rushed</li></ul>
+    <p>We plan company trips for groups of every size, with one point of contact from the first brief to the flight home.</p>''',
+    cta=('Plan a company trip with us', 'Send us your group size, dates and budget, and we’ll come back with options and an itemised quotation.', 'corporate.html', 'Corporate travel')),
 
-  dict(slug='retreat', cat='corp', title='A company retreat close to home',
-    lead='Not every team trip needs a passport. Malaysia has islands, highlands and heritage towns within an easy flight or drive, and a well-planned local retreat can feel every bit as special.',
-    excerpt='Eight Malaysian destinations for team building and company trips.',
-    date='5 October 2026', read='5 min read', slot=('#1f6a5a', '#082520', 'Langkawi'), alt='',
-    body='''<p>Local retreats are quicker to organise, easier on the budget and simpler for travellers: no visas, no long flights, and familiar food. The trick is choosing the right place for what you want the team to do.</p>
-    <h2>Islands and coast</h2>
-    <ul><li><b>Langkawi.</b> Resorts with conference space, the SkyCab cable car, island-hopping and duty-free shopping. A short flight from Kuala Lumpur.</li><li><b>Port Dickson.</b> Beach hotels within about ninety minutes of the Klang Valley, ideal for a two-day programme.</li><li><b>Desaru.</b> A newer resort coast in Johor, with large resorts and space for outdoor team activities.</li><li><b>Sabah.</b> Island trips off Kota Kinabalu, river and rainforest excursions, and Mount Kinabalu for the adventurous.</li></ul>
-    <h2>Highlands</h2>
-    <ul><li><b>Genting Highlands.</b> Cool air, large hotels and entertainment, about an hour from Kuala Lumpur.</li><li><b>Cameron Highlands.</b> Tea plantations, gardens and a slower pace; good for a reflective leadership retreat.</li></ul>
-    <h2>Heritage and food</h2>
-    <ul><li><b>Penang.</b> George Town’s UNESCO-listed streets, street-art walks and some of the best food in the country.</li><li><b>Melaka.</b> A heritage city that works well for themed dinners, river cruises and walking trails.</li></ul>
-    <p class="pull">No visas, no long flights, and everyone already likes the food.</p>
-    <h2>What to plan for</h2>
-    <ul><li>Transport for the whole group, timed so everyone arrives together</li><li>A venue for the working sessions, with the right AV and breakout rooms</li><li>One shared activity that gets people talking, from a cooking class to a beach challenge</li><li>A dinner that feels like an occasion, with halal and vegetarian options confirmed</li><li>A simple programme with free time built in</li></ul>
-    <h2>When to go</h2>
-    <p>Weekdays outside the school holidays give the best rates and the quietest venues. On the east coast, the monsoon from roughly November to March affects some islands, so check the season before you choose a beach destination.</p>''',
-    cta=('Plan a retreat in Malaysia', 'Team building, company trips, annual dinners and family days, with transport for everyone arranged.', 'corporate.html', 'Local MICE')),
-
-  dict(slug='hokkaido', cat='dest', title='Hokkaido through the seasons',
+  dict(slug='hokkaido', cat='dest', seo='Best Time to Visit Hokkaido: A Season-by-Season Guide', title='Hokkaido through the seasons',
     lead='Japan’s northern island changes completely from one season to the next. Here is how to choose the Hokkaido that suits you.',
     excerpt='Snow festivals, lavender fields and early autumn colour.',
-    date='18 October 2026', read='5 min read', slot=('#3f6f9a', '#0f2236', 'Hokkaido'), alt='',
+    date='18 October 2026', read='5 min read', img='jr-hokkaido.jpg', alt='Lavender and flower fields in Furano in summer',
     body='''<p>Hokkaido is the Japan many travellers fall for on a second trip: wide skies, lakes and volcanoes, hot springs, and seafood that is hard to match anywhere. It is also strongly seasonal, so the first question is not where to go but when.</p>
     <h2>Winter: December to February</h2>
     <p>Deep, dry snow, ski resorts and hot-spring towns. The Sapporo Snow Festival, held in early February, fills the city with giant snow and ice sculptures. Further northeast, drift ice reaches the coast in late winter. Days are short and very cold, so dress for it and the season is magical.</p>
@@ -103,15 +82,15 @@ ARTICLES = [
     <ul><li>Distances are larger than they look on the map; a tour with coach transfers saves a lot of effort.</li><li>Many hot-spring baths have house rules, including tattoo policies. Your tour leader will brief you.</li><li>Pack for the season: proper winter boots in the snow months, light layers in summer.</li></ul>''',
     cta=('Travel to Hokkaido with us', 'Our Hokkaido Delight tour covers Noboribetsu, Lake Toya, Otaru and Sapporo, with flights, hotels and meals arranged.', 'tour-gd-hokkaido.html', 'See the tour')),
 
-  dict(slug='documents', cat='tips', title='Passport, visa, insurance: sort these first',
+  dict(slug='documents', cat='tips', seo='Passport, Visa and Travel Insurance Checklist for Malaysians', title='Passport, visa, insurance: sort these first',
     lead='Three things decide whether a trip starts smoothly. Check them before you pay a deposit, not the week before you fly.',
     excerpt='The three things to check before you pay a deposit.',
-    date='2 September 2026', read='4 min read', img='passport.jpg', alt='A passport and boarding pass on a table',
+    date='2 September 2026', read='4 min read', img='airport.jpg', alt='Two travellers with a suitcase in an airport terminal',
     body='''<p>Most travel problems we help clients solve could have been avoided with ten minutes of checking at the start. Before you commit to a trip, look at these three things.</p>
     <h2>1. Your passport</h2>
     <ul><li><b>Validity.</b> Many countries require your passport to be valid for at least six months after the date you arrive. Check the expiry date now, not at the airport.</li><li><b>Blank pages.</b> Some countries need one or two clean pages for stamps or visa stickers.</li><li><b>Condition.</b> A damaged passport, with water marks or a loose page, can be refused. If in doubt, renew it.</li><li><b>Names.</b> The name on your flight booking must match your passport exactly.</li></ul>
     <h2>2. Your visa and entry rules</h2>
-    <p>Entry rules change, sometimes with little notice, and they depend on your nationality and the purpose of your trip. Even where no visa is needed, some countries now ask travellers to register online before they fly. Check the official requirements for every country on your route, including any you only transit through.</p>
+    <p>Entry rules change, sometimes with little notice, and they depend on your nationality and the purpose of your trip. Even where no visa is needed, some countries now ask travellers to register online before they fly: for Malaysians, that includes Korea’s K-ETA, Australia’s ETA, New Zealand’s NZeTA and the UK’s ETA. Check the official requirements for every country on your route, including any you only transit through.</p>
     <p class="pull">Check the passport, the entry rules and the insurance, in that order.</p>
     <div class="callout">When you book a tour with us, we confirm the visa and entry requirements for your passport, and we can handle the application where a visa is needed.</div>
     <h2>3. Your travel insurance</h2>
@@ -120,7 +99,7 @@ ARTICLES = [
     <ul><li>Passport valid for six months or more after arrival</li><li>Entry requirements checked for every country, including transits</li><li>Visa or online registration done, where needed</li><li>Insurance bought, with medical conditions declared</li><li>Copies of all documents saved on your phone and with family at home</li></ul>''',
     cta=('Let us handle the paperwork', 'Visa applications, travel insurance and document checks, arranged together with your booking.', 'services.html#visa', 'Travel services')),
 
-  dict(slug='packing', cat='tips', title='Packing light for a two-week tour',
+  dict(slug='packing', cat='tips', seo='How to Pack Light for a Two-Week Group Tour', title='Packing light for a two-week tour',
     lead='One suitcase, three climates and a lot of hotel changes. How to pack for a long group tour without dragging half your wardrobe around.',
     excerpt='One suitcase, three climates, and what our tour leaders bring.',
     date='20 August 2026', read='4 min read', img='mapdesk.jpg', alt='A map, camera, notebook and sunglasses laid out on a desk',
