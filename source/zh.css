@@ -41,3 +41,7 @@ html:lang(zh) .d-num span { font-size: 10px; letter-spacing: 0; }
 /* lines break only after punctuation: phrases from zh.phrase_breaks() */
 html:lang(zh) .ph { display: inline-block; max-width: 100%; }
 html:lang(zh) .tour-hero .h-xxl, html:lang(zh) .h-xxl { max-width: none; }
+
+@media (max-width: 760px) {
+  html:lang(zh) .globe-copy h1 { font-size: clamp(30px, 8.6vw, 38px); line-height: 1.2; }
+}

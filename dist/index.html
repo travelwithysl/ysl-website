@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>YSL Travel & Tours</title>
 <meta name="description" content="YSL Travel & Tours: corporate travel, holidays and tours from Klang, Malaysia, since 2009.">
 <meta property="og:type" content="website">
@@ -82,6 +87,8 @@ a.lm-label { text-decoration: none; color: inherit; }
 }
 
 </style>
+</head>
+<body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="ic-air" viewBox="17.85 5.36 20.12 20.12" stroke-width=".55"><g id="_x31_5">
       <line stroke="currentColor" fill="none" stroke-linecap="square" stroke-miterlimit="10" x1="23.05" y1="12.54" x2="24.05" y2="13.64"></line>
       <line stroke="currentColor" fill="none" stroke-linecap="square" stroke-miterlimit="10" x1="22.03" y1="13.79" x2="24.83" y2="13.79"></line>
@@ -647,7 +654,17 @@ var LANDMARKS = [
     W = hero.clientWidth; H = hero.clientHeight; DPR = Math.min(window.devicePixelRatio || 1, 2);
     phone = W < 760;
     canvas.width = W * DPR; canvas.height = H * DPR; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    if (phone) { R = Math.min(W * .62, H * .36); CX = W / 2; CY = H - R * .72; LM = Math.min(170, R * .72); }
+    if (phone) {
+      R = Math.min(W * .62, H * .36); CX = W / 2; CY = H - R * .72; LM = Math.min(170, R * .72);
+      // keep the landmark art clear of the headline and subtitle above it
+      var sub = hero.querySelector('.globe-copy .sub');
+      if (sub) {
+        var cb = sub.getBoundingClientRect().bottom - hero.getBoundingClientRect().top + 16;
+        CY = Math.min(Math.max(CY, cb + R - 8), H - R * .45); // globe starts below the subtitle
+        var room = CY - R * .1 - 48 - cb;
+        LM = Math.max(70, Math.min(LM, room * 120 / 110));
+      }
+    }
     else { R = Math.min(H * .43, W * .28); CX = W * .70; CY = H * .53; LM = Math.min(250, R * .74); }
     proj.translate([CX, CY]).scale(R); back.translate([CX, CY]).scale(R);
     layer.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
@@ -801,6 +818,7 @@ var LANDMARKS = [
 
   size();
   addEventListener('resize', function () { size(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { size(); });
   var replay = document.getElementById('globeReplay');
   if (replay) replay.addEventListener('click', function () { cancelAnimationFrame(raf); play(); raf = requestAnimationFrame(safe); });
   hero.addEventListener('click', function (e) { if (!ready && !e.target.closest('a,button')) { settle(); } });
@@ -818,3 +836,5 @@ var LANDMARKS = [
 })();
 
 </script>
+</body>
+</html>

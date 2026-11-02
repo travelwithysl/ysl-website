@@ -133,9 +133,7 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
 <a class="skip-link" href="#main" style="position:absolute;left:-9999px">Skip to content</a>
 {body}
 <script src="assets/site.js"></script>{extra_js}'''
-    if home:
-        html = head + '\n' + content
-    else:
+    if True:  # every page, the home page included, is a full document (it once lacked the viewport meta)
         html = f'''<!doctype html>
 <html lang="{'zh-Hans' if LANG == 'zh' else 'en-GB'}">
 <head>
@@ -148,8 +146,6 @@ def page(fname, title, desc, body, current, home=False, extra_head='', extra_js=
 </body>
 </html>'''
     if LANG == 'zh':
-        if home:
-            html = '<html lang="zh-Hans">\n' + html
         html = zh.translate_html(html, fname)
         html = re.sub(r'(src|href|content)="assets/', r'\1="../assets/', html)
     html = html.replace('__LANGSWITCH__', switch)
@@ -642,6 +638,7 @@ def build_tour_qg():
     </aside>
   </div>
 </section>
+<a class="m-enquire btn btn--red" href="contact.html">Enquire on WhatsApp</a>
 <section class="section section--paper" aria-labelledby="pk-h">
   <div class="container">
     <div class="chapter-head"><div><p class="eyebrow">The package</p><h2 class="h-l" id="pk-h">Comfort for the long roads of the Northwest.</h2></div></div>
@@ -724,6 +721,7 @@ def build_gd_tour(q):
     </aside>
   </div>
 </section>
+<a class="m-enquire btn btn--red" href="contact.html?tour={q['slug']}">Enquire on WhatsApp</a>
 <section class="section section--paper" aria-labelledby="pk-h">
   <div class="container">
     <div class="chapter-head"><div><p class="eyebrow">The package</p><h2 class="h-l" id="pk-h">What’s included.</h2></div><p class="lead">Booked through YSL. We handle your booking, documents and questions from start to finish.</p></div>

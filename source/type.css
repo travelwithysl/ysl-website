@@ -25,3 +25,8 @@ html .mice-grid p, html .scale-grid p, html .local-grid p, html .case-body p { f
 /* a heading with a set line break keeps it: no width cap, no rebalancing */
 .page-head .h-xxl:has(br) { max-width: none; text-wrap: wrap; }
 .nw { white-space: nowrap; }
+
+/* Phones: the hero headline sits above the globe, so it must stay compact. */
+@media (max-width: 760px) {
+  html .globe-copy h1 { font-size: clamp(36px, 10vw, 44px); line-height: 1; }
+}
