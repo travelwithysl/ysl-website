@@ -54,7 +54,17 @@
     W = hero.clientWidth; H = hero.clientHeight; DPR = Math.min(window.devicePixelRatio || 1, 2);
     phone = W < 760;
     canvas.width = W * DPR; canvas.height = H * DPR; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    if (phone) { R = Math.min(W * .62, H * .36); CX = W / 2; CY = H - R * .72; LM = Math.min(170, R * .72); }
+    if (phone) {
+      R = Math.min(W * .62, H * .36); CX = W / 2; CY = H - R * .72; LM = Math.min(170, R * .72);
+      // keep the landmark art clear of the headline and subtitle above it
+      var sub = hero.querySelector('.globe-copy .sub');
+      if (sub) {
+        var cb = sub.getBoundingClientRect().bottom - hero.getBoundingClientRect().top + 16;
+        CY = Math.min(Math.max(CY, cb + R - 8), H - R * .45); // globe starts below the subtitle
+        var room = CY - R * .1 - 48 - cb;
+        LM = Math.max(70, Math.min(LM, room * 120 / 110));
+      }
+    }
     else { R = Math.min(H * .43, W * .28); CX = W * .70; CY = H * .53; LM = Math.min(250, R * .74); }
     proj.translate([CX, CY]).scale(R); back.translate([CX, CY]).scale(R);
     layer.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
@@ -208,6 +218,7 @@
 
   size();
   addEventListener('resize', function () { size(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { size(); });
   var replay = document.getElementById('globeReplay');
   if (replay) replay.addEventListener('click', function () { cancelAnimationFrame(raf); play(); raf = requestAnimationFrame(safe); });
   hero.addEventListener('click', function (e) { if (!ready && !e.target.closest('a,button')) { settle(); } });

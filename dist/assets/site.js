@@ -77,4 +77,15 @@
       try { navigator.clipboard.writeText(text).then(done, function () { b.textContent = text; }); } catch (e) { b.textContent = text; }
     });
   });
+
+  // tour pages, phones: hide the floating enquire button over the hero, the facts card and the footer
+  var me = document.querySelector('.m-enquire');
+  if (me && 'IntersectionObserver' in window) {
+    var seen = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+      me.classList.toggle('away', seen.size > 0);
+    });
+    ['.tour-hero', '.facts-card', '.site-footer', '.cta-band'].forEach(function (q) { var el = document.querySelector(q); if (el) io.observe(el); });
+  }
 })();

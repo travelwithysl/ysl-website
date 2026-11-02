@@ -225,6 +225,7 @@ UI = {
   '<dt>Visit</dt>': '<dt>地址</dt>',
   '<dd>Taman Klang Utama, Klang</dd>': '<dd>巴生 Taman Klang Utama</dd>',
   '<small>From</small>KUL': '<small>出发</small>KUL',
+  '<small>From</small>SZB': '<small>出发</small>SZB',
   '<small>To</small>': '<small>抵达</small>',
   '<span>Departs</span>': '<span>出发</span>',
   '<span>View <svg': '<span>查看 <svg',
