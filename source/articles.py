@@ -9,7 +9,7 @@ ARTICLES = [
     lead='Chinese New Year falls on Saturday 6 February 2027. With the public holidays and a few days of leave, the break stretches to a week or more: long enough for snow, the Great Wall or the desert. These are the eight departures we would book first.',
     excerpt='Eight group tours that leave around 6 February 2027.',
     date='3 November 2026', read='6 min read', img='ap-finland-hero.jpg', pos='30% 60%', alt='A reindeer sleigh ride through a snowy forest in Finnish Lapland',
-    body='''<p>Chinese New Year is the one week when most of Malaysia slows down at once. Offices close, schools take their festive break, and families of every background finally have the same days free. In 2027 the first day falls on Saturday 6 February. Put the public holidays together with a few days of annual leave and you have a week or more: time for a proper trip, after the reunion dinner or instead of the jam home.</p>
+    body='''<p>Chinese New Year brings one of the longest breaks of the year. In 2027 the first day falls on Saturday 6 February. Put the public holidays together with a few days of annual leave and you have a week or more: time for snow in Lapland, the Great Wall in winter, or the dunes outside Dubai.</p>
     <p>Each of these group tours leaves within a few days of the new year, with return flights from Kuala Lumpur, hotels, meals and a tour leader arranged.</p>
     <h2>At a glance</h2>
     <table class="data-table"><thead><tr><th scope="col">Tour</th><th scope="col">Length</th><th scope="col">Departs</th></tr></thead><tbody><tr><td>Beijing and Gubei Water Town</td><td>7 days</td><td>4, 8 Feb</td></tr><tr><td>Tokyo to Osaka via Mount Fuji</td><td>7 days</td><td>2, 4, 9 Feb</td></tr><tr><td>Finnish Lapland</td><td>10 days</td><td>3, 5, 6, 8 Feb</td></tr><tr><td>Türkiye</td><td>9 days</td><td>1, 3, 4, 7, 8 Feb</td></tr><tr><td>Dubai and Abu Dhabi</td><td>6 days</td><td>2, 6, 8 Feb</td></tr><tr><td>Bali and Lovina</td><td>5 days</td><td>30 Jan, 6, 7 Feb</td></tr><tr><td>Da Nang, Hoi An and Hue</td><td>5 days</td><td>3, 4, 5, 9 Feb</td></tr><tr><td>Spain and Portugal</td><td>12 days</td><td>1, 6, 8 Feb</td></tr></tbody></table>
@@ -29,7 +29,7 @@ ARTICLES = [
     <p>Vietnam celebrates Tết on the same day, so Hoi An’s lanterns are out in force. Central Vietnam is mild in February, the Golden Bridge at Ba Na Hills is cool, and the flight is under three hours. <a href="tour-gd-vietnam.html">See the Da Nang tour</a>.</p>
     <h2>8. Spain and Portugal</h2>
     <p>For families who can take two weeks: Porto, Lisbon, Seville, Toledo, Madrid and Barcelona, with mild days, orange trees in Seville and far fewer visitors than in summer. <a href="tour-ap-spain-portugal.html">See the Spain and Portugal tour</a>.</p>
-    <p class="pull">The reunion dinner at home, then the world.</p>
+    <p class="pull">One long break, eight ways to spend it.</p>
     <h2>Prefer the water?</h2>
     <p>A Yangtze River cruise through the Three Gorges leaves Kuala Lumpur on 7 February, the second day of the new year: eight days with the river doing the travelling. Ask us about it, or about other <a href="services.html#cruises">cruises</a>.</p>
     <h2>Book early</h2>
@@ -38,15 +38,15 @@ ARTICLES = [
     cta=('Plan your Chinese New Year trip', 'Tell us who is travelling and how many days you have, and we’ll hold seats on the departure that fits.', 'tours.html', 'Browse tours')),
 
   dict(slug='hari-raya-2027', cat='dest', seo='Hari Raya Holiday Packages 2027 from Malaysia: 5 Tours for the Raya Break', title='Hari Raya 2027: five trips for the Raya break',
-    lead='Hari Raya Aidilfitri is expected on 10 March 2027, and with it comes one of the longest breaks of the year. While the country goes balik kampung, it is a fine week to go further. These are five group tours that leave in the Raya weeks.',
+    lead='Hari Raya Aidilfitri is expected on 10 March 2027, and with it comes one of the longest breaks of the year. These are five group tours that leave in the Raya weeks.',
     excerpt='Five group tours that leave in the Raya weeks of March 2027.',
     date='3 November 2026', read='5 min read', img='jr-raya.jpg', alt='The white domes and minarets of the Sheikh Zayed Grand Mosque in Abu Dhabi at dusk',
-    body='''<p>Hari Raya Aidilfitri 2027 is expected on Wednesday 10 March, with the exact date set by the sighting of the new moon. For many Malaysians the Raya holidays are simply a long break: the office is quiet, the clients are away, and a few days of annual leave turn the public holidays into a week or more. It is one of the easiest times of the year to travel without falling behind at work.</p>
+    body='''<p>Hari Raya Aidilfitri 2027 is expected on Wednesday 10 March. Add a few days of annual leave to the public holidays and the break becomes a week or more: time for spring in Korea, balloons over Cappadocia or the Pyramids of Giza.</p>
     <p>These five group tours leave in the Raya weeks, before and after the holidays, with return flights from Kuala Lumpur, hotels, meals and a tour leader arranged.</p>
     <h2>At a glance</h2>
     <table class="data-table"><thead><tr><th scope="col">Tour</th><th scope="col">Length</th><th scope="col">Departs</th></tr></thead><tbody><tr><td>Seoul, Nami Island and Mount Sorak</td><td>6 days</td><td>5 to 12, 20 Mar</td></tr><tr><td>Türkiye</td><td>9 days</td><td>4, 6, 9, 16, 18 Mar</td></tr><tr><td>Dubai and Abu Dhabi</td><td>6 days</td><td>6, 7, 9, 10, 11, 23 Mar</td></tr><tr><td>Egypt and the Nile</td><td>9 days</td><td>3, 7, 17 Mar</td></tr><tr><td>Tokyo to Osaka via Mount Fuji</td><td>7 days</td><td>9, 16 Mar</td></tr></tbody></table>
     <h2>1. South Korea in early spring</h2>
-    <p>March in Korea is cool and crisp, a welcome change from home. Nami Island, the cable car in Seoraksan, a day at Everland and Gyeongbokgung Palace in hanbok. With departures almost every day of the Raya week, it is the easiest trip to fit around family plans. <a href="tour-gd-korea.html">See the Korea tour</a>.</p>
+    <p>March in Korea is cool and crisp, a welcome change from home. Nami Island, the cable car in Seoraksan, a day at Everland and Gyeongbokgung Palace in hanbok. With departures almost every day of the Raya week, it is the easiest trip to fit into the holidays. <a href="tour-gd-korea.html">See the Korea tour</a>.</p>
     <h2>2. Türkiye</h2>
     <p>Spring arrives in March. The Blue Mosque and Hagia Sophia in Istanbul, the white terraces of Pamukkale and balloons over Cappadocia at dawn. <a href="tour-gd-turkiye.html">See the Türkiye tour</a>.</p>
     <h2>3. Dubai and Abu Dhabi</h2>
@@ -55,8 +55,7 @@ ARTICLES = [
     <p>Go before the heat of summer: the Pyramids and the Grand Egyptian Museum, three nights on the Nile from Aswan to Luxor, Abu Simbel and Alexandria. <a href="tour-gd-egypt.html">See the Egypt tour</a>.</p>
     <h2>5. Japan, from Tokyo to Osaka</h2>
     <p>The end of winter: plum blossom, clear views of Mount Fuji, and in a warm year the 16 March departure may catch the first cherry blossom. <a href="tour-gd-japan.html">See the Japan tour</a>.</p>
-    <p class="pull">A long break, a quiet office, and a week away.</p>
-    <p>Celebrating Raya yourself? Tell us, and we’ll suggest departures for the second week of Syawal, after the open houses.</p>
+    <p class="pull">One long break, five ways to spend it.</p>
     <h2>Prefer the water?</h2>
     <p>A Yangtze River cruise through the Three Gorges leaves Kuala Lumpur on 11 March, and a northern lights voyage along the Norwegian coast leaves on 5 March. Ask us about these and other <a href="services.html#cruises">cruises</a>.</p>
     <h2>Book early</h2>
