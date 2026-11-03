@@ -38,10 +38,10 @@ ARTICLES = [
     cta=('Plan your Chinese New Year trip', 'Tell us who is travelling and how many days you have, and we’ll hold seats on the departure that fits.', 'tours.html', 'Browse tours')),
 
   dict(slug='hari-raya-2027', cat='dest', seo='Hari Raya Holiday Packages 2027 from Malaysia: 5 Tours for the Raya Break', title='Hari Raya 2027: five trips for the Raya break',
-    lead='Hari Raya Aidilfitri is expected on 10 March 2027. The public holidays, and the quiet weeks around them, give Malaysians of every background time to travel. These are five group tours that leave in the Raya weeks.',
+    lead='Hari Raya Aidilfitri is expected on 10 March 2027, and with it comes one of the longest breaks of the year. While the country goes balik kampung, it is a fine week to go further. These are five group tours that leave in the Raya weeks.',
     excerpt='Five group tours that leave in the Raya weeks of March 2027.',
     date='3 November 2026', read='5 min read', img='jr-raya.jpg', alt='The white domes and minarets of the Sheikh Zayed Grand Mosque in Abu Dhabi at dusk',
-    body='''<p>Raya is first about family: balik kampung, open houses and the first mornings of Syawal at home. But the long break is also one of the best times of the year to travel. Many Muslim families take a trip once the first days of Raya are done, and many other Malaysians use the same holidays for a week away. Hari Raya Aidilfitri 2027 is expected on Wednesday 10 March; the exact date depends on the sighting of the new moon.</p>
+    body='''<p>Hari Raya Aidilfitri 2027 is expected on Wednesday 10 March, with the exact date set by the sighting of the new moon. For many Malaysians the Raya holidays are simply a long break: the office is quiet, the clients are away, and a few days of annual leave turn the public holidays into a week or more. It is one of the easiest times of the year to travel without falling behind at work.</p>
     <p>These five group tours leave in the Raya weeks, before and after the holidays, with return flights from Kuala Lumpur, hotels, meals and a tour leader arranged.</p>
     <h2>At a glance</h2>
     <table class="data-table"><thead><tr><th scope="col">Tour</th><th scope="col">Length</th><th scope="col">Departs</th></tr></thead><tbody><tr><td>Seoul, Nami Island and Mount Sorak</td><td>6 days</td><td>5 to 12, 20 Mar</td></tr><tr><td>Türkiye</td><td>9 days</td><td>4, 6, 9, 16, 18 Mar</td></tr><tr><td>Dubai and Abu Dhabi</td><td>6 days</td><td>6, 7, 9, 10, 11, 23 Mar</td></tr><tr><td>Egypt and the Nile</td><td>9 days</td><td>3, 7, 17 Mar</td></tr><tr><td>Tokyo to Osaka via Mount Fuji</td><td>7 days</td><td>9, 16 Mar</td></tr></tbody></table>
@@ -55,9 +55,8 @@ ARTICLES = [
     <p>Go before the heat of summer: the Pyramids and the Grand Egyptian Museum, three nights on the Nile from Aswan to Luxor, Abu Simbel and Alexandria. <a href="tour-gd-egypt.html">See the Egypt tour</a>.</p>
     <h2>5. Japan, from Tokyo to Osaka</h2>
     <p>The end of winter: plum blossom, clear views of Mount Fuji, and in a warm year the 16 March departure may catch the first cherry blossom. <a href="tour-gd-japan.html">See the Japan tour</a>.</p>
-    <p class="pull">Raya at home first, then the world.</p>
-    <h2>For Muslim travellers</h2>
-    <ul><li><b>Food.</b> Türkiye, Egypt and the UAE are Muslim-majority countries, so halal food is the norm. Meals on our Korea and Japan group tours are not halal; ask us about Muslim-friendly options before you book.</li><li><b>Prayer.</b> Tell your tour leader early, so the day can leave room for prayer stops. A prayer-times app with a qibla compass is worth bringing.</li><li><b>Ramadan.</b> The fasting month begins around 8 February 2027. If you travel before Raya, choose a gentle itinerary.</li></ul>
+    <p class="pull">A long break, a quiet office, and a week away.</p>
+    <p>Celebrating Raya yourself? Tell us, and we’ll suggest departures for the second week of Syawal, after the open houses.</p>
     <h2>Prefer the water?</h2>
     <p>A Yangtze River cruise through the Three Gorges leaves Kuala Lumpur on 11 March, and a northern lights voyage along the Norwegian coast leaves on 5 March. Ask us about these and other <a href="services.html#cruises">cruises</a>.</p>
     <h2>Book early</h2>
