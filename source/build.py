@@ -777,7 +777,7 @@ def build_article(a):
     others = [p for p in sorted(ARTICLES, key=_by_date, reverse=True) if p['slug'] != a['slug']]
     same = [p for p in others if p['cat'] == a['cat']]
     rel = ''.join(post_card(p) for p in (same + [p for p in others if p not in same])[:3])
-    fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"{f' style="object-position:{a["pos"]}"' if a.get('pos') else ''}></figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
+    fig = f'<figure class="lead-figure" style="margin:0"><img src="assets/{a['img']}" alt="{a['alt']}"{f' style="object-position:{a["pos"]}"' if a.get('pos') else ''}>{f'<figcaption class="photo-credit">{a["credit"]}</figcaption>' if a.get('credit') else ''}</figure>' if a.get('img') else f'<figure class="lead-figure" style="margin:0"><div class="slot lead-slot" style="--c1:{a['slot'][0]};--c2:{a['slot'][1]}"><b>{a['slot'][2]}</b><small>Photo to come</small></div></figure>'
     ct, ctext, chref, clabel = a['cta']
     body = f'''{nav('journal.html')}
 <main id="main">

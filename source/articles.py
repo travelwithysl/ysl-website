@@ -5,6 +5,36 @@
 WA = 'Chat on WhatsApp'
 
 ARTICLES = [
+  dict(slug='long-weekend-malaysia', cat='dest', seo='Deepavali Long Weekend 2026: Where to Go in Malaysia', title='A long weekend close to home: where to go in Malaysia',
+    lead='Deepavali falls on Sunday 8 November 2026, and in most states Monday 9 November is a replacement holiday. Three days is plenty for a proper break, no passport needed. Here is where we would go.',
+    excerpt='Hill stations, heritage towns and islands, a short drive or flight away.',
+    date='3 November 2026', read='5 min read', img='jr-long-weekend.jpg', alt='Tea estates rolling over the hills of the Cameron Highlands', credit='Photo: Will Ellis, <a href="https://commons.wikimedia.org/w/index.php?curid=1872781" rel="noopener" target="_blank">Wikimedia Commons</a>, CC BY 2.0',
+    body='''<p>Some of the best trips are the short ones. A long weekend is enough to swap the city for cool hill air, a plate of hawker food in a heritage town, or a quiet beach, and be back at your desk on Tuesday without jet lag. Deepavali 2026 falls on Sunday 8 November, with Monday 9 November as the replacement holiday in most states. Check your own state’s calendar before you plan.</p>
+    <h2>A few hours by road</h2>
+    <h3>Cameron Highlands</h3>
+    <p>Tea estates rolling over the hills, strawberry farms, mossy forest trails and air cool enough for a jumper. About three and a half hours from Klang. November is the wet season up here, so plan the outdoor walks for the morning.</p>
+    <h3>Fraser’s Hill</h3>
+    <p>Quieter than the Camerons and closer, at around two hours: old stone bungalows, a little clock tower, jungle walks and some of the best birdwatching in the country. A place to do very little, very well.</p>
+    <h3>Ipoh</h3>
+    <p>Old-town lanes, white coffee and bean sprout chicken, murals and café-lined back streets, and limestone hills all around. About two and a half hours away, and easy to pair with a night in the Camerons.</p>
+    <h3>Melaka</h3>
+    <p>Two hours south: Jonker Street, the red buildings of Dutch Square, a river cruise after dark and chicken rice balls for lunch. Book a heritage hotel inside the old town and leave the car parked.</p>
+    <h3>Kuala Selangor</h3>
+    <p>Barely an hour from Klang, and perfect for a single day: the view from Bukit Melawati, seafood by the river, and an evening boat through the mangroves to see the fireflies light up the trees.</p>
+    <p class="pull">Three days, no passport, and back at work without jet lag.</p>
+    <h2>A short flight away</h2>
+    <h3>Penang</h3>
+    <p>George Town’s street art, clan houses and shophouses, the best hawker food in the country, and Penang Hill for the sunset. Under an hour by air, or four by road.</p>
+    <h3>Langkawi</h3>
+    <p>The cable car and Sky Bridge above the rainforest, a boat through the Kilim mangroves, island hopping and sunset on the beach. The drier season begins around November, and the island is duty-free.</p>
+    <h3>Kota Kinabalu</h3>
+    <p>A morning at Kinabalu Park below Mount Kinabalu, an afternoon on the islands just off the coast, and seafood at the night market as the sun goes down over the South China Sea. Worth an extra day of leave.</p>
+    <h2>Save the east coast for later</h2>
+    <p>From November to February the monsoon reaches the east coast, and many resorts on Redang, Perhentian and Tioman close for the season. Keep the islands for March to October.</p>
+    <h2>Before you go</h2>
+    <ul><li>Book hotels early: rooms in Penang, Melaka and the highlands fill fast over a long weekend.</li><li>Leave before the rush. Roads out of the Klang Valley are busiest on the evening before a holiday.</li><li>Flying is often the faster choice for Penang, Langkawi and Kota Kinabalu.</li></ul>''',
+    cta=('Plan a long weekend', 'Tell us where you’d like to go and how many of you are travelling, and we’ll book the flights, hotel and transfers.', 'services.html', 'Travel services')),
+
   dict(slug='chinese-new-year-2027', cat='dest', seo='Chinese New Year 2027 Holiday Packages from Malaysia: 8 Group Tours for the Long Break', title='Chinese New Year 2027: eight trips for the long break',
     lead='Chinese New Year falls on Saturday 6 February 2027. With the public holidays and a few days of leave, the break stretches to a week or more: long enough for snow, the Great Wall or the desert. These are the eight departures we would book first.',
     excerpt='Eight group tours that leave around 6 February 2027.',
