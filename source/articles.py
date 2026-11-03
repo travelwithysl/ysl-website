@@ -5,6 +5,65 @@
 WA = 'Chat on WhatsApp'
 
 ARTICLES = [
+  dict(slug='chinese-new-year-2027', cat='dest', seo='Chinese New Year 2027 Holiday Packages from Malaysia: 8 Group Tours for the Long Break', title='Chinese New Year 2027: eight trips for the long break',
+    lead='Chinese New Year falls on Saturday 6 February 2027. With the public holidays and a few days of leave, the break stretches to a week or more: long enough for snow, the Great Wall or the desert. These are the eight departures we would book first.',
+    excerpt='Eight group tours that leave around 6 February 2027.',
+    date='3 November 2026', read='6 min read', img='ap-finland-hero.jpg', pos='30% 60%', alt='A reindeer sleigh ride through a snowy forest in Finnish Lapland',
+    body='''<p>Chinese New Year is the one week when most of Malaysia slows down at once. Offices close, schools take their festive break, and families of every background finally have the same days free. In 2027 the first day falls on Saturday 6 February. Put the public holidays together with a few days of annual leave and you have a week or more: time for a proper trip, after the reunion dinner or instead of the jam home.</p>
+    <p>Each of these group tours leaves within a few days of the new year, with return flights from Kuala Lumpur, hotels, meals and a tour leader arranged.</p>
+    <h2>At a glance</h2>
+    <table class="data-table"><thead><tr><th scope="col">Tour</th><th scope="col">Length</th><th scope="col">Departs</th></tr></thead><tbody><tr><td>Beijing and Gubei Water Town</td><td>7 days</td><td>4, 8 Feb</td></tr><tr><td>Tokyo to Osaka via Mount Fuji</td><td>7 days</td><td>2, 4, 9 Feb</td></tr><tr><td>Finnish Lapland</td><td>10 days</td><td>3, 5, 6, 8 Feb</td></tr><tr><td>Türkiye</td><td>9 days</td><td>1, 3, 4, 7, 8 Feb</td></tr><tr><td>Dubai and Abu Dhabi</td><td>6 days</td><td>2, 6, 8 Feb</td></tr><tr><td>Bali and Lovina</td><td>5 days</td><td>30 Jan, 6, 7 Feb</td></tr><tr><td>Da Nang, Hoi An and Hue</td><td>5 days</td><td>3, 4, 5, 9 Feb</td></tr><tr><td>Spain and Portugal</td><td>12 days</td><td>1, 6, 8 Feb</td></tr></tbody></table>
+    <h2>1. Beijing and the Great Wall in winter</h2>
+    <p>Welcome the new year in the old capital: red lanterns along Qianmen, Peking duck, the Forbidden City and the Temple of Heaven, and a night in Gubei Water Town below the Simatai Great Wall, often dusted with snow at this time of year. There are no shopping stops, and the pace is gentle enough for grandparents. <a href="tour-gd-beijing.html">See the Beijing tour</a>.</p>
+    <h2>2. Japan, from Tokyo to Osaka</h2>
+    <p>Winter’s clear, dry air gives the best views of Mount Fuji, and the thatched farmhouses of Shirakawa-go look their best under snow. Seven days from Tokyo to Osaka, with Takayama and Kyoto on the way. <a href="tour-gd-japan.html">See the Japan tour</a>.</p>
+    <h2>3. Finnish Lapland and the northern lights</h2>
+    <p>The long Arctic nights of February are prime time for the aurora. Days are for husky and reindeer sleighs, snow and a king crab lunch across the border in Norway. A trip the children will talk about for years. <a href="tour-ap-finland.html">See the Lapland tour</a>.</p>
+    <h2>4. Türkiye</h2>
+    <p>Winter is Türkiye’s quiet season: shorter queues in Istanbul, and balloons over a frosted Cappadocia at dawn. Nine days through Istanbul, Pamukkale and Cappadocia, with plenty of departures over the holiday. <a href="tour-gd-turkiye.html">See the Türkiye tour</a>.</p>
+    <h2>5. Dubai and Abu Dhabi</h2>
+    <p>February is the pleasant season in the Gulf, with warm days and cool evenings. The Burj Khalifa, an evening in the dunes by 4x4, a dhow dinner cruise and the Sheikh Zayed Grand Mosque, all in six days, which fits neatly inside the holiday. <a href="tour-gd-dubai.html">See the Dubai tour</a>.</p>
+    <h2>6. Bali and Lovina</h2>
+    <p>The shortest trip on the list: five days, a three-hour flight, and no jet lag. Ubud, the volcano at Kintamani, a dawn boat out to the dolphins at Lovina and sunset at Tanah Lot. February is Bali’s wet season, so expect an afternoon shower; mornings are usually clear. <a href="tour-gd-bali.html">See the Bali tour</a>.</p>
+    <h2>7. Da Nang, Hoi An and Hue</h2>
+    <p>Vietnam celebrates Tết on the same day, so Hoi An’s lanterns are out in force. Central Vietnam is mild in February, the Golden Bridge at Ba Na Hills is cool, and the flight is under three hours. <a href="tour-gd-vietnam.html">See the Da Nang tour</a>.</p>
+    <h2>8. Spain and Portugal</h2>
+    <p>For families who can take two weeks: Porto, Lisbon, Seville, Toledo, Madrid and Barcelona, with mild days, orange trees in Seville and far fewer visitors than in summer. <a href="tour-ap-spain-portugal.html">See the Spain and Portugal tour</a>.</p>
+    <p class="pull">The reunion dinner at home, then the world.</p>
+    <h2>Prefer the water?</h2>
+    <p>A Yangtze River cruise through the Three Gorges leaves Kuala Lumpur on 7 February, the second day of the new year: eight days with the river doing the travelling. Ask us about it, or about other <a href="services.html#cruises">cruises</a>.</p>
+    <h2>Book early</h2>
+    <p>Seats around the new year go first, on flights and on group tours. If your dates are fixed, we suggest confirming by December. Check that every passport is valid for at least six months after you arrive.</p>
+    <div class="callout">Some shops, restaurants and sights in China, Taiwan and Vietnam close for the first days of the new year. Our tours are planned around these dates.</div>''',
+    cta=('Plan your Chinese New Year trip', 'Tell us who is travelling and how many days you have, and we’ll hold seats on the departure that fits.', 'tours.html', 'Browse tours')),
+
+  dict(slug='hari-raya-2027', cat='dest', seo='Hari Raya Holiday Packages 2027 from Malaysia: 5 Tours for the Raya Break', title='Hari Raya 2027: five trips for the Raya break',
+    lead='Hari Raya Aidilfitri is expected on 10 March 2027. The public holidays, and the quiet weeks around them, give Malaysians of every background time to travel. These are five group tours that leave in the Raya weeks.',
+    excerpt='Five group tours that leave in the Raya weeks of March 2027.',
+    date='3 November 2026', read='5 min read', img='jr-raya.jpg', alt='The white domes and minarets of the Sheikh Zayed Grand Mosque in Abu Dhabi at dusk',
+    body='''<p>Raya is first about family: balik kampung, open houses and the first mornings of Syawal at home. But the long break is also one of the best times of the year to travel. Many Muslim families take a trip once the first days of Raya are done, and many other Malaysians use the same holidays for a week away. Hari Raya Aidilfitri 2027 is expected on Wednesday 10 March; the exact date depends on the sighting of the new moon.</p>
+    <p>These five group tours leave in the Raya weeks, before and after the holidays, with return flights from Kuala Lumpur, hotels, meals and a tour leader arranged.</p>
+    <h2>At a glance</h2>
+    <table class="data-table"><thead><tr><th scope="col">Tour</th><th scope="col">Length</th><th scope="col">Departs</th></tr></thead><tbody><tr><td>Seoul, Nami Island and Mount Sorak</td><td>6 days</td><td>5 to 12, 20 Mar</td></tr><tr><td>Türkiye</td><td>9 days</td><td>4, 6, 9, 16, 18 Mar</td></tr><tr><td>Dubai and Abu Dhabi</td><td>6 days</td><td>6, 7, 9, 10, 11, 23 Mar</td></tr><tr><td>Egypt and the Nile</td><td>9 days</td><td>3, 7, 17 Mar</td></tr><tr><td>Tokyo to Osaka via Mount Fuji</td><td>7 days</td><td>9, 16 Mar</td></tr></tbody></table>
+    <h2>1. South Korea in early spring</h2>
+    <p>March in Korea is cool and crisp, a welcome change from home. Nami Island, the cable car in Seoraksan, a day at Everland and Gyeongbokgung Palace in hanbok. With departures almost every day of the Raya week, it is the easiest trip to fit around family plans. <a href="tour-gd-korea.html">See the Korea tour</a>.</p>
+    <h2>2. Türkiye</h2>
+    <p>Spring arrives in March. The Blue Mosque and Hagia Sophia in Istanbul, the white terraces of Pamukkale and balloons over Cappadocia at dawn. <a href="tour-gd-turkiye.html">See the Türkiye tour</a>.</p>
+    <h2>3. Dubai and Abu Dhabi</h2>
+    <p>The last weeks of the cool season, and six days that fit neatly into the holiday: the Burj Khalifa, a desert safari with dinner at a Bedouin camp, and the Sheikh Zayed Grand Mosque in Abu Dhabi. <a href="tour-gd-dubai.html">See the Dubai tour</a>.</p>
+    <h2>4. Egypt and the Nile</h2>
+    <p>Go before the heat of summer: the Pyramids and the Grand Egyptian Museum, three nights on the Nile from Aswan to Luxor, Abu Simbel and Alexandria. <a href="tour-gd-egypt.html">See the Egypt tour</a>.</p>
+    <h2>5. Japan, from Tokyo to Osaka</h2>
+    <p>The end of winter: plum blossom, clear views of Mount Fuji, and in a warm year the 16 March departure may catch the first cherry blossom. <a href="tour-gd-japan.html">See the Japan tour</a>.</p>
+    <p class="pull">Raya at home first, then the world.</p>
+    <h2>For Muslim travellers</h2>
+    <ul><li><b>Food.</b> Türkiye, Egypt and the UAE are Muslim-majority countries, so halal food is the norm. Meals on our Korea and Japan group tours are not halal; ask us about Muslim-friendly options before you book.</li><li><b>Prayer.</b> Tell your tour leader early, so the day can leave room for prayer stops. A prayer-times app with a qibla compass is worth bringing.</li><li><b>Ramadan.</b> The fasting month begins around 8 February 2027. If you travel before Raya, choose a gentle itinerary.</li></ul>
+    <h2>Prefer the water?</h2>
+    <p>A Yangtze River cruise through the Three Gorges leaves Kuala Lumpur on 11 March, and a northern lights voyage along the Norwegian coast leaves on 5 March. Ask us about these and other <a href="services.html#cruises">cruises</a>.</p>
+    <h2>Book early</h2>
+    <p>Fares for the Raya weeks rise early. Confirming two or three months ahead, by December or January, gives the best choice of dates and flights.</p>''',
+    cta=('Plan your Raya trip', 'Tell us your dates and who is travelling, and we’ll suggest the departure that fits around your family’s Raya.', 'tours.html', 'Browse tours')),
+
   dict(slug='yunnan', cat='dest', seo='Yunnan Travel Guide for First-Timers: Altitude, Packing and When to Go', title="A first-timer’s guide to Yunnan’s high country",
     lead='Kunming, Lijiang and Shangri-La climb from a mild spring city to the edge of the Tibetan plateau in a single trip. A little preparation makes the first days much easier.',
     excerpt='Kunming, Lijiang and Shangri-La, and how to enjoy the climb.',

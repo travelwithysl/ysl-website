@@ -58,6 +58,10 @@ TOURS_ZH = {  # card text; GD titles and regions come from tours_zh.py so card a
     'gd-vietnam': dict(short='岘港', line='会安古镇、巴拿山黄金桥与顺化皇城'),
     'gd-switzerland-italy': dict(short='瑞士', line='少女峰、Glacier 3000、Golden Pass 观光列车、日内瓦湖与米兰'),
     'gd-egypt': dict(short='埃及', line='金字塔、阿布辛贝、尼罗河游船三晚、卢克索与亚历山大'),
+    'gd-dubai': dict(short='迪拜', line='哈利法塔、沙漠冲沙、帆船晚餐游河与谢赫扎耶德大清真寺'),
+    'gd-beijing': dict(short='北京', line='故宫、夜游司马台长城、天坛，全程无购物站'),
+    'gd-bali': dict(short='巴厘岛', line='情人崖、乌布、京打马尼、罗威那看海豚与海神庙日落'),
+    'gd-usa': dict(short='美国', line='纽约、费城、华盛顿、尼亚加拉瀑布与波士顿'),
     'ap-zhangjiajie': dict(short='张家界', line='砂岩峰林、峡谷玻璃桥、天门山与凤凰古城'),
     'ap-dongbei': dict(short='哈尔滨', line='雾凇、雪中温泉与哈尔滨冰雪大世界'),
     'ap-spain-portugal': dict(short='西班牙', line='波尔图、里斯本、塞维利亚、龙达、科尔多瓦、托莱多、马德里与巴塞罗那'),
@@ -589,7 +593,7 @@ def phrase_breaks(html):
 
 
 # English that may stay on a Chinese page: names, the legal entity, the address, contact details
-KEEP = ['YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'Golden Destinations', 'Parlo Tours', 'Apple Vacations',
+KEEP = ['Dubai & Abu Dhabi', 'Beijing & Gubei Water Town', 'Bali & Lovina', 'East Coast USA', 'AirAsia X', 'Hard Rock Cafe', 'Love Bali', 'Page One', 'YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'Golden Destinations', 'Parlo Tours', 'Apple Vacations',
         'No 5, Lorong Sungai Puloh 13A', 'Taman Klang Utama', 'Klang, Selangor', 'Max Filter Industries', 'Sendok Group', 'Megastra Jaya',
         'Ctrip', 'The Boma', 'Spice Route', 'China Eastern', 'Kitaichi Glass', 'Shiroi Koibito Park', 'Shiroi Koibito', 'Mitsui Outlet Park',
         'Galeries Lafayette', 'Parndorf Designer Outlet', 'Sky Tower Orbit',

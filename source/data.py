@@ -67,6 +67,14 @@ TOURS = [
          line='Jungfraujoch, Glacier 3000, the Golden Pass train, Lake Geneva and Milan', img='gd-switzerland-italy-card.jpg'),
     dict(slug='gd-egypt', dur='9D7N', page='tour-gd-egypt.html', brand='Golden Destinations', iata='CAI', short='Egypt', title='The Grand Egypt Tour', region='Egypt', cat='africa', kind='Group tour',
          line='The Pyramids, Abu Simbel, three nights on the Nile, Luxor and Alexandria', img='gd-egypt-card.jpg'),
+    dict(slug='gd-dubai', dur='6D4N', page='tour-gd-dubai.html', brand='Golden Destinations', iata='DXB', short='Dubai', title='Dubai &amp; Abu Dhabi', region='United Arab Emirates', cat='asia', kind='Group tour',
+         line='The Burj Khalifa, a desert safari, a dhow dinner cruise and the Sheikh Zayed Grand Mosque', img='gd-dubai-card.jpg'),
+    dict(slug='gd-beijing', dur='7D5N', page='tour-gd-beijing.html', brand='Golden Destinations', iata='PEK', short='Beijing', title='Beijing &amp; Gubei Water Town', region='China', cat='asia', kind='Group tour',
+         line='The Forbidden City, the Simatai Great Wall by night and the Temple of Heaven, with no shopping stops', img='gd-beijing-card.jpg'),
+    dict(slug='gd-bali', dur='5D4N', page='tour-gd-bali.html', brand='Golden Destinations', iata='DPS', short='Bali', title='Bali &amp; Lovina', region='Indonesia', cat='asia', kind='Group tour',
+         line='Uluwatu, Ubud, Kintamani, dolphins at Lovina and sunset at Tanah Lot', img='gd-bali-card.jpg'),
+    dict(slug='gd-usa', dur='10D7N', page='tour-gd-usa.html', brand='Golden Destinations', iata='JFK', short='USA', title='East Coast USA', region='United States', cat='americas', kind='Group tour',
+         line='New York, Philadelphia, Washington DC, Niagara Falls and Boston', img='gd-usa-card.jpg'),
     # partner tours from Apple Vacations (applevacations.my), named only on their tour pages
     dict(slug='ap-zhangjiajie', dur='9D6N', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', iata='CSX', short='Zhangjiajie', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', cat='asia', kind='Group tour',
          line='The sandstone pillars, the glass bridge, Tianmen Mountain and Phoenix Ancient Town', img='ap-zhangjiajie-card.jpg'),
@@ -417,6 +425,82 @@ GD_TOURS = [
     excluded=['Entry inside the Pyramids', 'Optional extras: Nubian village, sound and light show and hot-air balloon', 'Travel insurance and tipping, unless stated'],
     notes='Malaysian passport holders can currently enter Egypt visa-free or with a visa on arrival for up to 15 days; we confirm the rule when you book.',
   ),
+  dict(slug='gd-dubai', page='tour-gd-dubai.html', title='Dubai &amp; Abu Dhabi', region='United Arab Emirates', duration='6 days, 4 nights', hero='gd-dubai-hero.jpg', hero_alt='The Burj Khalifa lit up at night above the Dubai Fountain',
+    seo='Dubai Tour Package from Malaysia: Burj Khalifa, Desert Safari and Abu Dhabi',
+    line='The Burj Khalifa, a desert safari and a day in Abu Dhabi.', hotels='4-star hotels in Dubai',
+    head='Two emirates in four full days.',
+    lead='Old Dubai by the creek and its gold and spice souks, a dhow dinner cruise, the Palm and the Burj Khalifa, an evening in the dunes by 4x4 with dinner at a Bedouin camp, and a day in Abu Dhabi for the Sheikh Zayed Grand Mosque.',
+    highlights=['Burj Khalifa and the Dubai Mall', 'Dhow dinner cruise', '4x4 desert safari', 'Bedouin camp dinner and show', 'Sheikh Zayed Grand Mosque', 'The Palm and Atlantis', 'Gold and spice souks', 'Museum of the Future and Dubai Frame'],
+    days=[
+      _d('Kuala Lumpur to Dubai', '', ['An overnight flight to Dubai.']),
+      _d('Old and new Dubai', 'B, L, D', ['Photo stops at <b>Jumeirah Mosque</b> and Zabeel Palace, and a drive through the old Bastakiya quarter.', 'The <b>Gold Souk and Spice Souk</b> by the creek, where the abra water taxis cross.', 'Outside the <b>Museum of the Future</b> and the <b>Dubai Frame</b>.', 'Dinner on a traditional <b>dhow cruise</b>.'], 'Dubai'),
+      _d('The Palm and the desert', 'B, L, D', ['The <b>Burj Al Arab</b>, <b>Atlantis The Palm</b> and Jumeirah Beach, and a drive through Dubai Marina.', 'The <b>Burj Khalifa</b>, the world’s tallest building, and the Dubai Mall.', 'Out to the dunes by <b>4x4 for a desert safari</b>, then a Bedouin camp with a belly-dance show and a barbecue dinner.'], 'Dubai'),
+      _d('Abu Dhabi', 'B, L, D', ['Ninety minutes to Abu Dhabi and the <b>Sheikh Zayed Grand Mosque</b>, white marble, 82 domes and one of the world’s largest carpets.', 'Yas Island and Ferrari World, the Emirates Palace and the Heritage Village.', 'The dates market, then back to Dubai.'], 'Dubai'),
+      _d('Dubai to Kuala Lumpur', 'B', ['Fly home.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur with Emirates', 'Four nights in 4-star hotels in Dubai', 'Breakfast daily, 3 lunches and 3 dinners, including the dhow cruise and the Bedouin camp barbecue', 'Desert safari by 4x4, Bedouin camp entry, and the Sheikh Zayed Grand Mosque'],
+    excluded=['Entry to the top of the Burj Khalifa', 'Travel insurance and tipping, unless stated', 'Meals not listed'],
+    notes='The flight leaves around midnight, so you check in at KLIA on the evening before the departure date. The tour includes shopping stops at the souks, the Dubai Mall and a dates market. Dress modestly for the mosque: long sleeves and long trousers or skirts, and a headscarf for women.',
+  ),
+  dict(slug='gd-beijing', page='tour-gd-beijing.html', title='Beijing &amp; Gubei Water Town', region='China', duration='7 days, 5 nights', hero='gd-beijing-hero.jpg', hero_alt='Gubei Water Town under snow at dusk, with the Great Wall on the hills behind',
+    seo='Beijing Tour Package from Malaysia: Forbidden City, Great Wall and Gubei Water Town',
+    line='The Forbidden City, the Great Wall at Simatai and a night in Gubei Water Town.', hotels='Local 5-star hotels, and a night in Gubei Water Town',
+    head='Imperial Beijing, with no shopping stops.',
+    lead='Tiananmen Square and the Forbidden City, a night in Gubei Water Town below the Simatai Great Wall, the hutongs of Shichahai, the Summer Palace and the Temple of Heaven, at an easy pace and without a single shopping stop.',
+    highlights=['The Forbidden City', 'Tiananmen Square', 'Simatai Great Wall', 'A night in Gubei Water Town', 'Great Wall water and light show', 'The Summer Palace', 'Temple of Heaven', 'Peking duck'],
+    days=[
+      _d('Kuala Lumpur to Beijing', '', ['Fly to Beijing, with a meal on board.'], 'Beijing'),
+      _d('Tiananmen and the Forbidden City', 'B, L, D', ['<b>Tiananmen Square</b> and the Monument to the People’s Heroes, with the Great Hall of the People and the National Museum alongside.', '<b>The Forbidden City</b>, home to the Ming and Qing emperors.', '<b>Wangfujing</b>, and Heping Guoju, a retro food hall of old Beijing snacks.'], 'Beijing', note='The Forbidden City closes on Mondays. On those days, or when tickets run out, it is replaced by Prince Gong’s Mansion and Jingshan Park, with its view over the palace roofs.'),
+      _d('Gubei Water Town and Simatai', 'B, L', ['Two hours to <b>Gubei Water Town</b>, a canal town built below the Great Wall: an old distillery, a dye house and the family halls.', 'The <b>Simatai Great Wall</b>, one of the few stretches kept in its original Ming form, climbing a steep ridge.', 'The Great Wall water and light show, and a drone display, weather permitting.'], 'Gubei Water Town', note='The Simatai cable car is not included.'),
+      _d('Back to Beijing: the hutongs', 'B, L, D', ['<b>Shichahai</b>, the lakes of old Beijing, and Yandai Xiejie, one of the city’s oldest lanes.', 'The Drum and Bell Towers from outside, and Gulou East Street.'], 'Beijing'),
+      _d('The Summer Palace', 'B, L, D', ['Shougang Park, an old steelworks turned Winter Olympics site, with its Big Air ski jump.', '<b>The Summer Palace</b>, the imperial lakeside retreat.', 'The ruins of <b>Yuanmingyuan</b>, the Old Summer Palace.', 'The Bird’s Nest and the Water Cube from outside.'], 'Beijing'),
+      _d('Temple of Heaven and Qianmen', 'B, L, D', ['<b>The Temple of Heaven</b>: the Circular Mound Altar, the Echo Wall and the Hall of Prayer for Good Harvests.', '<b>Qianmen Street</b> and the Zhengyangmen Gate.', 'Beijing Fun, with the Starbucks flagship and Page One bookshop, and the lanes of Yangmeizhu Xiejie.'], 'Beijing'),
+      _d('Beijing to Kuala Lumpur', 'B', ['Fly home, with a meal on board.']),
+    ],
+    included=['Return flights from Kuala Lumpur with AirAsia X', 'Five nights: Beijing 4 in local 5-star hotels, Gubei Water Town 1', 'Most meals, including Peking duck, a small hotpot, old Beijing roast meat and zhajiangmian', 'All listed entrances, including the Forbidden City, Simatai Great Wall, the Summer Palace and the Temple of Heaven'],
+    excluded=['The Simatai cable car', 'Optional evening: acrobatics, the Lama Temple and Sanlitun', 'Travel insurance and tipping, unless stated'],
+    notes='No shopping stops. Malaysians can currently visit China visa-free for short stays; we confirm the rule when you book.',
+  ),
+  dict(slug='gd-bali', page='tour-gd-bali.html', title='Bali &amp; Lovina', region='Indonesia', duration='5 days, 4 nights', hero='gd-bali-hero.jpg', hero_alt='Dolphins leaping beside a boat off Lovina, north Bali',
+    seo='Bali Tour Package from Malaysia: Ubud, Kintamani, Lovina Dolphins and Tanah Lot',
+    line='Ubud, Kintamani, dolphins at Lovina and sunset at Tanah Lot.', hotels='Local 4-star hotels',
+    head='Bali, south to north and back.',
+    lead='Clifftop Uluwatu, the market town of Ubud and the volcano at Kintamani, a night on the quiet north coast at Lovina with a dawn boat out to the dolphins, the lake temple at Bedugul and sunset at Tanah Lot.',
+    highlights=['Uluwatu Temple on the cliffs', 'Barong dance', 'Ubud art market', 'Kintamani and Mount Batur', 'Dolphin watching at Lovina', 'Ulun Danu Beratan lake temple', 'Sunset at Tanah Lot', 'Jimbaran seafood dinner'],
+    days=[
+      _d('Kuala Lumpur to Bali', 'D', ['Fly to Bali.', '<b>Dreamland Beach</b>, then <b>Uluwatu Temple</b> on its cliff above the Indian Ocean.'], 'Bali'),
+      _d('Ubud, Kintamani, Lovina', 'B, L, D', ['A <b>Barong dance</b>, Bali’s story of good and evil.', 'The <b>Ubud art market</b>.', '<b>Kintamani</b>, looking across to Mount Batur and its crater lake.', '<b>Tirta Empul</b>, the holy spring temple at Tampak Siring.', 'Over the mountains to Lovina.'], 'Lovina'),
+      _d('Dolphins, Bedugul, Tanah Lot', 'B, L, D', ['Out by boat at dawn to see the <b>dolphins</b> off Lovina.', 'A waterfall, and <b>Ulun Danu Beratan</b>, the temple on the lake at Bedugul.', 'A fruit market, then sunset at <b>Tanah Lot</b>, the temple on a rock in the sea.'], 'Bali'),
+      _d('Kuta', 'B, L, D', ['A coffee plantation, and duty-free shopping.', 'A horse cart along Kuta and Legian.', 'A seafood dinner on the beach at <b>Jimbaran</b>.'], 'Bali'),
+      _d('Bali to Kuala Lumpur', 'B, L', ['<b>Garuda Wisnu Kencana</b> Cultural Park and its giant statue.', 'Krisna for Balinese snacks and souvenirs, then fly home.']),
+    ],
+    included=['Return flights from Kuala Lumpur with Malaysia Airlines', 'Four nights in local 4-star hotels: Bali 3, Lovina 1', '4 breakfasts, 4 lunches and 4 dinners, including the Jimbaran seafood dinner, crispy duck and a Balinese buffet', 'Barong dance, dolphin boat and all listed entrances'],
+    excluded=['Bali’s tourist levy of IDR 150,000 a person, paid online before you fly or on arrival', 'Travel insurance and tipping, unless stated'],
+    notes='The tour includes short shopping stops at a coffee plantation, a duty-free shop and a souvenir shop. Pay the tourist levy only on the official Love Bali website, lovebali.baliprov.go.id.',
+  ),
+  dict(slug='gd-usa', page='tour-gd-usa.html', title='East Coast USA', region='United States', duration='10 days, 7 nights', hero='gd-usa-hero.jpg', hero_alt='Niagara Falls with the Horseshoe Falls in spray',
+    seo='USA Tour Package from Malaysia: New York, Washington DC, Niagara Falls and Boston',
+    line='New York, Washington DC, Niagara Falls and Boston.', hotels='3-star hotels',
+    head='The East Coast in one loop.',
+    lead='The Statue of Liberty from the water, Philadelphia’s Liberty Bell, the White House and the Capitol, a glass museum and a chocolate factory on the way north, Niagara Falls up close, Boston’s Freedom Trail, then a full day in New York.',
+    highlights=['Statue of Liberty cruise', 'Liberty Bell, Philadelphia', 'The White House and the Capitol', 'Corning Museum of Glass', 'Hershey’s Chocolate World', 'Niagara Falls by boat', 'Boston’s Freedom Trail', 'A day in New York'],
+    days=[
+      _d('Kuala Lumpur to New York', '', ['Fly to New York, with meals on board.'], 'New Jersey'),
+      _d('New York, Philadelphia, Washington DC', 'B, L, D', ['An hour’s <b>cruise past the Statue of Liberty</b>.', 'Philadelphia: <b>Independence National Historical Park</b>, the <b>Liberty Bell</b>, the LOVE sign and the Rocky steps.', 'On to Washington by way of Baltimore, and the Capitol lit up at night.'], 'Washington DC'),
+      _d('Washington DC', 'B, L, D', ['The <b>Lincoln Memorial</b>, the <b>White House</b> and the <b>Capitol</b>, and a drive past the Jefferson Memorial.', 'North to Harrisburg.'], 'Harrisburg'),
+      _d('Corning, Hershey, Niagara Falls', 'B, D', ['The <b>Corning Museum of Glass</b>.', '<b>Hershey’s Chocolate World</b>.', 'On to Niagara Falls.'], 'Niagara Falls'),
+      _d('Niagara Falls to Boston', 'B, D', ['<b>Niagara Falls</b>, and the <b>Maid of the Mist</b> boat into the spray.', 'A long drive east to Boston.'], 'Boston', note='The Maid of the Mist runs from mid-May to early October; at other times it is replaced by a walk behind the falls.'),
+      _d('Boston', 'B, D', ['<b>Quincy Market</b>, the State House and the Boston Tea Party Ship.', 'A walk along the <b>Freedom Trail</b>.', 'Back to New Jersey.'], 'New Jersey'),
+      _d('New York', 'B, D', ['Wall Street, the <b>9/11 Memorial</b> and One World Trade Center.', 'The Brooklyn Bridge, Chinatown and Little Italy, the Empire State Building, the High Line and Hudson Yards.', '<b>Chelsea Market</b>, Times Square, Fifth Avenue and the Rockefeller Center.'], 'New Jersey'),
+      _d('New York to Kuala Lumpur', 'B', ['An outlet mall, then fly home.']),
+      _d('Across the date line', '', ['In the air.']),
+      _d('Arrive in Kuala Lumpur', '', ['Welcome home.']),
+    ],
+    included=['Return flights from Kuala Lumpur with EVA Air', 'Seven nights in 3-star hotels: New Jersey 3, Washington DC 1, Harrisburg 1, Niagara Falls 1, Boston 1', '7 breakfasts, 2 lunches and 6 dinners, including dim sum, a lobster meal and the Hard Rock Cafe', 'Statue of Liberty cruise, Corning Museum of Glass and the Maid of the Mist'],
+    excluded=['US visa and visa fee', 'Travel insurance and tipping, unless stated', 'Meals not listed'],
+    notes='Malaysians need a US visa. Apply within two weeks of booking; the visa fee is not refundable. Hotels in the US have two queen beds and no triple rooms.',
+  ),
   dict(slug='ap-zhangjiajie', page='tour-ap-zhangjiajie.html', brand='Apple Vacations', title='Zhangjiajie, Tianmen Mountain &amp; Phoenix Town', region='China', duration='9 days, 6 nights', hero='ap-zhangjiajie-hero.jpg', hero_alt='Sandstone pillars rising from the forest in Zhangjiajie', c1='#3d6b4f', c2='#10241a',
     seo='Zhangjiajie Tour Package from Malaysia: Tianmen Mountain, Glass Bridge and Phoenix Town',
     line='Sandstone pillars, a glass bridge over the canyon, and Phoenix Ancient Town by night.', hotels='Hilton Garden Inn and Park Hyatt, or similar',
@@ -627,6 +711,20 @@ GD_DATES = {
     'gd-switzerland-italy': ('10ESI', '''
         2026-12-08 2026-12-15 2027-02-07 2027-02-22 2027-02-25 2027-03-07 2027-03-08 2027-03-16
         2027-03-30 2027-04-06 2027-04-12 2027-04-22 2027-05-04 2027-05-14 2027-05-17 2027-05-29
+        '''.split()),
+    'gd-dubai': ('6XDA', '''
+        2026-12-15 2027-01-19 2027-02-02 2027-02-06 2027-02-08 2027-02-24 2027-03-06 2027-03-07
+        2027-03-09 2027-03-10 2027-03-11 2027-03-23 2027-03-30 2027-04-06 2027-04-13 2027-04-20
+        '''.split()),
+    'gd-beijing': ('COQ-8', '''
+        2026-12-12 2026-12-17 2026-12-19 2027-01-18 2027-02-04 2027-02-08 2027-02-27 2027-03-13
+        '''.split()),
+    'gd-bali': ('BED-4', '''
+        2027-01-15 2027-01-22 2027-01-30 2027-02-06 2027-02-07 2027-02-20 2027-02-24 2027-03-10
+        2027-03-19 2027-03-26
+        '''.split()),
+    'gd-usa': ('10UYY', '''
+        2027-01-17 2027-02-21 2027-03-14 2027-04-11 2027-05-09 2027-06-13
         '''.split()),
     'gd-egypt': ('9XCG', '''
         2027-01-15 2027-01-22 2027-02-01 2027-02-02 2027-02-03 2027-02-09 2027-02-21 2027-03-03
