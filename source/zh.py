@@ -183,6 +183,7 @@ def globe_js():
 
 # ---------------------------------------------------------------- template wording
 UI = {
+  '<small>Photo to come</small>': '<small>照片稍后补上</small>',
   # page titles and descriptions
   'Corporate Travel & MICE | ': '商务旅游与 MICE | ',
   'About YSL Travel & Tours': '关于 YSL Travel & Tours',
