@@ -504,7 +504,7 @@ def build_services():
 
 # ======================= TOURS =======================
 def build_tours():
-    regions = [('all', 'All tours', '全部'), ('asia', 'Asia', '亚洲'), ('europe', 'Europe', '欧洲'), ('africa', 'Africa', '非洲'), ('oceania', 'Australia &amp; New Zealand', '澳洲与纽西兰')]
+    regions = [('all', 'All tours', '全部'), ('asia', 'Asia', '亚洲'), ('europe', 'Europe', '欧洲'), ('africa', 'Africa', '非洲'), ('oceania', 'Australia &amp; New Zealand', '澳洲与纽西兰'), ('americas', 'The Americas', '美洲')]
     chips = '<div class="chips" data-filter-group="tourGrid" role="group" aria-label="Filter tours by region">' + ''.join(
         f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{z if LANG == "zh" else e}</button>' for k, e, z in regions) + '</div>'
     order = [k for k, _, _ in regions]

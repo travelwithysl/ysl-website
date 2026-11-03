@@ -18,8 +18,10 @@
   // labels can be swapped per language (the Chinese site sets window.GLOBE_TEXT and translates LANDMARKS places)
   var TX = window.GLOBE_TEXT || { see: 'See tour', china: 'China tours', plan: 'Plan a trip' };
   var TO = {
-    CDG: ['tour-gd-europe-legend.html', TX.see], ZRH: ['tour-gd-europe-legend.html', TX.see],
-    NAV: ['tour-gd-turkiye.html', TX.see], HND: ['tour-gd-hokkaido.html', TX.see], PEK: ['tours.html', TX.china]
+    CDG: ['tour-gd-europe-legend.html', TX.see], ZRH: ['tour-gd-switzerland-italy.html', TX.see], FCO: ['tour-gd-switzerland-italy.html', TX.see],
+    NAV: ['tour-gd-turkiye.html', TX.see], CAI: ['tour-gd-egypt.html', TX.see], DXB: ['tour-gd-dubai.html', TX.see],
+    PEK: ['tour-gd-beijing.html', TX.see], ICN: ['tour-gd-korea.html', TX.see], HND: ['tour-gd-japan.html', TX.see],
+    DPS: ['tour-gd-bali.html', TX.see], SYD: ['tour-ap-australia.html', TX.see], JFK: ['tour-gd-usa.html', TX.see]
   };
   function linkFor(l) {
     if (l.home) return null;
