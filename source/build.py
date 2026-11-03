@@ -203,7 +203,7 @@ def sun_hero():
         <p class="eyebrow">From Klang. To the world.</p>
         <h1>Every journey<br> begins with a<br> <em>point<br> on the map.</em></h1>
         <p class="sub">From that first point to the flight home, <br>we plan every step.</p>
-        <div class="btn-row"><a class="btn btn--white" href="tours.html">Explore tours</a><a class="btn btn--line-light" href="contact.html">Plan a trip</a></div>
+        <div class="btn-row"><a class="btn btn--line-light" href="tours.html">Explore tours</a><a class="btn btn--line-light" href="contact.html">Plan a trip</a></div>
       </div>
       <a class="boarding" href="{o['href']}">
         <span class="bp-main"><small>Now boarding &nbsp;{o['kind']}</small><span class="bp-route">KUL<i>{MINI_PIN}</i>{o['code']}</span><b>{o['tour']}</b></span>
@@ -227,7 +227,7 @@ def globe_hero():
       <p class="eyebrow">From Klang. To the world.</p>
       <h1>Every journey<br> begins with a<br> <em>point<br> on the map.</em></h1>
       <p class="sub">From that first point to the flight home, <br>we plan every step.</p>
-      <div class="btn-row"><a class="btn btn--white" href="tours.html">Explore tours</a><a class="btn btn--line-light" href="contact.html">Plan a trip</a></div>
+      <div class="btn-row"><a class="btn btn--line-light" href="tours.html">Explore tours</a><a class="btn btn--line-light" href="contact.html">Plan a trip</a></div>
     </div></div>
   </div>
   <button class="globe-replay" id="globeReplay" type="button">Replay</button>
