@@ -117,7 +117,7 @@ ARTICLES = [
     <p>For teams that like a challenge: the glass bridge over the canyon, the cliff walkway on Tianmen Mountain and the sandstone pillars of the national park. Chinese-speaking guides and familiar food keep it relaxed. <a href="tour-ap-zhangjiajie.html">See our Zhangjiajie tour</a>.</p>
     <p class="pull">Four or five days, one short flight, and a story the whole team shares.</p>
     <h2>Making it work for a group</h2>
-    <ul><li>Fix the dates early: group seats on the right flights go first</li><li>Check passports and entry rules for every traveller, including staff of other nationalities</li><li>Plan one shared highlight, such as a gala dinner or a private activity</li><li>Confirm halal, vegetarian and other dietary needs with every restaurant</li><li>Leave free time in the programme; people remember a trip better when they are not rushed</li></ul>
+    <ul><li>Fix the dates early: group seats on the right flights go first</li><li>Check passports and entry rules for every traveller, including staff of other nationalities</li><li>Plan one shared highlight, such as a gala dinner or a private activity</li><li>Confirm everyone’s dietary needs with every restaurant</li><li>Leave free time in the programme; people remember a trip better when they are not rushed</li></ul>
     <p>We plan company trips for groups of every size, with one point of contact from the first brief to the flight home.</p>''',
     cta=('Plan a company trip with us', 'Send us your group size, dates and budget, and we’ll come back with options and an itemised quotation.', 'corporate.html', 'Corporate travel')),
 
