@@ -156,7 +156,7 @@ def localise(SERVICES, TOURS, CONTACT, MEMBERS, OPENINGS, QG, GD_TOURS, ARTICLES
     articles = []
     for a in ARTICLES:
         z = ARTICLES_ZH[a['slug']]
-        b = {**a, **{k: z[k] for k in ('title', 'lead', 'excerpt', 'read', 'alt', 'body', 'seo') if k in z}}
+        b = {**a, **{k: z[k] for k in ('title', 'lead', 'excerpt', 'read', 'alt', 'body', 'seo', 'credit') if k in z}}
         b['cta'] = (z['cta'][0], z['cta'][1], a['cta'][2], z['cta'][2])
         if a.get('slot'):
             b['slot'] = (a['slot'][0], a['slot'][1], z['slot_label'])
@@ -183,7 +183,6 @@ def globe_js():
 
 # ---------------------------------------------------------------- template wording
 UI = {
-  '<small>Photo to come</small>': '<small>照片稍后补上</small>',
   # page titles and descriptions
   'Corporate Travel & MICE | ': '商务旅游与 MICE | ',
   'About YSL Travel & Tours': '关于 YSL Travel & Tours',
@@ -594,7 +593,7 @@ def phrase_breaks(html):
 
 
 # English that may stay on a Chinese page: names, the legal entity, the address, contact details
-KEEP = ['Dubai & Abu Dhabi', 'Beijing & Gubei Water Town', 'Bali & Lovina', 'East Coast USA', 'AirAsia X', 'Hard Rock Cafe', 'Love Bali', 'Page One', 'YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'Golden Destinations', 'Parlo Tours', 'Apple Vacations',
+KEEP = ['Will Ellis', 'Wikimedia Commons', 'CC BY', 'Dubai & Abu Dhabi', 'Beijing & Gubei Water Town', 'Bali & Lovina', 'East Coast USA', 'AirAsia X', 'Hard Rock Cafe', 'Love Bali', 'Page One', 'YSL Travel & Tours Sdn Bhd', 'YSL Travel & Tours', 'Travel & Tours', 'Golden Destinations', 'Parlo Tours', 'Apple Vacations',
         'No 5, Lorong Sungai Puloh 13A', 'Taman Klang Utama', 'Klang, Selangor', 'Max Filter Industries', 'Sendok Group', 'Megastra Jaya',
         'Ctrip', 'The Boma', 'Spice Route', 'China Eastern', 'Kitaichi Glass', 'Shiroi Koibito Park', 'Shiroi Koibito', 'Mitsui Outlet Park',
         'Galeries Lafayette', 'Parndorf Designer Outlet', 'Sky Tower Orbit',

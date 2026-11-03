@@ -8,7 +8,7 @@ ARTICLES = [
   dict(slug='long-weekend-malaysia', cat='dest', seo='Deepavali Long Weekend 2026: Where to Go in Malaysia', title='A long weekend close to home: where to go in Malaysia',
     lead='Deepavali falls on Sunday 8 November 2026, and in most states Monday 9 November is a replacement holiday. Three days is plenty for a proper break, no passport needed. Here is where we would go.',
     excerpt='Hill stations, heritage towns and islands, a short drive or flight away.',
-    date='3 November 2026', read='5 min read', slot=('#2f6b4f', '#0f2a1f', 'Malaysia'), alt='Misty tea plantation hills in the Malaysian highlands',
+    date='3 November 2026', read='5 min read', img='jr-long-weekend.jpg', alt='Tea estates rolling over the hills of the Cameron Highlands', credit='Photo: Will Ellis, <a href="https://commons.wikimedia.org/w/index.php?curid=1872781" rel="noopener" target="_blank">Wikimedia Commons</a>, CC BY 2.0',
     body='''<p>Some of the best trips are the short ones. A long weekend is enough to swap the city for cool hill air, a plate of hawker food in a heritage town, or a quiet beach, and be back at your desk on Tuesday without jet lag. Deepavali 2026 falls on Sunday 8 November, with Monday 9 November as the replacement holiday in most states. Check your own state’s calendar before you plan.</p>
     <h2>A few hours by road</h2>
     <h3>Cameron Highlands</h3>
