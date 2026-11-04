@@ -268,7 +268,7 @@ UI = {
   '>25+ yrs</dd>': '>25年+</dd>',
   '<h3 class="code">Licensed &amp; registered</h3>': '<h3 class="code">持牌与注册</h3>',
   'Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)': '马来西亚旅游、艺术及文化部（MOTAC）颁发的旅行社执照',
-  'YSL Travel &amp; Tours Sdn Bhd, registered with SSM': 'YSL Travel &amp; Tours Sdn Bhd，于马来西亚公司委员会（SSM）注册',
+  'YSL Travel &amp; Tours Sdn Bhd, registered with SSM (formerly 877803-T)': 'YSL Travel &amp; Tours Sdn Bhd，于马来西亚公司委员会（SSM）注册（旧编号 877803-T）',
   '<h3 class="code">Member of</h3>': '<h3 class="code">所属协会</h3>',
   'Your next point on the map.': '地图上，下一个点。',
   '>Where to next?</h2>': '><span class="nw">下一站，</span><span class="nw">去哪里？</span></h2>',
@@ -414,7 +414,7 @@ UI = {
   'To keep growing with our clients, open new destinations, and help more people travel well.': '与客户一同成长，开拓新的目的地，让更多人好好旅行。',
   '<p class="eyebrow">Credentials</p>': '<p class="eyebrow">资质</p>',
   'Licensed, registered and accredited.': '<span class="nw">持牌，</span><span class="nw">注册，</span><span class="nw">获业界认可。</span>',
-  'Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).': '持有马来西亚旅游、艺术及文化部执照（KPL 6107），并以 YSL Travel &amp; Tours Sdn Bhd（877803-T）名义于马来西亚公司委员会（SSM）注册。',
+  'Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (200901034692 (877803-T)).': '持有马来西亚旅游、艺术及文化部执照（KPL 6107），并以 YSL Travel &amp; Tours Sdn Bhd（200901034692（877803-T））名义于马来西亚公司委员会（SSM）注册。',
 
   # services
   '<li aria-current="page">Services</li>': '<li aria-current="page">旅游服务</li>',

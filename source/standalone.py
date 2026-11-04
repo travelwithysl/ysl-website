@@ -29,7 +29,7 @@ def footer():
       <div><h4>Get in touch</h4><ul><li>{C['phone']}</li><li>{C['email']}</li><li><a href="{C['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{MAIN_SITE}">ysltravel.com</a></li></ul></div>
     </div>
     <div class="foot-base">
-      <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
+      <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (200901034692 (877803-T)) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
       <span>Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
     </div>
   </div>
