@@ -61,7 +61,7 @@ def footer():
       <div><h4>Get in touch</h4><ul><li>{CONTACT['phone']}</li><li><a href="https://wa.me/{CONTACT['wa']}" target="_blank" rel="noopener">WhatsApp {CONTACT['whatsapp']}</a></li><li>{CONTACT['email']}</li><li><a href="{CONTACT['facebook']}" target="_blank" rel="noopener">Facebook</a></li><li><a href="{CONTACT['instagram']}" target="_blank" rel="noopener">Instagram @ysltravel</a></li><li><a href="{CONTACT['maps']}" target="_blank" rel="noopener">Google Maps</a></li></ul></div>
     </div>
     <div class="foot-base">
-      <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (877803-T) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
+      <span>&copy; 2026 YSL Travel &amp; Tours Sdn Bhd (200901034692 (877803-T)) &nbsp; <span lang="zh-Hans">咏胜天下旅游有限公司</span></span>
       <span><a href="privacy.html">Privacy Notice</a> &nbsp; Licence KPL 6107 &nbsp; Member of MATTA, MITA, MICA and MCTA</span>
     </div>
   </div>
@@ -279,7 +279,7 @@ def build_home():
       <div class="creds">
         <div class="cred">
           <h3 class="code">Licensed &amp; registered</h3>
-          <ul class="legal"><li><b>KPL 6107</b><span>Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)</span></li><li><b>877803-T</b><span>YSL Travel &amp; Tours Sdn Bhd, registered with SSM</span></li></ul>
+          <ul class="legal"><li><b>KPL 6107</b><span>Travel agency licence, Ministry of Tourism, Arts and Culture Malaysia (MOTAC)</span></li><li><b>200901034692</b><span>YSL Travel &amp; Tours Sdn Bhd, registered with SSM (formerly 877803-T)</span></li></ul>
         </div>
         <div class="cred">
           <h3 class="code">Member of</h3>
@@ -463,7 +463,7 @@ def build_about():
 </section>
 <section class="section" aria-labelledby="mem-h">
   <div class="container">
-    <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (877803-T).</p></div></div>
+    <div class="sec-head"><div><p class="eyebrow">Credentials</p><h2 class="h-l" id="mem-h">Licensed, registered and accredited.</h2><p class="muted" style="margin:18px 0 0;max-width:60ch">Licensed by the Ministry of Tourism, Arts and Culture Malaysia (KPL 6107) and registered with SSM as YSL Travel &amp; Tours Sdn Bhd (200901034692 (877803-T)).</p></div></div>
     <ul class="member-grid rv">{members}</ul>
   </div>
 </section>
