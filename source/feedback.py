@@ -97,7 +97,7 @@ def build(page, nav, head_block, footer, fname='feedback.html', extra_head=''):
             <p>YSL Travel &amp; Tours Sdn Bhd (200901034692 (877803-T)) collects the details on this form, including your name, contact number, email and feedback, to follow up on your comments and to improve our tours and services. Only if you tick the box above will we use your comments in our marketing.</p>
             <p>Your information is used only by YSL Travel &amp; Tours. We do not sell it or share it with third parties, except service providers who store it for us under confidentiality. We keep it only as long as these purposes require.</p>
             <p>To access or correct your information, or to withdraw your consent, contact us at travelwithysl@gmail.com or 03-3290 3500. This notice is given under Malaysia’s Personal Data Protection Act 2010.</p>
-            <p lang="zh-Hans" class="pdpa-zh">咏胜旅游有限公司（200901034692（877803-T））收集本表格中的资料，包括您的姓名、联络电话、电邮及意见，用于跟进您的意见及改善我们的行程与服务。仅在您勾选上方选项时，我们才会将您的意见用于宣传。您的资料仅供咏胜旅游使用，我们不会出售或与第三方分享，但为我们储存资料并须保密的服务供应商除外。资料只保留至上述用途所需的期限。如需查阅或更正资料，或撤回同意，请联络 travelwithysl@gmail.com 或 03-3290 3500。本声明依据马来西亚《2010年个人资料保护法令》发出。</p>
+            <p lang="zh-Hans" class="pdpa-zh">咏胜天下旅游有限公司（200901034692（877803-T））收集本表格中的资料，包括您的姓名、联络电话、电邮及意见，用于跟进您的意见及改善我们的行程与服务。仅在您勾选上方选项时，我们才会将您的意见用于宣传。您的资料仅供咏胜旅游使用，我们不会出售或与第三方分享，但为我们储存资料并须保密的服务供应商除外。资料只保留至上述用途所需的期限。如需查阅或更正资料，或撤回同意，请联络 travelwithysl@gmail.com 或 03-3290 3500。本声明依据马来西亚《2010年个人资料保护法令》发出。</p>
           </div>
         </details>
       </div>'''
